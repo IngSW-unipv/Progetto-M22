@@ -1,8 +1,10 @@
 package anagrafica.clienti;
 
 import java.sql.ResultSet;
-
+import java.sql.SQLException;
 import java.util.ArrayList;
+
+import com.mysql.cj.jdbc.result.ResultSetMetaData;
 
 import ConnectionSQL.DbSingleton;
 
@@ -30,6 +32,9 @@ public class ClientiDAO implements IClientiDAO {
 						rs1.getString(5), rs1.getString(6), rs1.getString(7));
 
 				result.add(f);
+				
+			
+			
 			}
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -43,10 +48,19 @@ public class ClientiDAO implements IClientiDAO {
 		// TODO Auto-generated method stub
 		return false;
 	}
+	
+	public int GetNumColonne() throws SQLException
+	{
+		String query = "SELECT * FROM CLIENTI";
+		ResultSet rs1 = db.executeQuery(query);
+		ResultSetMetaData rsmd =  (ResultSetMetaData) rs1.getMetaData();
+		int colonne = rsmd.getColumnCount();
+		return colonne;
+	}
 
 	public static class Engine2 {
 
-		public static void main(String[] args) {
+		public static void main(String[] args) throws SQLException {
 
 			ClientiDAO cdao = new ClientiDAO();
 
@@ -54,7 +68,11 @@ public class ClientiDAO implements IClientiDAO {
 
 			for (Clienti r : res)
 				System.out.println(r.toString());
+			
+			System.out.println(cdao.GetNumColonne());
 		}
 
 	}
+	
+	
 }

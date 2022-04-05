@@ -1,43 +1,28 @@
 package grafica;
 
-import java.awt.EventQueue;
+import java.util.ArrayList;
 
 import javax.swing.JFrame;
+import javax.swing.table.DefaultTableModel;
 
-public class Prova {
+import anagrafica.clienti.Clienti;
+import anagrafica.clienti.ClientiDAO;
 
-	private JFrame frame;
-
-	/**
-	 * Launch the application.
-	 */
-	public static void main(String[] args) {
-		EventQueue.invokeLater(new Runnable() {
-			public void run() {
-				try {
-					Prova window = new Prova();
-					window.frame.setVisible(true);
-				} catch (Exception e) {
-					e.printStackTrace();
-				}
-			}
-		});
-	}
-
-	/**
-	 * Create the application.
-	 */
+public class Prova extends JFrame {
+	
 	public Prova() {
-		initialize();
+		initComponents();
 	}
+	
 
-	/**
-	 * Initialize the contents of the frame.
-	 */
-	private void initialize() {
-		frame = new JFrame();
-		frame.setBounds(100, 100, 450, 300);
-		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-	}
+public void addRowToJTable() {
+	DefaultTableModel jTable1;
+	DefaultTableModel model = (DefaultTableModel) jTable1.getModel();
+	ClientiDAO cdao = new ClientiDAO();
+	ArrayList<Clienti> res = cdao.selectAll();
+	
 
 }
+	
+}
+
