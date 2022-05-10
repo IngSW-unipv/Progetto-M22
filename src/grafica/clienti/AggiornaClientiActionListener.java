@@ -11,7 +11,7 @@ import javax.swing.table.DefaultTableModel;
 import anagrafica.clienti.Clienti;
 import anagrafica.clienti.ClientiDAO;
 
-public class AggiungiClienteActionListener implements ActionListener {
+public class AggiornaClientiActionListener implements ActionListener {
 
 	JTextField nomeText;
 	JTextField cognomeText;
@@ -22,14 +22,19 @@ public class AggiungiClienteActionListener implements ActionListener {
 	JTextField indirizzoText;
 	JTable table; // IMPO se no punta null
 	ClientiDAO cdao = new ClientiDAO(); // IMPO se no punta null
- 
+	ArrayList<Clienti> res = cdao.selectAll();
+
 	@Override
 	public void actionPerformed(ActionEvent e) {
 		// TODO Auto-generated method stub
 
 		// Aggiungi nuovo cliente
+		int elementoSelezionato = table.getSelectedRow();
+		((DefaultTableModel) table.getModel()).removeRow(elementoSelezionato);
+		cdao.deleteClienti(res.get(elementoSelezionato));
+		res.remove(elementoSelezionato);
 
-		String nome = nomeText.getText(); 
+		String nome = nomeText.getText();
 		String cognome = cognomeText.getText();
 		String CF = CFText.getText();
 		String email = emailText.getText();
@@ -40,14 +45,13 @@ public class AggiungiClienteActionListener implements ActionListener {
 		Clienti cl = new Clienti(nome, cognome, CF, email, cellulare, citta, indirizzo);
 		boolean flag = cdao.insertClienti(cl);
 
-		ArrayList<Clienti> res = cdao.selectAll(); //correggi
-		String rowData[] = new String[res.size()]; //mmmmmmmmm
-		
-		
+		ArrayList<Clienti> res = cdao.selectAll(); // correggi
+		String rowData[] = new String[res.size()]; // mmmmmmmmm
+
 		DefaultTableModel model = (DefaultTableModel) table.getModel();
 
 		if (flag) {
-			
+
 			rowData[0] = nome;
 			rowData[1] = cognome;
 			rowData[2] = CF;
@@ -59,8 +63,8 @@ public class AggiungiClienteActionListener implements ActionListener {
 			model.addRow(rowData);
 
 		}
-		
-		//pulisco ogni textField
+
+		// pulisco ogni textField
 		nomeText.setText(null);
 		cognomeText.setText(null);
 		CFText.setText(null);
@@ -68,10 +72,9 @@ public class AggiungiClienteActionListener implements ActionListener {
 		cellulareText.setText(null);
 		cittaText.setText(null);
 		indirizzoText.setText(null);
-		
 	}
 
-	public AggiungiClienteActionListener(JTextField nomeText, JTextField cognomeText, JTextField CFText,
+	public AggiornaClientiActionListener(JTextField nomeText, JTextField cognomeText, JTextField CFText,
 			JTextField emailText, JTextField cellulareText, JTextField cittaText, JTextField indirizzoText,
 			JTable table, ClientiDAO cdao) {
 		super();

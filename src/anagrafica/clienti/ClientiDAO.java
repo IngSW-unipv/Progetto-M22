@@ -73,7 +73,7 @@ public class ClientiDAO implements IClientiDAO {
 			return false;
 		}
 		return true;
-	}
+	} 
 
 	public void deleteClienti(Clienti cl) {
 		String CF_CL = cl.getCF();

@@ -22,7 +22,7 @@ public class EliminaClientiActionListener implements ActionListener {
 		int elementoSelezionato = table.getSelectedRow();
 		model.removeRow(elementoSelezionato);
 		cdao.deleteClienti(res.get(elementoSelezionato));
-		res.remove(elementoSelezionato);
+		res.remove(elementoSelezionato);  
 		
 
 	}

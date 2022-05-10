@@ -9,8 +9,10 @@ import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.JTextField;
 import javax.swing.border.EmptyBorder;
+import java.awt.event.ActionListener;
+import java.awt.event.ActionEvent;
 
-public class ClientiView1 extends JPanel {
+public class ClientiPanel extends JPanel {
 
 	private static final long serialVersionUID = 1L;
 
@@ -26,10 +28,11 @@ public class ClientiView1 extends JPanel {
 					principale.setBounds(500, 500, 2700, 2200);
 					principale.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 					principale.getContentPane().setLayout(null);
-					
-					ClientiView1 frame = new ClientiView1();
+
+					ClientiPanel frame = new ClientiPanel();
 					frame.setVisible(true);
-					principale.add(frame);
+					principale.getContentPane().add(frame);
+
 				} catch (Exception e) {
 					e.printStackTrace();
 				}
@@ -40,12 +43,11 @@ public class ClientiView1 extends JPanel {
 	/**
 	 * Create the frame.
 	 */
-	public ClientiView1() {
+	public ClientiPanel() {
 
 		setBounds(0, 0, 2700, 2200);
 		setBorder(new EmptyBorder(5, 5, 5, 5));
 		setLayout(null);
-
 
 		JScrollPane scrollPane = new JScrollPane();
 		scrollPane.setBounds(22, 0, 930, 644);
@@ -114,9 +116,8 @@ public class ClientiView1 extends JPanel {
 		lblIndirizzo.setBounds(970, 372, 70, 15);
 		add(lblIndirizzo);
 
-		
 		TabellaClientiView tab = new TabellaClientiView(scrollPane);
-		
+
 		// bottone aggiungi cliente
 		AggiungiClienteActionListener addCliente = new AggiungiClienteActionListener(nomeText, cognomeText, CFText,
 				emailText, cellulareText, cittaText, indirizzoText, tab.getTable(), tab.getCdao());
@@ -131,6 +132,28 @@ public class ClientiView1 extends JPanel {
 		btnElimina.addActionListener(deletecliente);
 		btnElimina.setBounds(1096, 444, 100, 25);
 		add(btnElimina);
+
+		// bottone per modificare quel cliente: riempie le textField con gli attributi di quel cliente
+		JButton btnModifica = new JButton("Modifica");
+		btnModifica.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				tab.fillJTextArea(nomeText, cognomeText, CFText, emailText, cellulareText, cittaText, indirizzoText,
+						tab.getTable());
+			}
+		});
+		btnModifica.setBounds(964, 493, 100, 25);
+		add(btnModifica);
+		
+		// bottone per aggiornare le caratteristiche del cliente selezionato
+		JButton btnAggiorna = new JButton("Aggiorna");
+		btnAggiorna.setBounds(1096, 493, 100, 25);
+		AggiornaClientiActionListener update = new AggiornaClientiActionListener(nomeText, cognomeText, CFText, emailText, cellulareText, cittaText, indirizzoText,
+				tab.getTable(),tab.getCdao());
+		btnAggiorna.addActionListener(update);
+		add(btnAggiorna);
+		
+	
+	
 	}
 
 }
