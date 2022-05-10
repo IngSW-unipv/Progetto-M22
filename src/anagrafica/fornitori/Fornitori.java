@@ -2,7 +2,6 @@ package anagrafica.fornitori;
 
 public class Fornitori {
 
-	private String COD;
 	private String PIVA;
 	private String nomeAzienda;
 	private String nTelefono;
@@ -58,14 +57,10 @@ public class Fornitori {
 		IBAN = iBAN;
 	}
 
-	public String getCOD() {
-		return COD;
-	}
 
-	public Fornitori(String COD, String PIVA, String nomeAzienda, String nTelefono, String email, String sede,
+	public Fornitori(String PIVA, String nomeAzienda, String nTelefono, String email, String sede,
 			String iBAN) {
 		super();
-		this.COD = COD;
 		this.PIVA = PIVA;
 		this.nomeAzienda = nomeAzienda;
 		this.nTelefono = nTelefono;
@@ -76,7 +71,7 @@ public class Fornitori {
 
 	@Override
 	public String toString() {
-		return "Fornitori [COD=" + COD + ", PIVA=" + PIVA + ", nomeAzienda=" + nomeAzienda + ", nTelefono=" + nTelefono
+		return "Fornitori [PIVA=" + PIVA + ", nomeAzienda=" + nomeAzienda + ", nTelefono=" + nTelefono
 				+ ", email=" + email + ", sede=" + sede + ", IBAN=" + IBAN + "]";
 	}
 

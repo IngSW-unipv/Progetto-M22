@@ -8,4 +8,6 @@ public interface ILottoFarmaciDAO {
 
 	public boolean insertLottoFarmaci(LottoFarmaci f);
 
+	boolean insertFarmaci(LottoFarmaci f);
+
 }

@@ -28,7 +28,7 @@ public class FornitoriDAO implements IFornitoriDAO {
 
 			while (rs1.next()) {
 				Fornitori f = new Fornitori(rs1.getString(1), rs1.getString(2), rs1.getString(3), rs1.getString(4),
-						rs1.getString(5), rs1.getString(6),rs1.getString(7));
+						rs1.getString(5), rs1.getString(6));
 
 				result.add(f);
 			}

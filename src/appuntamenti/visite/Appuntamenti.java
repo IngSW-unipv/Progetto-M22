@@ -10,7 +10,7 @@ import anagrafica.veterinari.VeterinariDAO;
 import pazienti.Paziente;
 import pazienti.PazienteDAO;
 
-public class Visite {
+public class Appuntamenti {
 	private String cod;
 	private Paziente paziente;
 	private String sala;
@@ -57,7 +57,7 @@ public class Visite {
 		return time;
 	}
 
-	public Visite(String cod, String paziente, String sala, String tipo, Date data, Time time, String veterinario,
+	public Appuntamenti(String cod, String paziente, String sala, String tipo, Date data, Time time, String veterinario,
 			double costo, String note) {
 		super();
 
@@ -93,11 +93,14 @@ public class Visite {
 		this.costo = costo;
 		this.note = note;
 	}
+	
 
 	@Override
 	public String toString() {
 		return "Visite [cod=" + cod + ", paziente=" + paziente + ", sala=" + sala + ", tipo=" + tipo + ", data=" + data
 				+ ", time=" + time + ", veterinario=" + veterinario + ", costo=" + costo + ", note=" + note + "]";
 	}
+	
+	
 
 }

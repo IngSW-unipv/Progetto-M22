@@ -19,7 +19,7 @@ public class VeterinariDAO implements IVeterinariDAO {
 	}
 
 	public ArrayList<Veterinari> selectAll() {
-		ArrayList<Veterinari> result = new ArrayList<>();
+		ArrayList<Veterinari> result = new ArrayList<>(); 
 
 		ResultSet rs1;
 		db = DbSingleton.getInstance();
@@ -39,6 +39,28 @@ public class VeterinariDAO implements IVeterinariDAO {
 		}
 
 		return result;
+	}
+
+	public ArrayList<String> getCFDAO() {
+		ResultSet rs1;
+		db = DbSingleton.getInstance();
+		ArrayList<String> listeCF = new ArrayList<>();
+		try {
+			String query = "SELECT CF_DIP FROM DIPENDENTI";
+			rs1 = db.executeQuery(query);
+
+			while (rs1.next()) {
+				String CF = new String(rs1.getString(1));
+
+				listeCF.add(CF);
+
+				// System.out.println(CF);
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+
+		return listeCF;
 	}
 
 	@Override
@@ -67,6 +89,7 @@ public class VeterinariDAO implements IVeterinariDAO {
 
 		catch (SQLException e) {
 			e.printStackTrace();
+			// System.exit(0);
 
 		}
 	}
@@ -90,7 +113,6 @@ public class VeterinariDAO implements IVeterinariDAO {
 	}
 	
 
-
 	public static class Engine1 {
 
 		public static void main(String[] args) {
@@ -102,8 +124,8 @@ public class VeterinariDAO implements IVeterinariDAO {
 			for (Veterinari r : res)
 				System.out.println(r.toString());
 
-			vdao.deleteVeterinari("00");
-
+			// vdao.deleteVeterinari("00");
+			vdao.getCFDAO();
 			// Veterinari vet1 = new Veterinari("peppe", "denico", "00", "@", "cell",
 			// "citta", "indirizzo", "pivs",
 			// "contratto", 300, 900, "iban");
