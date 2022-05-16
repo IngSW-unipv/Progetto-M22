@@ -1,4 +1,4 @@
-package grafica.clienti;
+package view.clienti;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -7,8 +7,8 @@ import java.util.ArrayList;
 import javax.swing.JTable;
 import javax.swing.table.DefaultTableModel;
 
-import anagrafica.clienti.Clienti;
-import anagrafica.clienti.ClientiDAO;
+import database.classiDAO.anagraficaDAO.clientiDAO.ClientiDAO;
+import model.anagrafica.clienti.Clienti;
 
 public class EliminaClientiActionListener implements ActionListener {
 	JTable table;

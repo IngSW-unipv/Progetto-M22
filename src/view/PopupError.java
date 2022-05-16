@@ -1,4 +1,4 @@
-package grafica;
+package view;
 
 import javax.swing.JOptionPane;
 

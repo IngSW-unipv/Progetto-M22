@@ -1,4 +1,4 @@
-package grafica.clienti;
+package view.clienti;
 
 import java.util.ArrayList;
 
@@ -7,8 +7,8 @@ import javax.swing.JTable;
 import javax.swing.JTextField;
 import javax.swing.table.DefaultTableModel;
 
-import anagrafica.clienti.Clienti;
-import anagrafica.clienti.ClientiDAO;
+import database.classiDAO.anagraficaDAO.clientiDAO.ClientiDAO;
+import model.anagrafica.clienti.Clienti;
 
 public class TabellaClientiPanel {
 
