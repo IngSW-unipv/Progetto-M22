@@ -66,7 +66,6 @@ public class ClientiDAO implements IClientiDAO {
 
 		catch (SQLException e) {
 			e.printStackTrace();
-			PopupError.infoBox("Esiste già un cliente con questo CF", "ERRORE");
 			return false;
 		}
 		return true;
@@ -88,23 +87,6 @@ public class ClientiDAO implements IClientiDAO {
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
-		}
-	}
-
-	public static class Engine2 {
-
-		public static void main(String[] args) throws SQLException {
-
-			ClientiDAO cdao = new ClientiDAO();
-
-			ArrayList<Clienti> res = cdao.selectAll();
-
-			// Clienti cl = new Clienti("a","b","c", "a","a","a","a");
-			// cdao.insertClienti(cl);
-
-			for (Clienti r : res)
-				System.out.println(r.toString());
-
 		}
 	}
 

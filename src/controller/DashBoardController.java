@@ -4,8 +4,6 @@ import java.util.ArrayList;
 
 import javax.swing.JComboBox;
 import javax.swing.JScrollPane;
-import javax.swing.JTable;
-import javax.swing.table.DefaultTableModel;
 
 import model.anagrafica.veterinari.Veterinari;
 import model.appuntamenti.Appuntamenti;
@@ -25,6 +23,7 @@ public class DashBoardController {
 		this.app = app;
 
 		inizializzaComboBoxVet(vet, combobox, pane, app);
+		// addActionListenersMenu();
 	}
 
 	public void inizializzaComboBoxVet(ArrayList<Veterinari> vet, JComboBox combobox, JScrollPane pane,
@@ -38,7 +37,6 @@ public class DashBoardController {
 			lista_CF.add(vet.get(i).getCF());
 			combobox.addItem(lista_CF.get(i));
 		}
-
 	}
 
 }

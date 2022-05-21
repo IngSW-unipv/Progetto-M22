@@ -2,24 +2,24 @@ package controller;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.util.ArrayList;
 
 import javax.swing.JComboBox;
 import javax.swing.JScrollPane;
 import javax.swing.JTable;
 import javax.swing.table.DefaultTableModel;
 
+import clientiController.ClientiController;
 import database.connectionSQL.DbControllerSingleton;
 import model.SmartVetModel;
-import model.appuntamenti.Appuntamenti;
 import view.MainView;
 
 public class Controller {
 
 	private SmartVetModel model;
 	private MainView view;
-	DbControllerSingleton dbControl;
+	private DbControllerSingleton dbControl;
 	private DashBoardController dashControl;
+	private ClientiController clientiController;
 
 	public Controller(SmartVetModel m, MainView v) {
 
@@ -34,8 +34,13 @@ public class Controller {
 		dbControl = new DbControllerSingleton();
 		populateArrays();
 		DynamicPromemoria();
-		dashControl = new DashBoardController(model.getVeterinariArray(), view.getComboBox1(),
-				view.getPromemoriaScrollPane(), model.getPromemoriaOggiArray());
+
+		dashControl = new DashBoardController(model.getVeterinariArray(), view.getDashboard().getComboBox1(),
+				view.getDashboard().getPromemoriaScrollPane(), model.getPromemoriaOggiArray());
+
+		clientiController = new ClientiController(model.getClientiArray(), view.getClientiPanel().getTab().getTable(),
+				view.getDashboard().getMenu(), view, view.getDashboard(), view.getClientiPanel(), dbControl);
+		
 
 	}
 
@@ -49,46 +54,28 @@ public class Controller {
 		model.populateProdottiUtili(dbControl.selectAllProdottiUtili());
 		model.populateProdottivendibili(dbControl.selectAllProdottiVendita());
 		model.populateLottoFarmaci(dbControl.selectAllLottoFarmaci());
-
+		
 	}
+
 
 	private void DynamicPromemoria() {
-		ComboBoxVetssActionListener scegli_vet = new ComboBoxVetssActionListener(view.getPromemoriaScrollPane(),
-				view.getComboBox1());
+		ComboBoxVetssActionListener scegli_vet = new ComboBoxVetssActionListener(
+				view.getDashboard().getPromemoriaScrollPane(), view.getDashboard().getComboBox1());
 
-		view.getComboBox1().addActionListener(scegli_vet);
+		view.getDashboard().getComboBox1().addActionListener(scegli_vet);
 
 	}
 
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
 	// siccome array promemoria è dinamico ho bisogno di lasciarlo qui per comodità
 	// cerchiamo però di riempire questo controller il meno possibile!!!!!!!
 
+	
+	
+	
+	
+	
+	
+	
 	public class ComboBoxVetssActionListener implements ActionListener {
 
 		JScrollPane scrollPane;

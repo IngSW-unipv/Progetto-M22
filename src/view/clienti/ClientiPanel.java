@@ -1,43 +1,36 @@
 package view.clienti;
 
-import java.awt.EventQueue;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
-
 import javax.swing.JButton;
-import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.JTextField;
 
+import model.anagrafica.clienti.Clienti;
+
 public class ClientiPanel extends JPanel {
 
 	private static final long serialVersionUID = 1L;
-
-	/**
-	 * Launch the application.
-	 */
-	public static void main(String[] args) {
-		EventQueue.invokeLater(new Runnable() {
-			public void run() {
-				try {
-					JFrame principale = new JFrame();
-					principale.setVisible(true);
-					principale.setBounds(500, 500, 2700, 2200);
-					principale.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-					principale.getContentPane().setLayout(null);
-
-					ClientiPanel frame = new ClientiPanel();
-					frame.setVisible(true);
-					principale.getContentPane().add(frame);
-
-				} catch (Exception e) {
-					e.printStackTrace();
-				}
-			}
-		});
-	}
+	private JScrollPane scrollPane;
+	private JTextField nomeText;
+	private JTextField cognomeText;
+	private JTextField emailText;
+	private JTextField CFText;
+	private JTextField cellulareText;
+	private JTextField cittaText;
+	private JTextField indirizzoText;
+	private JLabel lblNome;
+	private JLabel lblCognome;
+	private JLabel lblCF;
+	private JLabel lblCitta;
+	private JLabel lblIndirizzo;
+	private JLabel lblEmail;
+	private JLabel lblCellulare;
+	private TabellaClientiPanel tab;
+	private JButton btnModifica;
+	private JButton btnAggiungi;
+	private JButton btnElimina;
+	private JButton btnAggiorna;
 
 	public ClientiPanel() {
 
@@ -45,110 +38,183 @@ public class ClientiPanel extends JPanel {
 		// setBorder(new EmptyBorder(5, 5, 5, 5));
 		setLayout(null);
 
-		JScrollPane scrollPane = new JScrollPane();
+		scrollPane = new JScrollPane();
 		scrollPane.setBounds(22, 0, 930, 644);
 		add(scrollPane);
 
-		JTextField nomeText = new JTextField();
+		nomeText = new JTextField();
 		nomeText.setBounds(1096, 12, 100, 25);
 		add(nomeText);
 		nomeText.setColumns(10);
 
-		JTextField cognomeText = new JTextField();
+		cognomeText = new JTextField();
 		cognomeText.setColumns(10);
 		cognomeText.setBounds(1096, 72, 100, 25);
 		add(cognomeText);
 
-		JTextField CFText = new JTextField();
+		CFText = new JTextField();
 		CFText.setColumns(10);
 		CFText.setBounds(1096, 132, 100, 25);
 		add(CFText);
 
-		JTextField emailText = new JTextField();
+		emailText = new JTextField();
 		emailText.setColumns(10);
 		emailText.setBounds(1096, 192, 100, 25);
 		add(emailText);
 
-		JTextField cellulareText = new JTextField();
+		cellulareText = new JTextField();
 		cellulareText.setColumns(10);
 		cellulareText.setBounds(1096, 252, 100, 25);
 		add(cellulareText);
 
-		JTextField cittaText = new JTextField();
+		cittaText = new JTextField();
 		cittaText.setColumns(10);
 		cittaText.setBounds(1096, 312, 100, 25);
 		add(cittaText);
 
-		JTextField indirizzoText = new JTextField();
+		indirizzoText = new JTextField();
 		indirizzoText.setColumns(10);
 		indirizzoText.setBounds(1096, 372, 100, 25);
 		add(indirizzoText);
 
-		JLabel lblNome = new JLabel("Nome");
+		lblNome = new JLabel("Nome");
 		lblNome.setBounds(970, 12, 70, 15);
 		add(lblNome);
 
-		JLabel lblCognome = new JLabel("Cognome");
+		lblCognome = new JLabel("Cognome");
 		lblCognome.setBounds(970, 72, 70, 15);
 		add(lblCognome);
 
-		JLabel lblCf = new JLabel("CF");
-		lblCf.setBounds(970, 132, 70, 15);
-		add(lblCf);
+		lblCF = new JLabel("CF");
+		lblCF.setBounds(970, 132, 70, 15);
+		add(lblCF);
 
-		JLabel lblEmail = new JLabel("Email");
+		lblEmail = new JLabel("Email");
 		lblEmail.setBounds(970, 192, 70, 15);
 		add(lblEmail);
 
-		JLabel lblCellulare = new JLabel("Cellulare");
+		lblCellulare = new JLabel("Cellulare");
 		lblCellulare.setBounds(970, 252, 70, 15);
 		add(lblCellulare);
 
-		JLabel lblCitt = new JLabel("Città");
-		lblCitt.setBounds(970, 312, 70, 15);
-		add(lblCitt);
+		lblCitta = new JLabel("Città");
+		lblCitta.setBounds(970, 312, 70, 15);
+		add(lblCitta);
 
-		JLabel lblIndirizzo = new JLabel("Indirizzo");
+		lblIndirizzo = new JLabel("Indirizzo");
 		lblIndirizzo.setBounds(970, 372, 70, 15);
 		add(lblIndirizzo);
 
-		TabellaClientiPanel tab = new TabellaClientiPanel(scrollPane);
+		tab = new TabellaClientiPanel(scrollPane);
 
-		// bottone aggiungi cliente
-		AggiungiClienteActionListener addCliente = new AggiungiClienteActionListener(nomeText, cognomeText, CFText,
-				emailText, cellulareText, cittaText, indirizzoText, tab.getTable(), tab.getCdao());
-		JButton btnAggiungi = new JButton("Aggiungi");
+		btnAggiungi = new JButton("Aggiungi");
 		btnAggiungi.setBounds(964, 444, 100, 25);
-		btnAggiungi.addActionListener(addCliente);
 		add(btnAggiungi);
 
-		// bottone elimina cliente
-		JButton btnElimina = new JButton("Elimina");
-		EliminaClientiActionListener deletecliente = new EliminaClientiActionListener(tab.getTable());
-		btnElimina.addActionListener(deletecliente);
+		btnElimina = new JButton("Elimina");
 		btnElimina.setBounds(1096, 444, 100, 25);
 		add(btnElimina);
 
 		// bottone per modificare quel cliente: riempie le textField con gli attributi
 		// di quel cliente
-		JButton btnModifica = new JButton("Modifica");
-		btnModifica.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				tab.fillJTextArea(nomeText, cognomeText, CFText, emailText, cellulareText, cittaText, indirizzoText,
-						tab.getTable());
-			}
-		});
+		btnModifica = new JButton("Modifica");
 		btnModifica.setBounds(964, 493, 100, 25);
 		add(btnModifica);
 
 		// bottone per aggiornare le caratteristiche del cliente selezionato
-		JButton btnAggiorna = new JButton("Aggiorna");
+		btnAggiorna = new JButton("Aggiorna");
 		btnAggiorna.setBounds(1096, 493, 100, 25);
-		AggiornaClientiActionListener update = new AggiornaClientiActionListener(nomeText, cognomeText, CFText,
-				emailText, cellulareText, cittaText, indirizzoText, tab.getTable(), tab.getCdao());
-		btnAggiorna.addActionListener(update);
 		add(btnAggiorna);
 
 	}
 
+	public static long getSerialversionuid() {
+		return serialVersionUID;
+	}
+
+	public JScrollPane getScrollPane() {
+		return scrollPane;
+	}
+
+	public JTextField getNomeText() {
+		return nomeText;
+	}
+
+	public JTextField getCognomeText() {
+		return cognomeText;
+	}
+
+	public JTextField getEmailText() {
+		return emailText;
+	}
+
+	public JTextField getCFText() {
+		return CFText;
+	}
+
+	public JTextField getCellulareText() {
+		return cellulareText;
+	}
+
+	public JTextField getCittaText() {
+		return cittaText;
+	}
+
+	public JTextField getIndirizzoText() {
+		return indirizzoText;
+	}
+
+	public JLabel getLblNome() {
+		return lblNome;
+	}
+
+	public JLabel getLblCognome() {
+		return lblCognome;
+	}
+
+	public JLabel getLblCF() {
+		return lblCF;
+	}
+
+	public JLabel getLblCitta() {
+		return lblCitta;
+	}
+
+	public JLabel getLblIndirizzo() {
+		return lblIndirizzo;
+	}
+
+	public JLabel getLblEmail() {
+		return lblEmail;
+	}
+
+	public JLabel getLblCellulare() {
+		return lblCellulare;
+	}
+
+	public TabellaClientiPanel getTab() {
+		return tab;
+	}
+
+	public JButton getBtnModifica() {
+		return btnModifica;
+	}
+
+	public JButton getBtnAggiungi() {
+		return btnAggiungi;
+	}
+
+	public JButton getBtnElimina() {
+		return btnElimina;
+	}
+
+	public JButton getBtnAggiorna() {
+		return btnAggiorna;
+	}
+
+	public Clienti getNuovoClienteTextField() {
+		Clienti cl = new Clienti(nomeText.getText(), cognomeText.getText(), CFText.getText(), cellulareText.getText(),
+				cittaText.getText(), indirizzoText.getText(), emailText.getText());
+		return cl;
+	}
 }

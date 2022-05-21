@@ -28,10 +28,8 @@ public class MenuView extends JPanel {
 	private JMenuItem mntmProdottiVendita;
 	private JMenu mnAppuntamenti;
 
-	public MenuView(JPanel panel) {
+	public MenuView() {
 
-		this.panel = panel;
-		// this.frame = frame;
 		setBounds(51, 31, 396, 63);
 		setLayout(null);
 
@@ -43,16 +41,7 @@ public class MenuView extends JPanel {
 		menuBar.add(mnAnagrafica);
 
 		mntmClienti = new JMenuItem("Clienti");
-		mntmClienti.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
 
-				ClientiPanel nuovoPannello = new ClientiPanel();
-				panel.setVisible(false);
-				add(nuovoPannello);
-				nuovoPannello.setVisible(true);
-
-			}
-		});
 		mnAnagrafica.add(mntmClienti);
 
 		mntmPazienti = new JMenuItem("Pazienti");
@@ -87,4 +76,57 @@ public class MenuView extends JPanel {
 		mnAppuntamenti = new JMenu("Appuntamenti");
 		menuBar.add(mnAppuntamenti);
 	}
+
+	public static long getSerialversionuid() {
+		return serialVersionUID;
+	}
+
+	public JPanel getPanel() {
+		return panel;
+	}
+
+	public JMenuBar getMenuBar() {
+		return menuBar;
+	}
+
+	public JMenu getMnAnagrafica() {
+		return mnAnagrafica;
+	}
+
+	public JMenuItem getMntmClienti() {
+		return mntmClienti;
+	}
+
+	public JMenuItem getMntmPazienti() {
+		return mntmPazienti;
+	}
+
+	public JMenuItem getMntmFornitori() {
+		return mntmFornitori;
+	}
+
+	public JMenuItem getMntmDipendenti() {
+		return mntmDipendenti;
+	}
+
+	public JMenu getMnMagazzino() {
+		return mnMagazzino;
+	}
+
+	public JMenuItem getMntmFarmaci() {
+		return mntmFarmaci;
+	}
+
+	public JMenuItem getMntmProdottiutili() {
+		return mntmProdottiutili;
+	}
+
+	public JMenuItem getMntmProdottiVendita() {
+		return mntmProdottiVendita;
+	}
+
+	public JMenu getMnAppuntamenti() {
+		return mnAppuntamenti;
+	}
+
 }

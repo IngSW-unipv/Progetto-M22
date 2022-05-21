@@ -1,4 +1,4 @@
-package view.clienti;
+package clientiController;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -7,28 +7,31 @@ import java.util.ArrayList;
 import javax.swing.JTable;
 import javax.swing.table.DefaultTableModel;
 
-import database.classiDAO.anagraficaDAO.clientiDAO.ClientiDAO;
+import database.connectionSQL.DbControllerSingleton;
 import model.anagrafica.clienti.Clienti;
 
 public class EliminaClientiActionListener implements ActionListener {
-	JTable table;
-	private ClientiDAO cdao = new ClientiDAO();
-	
+	private JTable table;
+	private DbControllerSingleton dbControl;
+	private ArrayList<Clienti> cl;
+
 	@Override
 	public void actionPerformed(ActionEvent e) {
-		ArrayList<Clienti> res = cdao.selectAll();
+
 		DefaultTableModel model = (DefaultTableModel) table.getModel();
-		
+
 		int elementoSelezionato = table.getSelectedRow();
 		model.removeRow(elementoSelezionato);
-		cdao.deleteClienti(res.get(elementoSelezionato));
-		res.remove(elementoSelezionato);  
-		
+
+		dbControl.deleteCliente(cl.get(elementoSelezionato));
+		cl.remove(elementoSelezionato);
 
 	}
 
-	public EliminaClientiActionListener(JTable table) {
+	public EliminaClientiActionListener(JTable table, DbControllerSingleton dbControl, ArrayList<Clienti> cl) {
 		this.table = table;
+		this.dbControl = dbControl;
+		this.cl = cl;
 	}
 
 }

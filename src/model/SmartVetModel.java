@@ -60,6 +60,7 @@ public class SmartVetModel {
 		this.clienti = clienti;
 	}
 
+
 	public void populateVeterinari(ArrayList<Veterinari> vets) {
 		this.vets = vets;
 
@@ -109,6 +110,7 @@ public class SmartVetModel {
 	public ArrayList<Clienti> getClientiArray() {
 		return clienti;
 	}
+
 
 	public ArrayList<Veterinari> getVeterinariArray() {
 		return vets;

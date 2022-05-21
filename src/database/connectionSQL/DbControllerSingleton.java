@@ -58,6 +58,17 @@ public class DbControllerSingleton {
 
 		return clienti.selectAll();
 	}
+	
+	public boolean addNuovoCliente(Clienti cl) {
+		
+		return clienti.insertClienti(cl);
+		
+	}
+	
+	public void deleteCliente(Clienti cl) {
+		
+	  clienti.deleteClienti(cl);
+	}
 
 	public ArrayList<Fornitori> selectAllFornitori() {
 		return fornitori.selectAll();
