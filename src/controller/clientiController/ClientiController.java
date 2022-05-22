@@ -17,19 +17,15 @@ import view.dashboard.MenuView;
 public class ClientiController {
 
 	private ArrayList<Clienti> res;
-	private JTable table;
-	private MenuView menu;
 	private JFrame principale;
 	private DashBoardView panelDash;
 	private ClientiPanel clientiPanel;
 	private DbControllerSingleton dbControl;
 
-	public ClientiController(ArrayList<Clienti> res, JTable table, MenuView menu, JFrame principale,
-			DashBoardView panelDash, ClientiPanel clientiPanel, DbControllerSingleton dbControl) {
+	public ClientiController(ArrayList<Clienti> res, JFrame principale, DashBoardView panelDash,
+			ClientiPanel clientiPanel, DbControllerSingleton dbControl) {
 		super();
 		this.res = res;
-		this.table = table;
-		this.menu = menu;
 		this.principale = principale;
 		this.panelDash = panelDash;
 		this.clientiPanel = clientiPanel;
@@ -38,11 +34,12 @@ public class ClientiController {
 		fillTable();
 		addActionListenersMenu();
 		addActionListenerButtons();
+		addActionListenerHome();
 	}
 
 	public void fillTable() {
 		String rowData[][] = new String[res.size()][7];
-		DefaultTableModel modello = (DefaultTableModel) table.getModel();
+		DefaultTableModel modello = (DefaultTableModel) clientiPanel.getTab().getTable().getModel();
 		for (int i = 0; i < res.size(); i++) {
 
 			rowData[i][0] = res.get(i).getNome();
@@ -58,7 +55,7 @@ public class ClientiController {
 	}
 
 	public void addActionListenersMenu() {
-		menu.getMntmClienti().addActionListener(new ActionListener() {
+		panelDash.getMenu().getMntmClienti().addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				panelDash.setVisible(false);
 				principale.add(clientiPanel);
@@ -83,6 +80,16 @@ public class ClientiController {
 		AggiornaClientiActionListener aggiornaCliente = new AggiornaClientiActionListener(clientiPanel, dbControl, res);
 		clientiPanel.getBtnAggiorna().addActionListener(aggiornaCliente);
 
+	}
+
+	public void addActionListenerHome() {
+		clientiPanel.getBtnHome().addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				clientiPanel.setVisible(false);
+				principale.add(panelDash);
+				panelDash.setVisible(true);
+			}
+		});
 	}
 
 }

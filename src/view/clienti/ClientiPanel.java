@@ -1,10 +1,12 @@
 package view.clienti;
 
+import javax.swing.Icon;
 import javax.swing.JButton;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.JTextField;
+import javax.swing.UIManager;
 
 import model.anagrafica.clienti.Clienti;
 
@@ -31,6 +33,7 @@ public class ClientiPanel extends JPanel {
 	private JButton btnAggiungi;
 	private JButton btnElimina;
 	private JButton btnAggiorna;
+	private JButton btnHome;
 
 	public ClientiPanel() {
 
@@ -126,6 +129,12 @@ public class ClientiPanel extends JPanel {
 		btnAggiorna.setBounds(1096, 493, 100, 25);
 		add(btnAggiorna);
 
+		btnHome = new JButton();
+		btnHome.setBounds(1058, 551, 52, 43);
+		Icon icon = UIManager.getIcon("FileChooser.homeFolderIcon");
+		btnHome.setIcon(icon);
+		add(btnHome);
+
 	}
 
 	public static long getSerialversionuid() {
@@ -210,6 +219,10 @@ public class ClientiPanel extends JPanel {
 
 	public JButton getBtnAggiorna() {
 		return btnAggiorna;
+	}
+
+	public JButton getBtnHome() {
+		return btnHome;
 	}
 
 	public Clienti getNuovoClienteTextField() {

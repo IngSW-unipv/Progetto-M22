@@ -38,9 +38,8 @@ public class Controller {
 		dashControl = new DashBoardController(model.getVeterinariArray(), view.getDashboard().getComboBox1(),
 				view.getDashboard().getPromemoriaScrollPane(), model.getPromemoriaOggiArray());
 
-		clientiController = new ClientiController(model.getClientiArray(), view.getClientiPanel().getTab().getTable(),
-				view.getDashboard().getMenu(), view, view.getDashboard(), view.getClientiPanel(), dbControl);
-		
+		clientiController = new ClientiController(model.getClientiArray(), view, view.getDashboard(),
+				view.getClientiPanel(), dbControl);
 
 	}
 
@@ -54,9 +53,8 @@ public class Controller {
 		model.populateProdottiUtili(dbControl.selectAllProdottiUtili());
 		model.populateProdottivendibili(dbControl.selectAllProdottiVendita());
 		model.populateLottoFarmaci(dbControl.selectAllLottoFarmaci());
-		
-	}
 
+	}
 
 	private void DynamicPromemoria() {
 		ComboBoxVetssActionListener scegli_vet = new ComboBoxVetssActionListener(
@@ -69,13 +67,6 @@ public class Controller {
 	// siccome array promemoria è dinamico ho bisogno di lasciarlo qui per comodità
 	// cerchiamo però di riempire questo controller il meno possibile!!!!!!!
 
-	
-	
-	
-	
-	
-	
-	
 	public class ComboBoxVetssActionListener implements ActionListener {
 
 		JScrollPane scrollPane;
