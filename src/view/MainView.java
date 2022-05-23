@@ -4,6 +4,7 @@ import javax.swing.JFrame;
 
 import view.clienti.ClientiPanel;
 import view.dashboard.DashBoardView;
+import view.fornitori.FornitoriPanel;
 import view.magazzino.farmaci.FarmaciPanel;
 import view.veterinari.VeterinariPanel;
 
@@ -11,6 +12,7 @@ public class MainView extends JFrame {
 
 	private DashBoardView dashboard;
 	private ClientiPanel clientiPanel;
+	private FornitoriPanel fornitoriPanel;
 	private FarmaciPanel farmaciPanel;
 	private VeterinariPanel veterinariPanel;
 
@@ -25,6 +27,7 @@ public class MainView extends JFrame {
 		getContentPane().add(dashboard);
 
 		clientiPanel = new ClientiPanel();
+		fornitoriPanel = new FornitoriPanel();
 		farmaciPanel = new FarmaciPanel();
 		//veterinariPanel = new VeterinariPanel();
 
@@ -40,6 +43,11 @@ public class MainView extends JFrame {
 
 	public FarmaciPanel getFarmaciPanel() {
 		return farmaciPanel;
+	}
+	
+	public FornitoriPanel getFornitoriPanel() {
+		System.out.println("a");
+		return fornitoriPanel;
 	}
 	
 	public VeterinariPanel getVeterinariPanel() {

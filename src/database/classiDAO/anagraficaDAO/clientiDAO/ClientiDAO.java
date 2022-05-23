@@ -7,6 +7,7 @@ import java.util.ArrayList;
 
 import database.connectionSQL.DbSingleton;
 import model.anagrafica.clienti.Clienti;
+import model.anagrafica.fornitori.Fornitori;
 import view.PopupError;
 
 public class ClientiDAO implements IClientiDAO {
@@ -89,5 +90,4 @@ public class ClientiDAO implements IClientiDAO {
 			e.printStackTrace();
 		}
 	}
-
 }

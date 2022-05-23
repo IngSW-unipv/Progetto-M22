@@ -10,6 +10,7 @@ import javax.swing.table.DefaultTableModel;
 
 import controller.clientiController.ClientiController;
 import controller.farmaciController.FarmaciController;
+import controller.fornitoriController.FornitoriController;
 import database.connectionSQL.DbControllerSingleton;
 import model.SmartVetModel;
 import view.MainView;
@@ -21,6 +22,7 @@ public class Controller {
 	private DbControllerSingleton dbControl;
 	private DashBoardController dashControl;
 	private ClientiController clientiController;
+	private FornitoriController fornitoriController;
 	private FarmaciController farmaciController;
 
 	public Controller(SmartVetModel m, MainView v) {
@@ -41,6 +43,9 @@ public class Controller {
 
 		clientiController = new ClientiController(model.getClientiArray(), view, view.getDashboard(),
 				view.getClientiPanel(), dbControl);
+		
+		fornitoriController = new FornitoriController(model.getFornitoriArray(), view, view.getDashboard(),
+				view.getFornitoriPanel(), dbControl);
 		
 		farmaciController = new FarmaciController(model.getLottoFarmaciArray(), view, view.getDashboard(), view.getFarmaciPanel(), dbControl,
 				model.getFornitoriArray()) ;

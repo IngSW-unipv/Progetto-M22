@@ -59,16 +59,6 @@ public class DbControllerSingleton {
 		return clienti.selectAll();
 	}
 
-	public boolean addNuovoCliente(Clienti cl) {
-
-		return clienti.insertClienti(cl);
-
-	}
-
-	public void deleteCliente(Clienti cl) {
-
-		clienti.deleteClienti(cl);
-	}
 
 	public ArrayList<Fornitori> selectAllFornitori() {
 		return fornitori.selectAll();
@@ -114,4 +104,38 @@ public class DbControllerSingleton {
 		return prods_v.selectAll();
 	}
 
+	public void deleteFornitore(Fornitori fo) {
+		// TODO Auto-generated method stub
+		fornitori.deleteFornitori(fo);
+	}
+
+	public boolean addNuovoFornitore(Fornitori fo) {
+
+		return fornitori.insertFornitore(fo);
+
+	}
+
+	
+	public boolean addNuovoCliente(Clienti cl) {
+
+		return clienti.insertClienti(cl);
+
+	}
+
+	public void deleteCliente(Clienti cl) {
+
+		clienti.deleteClienti(cl);
+	}
+
+	public boolean addNuovoVeterinario(Veterinari vet) {
+		// TODO Auto-generated method stub
+		return false /* Veterinari.insertVeterinario(vet)*/ ;
+
+	}
+	
+	public void deleteVeterinario(Veterinari vet) {
+		// TODO Auto-generated method stub
+		
+	}
+	
 }

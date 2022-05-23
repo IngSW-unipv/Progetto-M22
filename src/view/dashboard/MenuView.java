@@ -11,6 +11,7 @@ import javax.swing.JMenuItem;
 import javax.swing.JPanel;
 
 import view.clienti.ClientiPanel;
+import view.fornitori.FornitoriPanel;
 import view.magazzino.farmaci.FarmaciPanel;
 
 public class MenuView extends JPanel {
@@ -42,7 +43,6 @@ public class MenuView extends JPanel {
 		menuBar.add(mnAnagrafica);
 
 		mntmClienti = new JMenuItem("Clienti");
-
 		mnAnagrafica.add(mntmClienti);
 
 		mntmPazienti = new JMenuItem("Pazienti");
