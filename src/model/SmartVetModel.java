@@ -2,10 +2,10 @@ package model;
 
 import java.util.ArrayList;
 
-import database.classiDAO.magazzinoDAO.farmaciDAO.LottoFarmaci;
 import model.anagrafica.clienti.Clienti;
 import model.anagrafica.veterinari.Veterinari;
 import model.appuntamenti.Appuntamenti;
+import model.magazzino.farmaci.LottoFarmaci;
 import model.magazzino.prodottiUtili.ProdottiUtili;
 import model.magazzino.prodottiVendita.ProdottiVendita;
 import model.pazienti.Paziente;

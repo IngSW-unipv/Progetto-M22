@@ -1,9 +1,7 @@
-package database.classiDAO.magazzinoDAO.farmaciDAO;
+package model.magazzino.farmaci;
 
-import java.util.ArrayList;
 import java.util.Date;
 
-import database.classiDAO.anagraficaDAO.fornitoriDAO.FornitoriDAO;
 import model.anagrafica.fornitori.Fornitori;
 import model.magazzino.Vendibile;
 
@@ -40,26 +38,17 @@ public class LottoFarmaci implements Vendibile {
 		return quantita;
 	}
 
-	public LottoFarmaci(String IDLotto, String mode, String type, String fornitore, Date dataScadenza, int quantita) {
+	public LottoFarmaci(String IDLotto, String mode, String type, Fornitori fornitore, Date dataScadenza,
+			int quantita) {
 		super();
 		this.IDLotto = IDLotto;
 		this.mode = mode;
 		this.type = type;
-
-		FornitoriDAO fornitoridao = new FornitoriDAO();
-		ArrayList<Fornitori> forn = fornitoridao.selectAll();
-
-		for (Fornitori fornitori : forn) {
-
-			if (fornitore.equals(fornitori.getPIVA())) {
-
-				this.fornitore = fornitori;
-
-			}
-		}
+		this.fornitore = fornitore;
 		this.dataScadenza = dataScadenza;
 		this.quantita = quantita;
 	}
+
 
 	@Override
 	public String toString() {

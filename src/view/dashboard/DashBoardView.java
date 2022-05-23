@@ -5,11 +5,11 @@ import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 
 public class DashBoardView extends JPanel {
-	
-	MenuView menu;
-	JScrollPane promemoriaScrollPane;
-	JComboBox comboBox1;
-	JScrollPane farmaciScadenzaScrollPane;
+
+	private MenuView menu;
+	private JScrollPane promemoriaScrollPane;
+	private JComboBox comboBox1;
+	private JScrollPane farmaciScadenzaScrollPane;
 
 	public DashBoardView() {
 

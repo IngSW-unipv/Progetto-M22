@@ -1,22 +1,16 @@
 package view;
 
-import java.util.ArrayList;
-
-import javax.swing.JComboBox;
 import javax.swing.JFrame;
-import javax.swing.JPanel;
-import javax.swing.JScrollPane;
 
-import model.appuntamenti.Appuntamenti;
 import view.clienti.ClientiPanel;
 import view.dashboard.DashBoardView;
-import view.dashboard.MenuView;
-import view.dashboard.promemoria.PromemoriaView;
+import view.magazzino.farmaci.FarmaciPanel;
 
 public class MainView extends JFrame {
 
 	private DashBoardView dashboard;
 	private ClientiPanel clientiPanel;
+	private FarmaciPanel farmaciPanel;
 
 	public MainView() {
 
@@ -29,6 +23,7 @@ public class MainView extends JFrame {
 		getContentPane().add(dashboard);
 
 		clientiPanel = new ClientiPanel();
+		farmaciPanel = new FarmaciPanel();
 
 	}
 
@@ -38,6 +33,10 @@ public class MainView extends JFrame {
 
 	public ClientiPanel getClientiPanel() {
 		return clientiPanel;
+	}
+
+	public FarmaciPanel getFarmaciPanel() {
+		return farmaciPanel;
 	}
 
 }

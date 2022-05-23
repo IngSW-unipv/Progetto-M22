@@ -86,6 +86,9 @@ public class Appuntamenti {
 				this.veterinario = veterinari;
 
 			}
+			
+		//io ho il cf di vet mi devo costruire il tutto
+		
 
 		}
 

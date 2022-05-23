@@ -2,40 +2,29 @@ package controller;
 
 import java.util.ArrayList;
 
-import javax.swing.JComboBox;
-import javax.swing.JScrollPane;
-
 import model.anagrafica.veterinari.Veterinari;
 import model.appuntamenti.Appuntamenti;
+import view.dashboard.DashBoardView;
 
 public class DashBoardController {
-	ArrayList<Veterinari> vet;
-	JComboBox combobox;
-	JScrollPane pane;
-	ArrayList<Appuntamenti> app;
-	String CF;
+	private ArrayList<Veterinari> vet;
+	private DashBoardView dash;
 
-	public DashBoardController(ArrayList<Veterinari> vet, JComboBox combobox, JScrollPane pane,
-			ArrayList<Appuntamenti> app) {
+	public DashBoardController(ArrayList<Veterinari> vet, DashBoardView dash) {
 		this.vet = vet;
-		this.combobox = combobox;
-		this.pane = pane;
-		this.app = app;
+		this.dash = dash;
 
-		inizializzaComboBoxVet(vet, combobox, pane, app);
-		// addActionListenersMenu();
+		inizializzaComboBoxVet();
 	}
 
-	public void inizializzaComboBoxVet(ArrayList<Veterinari> vet, JComboBox combobox, JScrollPane pane,
-			ArrayList<Appuntamenti> app) {
+	public void inizializzaComboBoxVet() {
 
 		ArrayList<String> lista_CF = new ArrayList<String>();
 
 		for (int i = 0; i < vet.size(); i++) {
 
-			System.out.println(vet.get(i).getCF());
 			lista_CF.add(vet.get(i).getCF());
-			combobox.addItem(lista_CF.get(i));
+			dash.getComboBox1().addItem(lista_CF.get(i));
 		}
 	}
 

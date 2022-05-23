@@ -62,7 +62,6 @@ public class AggiungiClienteActionListener implements ActionListener {
 		this.clientiPanel = clientiPanel;
 		this.res = res;
 		this.dbControl = dbControl;
-		// this.flag = flag;
 
 	}
 

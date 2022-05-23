@@ -7,7 +7,7 @@ import database.classiDAO.anagraficaDAO.clientiDAO.ClientiDAO;
 import database.classiDAO.anagraficaDAO.fornitoriDAO.FornitoriDAO;
 import database.classiDAO.anagraficaDAO.veterinariDAO.VeterinariDAO;
 import database.classiDAO.appuntamentiDAO.AppuntamentiDAO;
-import database.classiDAO.magazzinoDAO.farmaciDAO.LottoFarmaci;
+import database.classiDAO.magazzinoDAO.farmaciDAO.LottoFarmaciDAO;
 import database.classiDAO.magazzinoDAO.prodottiUtiliDAO.ProdottiUtiliDAO;
 import database.classiDAO.magazzinoDAO.prodottiVenditaDAO.ProdottiVenditaDAO;
 import database.classiDAO.pazientiDAO.PazienteDAO;
@@ -15,7 +15,7 @@ import model.anagrafica.clienti.Clienti;
 import model.anagrafica.fornitori.Fornitori;
 import model.anagrafica.veterinari.Veterinari;
 import model.appuntamenti.Appuntamenti;
-import model.magazzino.farmaci.LottoFarmaciDAO;
+import model.magazzino.farmaci.LottoFarmaci;
 import model.magazzino.prodottiUtili.ProdottiUtili;
 import model.magazzino.prodottiVendita.ProdottiVendita;
 import model.pazienti.Paziente;
@@ -58,16 +58,16 @@ public class DbControllerSingleton {
 
 		return clienti.selectAll();
 	}
-	
+
 	public boolean addNuovoCliente(Clienti cl) {
-		
+
 		return clienti.insertClienti(cl);
-		
+
 	}
-	
+
 	public void deleteCliente(Clienti cl) {
-		
-	  clienti.deleteClienti(cl);
+
+		clienti.deleteClienti(cl);
 	}
 
 	public ArrayList<Fornitori> selectAllFornitori() {
@@ -92,6 +92,18 @@ public class DbControllerSingleton {
 
 	public ArrayList<LottoFarmaci> selectAllLottoFarmaci() {
 		return farm.selectAll();
+	}
+
+	public Fornitori selectFornitoreFromPiva(String PIVA) {
+		return farm.select_Forn(PIVA);
+	}
+
+	public boolean addNuovoLotto(LottoFarmaci lf) {
+		return farm.insertFarmaci(lf);
+	}
+
+	public void deleteLotto(LottoFarmaci lf) {
+		farm.deleteFarmaci(lf);
 	}
 
 	public ArrayList<ProdottiUtili> selectAllProdottiUtili() {

@@ -8,6 +8,7 @@ import model.anagrafica.clienti.Clienti;
 import view.clienti.ClientiPanel;
 
 public class ModificaClientiActionListener implements ActionListener {
+	
 	ClientiPanel clientiPanel;
 	ArrayList<Clienti> cl;
 

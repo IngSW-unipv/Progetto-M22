@@ -6,8 +6,8 @@ import javax.swing.JScrollPane;
 import javax.swing.JTable;
 import javax.swing.table.DefaultTableModel;
 
-import database.classiDAO.magazzinoDAO.farmaciDAO.LottoFarmaci;
-import model.magazzino.farmaci.LottoFarmaciDAO;
+import database.classiDAO.magazzinoDAO.farmaciDAO.LottoFarmaciDAO;
+import model.magazzino.farmaci.LottoFarmaci;
 
 public class FarmaciScadenzaView {
 
