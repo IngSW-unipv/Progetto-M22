@@ -1,9 +1,7 @@
 package test;
 
 import java.awt.EventQueue;
-
 import javax.swing.JFrame;
-
 import controller.Controller;
 import model.SmartVetModel;
 import view.MainView;

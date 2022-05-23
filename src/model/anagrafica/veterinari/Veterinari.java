@@ -5,8 +5,8 @@ import model.anagrafica.Persona;
 public class Veterinari extends Persona {
 	private String PIVA;
 	private String contratto;
-	private double stipendio;
-	private double commissioni;
+	private String stipendio;
+	private String commissioni;
 	private String IBAN;
 
 	public String getPIVA() {
@@ -17,11 +17,11 @@ public class Veterinari extends Persona {
 		return contratto;
 	}
 
-	public double getStipendio() {
+	public String getStipendio() {
 		return stipendio;
 	}
 
-	public double getCommissioni() {
+	public String getCommissioni() {
 		return commissioni;
 	}
 
@@ -30,7 +30,7 @@ public class Veterinari extends Persona {
 	}
 
 	public Veterinari(String nome, String cognome, String cF, String email, String cellulare, String citta,
-			String indirizzo, String pIVA, String contratto, double stipendio, double commissioni, String iBAN) {
+			String indirizzo, String pIVA, String contratto, String stipendio, String commissioni, String iBAN) {
 		super(nome, cognome, cF,email, cellulare,  citta, indirizzo);
 		PIVA = pIVA;
 		this.contratto = contratto;

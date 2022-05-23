@@ -5,12 +5,14 @@ import javax.swing.JFrame;
 import view.clienti.ClientiPanel;
 import view.dashboard.DashBoardView;
 import view.magazzino.farmaci.FarmaciPanel;
+import view.veterinari.VeterinariPanel;
 
 public class MainView extends JFrame {
 
 	private DashBoardView dashboard;
 	private ClientiPanel clientiPanel;
 	private FarmaciPanel farmaciPanel;
+	private VeterinariPanel veterinariPanel;
 
 	public MainView() {
 
@@ -24,6 +26,7 @@ public class MainView extends JFrame {
 
 		clientiPanel = new ClientiPanel();
 		farmaciPanel = new FarmaciPanel();
+		//veterinariPanel = new VeterinariPanel();
 
 	}
 
@@ -38,5 +41,9 @@ public class MainView extends JFrame {
 	public FarmaciPanel getFarmaciPanel() {
 		return farmaciPanel;
 	}
+	
+	public VeterinariPanel getVeterinariPanel() {
+		return veterinariPanel;
+	}  
 
 }
