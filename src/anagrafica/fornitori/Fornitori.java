@@ -1,5 +1,7 @@
 package anagrafica.fornitori;
 
+import java.util.ArrayList;
+
 public class Fornitori {
 
 	private String PIVA;
@@ -74,5 +76,4 @@ public class Fornitori {
 		return "Fornitori [PIVA=" + PIVA + ", nomeAzienda=" + nomeAzienda + ", nTelefono=" + nTelefono
 				+ ", email=" + email + ", sede=" + sede + ", IBAN=" + IBAN + "]";
 	}
-
 }

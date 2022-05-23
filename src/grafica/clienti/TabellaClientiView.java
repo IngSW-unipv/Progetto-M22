@@ -19,19 +19,19 @@ public class TabellaClientiView {
 	String rowData[] = new String[res.size()];
 
 	public TabellaClientiView(JScrollPane scrollPane) {
-
+		
 		this.scrollPane = scrollPane;
 		scrollPane.setViewportView(table);
 
 		DefaultTableModel modello1 = new DefaultTableModel(new Object[][] {},
-				new String[] { "Nome", "Cognome", "CF", "Email", "Cellulare", "Città", "Indirizzo" });
-
+				new String[] {  "CF","Nome", "Cognome", "Cellulare","Email",  "Città", "Indirizzo" });
+		
 		table.setModel(modello1);
 		table.getColumnModel().getColumn(0).setPreferredWidth(95);
 		table.getColumnModel().getColumn(0).setMinWidth(95);
-
+		
 		for (int i = 0; i < res.size(); i++) {
-
+		
 			rowData[0] = res.get(i).getNome();
 			rowData[1] = res.get(i).getCognome();
 			rowData[2] = res.get(i).getCF();
@@ -43,16 +43,32 @@ public class TabellaClientiView {
 			modello1.addRow(rowData);
 		}
 
+		
+		
+		
 	}
 
+	
+	
 	// metodo cosi quando modifico riempio i textfield con i valori del cliente che voglio modificare
-	public void fillJTextArea(JTextField nomeText, JTextField cognomeText, JTextField CFText, JTextField emailText,
-			JTextField cellulareText, JTextField cittaText, JTextField indirizzoText, JTable table) {
+	
+	public void modifica() {
 
+		JTextField nomeText = new JTextField();
+		JTextField cognomeText = new JTextField();
+		JTextField CFText = new JTextField();
+		JTextField emailText = new JTextField();
+		JTextField cellulareText = new JTextField();
+		JTextField cittaText = new JTextField();
+		JTextField indirizzoText = new JTextField();
+		JTable table = new JTable();
+		
 		int rigaSelezionata = table.getSelectedRow();
-
+		
+		System.out.println(rigaSelezionata);
 		if (rigaSelezionata >= 0) {
 		
+			
 			String nome = res.get(rigaSelezionata).getNome();
 			String cognome = res.get(rigaSelezionata).getCognome();
 			String CF = res.get(rigaSelezionata).getCF();
@@ -79,4 +95,8 @@ public class TabellaClientiView {
 		return cdao;
 	}
 
+
+
+	
+	
 }

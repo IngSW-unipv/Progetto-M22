@@ -9,12 +9,17 @@ import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.JTextField;
 import javax.swing.border.EmptyBorder;
+import javax.swing.table.DefaultTableModel;
+
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
+import javax.swing.JTable;
 
 public class ClientiPanel extends JPanel {
 
 	private static final long serialVersionUID = 1L;
+	private JTable table;
+	private JTable table_1;
 
 	/**
 	 * Launch the application.
@@ -25,7 +30,8 @@ public class ClientiPanel extends JPanel {
 				try {
 					JFrame principale = new JFrame();
 					principale.setVisible(true);
-					principale.setBounds(500, 500, 2700, 2200);
+					principale.setLocationRelativeTo(null);
+					principale.setBounds(0, 0, 1370, 725);
 					principale.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 					principale.getContentPane().setLayout(null);
 
@@ -44,8 +50,8 @@ public class ClientiPanel extends JPanel {
 	 * Create the frame.
 	 */
 	public ClientiPanel() {
-
-		setBounds(0, 0, 2700, 2200);
+	
+		setBounds(0, 0, 1370, 725);
 		setBorder(new EmptyBorder(5, 5, 5, 5));
 		setLayout(null);
 
@@ -135,12 +141,11 @@ public class ClientiPanel extends JPanel {
 
 		// bottone per modificare quel cliente: riempie le textField con gli attributi di quel cliente
 		JButton btnModifica = new JButton("Modifica");
-		btnModifica.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				tab.fillJTextArea(nomeText, cognomeText, CFText, emailText, cellulareText, cittaText, indirizzoText,
-						tab.getTable());
-			}
-		});
+		ModificaClientiActionListener modificacliente = new ModificaClientiActionListener(nomeText, cognomeText, CFText,
+				emailText, cellulareText, cittaText, indirizzoText, tab.getTable(), tab.getCdao());
+		
+		btnModifica.addActionListener(modificacliente);
+		
 		btnModifica.setBounds(964, 493, 100, 25);
 		add(btnModifica);
 		
@@ -155,5 +160,5 @@ public class ClientiPanel extends JPanel {
 	
 	
 	}
-
-}
+ 
+ }

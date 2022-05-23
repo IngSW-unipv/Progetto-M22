@@ -38,7 +38,7 @@ public class DashBoardView extends JPanel {
 				try {
 					JFrame principale = new JFrame();
 					principale.setVisible(true);
-					principale.setBounds(500, 500, 2700, 2200);
+					principale.setBounds(0, 0, 1370, 725);
 					principale.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 					principale.getContentPane().setLayout(null);
 
@@ -63,7 +63,7 @@ public class DashBoardView extends JPanel {
 
 	private void initialize() {
 
-		setBounds(0, 0, 2700, 2200);
+		setBounds(10, 0, 2700, 2200);
 		setLayout(null);
 		
 		// creo un pannello con scrollo per promemoria

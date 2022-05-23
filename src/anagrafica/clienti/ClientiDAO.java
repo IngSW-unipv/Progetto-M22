@@ -10,6 +10,7 @@ import javax.swing.Popup;
 import com.mysql.cj.jdbc.result.ResultSetMetaData;
 
 import ConnectionSQL.DbSingleton;
+import anagrafica.fornitori.Fornitori;
 import grafica.PopupError;
 
 public class ClientiDAO implements IClientiDAO {

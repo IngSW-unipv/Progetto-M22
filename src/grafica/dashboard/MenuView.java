@@ -9,7 +9,7 @@ import javax.swing.JMenuBar;
 import javax.swing.JMenuItem;
 import javax.swing.JPanel;
 
-import grafica.clienti.ClientiView;
+import grafica.clienti.ClientiPanel;
 
 import javax.swing.JCheckBoxMenuItem;
 import java.awt.event.ActionListener;
@@ -34,7 +34,7 @@ public class MenuView extends JPanel {
 		mntmClienti.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 
-				ClientiView nuovaFinestra = new ClientiView();
+    			ClientiPanel nuovaFinestra = new ClientiPanel();
 				panel.setVisible(false);
 				nuovaFinestra.setVisible(true);
 

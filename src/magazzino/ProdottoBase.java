@@ -37,7 +37,7 @@ public class ProdottoBase {
 
 		for (Fornitori fornitori : forn) {
 
-			if (fornitore.equals(fornitori.getCOD())) {
+			if (fornitore.equals(fornitori.getPIVA())) {
 
 				this.fornitore = fornitori;
 			}
