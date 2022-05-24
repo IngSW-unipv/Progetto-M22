@@ -82,7 +82,7 @@ public class FarmaciController {
 		AggiungiFarmaciActionListener addFarmaci = new AggiungiFarmaciActionListener(farmaciPanel, res, dbControl);
 		farmaciPanel.getBtnAggiungi().addActionListener(addFarmaci);
 
-		/*EliminaFarmaciActionListener deleteFarmaci = new EliminaFarmaciActionListener(
+		EliminaFarmaciActionListener deleteFarmaci = new EliminaFarmaciActionListener(
 				farmaciPanel.getTabellaFarmaci().getTable(), dbControl, res);
 		farmaciPanel.getBtnElimina().addActionListener(deleteFarmaci);
 
@@ -90,7 +90,7 @@ public class FarmaciController {
 		farmaciPanel.getBtnModifica().addActionListener(modificaFarmaci);
 
 		AggiornaFarmaciActionListener aggiornaFarmaci = new AggiornaFarmaciActionListener(farmaciPanel, dbControl, res);
-		farmaciPanel.getBtnAggiorna().addActionListener(aggiornaFarmaci);*/
+		farmaciPanel.getBtnAggiorna().addActionListener(aggiornaFarmaci);
 
 	}
 

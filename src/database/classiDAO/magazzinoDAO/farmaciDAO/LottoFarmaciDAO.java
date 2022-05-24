@@ -95,7 +95,7 @@ public class LottoFarmaciDAO implements ILottoFarmaciDAO {
 	@Override
 	public boolean insertFarmaci(LottoFarmaci f) {
 
-		String query = "INSERT INTO FARMACI (LOTTO,MODASSUNZIONE,TIPO_FARMACO,PIVA,SCADENZA,QTA) values (?, ?, ?, ?, ?, ?);";
+		String query = "INSERT INTO FARMACI (LOTTO,MODASSUNZ,TIPOFARMACI,PIVA,SCADENZA,QTA) values (?, ?, ?, ?, ?, ?);";
 
 		PreparedStatement stmt = null;
 
@@ -114,7 +114,6 @@ public class LottoFarmaciDAO implements ILottoFarmaciDAO {
 
 		catch (SQLException e) {
 			e.printStackTrace();
-			PopupError.infoBox("Esiste già un lotto con questo numero", "ERRORE");
 			return false;
 		}
 		return true;

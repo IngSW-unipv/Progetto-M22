@@ -2,18 +2,13 @@ package controller.farmaciController;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.util.ArrayList;
-import java.util.Locale;
-import java.sql.Date;
-import java.text.DateFormat;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
-import java.time.LocalDate;
-import java.time.format.DateTimeFormatter;
+import java.util.ArrayList;
+//import java.sql.Date;
+import java.util.Date;
 
 import javax.swing.table.DefaultTableModel;
-
-import com.toedter.calendar.DateUtil;
 
 import database.connectionSQL.DbControllerSingleton;
 import model.anagrafica.fornitori.Fornitori;
@@ -26,7 +21,7 @@ public class AggiungiFarmaciActionListener implements ActionListener {
 	private FarmaciPanel farmaciPanel;
 	private ArrayList<LottoFarmaci> res;
 	private DbControllerSingleton dbControl;
-	//private Date dataScadenza;
+	// private Date dataScadenza;
 
 	@Override
 	public void actionPerformed(ActionEvent e) {
@@ -36,24 +31,26 @@ public class AggiungiFarmaciActionListener implements ActionListener {
 		String type = farmaciPanel.getTipoText().getText();
 		String mode = farmaciPanel.getModeText().getText();
 		Fornitori forn = costruisciFornitore();
-		SimpleDateFormat sdf = new SimpleDateFormat("dd-MM-yyyy");
-		/*Date dataScadenza = new Date(0);
+		
+		Date dataScadenza = farmaciPanel.getDataScadenza().getDate();
+		SimpleDateFormat sdf = new SimpleDateFormat("MM-dd-yyyy");
+
 		try {
-			dataScadenza = sdf.parse(sdf.format(farmaciPanel.getDataScadenza().getDate()));
+			dataScadenza = sdf.parse(sdf.format(dataScadenza));
+			System.out.println(dataScadenza);
 		} catch (ParseException e1) {
 			// TODO Auto-generated catch block
 			e1.printStackTrace();
 		}
-		System.out.println(dataScadenza);*/
-		java.sql.Date dataScadenza = (java.sql.Date) farmaciPanel.getDataScadenza().getDate();
-		System.out.println(dataScadenza);
+		
+		java.sql.Date sqlDate = new java.sql.Date(dataScadenza.getTime());
+
 		int Quantita = (int) farmaciPanel.getSpinner().getValue();
 
-		LottoFarmaci nuovoLotto = new LottoFarmaci(IDLotto, type, mode, forn, dataScadenza, Quantita);
-		//System.out.println(nuovoLotto);
-		//boolean flag = dbControl.addNuovoLotto(nuovoLotto);
+		LottoFarmaci nuovoLotto = new LottoFarmaci(IDLotto, type, mode, forn, sqlDate, Quantita);
+		boolean flag = dbControl.addNuovoLotto(nuovoLotto);
 
-		//if (flag) {
+		if (flag) {
 
 			res.add(nuovoLotto);
 
@@ -65,14 +62,14 @@ public class AggiungiFarmaciActionListener implements ActionListener {
 			rowData[1] = type;
 			rowData[2] = mode;
 			rowData[3] = forn.getPIVA();
-			rowData[4] = dataScadenza;
+			rowData[4] = sqlDate;
 			rowData[5] = Quantita;
 
 			model.addRow(rowData);
 
 			pulisciTextField();
 
-		/*} else {
+		} else {
 
 			{
 				PopupError err = new PopupError();
@@ -81,7 +78,7 @@ public class AggiungiFarmaciActionListener implements ActionListener {
 
 			}
 
-		}*/
+		}
 
 	}
 

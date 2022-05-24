@@ -2,6 +2,8 @@ package controller.farmaciController;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
 
@@ -27,24 +29,36 @@ public class AggiornaFarmaciActionListener implements ActionListener {
 		dbControl.deleteLotto(lf.get(elementoSelezionato));
 		lf.remove(elementoSelezionato);
 
-		String IDLotto = farmaciPanel.getNuovoLotto().getIDLotto();
-		String mode = farmaciPanel.getNuovoLotto().getMode();
-		String type = farmaciPanel.getNuovoLotto().getType();
-		Fornitori forn = farmaciPanel.getNuovoLotto().getFornitore();
-		Date dataScadenza = farmaciPanel.getNuovoLotto().getDataScadenza();
-		int qt = farmaciPanel.getNuovoLotto().getQuantita();
+		String IDLotto = farmaciPanel.getIDLottoText().getText();
+		String mode = farmaciPanel.getModeText().getText();
+		String type = farmaciPanel.getTipoText().getText();
+		Fornitori forn = costruisciFornitore();
+		Date dataScadenza = farmaciPanel.getDataScadenza().getDate();
+		SimpleDateFormat sdf = new SimpleDateFormat("MM-dd-yyyy");
 
-		LottoFarmaci lo = new LottoFarmaci(IDLotto, mode, type, forn, dataScadenza, qt);
+		try {
+			dataScadenza = sdf.parse(sdf.format(dataScadenza));
+			System.out.println(dataScadenza);
+		} catch (ParseException e1) {
+			// TODO Auto-generated catch block
+			e1.printStackTrace();
+		}
+
+		java.sql.Date sqlDate = new java.sql.Date(dataScadenza.getTime());
+		int qt = (int) farmaciPanel.getSpinner().getValue();
+
+		LottoFarmaci lo = new LottoFarmaci(IDLotto, mode, type, forn, sqlDate, qt);
 		boolean flag = dbControl.addNuovoLotto(lo);
 
 		Object rowData[] = new Object[lf.size()];
 
 		if (flag) {
+			
 			rowData[0] = IDLotto;
 			rowData[1] = mode;
 			rowData[2] = type;
 			rowData[3] = forn;
-			rowData[4] = dataScadenza;
+			rowData[4] = sqlDate;
 			rowData[5] = qt;
 		}
 
@@ -57,6 +71,13 @@ public class AggiornaFarmaciActionListener implements ActionListener {
 		this.farmaciPanel = farmaciPanel;
 		this.dbControl = dbControl;
 		this.lf = lf;
+	}
+
+	public Fornitori costruisciFornitore() {
+		String PIVA = (String) farmaciPanel.getFornitoriBox().getSelectedItem();
+		Fornitori forn = dbControl.selectFornitoreFromPiva(PIVA);
+		return forn;
+
 	}
 
 	public void pulisciTextField() {
