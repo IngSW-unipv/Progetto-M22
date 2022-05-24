@@ -1,6 +1,5 @@
 package database.classiDAO.magazzinoDAO.farmaciDAO;
 
-import java.sql.Date;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -108,7 +107,7 @@ public class LottoFarmaciDAO implements ILottoFarmaciDAO {
 			stmt.setString(2, f.getMode());
 			stmt.setString(3, f.getType());
 			stmt.setString(4, f.getFornitore().getPIVA());
-			stmt.setDate(5, (Date) f.getDataScadenza());
+			stmt.setDate(5, f.getDataScadenza());
 			stmt.setInt(6, f.getQuantita());
 			stmt.executeUpdate();
 		}

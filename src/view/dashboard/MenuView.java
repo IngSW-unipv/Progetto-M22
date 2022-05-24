@@ -58,14 +58,6 @@ public class MenuView extends JPanel {
 		menuBar.add(mnMagazzino);
 
 		mntmFarmaci = new JMenuItem("Farmaci");
-		mntmFarmaci.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				FarmaciPanel nuovoPannello2 = new FarmaciPanel();
-				panel.setVisible(false);
-				add(nuovoPannello2);
-				nuovoPannello2.setVisible(true);
-			}
-		});
 		mnMagazzino.add(mntmFarmaci);
 
 		mntmProdottiutili = new JMenuItem("Prodotti utili");

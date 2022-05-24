@@ -6,8 +6,7 @@
 			<attribute name="module" value="true"/>
 		</attributes>
 	</classpathentry>
-	<classpathentry kind="lib" path="C:/Users/fiori/Downloads/jcalendar-1.4.jar/jcalendar-1.4.jar"/>
-	<classpathentry kind="lib" path="C:/Users/fiori/Downloads/jdatechooser_bin_doc_1_1_1/jdatechooser_bin_doc_1_1_1/lib/DateChooser.jar"/>
-	<classpathentry kind="lib" path="C:/Users/fiori/OneDrive/Desktop/JAVA/mysql-connector-java-8.0.27.jar"/>
+	<classpathentry kind="lib" path="/home/margherita/Scrivania/jcalendar-1.4.jar"/>
+	<classpathentry kind="lib" path="/home/margherita/Scrivania/mysql-connector-java-8.0.28.jar"/>
 	<classpathentry kind="output" path=""/>
 </classpath>

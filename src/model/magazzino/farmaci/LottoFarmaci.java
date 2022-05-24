@@ -1,6 +1,6 @@
 package model.magazzino.farmaci;
 
-import java.util.Date;
+
 
 import model.anagrafica.fornitori.Fornitori;
 import model.magazzino.Vendibile;
@@ -11,7 +11,7 @@ public class LottoFarmaci implements Vendibile {
 	private String mode;
 	private String type;
 	private Fornitori fornitore;
-	private Date dataScadenza;
+	private java.sql.Date dataScadenza;
 	private int quantita;
 
 	public String getIDLotto() {
@@ -26,7 +26,7 @@ public class LottoFarmaci implements Vendibile {
 		return type;
 	}
 
-	public Date getDataScadenza() {
+	public java.sql.Date getDataScadenza() {
 		return dataScadenza;
 	}
 
@@ -38,7 +38,7 @@ public class LottoFarmaci implements Vendibile {
 		return quantita;
 	}
 
-	public LottoFarmaci(String IDLotto, String mode, String type, Fornitori fornitore, Date dataScadenza,
+	public LottoFarmaci(String IDLotto, String mode, String type, Fornitori fornitore, java.sql.Date dataScadenza,
 			int quantita) {
 		super();
 		this.IDLotto = IDLotto;
