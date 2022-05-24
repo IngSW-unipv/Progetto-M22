@@ -3,14 +3,14 @@ package controller.veterinariController;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.ArrayList;
+
 import javax.swing.JFrame;
-import javax.swing.JTable;
 import javax.swing.table.DefaultTableModel;
+
 import database.connectionSQL.DbControllerSingleton;
 import model.anagrafica.veterinari.Veterinari;
-import view.veterinari.VeterinariPanel;
 import view.dashboard.DashBoardView;
-import view.dashboard.MenuView;
+import view.veterinari.VeterinariPanel;
 
 public class VeterinariController {
 
@@ -36,7 +36,7 @@ public class VeterinariController {
 	}
 
 	public void fillTable() {
-		String rowData[][] = new String[res.size()][12];
+		Object rowData[][] = new Object[res.size()][12];
 		DefaultTableModel modello = (DefaultTableModel) veterinariPanel.getTab().getTable().getModel();
 		for (int i = 0; i < res.size(); i++) {
 
@@ -69,18 +69,21 @@ public class VeterinariController {
 	}
 
 	public void addActionListenerButtons() {
-		AggiungiVeterinarioActionListener addVeterinario = new AggiungiVeterinarioActionListener(veterinariPanel, res, dbControl);
+		AggiungiVeterinarioActionListener addVeterinario = new AggiungiVeterinarioActionListener(veterinariPanel, res,
+				dbControl);
 
 		veterinariPanel.getBtnAggiungi().addActionListener(addVeterinario);
 
-		EliminaVeterinariActionListener deleteVeterinario = new EliminaVeterinariActionListener(veterinariPanel.getTab().getTable(),
-				dbControl, res);
+		EliminaVeterinariActionListener deleteVeterinario = new EliminaVeterinariActionListener(
+				veterinariPanel.getTab().getTable(), dbControl, res);
 		veterinariPanel.getBtnElimina().addActionListener(deleteVeterinario);
 
-		ModificaVeterinariActionListener modificaVeterinario = new ModificaVeterinariActionListener(veterinariPanel, res);
+		ModificaVeterinariActionListener modificaVeterinario = new ModificaVeterinariActionListener(veterinariPanel,
+				res);
 		veterinariPanel.getBtnModifica().addActionListener(modificaVeterinario);
 
-		AggiornaVeterinariActionListener aggiornaVeterinario = new AggiornaVeterinariActionListener(veterinariPanel, dbControl, res);
+		AggiornaVeterinariActionListener aggiornaVeterinario = new AggiornaVeterinariActionListener(veterinariPanel,
+				dbControl, res);
 		veterinariPanel.getBtnAggiorna().addActionListener(aggiornaVeterinario);
 
 	}
@@ -96,4 +99,3 @@ public class VeterinariController {
 	}
 
 }
-

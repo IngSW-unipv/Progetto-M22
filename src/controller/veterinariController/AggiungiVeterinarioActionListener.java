@@ -3,9 +3,10 @@ package controller.veterinariController;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.ArrayList;
+
 import javax.swing.table.DefaultTableModel;
+
 import database.connectionSQL.DbControllerSingleton;
-import model.anagrafica.clienti.Clienti;
 import model.anagrafica.veterinari.Veterinari;
 import view.PopupError;
 import view.veterinari.VeterinariPanel;
@@ -27,7 +28,7 @@ public class AggiungiVeterinarioActionListener implements ActionListener {
 
 			res.add(veterinariPanel.getNuovoVeterinarioTextField());
 
-			String rowData[] = new String[12];
+			Object rowData[] = new Object[12];
 
 			DefaultTableModel model = (DefaultTableModel) veterinariPanel.getTab().getTable().getModel();
 
@@ -70,7 +71,7 @@ public class AggiungiVeterinarioActionListener implements ActionListener {
 	}
 
 	public void pulisciTextField() {
-		
+
 		veterinariPanel.getNomeText().setText(null);
 		veterinariPanel.getCognomeText().setText(null);
 		veterinariPanel.getCFText().setText(null);

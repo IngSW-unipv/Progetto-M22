@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<classpath>
+	<classpathentry kind="src" path=""/>
+	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER">
+		<attributes>
+			<attribute name="module" value="true"/>
+		</attributes>
+	</classpathentry>
+	<classpathentry kind="lib" path="C:/Users/fiori/Downloads/jcalendar-1.4.jar/jcalendar-1.4.jar"/>
+	<classpathentry kind="lib" path="C:/Users/fiori/Downloads/jdatechooser_bin_doc_1_1_1/jdatechooser_bin_doc_1_1_1/lib/DateChooser.jar"/>
+	<classpathentry kind="lib" path="C:/Users/fiori/OneDrive/Desktop/JAVA/mysql-connector-java-8.0.27.jar"/>
+	<classpathentry kind="output" path=""/>
+</classpath>

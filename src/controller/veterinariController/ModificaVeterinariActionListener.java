@@ -3,6 +3,7 @@ package controller.veterinariController;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.ArrayList;
+
 import model.anagrafica.veterinari.Veterinari;
 import view.veterinari.VeterinariPanel;
 
@@ -28,8 +29,8 @@ public class ModificaVeterinariActionListener implements ActionListener {
 			String indirizzo = vet.get(rigaSelezionata).getIndirizzo();
 			String piva = vet.get(rigaSelezionata).getPIVA();
 			String contr = vet.get(rigaSelezionata).getContratto();
-			String stip = vet.get(rigaSelezionata).getStipendio();
-			String comm = vet.get(rigaSelezionata).getCommissioni();
+			double stip = vet.get(rigaSelezionata).getStipendio();
+			double comm = vet.get(rigaSelezionata).getCommissioni();
 			String iban = vet.get(rigaSelezionata).getIBAN();
 
 			veterinariPanel.getNomeText().setText(nome);
@@ -41,8 +42,8 @@ public class ModificaVeterinariActionListener implements ActionListener {
 			veterinariPanel.getIndirizzoText().setText(indirizzo);
 			veterinariPanel.getPivaText().setText(piva);
 			veterinariPanel.getContrattoText().setText(contr);
-			veterinariPanel.getStipendioText().setText(stip);
-			veterinariPanel.getCommissioniText().setText(comm);
+			veterinariPanel.getStipendioText().setText(Double.toString(stip));
+			veterinariPanel.getCommissioniText().setText(Double.toString(comm));
 			veterinariPanel.getIbanText().setText(iban);
 		}
 	}

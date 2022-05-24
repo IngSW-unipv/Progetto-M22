@@ -29,7 +29,7 @@ public class MainView extends JFrame {
 		clientiPanel = new ClientiPanel();
 		fornitoriPanel = new FornitoriPanel();
 		farmaciPanel = new FarmaciPanel();
-		//veterinariPanel = new VeterinariPanel();
+		veterinariPanel = new VeterinariPanel();
 
 	}
 
@@ -46,7 +46,6 @@ public class MainView extends JFrame {
 	}
 	
 	public FornitoriPanel getFornitoriPanel() {
-		System.out.println("a");
 		return fornitoriPanel;
 	}
 	

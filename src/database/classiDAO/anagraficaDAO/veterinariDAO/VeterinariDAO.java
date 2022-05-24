@@ -16,11 +16,10 @@ public class VeterinariDAO implements IVeterinariDAO {
 
 	public VeterinariDAO() {
 		super();
-//				conn=DBConnection.startConnection(conn,schema);
 	}
 
 	public ArrayList<Veterinari> selectAll() {
-		ArrayList<Veterinari> result = new ArrayList<>(); 
+		ArrayList<Veterinari> result = new ArrayList<>();
 
 		ResultSet rs1;
 		db = DbSingleton.getInstance();
@@ -31,7 +30,7 @@ public class VeterinariDAO implements IVeterinariDAO {
 			while (rs1.next()) {
 				Veterinari v = new Veterinari(rs1.getString(1), rs1.getString(2), rs1.getString(3), rs1.getString(4),
 						rs1.getString(5), rs1.getString(6), rs1.getString(7), rs1.getString(8), rs1.getString(9),
-						rs1.getString(10), rs1.getString(11), rs1.getString(12));
+						rs1.getDouble(10), rs1.getDouble(11), rs1.getString(12));
 
 				result.add(v);
 			}
@@ -65,13 +64,16 @@ public class VeterinariDAO implements IVeterinariDAO {
 	}
 
 	@Override
-	public void insertVeterinari(Veterinari vet) {
+	public boolean insertVeterinari(Veterinari vet) {
 
 		String query = "INSERT INTO DIPENDENTI (NOME,COGNOME,CF_DIP,EMAIL,TELEFONO,CITTA,"
 				+ "INDIRIZZO,PIVA,TIPO_DI_CONTRATTO,STIPENDIO,COMMISS,IBAN) values (?, ?, ?, ?, ?, ?, ? , ?, ?, ?, ?, ?);";
+
+		PreparedStatement stmt = null;
+
 		try {
 
-			PreparedStatement stmt = db.getConnection().prepareStatement(query);
+			stmt = db.getConnection().prepareStatement(query);
 
 			stmt.setString(1, vet.getNome());
 			stmt.setString(2, vet.getCognome());
@@ -82,21 +84,25 @@ public class VeterinariDAO implements IVeterinariDAO {
 			stmt.setString(7, vet.getIndirizzo());
 			stmt.setString(8, vet.getPIVA());
 			stmt.setString(9, vet.getContratto());
-			stmt.setString(10, vet.getStipendio());
-			stmt.setString(11, vet.getCommissioni());
+			stmt.setDouble(10, vet.getStipendio());
+			stmt.setDouble(11, vet.getCommissioni());
 			stmt.setString(12, vet.getIBAN());
 			stmt.executeUpdate();
+
+			return true;
+
 		}
 
 		catch (SQLException e) {
 			e.printStackTrace();
-			// System.exit(0);
-
 		}
+
+		return false;
+
 	}
 
-	public void deleteVeterinari(String CF) {
-
+	public void deleteVeterinari(Veterinari vet) {
+		String CF = vet.getCF();
 		String query = "delete from DIPENDENTI where CF_DIP=\"" + CF + "\"";
 		PreparedStatement stmt = null;
 		try {
@@ -112,7 +118,6 @@ public class VeterinariDAO implements IVeterinariDAO {
 			e.printStackTrace();
 		}
 	}
-	
 
 	public static class Engine1 {
 

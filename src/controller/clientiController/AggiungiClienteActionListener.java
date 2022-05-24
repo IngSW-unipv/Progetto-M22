@@ -48,6 +48,7 @@ public class AggiungiClienteActionListener implements ActionListener {
 		else {
 
 			{
+
 				PopupError err = new PopupError();
 				err.infoBox("Esiste già un cliente con questo CF", "Impossibile inserire cliente");
 				pulisciTextField();
@@ -66,7 +67,7 @@ public class AggiungiClienteActionListener implements ActionListener {
 	}
 
 	public void pulisciTextField() {
-		
+
 		clientiPanel.getNomeText().setText(null);
 		clientiPanel.getCognomeText().setText(null);
 		clientiPanel.getCFText().setText(null);

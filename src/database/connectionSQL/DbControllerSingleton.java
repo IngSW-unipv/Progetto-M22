@@ -128,14 +128,12 @@ public class DbControllerSingleton {
 	}
 
 	public boolean addNuovoVeterinario(Veterinari vet) {
-		// TODO Auto-generated method stub
-		return false /* Veterinari.insertVeterinario(vet)*/ ;
+		return vets.insertVeterinari(vet) ;
 
 	}
 	
 	public void deleteVeterinario(Veterinari vet) {
-		// TODO Auto-generated method stub
-		
+		vets.deleteVeterinari(vet);
 	}
 	
 }

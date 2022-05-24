@@ -8,6 +8,6 @@ public interface IVeterinariDAO {
 	public ArrayList<Veterinari> selectAll();
 
 
-	public void insertVeterinari(Veterinari vet);
+	public boolean insertVeterinari(Veterinari vet);
 
 }

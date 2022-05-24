@@ -64,57 +64,57 @@ public class VeterinariPanel extends JPanel {
 
 		cognomeText = new JTextField();
 		cognomeText.setColumns(10);
-		cognomeText.setBounds(1096, 72, 100, 25);
+		cognomeText.setBounds(1096, 52, 100, 25);
 		add(cognomeText);
 
 		CFText = new JTextField();
 		CFText.setColumns(10);
-		CFText.setBounds(1096, 132, 100, 25);
+		CFText.setBounds(1096, 92, 100, 25);
 		add(CFText);
 
 		emailText = new JTextField();
 		emailText.setColumns(10);
-		emailText.setBounds(1096, 192, 100, 25);
+		emailText.setBounds(1096, 132, 100, 25);
 		add(emailText);
 
 		cellulareText = new JTextField();
 		cellulareText.setColumns(10);
-		cellulareText.setBounds(1096, 252, 100, 25);
+		cellulareText.setBounds(1096, 172, 100, 25);
 		add(cellulareText);
 
 		cittaText = new JTextField();
 		cittaText.setColumns(10);
-		cittaText.setBounds(1096, 312, 100, 25);
+		cittaText.setBounds(1096, 212, 100, 25);
 		add(cittaText);
 
 		indirizzoText = new JTextField();
 		indirizzoText.setColumns(10);
-		indirizzoText.setBounds(1096, 372, 100, 25);
+		indirizzoText.setBounds(1096, 252, 100, 25);
 		add(indirizzoText);
 		
 		pivaText = new JTextField();
 		pivaText.setColumns(10);
-		pivaText.setBounds(1096, 132, 100, 25);
+		pivaText.setBounds(1096, 292, 100, 25);
 		add(pivaText);
 
 		contrattoText = new JTextField();
 		contrattoText.setColumns(10);
-		contrattoText.setBounds(1096, 192, 100, 25);
+		contrattoText.setBounds(1096, 332, 100, 25);
 		add(contrattoText);
 
 		stipendioText = new JTextField();
 		stipendioText.setColumns(10);
-		stipendioText.setBounds(1096, 252, 100, 25);
+		stipendioText.setBounds(1096, 372, 100, 25);
 		add(stipendioText);
 
 		commissioniText = new JTextField();
 		commissioniText.setColumns(10);
-		commissioniText.setBounds(1096, 312, 100, 25);
+		commissioniText.setBounds(1096, 412, 100, 25);
 		add(commissioniText);
 
 		ibanText = new JTextField();
 		ibanText.setColumns(10);
-		ibanText.setBounds(1096, 372, 100, 25);
+		ibanText.setBounds(1096, 452, 100, 25);
 		add(ibanText);
 
 		lblNome = new JLabel("Nome");
@@ -122,72 +122,72 @@ public class VeterinariPanel extends JPanel {
 		add(lblNome);
 
 		lblCognome = new JLabel("Cognome");
-		lblCognome.setBounds(970, 72, 70, 15);
+		lblCognome.setBounds(970, 52, 70, 15);
 		add(lblCognome);
 
 		lblCF = new JLabel("CF");
-		lblCF.setBounds(970, 132, 70, 15);
+		lblCF.setBounds(970, 92, 70, 15);
 		add(lblCF);
 
 		lblEmail = new JLabel("Email");
-		lblEmail.setBounds(970, 192, 70, 15);
+		lblEmail.setBounds(970, 132, 70, 15);
 		add(lblEmail);
 
 		lblCellulare = new JLabel("Cellulare");
-		lblCellulare.setBounds(970, 252, 70, 15);
+		lblCellulare.setBounds(970, 172, 70, 15);
 		add(lblCellulare);
 
 		lblCitta = new JLabel("Città");
-		lblCitta.setBounds(970, 312, 70, 15);
+		lblCitta.setBounds(970, 212, 70, 15);
 		add(lblCitta);
 
 		lblIndirizzo = new JLabel("Indirizzo");
-		lblIndirizzo.setBounds(970, 372, 70, 15);
+		lblIndirizzo.setBounds(970, 252, 70, 15);
 		add(lblIndirizzo);
 		
 		lblPiva = new JLabel("Piva");
-		lblPiva.setBounds(970, 132, 70, 15);
+		lblPiva.setBounds(970, 292, 70, 15);
 		add(lblPiva);
 
 		lblContratto = new JLabel("Contratto");
-		lblContratto.setBounds(970, 192, 70, 15);
+		lblContratto.setBounds(970, 332, 70, 15);
 		add(lblContratto);
 
 		lblStipendio = new JLabel("Stipendio");
-		lblStipendio.setBounds(970, 252, 70, 15);
+		lblStipendio.setBounds(970, 372, 70, 15);
 		add(lblStipendio);
 
 		lblCommissioni = new JLabel("Commissioni");
-		lblCommissioni.setBounds(970, 312, 70, 15);
+		lblCommissioni.setBounds(970, 412, 70, 15);
 		add(lblCommissioni);
 
 		lblIban = new JLabel("Iban");
-		lblIban.setBounds(970, 372, 70, 15);
+		lblIban.setBounds(970, 452, 70, 15);
 		add(lblIban);
 
 		tab = new TabellaVeterinariPanel(scrollPane);
 
 		btnAggiungi = new JButton("Aggiungi");
-		btnAggiungi.setBounds(964, 444, 100, 25);
+		btnAggiungi.setBounds(964, 494, 100, 25);
 		add(btnAggiungi);
 
 		btnElimina = new JButton("Elimina");
-		btnElimina.setBounds(1096, 444, 100, 25);
+		btnElimina.setBounds(1096, 494, 100, 25);
 		add(btnElimina);
 
 		// bottone per modificare quel vet: riempie le textField con gli attributi
 		// di quel vet
 		btnModifica = new JButton("Modifica");
-		btnModifica.setBounds(964, 493, 100, 25);
+		btnModifica.setBounds(964, 543, 100, 25);
 		add(btnModifica);
 
 		// bottone per aggiornare le caratteristiche del vet selezionato
 		btnAggiorna = new JButton("Aggiorna");
-		btnAggiorna.setBounds(1096, 493, 100, 25);
+		btnAggiorna.setBounds(1096, 543, 100, 25);
 		add(btnAggiorna);
 
 		btnHome = new JButton();
-		btnHome.setBounds(1058, 551, 52, 43);
+		btnHome.setBounds(1058, 590, 52, 43);
 		Icon icon = UIManager.getIcon("FileChooser.homeFolderIcon");
 		btnHome.setIcon(icon);
 		add(btnHome);
@@ -323,9 +323,25 @@ public class VeterinariPanel extends JPanel {
 	}
 
 	public Veterinari getNuovoVeterinarioTextField() {
+		double stipendio = 0.0;
+		double commiss = 0.0;
+		
+		try {
+			
+			stipendio = Double.parseDouble(stipendioText.getText());
+			commiss = Double.parseDouble(commissioniText.getText());
+			
+		}
+		
+		catch(NumberFormatException nfe) {
+			
+			nfe.printStackTrace();
+			
+		}
+		
 		Veterinari vet = new Veterinari(nomeText.getText(), cognomeText.getText(), CFText.getText(), cellulareText.getText(),
 				cittaText.getText(), indirizzoText.getText(), emailText.getText(), pivaText.getText(), contrattoText.getText(),
-				stipendioText.getText(), commissioniText.getText(), ibanText.getText());
+				stipendio, commiss, ibanText.getText());
 		return vet;
 	}
 }
