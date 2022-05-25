@@ -47,6 +47,8 @@ public class AggiornaFarmaciActionListener implements ActionListener {
 		java.sql.Date sqlDate = new java.sql.Date(dataScadenza.getTime());
 		int qt = (int) farmaciPanel.getSpinner().getValue();
 
+		
+		DefaultTableModel modello = (DefaultTableModel) farmaciPanel.getTabellaFarmaci().getTable().getModel();
 		LottoFarmaci lo = new LottoFarmaci(IDLotto, mode, type, forn, sqlDate, qt);
 		boolean flag = dbControl.addNuovoLotto(lo);
 
@@ -57,9 +59,11 @@ public class AggiornaFarmaciActionListener implements ActionListener {
 			rowData[0] = IDLotto;
 			rowData[1] = mode;
 			rowData[2] = type;
-			rowData[3] = forn;
+			rowData[3] = forn.getPIVA();
 			rowData[4] = sqlDate;
 			rowData[5] = qt;
+			
+			modello.addRow(rowData);
 		}
 
 		pulisciTextField();

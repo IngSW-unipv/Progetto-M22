@@ -8,6 +8,7 @@ import java.util.ArrayList;
 import database.connectionSQL.DbSingleton;
 import model.anagrafica.clienti.Clienti;
 import model.anagrafica.fornitori.Fornitori;
+import model.anagrafica.veterinari.Veterinari;
 import view.PopupError;
 
 public class ClientiDAO implements IClientiDAO {
@@ -17,6 +18,29 @@ public class ClientiDAO implements IClientiDAO {
 	public ClientiDAO() {
 		super();
 
+	}
+
+	public Clienti select_paziente_from_CF(String CF) {
+
+		ResultSet rs1;
+		db = DbSingleton.getInstance();
+
+		try {
+			String query = "SELECT * FROM CLIENTI WHERE CF_CL =\"" + CF + "\"";
+			rs1 = db.executeQuery(query);
+
+			while (rs1.next()) {
+				Clienti f = new Clienti(rs1.getString(1), rs1.getString(2), rs1.getString(3), rs1.getString(4),
+						rs1.getString(5), rs1.getString(6), rs1.getString(7));
+
+				return f;
+			}
+		}
+
+		catch (Exception e) {
+			e.printStackTrace();
+		}
+		return null;
 	}
 
 	public ArrayList<Clienti> selectAll() {

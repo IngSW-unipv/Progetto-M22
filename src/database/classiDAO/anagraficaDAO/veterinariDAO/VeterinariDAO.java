@@ -8,6 +8,7 @@ import java.util.ArrayList;
 
 import database.connectionSQL.ConnectionSQL;
 import database.connectionSQL.DbSingleton;
+import model.anagrafica.fornitori.Fornitori;
 import model.anagrafica.veterinari.Veterinari;
 
 public class VeterinariDAO implements IVeterinariDAO {
@@ -16,6 +17,29 @@ public class VeterinariDAO implements IVeterinariDAO {
 
 	public VeterinariDAO() {
 		super();
+	}
+
+	public Veterinari select_Veterinari_from_CF(String CF) {
+
+		ResultSet rs1;
+		db = DbSingleton.getInstance();
+
+		try {
+			String query = "SELECT * FROM DIPENDENTI WHERE CF_DIP =\"" + CF + "\"";
+			rs1 = db.executeQuery(query);
+
+			while (rs1.next()) {
+				Veterinari v = new Veterinari(rs1.getString(1), rs1.getString(2), rs1.getString(3), rs1.getString(4),
+						rs1.getString(5), rs1.getString(6), rs1.getString(7), rs1.getString(8), rs1.getString(9),
+						rs1.getDouble(10), rs1.getDouble(11), rs1.getString(12));
+				return v;
+			}
+		}
+
+		catch (Exception e) {
+			e.printStackTrace();
+		}
+		return null;
 	}
 
 	public ArrayList<Veterinari> selectAll() {

@@ -3,7 +3,11 @@ package database.classiDAO.pazientiDAO;
 import java.sql.ResultSet;
 import java.util.ArrayList;
 
+import database.classiDAO.anagraficaDAO.clientiDAO.ClientiDAO;
+import database.classiDAO.anagraficaDAO.veterinariDAO.VeterinariDAO;
 import database.connectionSQL.DbSingleton;
+import model.anagrafica.clienti.Clienti;
+import model.anagrafica.veterinari.Veterinari;
 import model.pazienti.Paziente;
 
 public class PazienteDAO implements IPazienteDAO {
@@ -15,22 +19,58 @@ public class PazienteDAO implements IPazienteDAO {
 
 	}
 
+	public Paziente select_Paziente_from_CF(String ID) {
+
+		ResultSet rs1;
+		db = DbSingleton.getInstance();
+
+		VeterinariDAO v = new VeterinariDAO();
+		ClientiDAO cl = new ClientiDAO();
+
+		try {
+			String query = "SELECT * FROM PAZIENTI WHERE ID_PAZ =\"" + ID + "\"";
+			rs1 = db.executeQuery(query);
+
+			while (rs1.next()) {
+				Veterinari vet = v.select_Veterinari_from_CF(rs1.getString(7));
+				Clienti cliente = cl.select_paziente_from_CF(rs1.getString(13));
+
+				Paziente paz = new Paziente(rs1.getString(1), rs1.getString(2), rs1.getString(3), rs1.getString(4),
+						rs1.getDate(5), rs1.getString(6), vet, rs1.getString(8), rs1.getString(9), rs1.getString(10),
+						rs1.getDouble(11), rs1.getDate(12), cliente, rs1.getString(14));
+
+			}
+		}
+
+		catch (Exception e) {
+			e.printStackTrace();
+		}
+		return null;
+	}
+
 	public ArrayList<Paziente> selectAll() {
 		ArrayList<Paziente> result = new ArrayList<>();
 
 		ResultSet rs1;
 		db = DbSingleton.getInstance();
 
+		VeterinariDAO v = new VeterinariDAO();
+		ClientiDAO cl = new ClientiDAO();
+
 		try {
 			String query = "SELECT * FROM PAZIENTI";
 			rs1 = db.executeQuery(query);
 
 			while (rs1.next()) {
-				Paziente v = new Paziente(rs1.getString(1), rs1.getString(2), rs1.getString(3), rs1.getString(4),
-						rs1.getDate(5), rs1.getString(6), rs1.getString(7), rs1.getString(8), rs1.getString(9),
-						rs1.getString(10), rs1.getDouble(11), rs1.getDate(12), rs1.getString(13), rs1.getString(14));
 
-				result.add(v);
+				Veterinari vet = v.select_Veterinari_from_CF(rs1.getString(7));
+				Clienti cliente = cl.select_paziente_from_CF(rs1.getString(13));
+
+				Paziente paz = new Paziente(rs1.getString(1), rs1.getString(2), rs1.getString(3), rs1.getString(4),
+						rs1.getDate(5), rs1.getString(6), vet, rs1.getString(8), rs1.getString(9), rs1.getString(10),
+						rs1.getDouble(11), rs1.getDate(12), cliente, rs1.getString(14));
+
+				result.add(paz);
 			}
 		} catch (Exception e) {
 			e.printStackTrace();

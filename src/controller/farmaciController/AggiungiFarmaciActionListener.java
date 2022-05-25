@@ -21,7 +21,6 @@ public class AggiungiFarmaciActionListener implements ActionListener {
 	private FarmaciPanel farmaciPanel;
 	private ArrayList<LottoFarmaci> res;
 	private DbControllerSingleton dbControl;
-	// private Date dataScadenza;
 
 	@Override
 	public void actionPerformed(ActionEvent e) {

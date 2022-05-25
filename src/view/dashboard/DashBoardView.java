@@ -4,12 +4,15 @@ import javax.swing.JComboBox;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 
+import view.dashboard.farmaciScadenza.TabellaFarmaciScadenzaView;
+
 public class DashBoardView extends JPanel {
 
 	private MenuView menu;
 	private JScrollPane promemoriaScrollPane;
 	private JComboBox comboBox1;
 	private JScrollPane farmaciScadenzaScrollPane;
+	private TabellaFarmaciScadenzaView f;
 
 	public DashBoardView() {
 
@@ -35,7 +38,7 @@ public class DashBoardView extends JPanel {
 		farmaciScadenzaScrollPane = new JScrollPane();
 		farmaciScadenzaScrollPane.setBounds(684, 83, 412, 254);
 		add(farmaciScadenzaScrollPane);
-		// FarmaciScadenzaView f = new FarmaciScadenzaView(farmaciScadenzaScrollPane);
+		f = new TabellaFarmaciScadenzaView(farmaciScadenzaScrollPane);
 	}
 
 	public MenuView getMenu() {
@@ -52,6 +55,10 @@ public class DashBoardView extends JPanel {
 
 	public JScrollPane getFarmaciScadenzaScrollPane() {
 		return farmaciScadenzaScrollPane;
+	}
+
+	public TabellaFarmaciScadenzaView getTabellaFarmaciView() {
+		return f;
 	}
 
 }

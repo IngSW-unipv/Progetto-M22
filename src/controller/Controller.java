@@ -41,7 +41,7 @@ public class Controller {
 		populateArrays();
 		DynamicPromemoria();
 
-		dashControl = new DashBoardController(model.getVeterinariArray(), view.getDashboard());
+		dashControl = new DashBoardController(model.getVeterinariArray(), view.getDashboard(), model.getFarmaciScadenzaArray());
 
 		clientiController = new ClientiController(model.getClientiArray(), view, view.getDashboard(),
 				view.getClientiPanel(), dbControl);
@@ -67,6 +67,7 @@ public class Controller {
 		model.populateProdottiUtili(dbControl.selectAllProdottiUtili());
 		model.populateProdottivendibili(dbControl.selectAllProdottiVendita());
 		model.populateLottoFarmaci(dbControl.selectAllLottoFarmaci());
+		model.populateFarmaciScadenza(dbControl.selectFarmaciScadenza());
 
 	}
 

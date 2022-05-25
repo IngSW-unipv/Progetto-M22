@@ -81,48 +81,24 @@ public class Paziente {
 		return note;
 	}
 
-	public Paziente(String cod, String nome, String specie, String razza, Date born, String sesso, String medicoBase,
-			String gs, String microchip, String sterilizzato, double peso, Date death, String proprietario,
-			String note) {
+	public Paziente(String cod, String nome, String specie, String razza, Date born, String sesso,
+			Veterinari medicoBase, String gs, String microchip, String sterilizzato, double peso, Date death,
+			Clienti proprietario, String note) {
 		super();
 		this.cod = cod;
 		this.nome = nome;
 		this.specie = specie;
 		this.razza = razza;
-
 		this.born = born;
 		this.sesso = sesso;
-		VeterinariDAO vetdao = new VeterinariDAO();
-		ArrayList<Veterinari> vets = vetdao.selectAll();
-		for (Veterinari veterinari : vets) {
-
-			if (medicoBase.equals(veterinari.getCF())) {
-
-				this.medicoBase = veterinari;
-
-			}
-
-		}
-
+		this.medicoBase = medicoBase;
 		this.gs = gs;
 		this.microchip = microchip;
 		this.sterilizzato = sterilizzato;
 		this.peso = peso;
 		this.death = death;
 		this.note = note;
-
-		ClientiDAO clientidao = new ClientiDAO();
-		ArrayList<Clienti> clients = clientidao.selectAll();
-
-		for (Clienti clienti : clients) {
-
-			if (proprietario.equals(clienti.getCF())) {
-
-				this.proprietario = clienti;
-
-			}
-
-		}
+		this.proprietario = proprietario;
 
 	}
 

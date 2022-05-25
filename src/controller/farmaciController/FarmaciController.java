@@ -47,9 +47,16 @@ public class FarmaciController {
 			rowData[i][0] = res.get(i).getIDLotto();
 			rowData[i][1] = res.get(i).getMode();
 			rowData[i][2] = res.get(i).getType();
-			rowData[i][3] = res.get(i).getFornitore().getPIVA();
+			// rowData[i][3] = res.get(i).getFornitore().getPIVA();
 			rowData[i][4] = res.get(i).getDataScadenza();
 			rowData[i][5] = res.get(i).getQuantita();
+
+			if (res.get(i).getFornitore() == null) {
+				rowData[i][3] = null;
+			}
+
+			else
+				rowData[i][3] = res.get(i).getFornitore().getPIVA();
 
 			modello.addRow(rowData[i]);
 		}
@@ -62,8 +69,10 @@ public class FarmaciController {
 		for (int i = 0; i < forn.size(); i++) {
 
 			lista_PIVA.add(forn.get(i).getPIVA());
-			System.out.println(lista_PIVA);
-			farmaciPanel.getFornitoriBox().addItem(lista_PIVA.get(i));
+
+			if (lista_PIVA != null) {
+				farmaciPanel.getFornitoriBox().addItem(lista_PIVA.get(i));
+			}
 		}
 	}
 

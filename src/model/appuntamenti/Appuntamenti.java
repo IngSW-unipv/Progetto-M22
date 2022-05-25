@@ -56,42 +56,17 @@ public class Appuntamenti {
 		return time;
 	}
 
-	public Appuntamenti(String cod, String paziente, String sala, String tipo, Date data, Time time, String veterinario,
-			double costo, String note) {
+	public Appuntamenti(String cod, Paziente paziente, String sala, String tipo, Date data, Time time,
+			Veterinari veterinario, double costo, String note) {
 		super();
 
 		this.cod = cod;
-
-		PazienteDAO pazientidao = new PazienteDAO();
-		ArrayList<Paziente> paz = pazientidao.selectAll();
-
-		for (Paziente pazient : paz) {
-
-			if (paziente.equals(pazient.getCod())) {
-
-				this.paziente = pazient;
-			}
-		}
 		this.sala = sala;
 		this.tipo = tipo;
 		this.data = data;
 		this.time = time;
-
-		VeterinariDAO vetdao = new VeterinariDAO();
-		ArrayList<Veterinari> vets = vetdao.selectAll();
-		for (Veterinari veterinari : vets) {
-
-			if (veterinario.equals(veterinari.getCF())) {
-
-				this.veterinario = veterinari;
-
-			}
-			
-		//io ho il cf di vet mi devo costruire il tutto
-		
-
-		}
-
+		this.paziente = paziente;
+		this.veterinario = veterinario;
 		this.costo = costo;
 		this.note = note;
 	}

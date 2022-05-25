@@ -22,6 +22,7 @@ public class SmartVetModel {
 	private ArrayList<Paziente> paz;
 	private ArrayList<Appuntamenti> app;
 	private ArrayList<LottoFarmaci> farmaci;
+	private ArrayList<LottoFarmaci> scadenza;
 	private ArrayList<ProdottiUtili> prods_u;
 	private ArrayList<ProdottiVendita> prods_v;
 	private ArrayList<Appuntamenti> promemoria;
@@ -41,6 +42,7 @@ public class SmartVetModel {
 		this.prods_u = new ArrayList<ProdottiUtili>();
 		this.prods_v = new ArrayList<ProdottiVendita>();
 		this.promemoria = new ArrayList<Appuntamenti>();
+		this.scadenza = new ArrayList<LottoFarmaci>();
 	}
 
 	public static SmartVetModel getInstance() {
@@ -59,7 +61,6 @@ public class SmartVetModel {
 
 		this.clienti = clienti;
 	}
-
 
 	public void populateVeterinari(ArrayList<Veterinari> vets) {
 		this.vets = vets;
@@ -95,6 +96,10 @@ public class SmartVetModel {
 
 	}
 
+	public void populateFarmaciScadenza(ArrayList<LottoFarmaci> scadenza) {
+		this.scadenza = scadenza;
+	}
+
 	public void populateProdottiUtili(ArrayList<ProdottiUtili> prods_u) {
 
 		this.prods_u = prods_u;
@@ -110,7 +115,6 @@ public class SmartVetModel {
 	public ArrayList<Clienti> getClientiArray() {
 		return clienti;
 	}
-
 
 	public ArrayList<Veterinari> getVeterinariArray() {
 		return vets;
@@ -134,6 +138,10 @@ public class SmartVetModel {
 
 	public ArrayList<LottoFarmaci> getLottoFarmaciArray() {
 		return farmaci;
+	}
+
+	public ArrayList<LottoFarmaci> getFarmaciScadenzaArray() {
+		return scadenza;
 	}
 
 	public ArrayList<ProdottiUtili> getProdottiUtiliArray() {

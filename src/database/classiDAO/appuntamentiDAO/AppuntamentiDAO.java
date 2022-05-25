@@ -3,9 +3,12 @@ package database.classiDAO.appuntamentiDAO;
 import java.sql.ResultSet;
 import java.util.ArrayList;
 
+import database.classiDAO.anagraficaDAO.veterinariDAO.VeterinariDAO;
+import database.classiDAO.pazientiDAO.PazienteDAO;
 import database.connectionSQL.DbSingleton;
+import model.anagrafica.veterinari.Veterinari;
 import model.appuntamenti.Appuntamenti;
-
+import model.pazienti.Paziente;
 
 public class AppuntamentiDAO implements IAppuntamentiDAO {
 	private DbSingleton db;
@@ -21,16 +24,23 @@ public class AppuntamentiDAO implements IAppuntamentiDAO {
 		ResultSet rs1;
 		db = DbSingleton.getInstance();
 
+		VeterinariDAO v = new VeterinariDAO();
+		PazienteDAO paz = new PazienteDAO();
+
 		try {
-			String query = "SELECT * FROM VISITE";
+
+			String query = "SELECT * FROM APPUNTAMENTI";
 			rs1 = db.executeQuery(query);
 
 			while (rs1.next()) {
-				Appuntamenti v = new Appuntamenti(rs1.getString(1), rs1.getString(2), rs1.getString(3),
-						rs1.getString(4), rs1.getDate(5), rs1.getTime(6), rs1.getString(7), rs1.getDouble(8),
-						rs1.getString(9));
 
-				result.add(v);
+				Veterinari vet = v.select_Veterinari_from_CF(rs1.getString(7));
+				Paziente p = paz.select_Paziente_from_CF(rs1.getString(2));
+
+				Appuntamenti app = new Appuntamenti(rs1.getString(1), p, rs1.getString(3), rs1.getString(4),
+						rs1.getDate(5), rs1.getTime(6), vet, rs1.getDouble(8), rs1.getString(9));
+
+				result.add(app);
 			}
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -47,17 +57,24 @@ public class AppuntamentiDAO implements IAppuntamentiDAO {
 		ResultSet rs1;
 		db = DbSingleton.getInstance();
 
+		VeterinariDAO v = new VeterinariDAO();
+		PazienteDAO paz = new PazienteDAO();
+
 		try {
-			String query = "SELECT * FROM VISITE where GIORNO = CURDATE() and VET_REFERENTE =\"" + CF_vetReferente
+
+			String query = "SELECT * FROM APPUNTAMENTI where GIORNO = CURDATE() and VET_REFERENTE =\"" + CF_vetReferente
 					+ "\"";
 			rs1 = db.executeQuery(query);
 
-			while (rs1.next()) { // 3 4 5 6 9
-				Appuntamenti v = new Appuntamenti(rs1.getString(1), rs1.getString(2), rs1.getString(3),
-						rs1.getString(4), rs1.getDate(5), rs1.getTime(6), rs1.getString(7), rs1.getDouble(8),
-						rs1.getString(9));
+			while (rs1.next()) {
 
-				result.add(v);
+				Veterinari vet = v.select_Veterinari_from_CF(rs1.getString(7));
+				Paziente p = paz.select_Paziente_from_CF(rs1.getString(2));
+
+				Appuntamenti app = new Appuntamenti(rs1.getString(1), p, rs1.getString(3), rs1.getString(4),
+						rs1.getDate(5), rs1.getTime(6), vet, rs1.getDouble(8), rs1.getString(9));
+
+				result.add(app);
 			}
 		} catch (Exception e) {
 			e.printStackTrace();

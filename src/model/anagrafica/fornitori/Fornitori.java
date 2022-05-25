@@ -13,16 +13,8 @@ public class Fornitori {
 		return nomeAzienda;
 	}
 
-	public void setNomeAzienda(String nomeAzienda) {
-		this.nomeAzienda = nomeAzienda;
-	}
-
 	public String getPIVA() {
 		return PIVA;
-	}
-
-	public void setPIVA(String pIVA) {
-		PIVA = pIVA;
 	}
 
 	public String getEmail() {
@@ -57,9 +49,7 @@ public class Fornitori {
 		IBAN = iBAN;
 	}
 
-
-	public Fornitori(String PIVA, String nomeAzienda, String nTelefono, String email, String sede,
-			String iBAN) {
+	public Fornitori(String PIVA, String nomeAzienda, String nTelefono, String email, String sede, String iBAN) {
 		super();
 		this.PIVA = PIVA;
 		this.nomeAzienda = nomeAzienda;
@@ -71,8 +61,8 @@ public class Fornitori {
 
 	@Override
 	public String toString() {
-		return "Fornitori [PIVA=" + PIVA + ", nomeAzienda=" + nomeAzienda + ", nTelefono=" + nTelefono
-				+ ", email=" + email + ", sede=" + sede + ", IBAN=" + IBAN + "]";
+		return "Fornitori [PIVA=" + PIVA + ", nomeAzienda=" + nomeAzienda + ", nTelefono=" + nTelefono + ", email="
+				+ email + ", sede=" + sede + ", IBAN=" + IBAN + "]";
 	}
 
 }

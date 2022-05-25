@@ -5,10 +5,10 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 
+import database.classiDAO.anagraficaDAO.fornitoriDAO.FornitoriDAO;
 import database.connectionSQL.DbSingleton;
 import model.anagrafica.fornitori.Fornitori;
 import model.magazzino.farmaci.LottoFarmaci;
-import view.PopupError; //sistema
 
 public class LottoFarmaciDAO implements ILottoFarmaciDAO {
 
@@ -16,29 +16,6 @@ public class LottoFarmaciDAO implements ILottoFarmaciDAO {
 
 	public LottoFarmaciDAO() {
 		super();
-	}
-
-	public Fornitori select_Forn(String PIVA) {
-
-		ResultSet rs1;
-		db = DbSingleton.getInstance();
-
-		try {
-			String query = "SELECT * FROM FORNITORI WHERE PIVA =\"" + PIVA + "\"";
-			rs1 = db.executeQuery(query);
-
-			while (rs1.next()) {
-				Fornitori f = new Fornitori(rs1.getString(1), rs1.getString(2), rs1.getString(3), rs1.getString(4),
-						rs1.getString(5), rs1.getString(6));
-				return f;
-			}
-
-		}
-
-		catch (Exception e) {
-			e.printStackTrace();
-		}
-		return null;
 	}
 
 	public ArrayList<LottoFarmaci> selectAll() {
@@ -52,10 +29,10 @@ public class LottoFarmaciDAO implements ILottoFarmaciDAO {
 			rs1 = db.executeQuery(query);
 
 			while (rs1.next()) {
-
+				FornitoriDAO forn = new FornitoriDAO();
 				String PIVA_Fornitore = rs1.getString(4);
 
-				Fornitori fornitore = select_Forn(PIVA_Fornitore);
+				Fornitori fornitore = forn.select_Forn(PIVA_Fornitore);
 
 				LottoFarmaci f = new LottoFarmaci(rs1.getString(1), rs1.getString(2), rs1.getString(3), fornitore,
 						rs1.getDate(5), rs1.getInt(6));
@@ -81,8 +58,14 @@ public class LottoFarmaciDAO implements ILottoFarmaciDAO {
 			rs1 = db.executeQuery(query);
 
 			while (rs1.next()) {
-				LottoFarmaci f = new LottoFarmaci(rs1.getString(1), rs1.getString(2), rs1.getString(3),
-						(Fornitori) rs1.getObject(4), rs1.getDate(5), rs1.getInt(6));
+
+				FornitoriDAO forn = new FornitoriDAO();
+				String PIVA_Fornitore = rs1.getString(4);
+
+				Fornitori fornitore = forn.select_Forn(PIVA_Fornitore);
+
+				LottoFarmaci f = new LottoFarmaci(rs1.getString(1), rs1.getString(2), rs1.getString(3), fornitore,
+						rs1.getDate(5), rs1.getInt(6));
 
 				farmaciScadenza.add(f);
 			}
@@ -100,6 +83,7 @@ public class LottoFarmaciDAO implements ILottoFarmaciDAO {
 		PreparedStatement stmt = null;
 
 		try {
+			
 
 			stmt = db.getConnection().prepareStatement(query);
 
@@ -147,9 +131,4 @@ public class LottoFarmaciDAO implements ILottoFarmaciDAO {
 			System.out.println(r.toString());
 	}
 
-	@Override
-	public boolean insertLottoFarmaci(LottoFarmaci f) {
-		// TODO Auto-generated method stub
-		return false;
-	}
 }

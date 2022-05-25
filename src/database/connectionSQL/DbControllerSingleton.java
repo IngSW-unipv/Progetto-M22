@@ -83,9 +83,13 @@ public class DbControllerSingleton {
 	public ArrayList<LottoFarmaci> selectAllLottoFarmaci() {
 		return farm.selectAll();
 	}
+	
+	public ArrayList <LottoFarmaci> selectFarmaciScadenza() {
+		return farm.getFarmaciScadenza();
+	}
 
 	public Fornitori selectFornitoreFromPiva(String PIVA) {
-		return farm.select_Forn(PIVA);
+		return fornitori.select_Forn(PIVA);
 	}
 
 	public boolean addNuovoLotto(LottoFarmaci lf) {
