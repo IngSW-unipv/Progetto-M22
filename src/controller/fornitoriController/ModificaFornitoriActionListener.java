@@ -17,7 +17,8 @@ public class ModificaFornitoriActionListener implements ActionListener {
 	@Override
 	public void actionPerformed(ActionEvent e) {
 		// TODO Auto-generated method stub
-
+		fornitoriPanel.getPIVAText().setEditable(false);
+		
 		int rigaSelezionata = fornitoriPanel.getTab().getTable().getSelectedRow();
 
 		if (rigaSelezionata >= 0) {

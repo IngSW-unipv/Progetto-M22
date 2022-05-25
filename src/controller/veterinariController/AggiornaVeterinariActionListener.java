@@ -20,6 +20,7 @@ public class AggiornaVeterinariActionListener implements ActionListener {
 	public void actionPerformed(ActionEvent e) {
 		// TODO Auto-generated method stub
 
+		veterinariPanel.getCFText().setEditable(true);
 		// Aggiungi nuovo vet
 		int elementoSelezionato = veterinariPanel.getTab().getTable().getSelectedRow();
 		((DefaultTableModel) veterinariPanel.getTab().getTable().getModel()).removeRow(elementoSelezionato);
@@ -41,9 +42,10 @@ public class AggiornaVeterinariActionListener implements ActionListener {
 
 		Veterinari vet = new Veterinari(nome, cognome, CF, email, cellulare, citta, indirizzo, piva, contratto,
 				stipendio, commissioni, iban);
+
 		boolean flag = dbControl.addNuovoVeterinario(vet);
 
-		Object rowData[] = new Object[veterinari.size()];
+		Object rowData[] = new Object[12];
 
 		DefaultTableModel model = (DefaultTableModel) veterinariPanel.getTab().getTable().getModel();
 

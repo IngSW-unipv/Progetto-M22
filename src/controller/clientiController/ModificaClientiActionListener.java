@@ -31,6 +31,7 @@ public class ModificaClientiActionListener implements ActionListener {
 			clientiPanel.getNomeText().setText(nome);
 			clientiPanel.getCognomeText().setText(cognome);
 			clientiPanel.getCFText().setText(CF);
+			clientiPanel.getCFText().setEditable(false);
 			clientiPanel.getEmailText().setText(email);
 			clientiPanel.getCellulareText().setText(cell);
 			clientiPanel.getCittaText().setText(citta);

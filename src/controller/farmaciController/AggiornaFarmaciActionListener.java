@@ -52,7 +52,7 @@ public class AggiornaFarmaciActionListener implements ActionListener {
 		LottoFarmaci lo = new LottoFarmaci(IDLotto, mode, type, forn, sqlDate, qt);
 		boolean flag = dbControl.addNuovoLotto(lo);
 
-		Object rowData[] = new Object[lf.size()];
+		Object rowData[] = new Object[6];
 
 		if (flag) {
 			

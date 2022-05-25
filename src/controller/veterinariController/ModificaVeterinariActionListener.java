@@ -16,6 +16,8 @@ public class ModificaVeterinariActionListener implements ActionListener {
 	public void actionPerformed(ActionEvent e) {
 		// TODO Auto-generated method stub
 
+		veterinariPanel.getCFText().setEditable(false);
+		
 		int rigaSelezionata = veterinariPanel.getTab().getTable().getSelectedRow();
 
 		if (rigaSelezionata >= 0) {

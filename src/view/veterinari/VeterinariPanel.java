@@ -137,7 +137,7 @@ public class VeterinariPanel extends JPanel {
 		lblCellulare.setBounds(970, 172, 70, 15);
 		add(lblCellulare);
 
-		lblCitta = new JLabel("Città");
+		lblCitta = new JLabel("Cittï¿½");
 		lblCitta.setBounds(970, 212, 70, 15);
 		add(lblCitta);
 
@@ -339,8 +339,8 @@ public class VeterinariPanel extends JPanel {
 			
 		}
 		
-		Veterinari vet = new Veterinari(nomeText.getText(), cognomeText.getText(), CFText.getText(), cellulareText.getText(),
-				cittaText.getText(), indirizzoText.getText(), emailText.getText(), pivaText.getText(), contrattoText.getText(),
+		Veterinari vet = new Veterinari(nomeText.getText(), cognomeText.getText(), CFText.getText(), emailText.getText(),
+				cellulareText.getText(), cittaText.getText(), indirizzoText.getText(), pivaText.getText(), contrattoText.getText(),
 				stipendio, commiss, ibanText.getText());
 		return vet;
 	}

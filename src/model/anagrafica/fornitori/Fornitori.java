@@ -49,14 +49,14 @@ public class Fornitori {
 		IBAN = iBAN;
 	}
 
-	public Fornitori(String PIVA, String nomeAzienda, String nTelefono, String email, String sede, String iBAN) {
+	public Fornitori(String PIVA, String nomeAzienda, String nTelefono, String email, String sede, String IBAN) {
 		super();
 		this.PIVA = PIVA;
 		this.nomeAzienda = nomeAzienda;
 		this.nTelefono = nTelefono;
 		this.email = email;
 		this.sede = sede;
-		this.IBAN = iBAN;
+		this.IBAN = IBAN;
 	}
 
 	@Override

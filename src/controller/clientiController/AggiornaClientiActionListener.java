@@ -19,13 +19,16 @@ public class AggiornaClientiActionListener implements ActionListener {
 	@Override
 	public void actionPerformed(ActionEvent e) {
 		// TODO Auto-generated method stub
-
+		clientiPanel.getCFText().setEditable(true);
 		// Aggiungi nuovo cliente
 		int elementoSelezionato = clientiPanel.getTab().getTable().getSelectedRow();
 		((DefaultTableModel) clientiPanel.getTab().getTable().getModel()).removeRow(elementoSelezionato);
+		
 		dbControl.deleteCliente(clienti.get(elementoSelezionato));
 		clienti.remove(elementoSelezionato);
-
+		
+		boolean flag = dbControl.addNuovoCliente(clientiPanel.getNuovoClienteTextField());
+		
 		String nome = clientiPanel.getNuovoClienteTextField().getNome();
 		String cognome = clientiPanel.getNuovoClienteTextField().getCognome();
 		String CF = clientiPanel.getNuovoClienteTextField().getCF();
@@ -34,10 +37,8 @@ public class AggiornaClientiActionListener implements ActionListener {
 		String citta = clientiPanel.getNuovoClienteTextField().getCitta();
 		String indirizzo = clientiPanel.getNuovoClienteTextField().getIndirizzo();
 
-		Clienti cl = new Clienti(nome, cognome, CF, email, cellulare, citta, indirizzo);
-		boolean flag = dbControl.addNuovoCliente(cl);
 
-		String rowData[] = new String[clienti.size()];
+		String rowData[] = new String[7];
 
 		DefaultTableModel model = (DefaultTableModel) clientiPanel.getTab().getTable().getModel();
 

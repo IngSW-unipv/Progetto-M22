@@ -1,17 +1,14 @@
 package controller.fornitoriController;
 
 import java.awt.event.ActionEvent;
-import java.awt.event.ActionEvent.*;
 import java.awt.event.ActionListener;
 import java.util.ArrayList;
+
 import javax.swing.table.DefaultTableModel;
+
 import database.connectionSQL.DbControllerSingleton;
-import model.anagrafica.clienti.Clienti;
 import model.anagrafica.fornitori.Fornitori;
-import model.anagrafica.veterinari.Veterinari;
-import view.clienti.ClientiPanel;
 import view.fornitori.FornitoriPanel;
-import view.veterinari.VeterinariPanel;
 
 public class AggiornaFornitoriActionListener implements ActionListener {
 
@@ -22,8 +19,9 @@ public class AggiornaFornitoriActionListener implements ActionListener {
 	@Override
 	public void actionPerformed(ActionEvent e) {
 		// TODO Auto-generated method stub
-
-		// Aggiungi nuovo vet
+		
+		fornitoriPanel.getPIVAText().setEditable(true);
+		
 		int elementoSelezionato = fornitoriPanel.getTab().getTable().getSelectedRow();
 		((DefaultTableModel) fornitoriPanel.getTab().getTable().getModel()).removeRow(elementoSelezionato);
 		dbControl.deleteFornitore(fornitori.get(elementoSelezionato));
@@ -36,18 +34,19 @@ public class AggiornaFornitoriActionListener implements ActionListener {
 		String sede = fornitoriPanel.getNuovoFornitoreTextField().getSede();
 		String IBAN = fornitoriPanel.getNuovoFornitoreTextField().getIBAN();
 
-		Fornitori fo = new Fornitori(PIVA, nomeAzienda, nTelefono, email, sede, IBAN);
-		boolean flag = dbControl.addNuovoFornitore(fo);
+	
+		boolean flag = dbControl.addNuovoFornitore(fornitoriPanel.getNuovoFornitoreTextField());
 
-		String rowData[] = new String[fornitori.size()];
+		String rowData[] = new String[6];
 
 		DefaultTableModel model = (DefaultTableModel) fornitoriPanel.getTab().getTable().getModel();
 
 		if (flag) {
 
 			rowData[0] = PIVA;
-			rowData[1] = nTelefono;
-			rowData[2] = email;
+			rowData[1] = nomeAzienda;
+			rowData[2] = nTelefono;
+			rowData[3] = email;
 			rowData[4] = sede;
 			rowData[5] = IBAN;
 

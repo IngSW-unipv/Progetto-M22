@@ -225,9 +225,10 @@ public class ClientiPanel extends JPanel {
 		return btnHome;
 	}
 
+	// attenzione all'ordine!!
 	public Clienti getNuovoClienteTextField() {
-		Clienti cl = new Clienti(nomeText.getText(), cognomeText.getText(), CFText.getText(), cellulareText.getText(),
-				cittaText.getText(), indirizzoText.getText(), emailText.getText());
+		Clienti cl = new Clienti(nomeText.getText(), cognomeText.getText(), CFText.getText(), emailText.getText(),
+				cellulareText.getText(), cittaText.getText(), indirizzoText.getText());
 		return cl;
 	}
 }
