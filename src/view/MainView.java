@@ -22,18 +22,17 @@ public class MainView extends JFrame {
 	private VeterinariPanel veterinariPanel;
 
 	public MainView() {
+		
 		Toolkit kit = Toolkit.getDefaultToolkit();
 		Dimension screenSize = kit.getScreenSize(); //restituisce la dimensione dello schermo come oggetto Dimension
 		int screenHeight = screenSize.height;
 		int screenWidth = screenSize.width;
 
 		//centra il frame nello schermo
-		setSize(screenWidth, screenHeight); //dimezza la larghezza ed altezza delle dimensioni del video precdentemente acquisite
+		setSize(screenWidth, screenHeight); 
 		setLocation(screenWidth/4, screenHeight/4); //consente di riposizionare il frame
 
-
 		setVisible(true);
-		//setBounds(500, 500, 2700, 2200);
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		getContentPane().setLayout(null);
 
