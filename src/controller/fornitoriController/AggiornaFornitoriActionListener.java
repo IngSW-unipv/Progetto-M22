@@ -2,30 +2,32 @@ package controller.fornitoriController;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.util.ArrayList;
 
 import javax.swing.table.DefaultTableModel;
 
 import database.connectionSQL.DbControllerSingleton;
-import model.anagrafica.fornitori.Fornitori;
+import model.SmartVetModel;
+import view.MainView;
 import view.fornitori.FornitoriPanel;
 
 public class AggiornaFornitoriActionListener implements ActionListener {
 
-	private FornitoriPanel fornitoriPanel;
+	private SmartVetModel model;
+	private MainView view;
 	private DbControllerSingleton dbControl;
-	private ArrayList<Fornitori> fornitori;
+	private FornitoriPanel fornitoriPanel;
 
 	@Override
 	public void actionPerformed(ActionEvent e) {
 		// TODO Auto-generated method stub
-		
+
+		fornitoriPanel = view.getFornitoriPanel();
 		fornitoriPanel.getPIVAText().setEditable(true);
-		
+
 		int elementoSelezionato = fornitoriPanel.getTab().getTable().getSelectedRow();
 		((DefaultTableModel) fornitoriPanel.getTab().getTable().getModel()).removeRow(elementoSelezionato);
-		dbControl.deleteFornitore(fornitori.get(elementoSelezionato));
-		fornitori.remove(elementoSelezionato);
+		dbControl.deleteFornitore(model.getFornitoriArray().get(elementoSelezionato));
+		model.getFornitoriArray().remove(elementoSelezionato);
 
 		String PIVA = fornitoriPanel.getNuovoFornitoreTextField().getPIVA();
 		String nomeAzienda = fornitoriPanel.getNuovoFornitoreTextField().getNomeAzienda();
@@ -34,7 +36,6 @@ public class AggiornaFornitoriActionListener implements ActionListener {
 		String sede = fornitoriPanel.getNuovoFornitoreTextField().getSede();
 		String IBAN = fornitoriPanel.getNuovoFornitoreTextField().getIBAN();
 
-	
 		boolean flag = dbControl.addNuovoFornitore(fornitoriPanel.getNuovoFornitoreTextField());
 
 		String rowData[] = new String[6];
@@ -58,13 +59,11 @@ public class AggiornaFornitoriActionListener implements ActionListener {
 
 	}
 
-	public AggiornaFornitoriActionListener(FornitoriPanel fornitoriPanel, DbControllerSingleton dbControl,
-			ArrayList<Fornitori> fornitori) {
+	public AggiornaFornitoriActionListener(SmartVetModel model, DbControllerSingleton dbControl, MainView view) {
 		super();
-		this.fornitoriPanel = fornitoriPanel;
+		this.model = model;
 		this.dbControl = dbControl;
-		this.fornitori = fornitori;
-
+		this.view = view;
 	}
 
 	public void pulisciTextField() {
@@ -74,13 +73,7 @@ public class AggiornaFornitoriActionListener implements ActionListener {
 		fornitoriPanel.getEmailText().setText(null);
 		fornitoriPanel.getSedeText().setText(null);
 		fornitoriPanel.getIBANText().setText(null);
-		
-		
-	}
 
-	public void actionPerformed1(ActionEvent e) {
-		// TODO Auto-generated method stub
-		
 	}
 
 }

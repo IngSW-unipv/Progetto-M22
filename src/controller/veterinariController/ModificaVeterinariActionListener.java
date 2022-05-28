@@ -2,39 +2,42 @@ package controller.veterinariController;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.util.ArrayList;
 
-import model.anagrafica.veterinari.Veterinari;
+import model.SmartVetModel;
+import view.MainView;
 import view.veterinari.VeterinariPanel;
 
 public class ModificaVeterinariActionListener implements ActionListener {
-	
-	VeterinariPanel veterinariPanel;
-	ArrayList<Veterinari> vet;
+
+	private SmartVetModel model;
+	private MainView view;
+	private VeterinariPanel veterinariPanel;
 
 	@Override
 	public void actionPerformed(ActionEvent e) {
 		// TODO Auto-generated method stub
-
-		veterinariPanel.getCFText().setEditable(false);
+		veterinariPanel = view.getVeterinariPanel();
 		
+		veterinariPanel.getCFText().setEditable(false);
+
 		int rigaSelezionata = veterinariPanel.getTab().getTable().getSelectedRow();
 
 		if (rigaSelezionata >= 0) {
 
-			String nome = vet.get(rigaSelezionata).getNome();
-			String cognome = vet.get(rigaSelezionata).getCognome();
-			String CF = vet.get(rigaSelezionata).getCF();
-			String email = vet.get(rigaSelezionata).getEmail();
-			String cell = vet.get(rigaSelezionata).getCellulare();
-			String citta = vet.get(rigaSelezionata).getCitta();
-			String indirizzo = vet.get(rigaSelezionata).getIndirizzo();
-			String piva = vet.get(rigaSelezionata).getPIVA();
-			String contr = vet.get(rigaSelezionata).getContratto();
-			double stip = vet.get(rigaSelezionata).getStipendio();
-			double comm = vet.get(rigaSelezionata).getCommissioni();
-			String iban = vet.get(rigaSelezionata).getIBAN();
-
+			String nome = model.getVeterinariArray().get(rigaSelezionata).getNome();
+			String cognome = model.getVeterinariArray().get(rigaSelezionata).getCognome();
+			String CF = model.getVeterinariArray().get(rigaSelezionata).getCF();
+			String email = model.getVeterinariArray().get(rigaSelezionata).getEmail();
+			String cell = model.getVeterinariArray().get(rigaSelezionata).getCellulare();
+			String citta = model.getVeterinariArray().get(rigaSelezionata).getCitta();
+			String indirizzo = model.getVeterinariArray().get(rigaSelezionata).getIndirizzo();
+			String piva = model.getVeterinariArray().get(rigaSelezionata).getPIVA();
+			String contr = model.getVeterinariArray().get(rigaSelezionata).getContratto();
+			double stip = model.getVeterinariArray().get(rigaSelezionata).getStipendio();
+			double comm = model.getVeterinariArray().get(rigaSelezionata).getCommissioni();
+			String iban = model.getVeterinariArray().get(rigaSelezionata).getIBAN();
+			System.out.println(nome + cognome);
+			
 			veterinariPanel.getNomeText().setText(nome);
 			veterinariPanel.getCognomeText().setText(cognome);
 			veterinariPanel.getCFText().setText(CF);
@@ -50,11 +53,10 @@ public class ModificaVeterinariActionListener implements ActionListener {
 		}
 	}
 
-	public ModificaVeterinariActionListener(VeterinariPanel veterinariPanel, ArrayList<Veterinari> vet) {
+	public ModificaVeterinariActionListener(SmartVetModel model, MainView view) {
 		super();
-		this.veterinariPanel = veterinariPanel;
-		this.vet = vet;
+		this.model = model;
+		this.view = view;
 	}
 
 }
-

@@ -2,30 +2,33 @@ package controller.veterinariController;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.util.ArrayList;
 
 import javax.swing.table.DefaultTableModel;
 
 import database.connectionSQL.DbControllerSingleton;
+import model.SmartVetModel;
 import model.anagrafica.veterinari.Veterinari;
+import view.MainView;
 import view.veterinari.VeterinariPanel;
 
 public class AggiornaVeterinariActionListener implements ActionListener {
 
-	private VeterinariPanel veterinariPanel;
+	private SmartVetModel model;
+	private MainView view;
 	private DbControllerSingleton dbControl;
-	private ArrayList<Veterinari> veterinari;
+	private VeterinariPanel veterinariPanel;
 
 	@Override
 	public void actionPerformed(ActionEvent e) {
 		// TODO Auto-generated method stub
-
+		veterinariPanel = view.getVeterinariPanel();
+		
 		veterinariPanel.getCFText().setEditable(true);
-		// Aggiungi nuovo vet
+
 		int elementoSelezionato = veterinariPanel.getTab().getTable().getSelectedRow();
 		((DefaultTableModel) veterinariPanel.getTab().getTable().getModel()).removeRow(elementoSelezionato);
-		dbControl.deleteVeterinario(veterinari.get(elementoSelezionato));
-		veterinari.remove(elementoSelezionato);
+		dbControl.deleteVeterinario(model.getVeterinariArray().get(elementoSelezionato));
+		model.getVeterinariArray().remove(elementoSelezionato);
 
 		String nome = veterinariPanel.getNuovoVeterinarioTextField().getNome();
 		String cognome = veterinariPanel.getNuovoVeterinarioTextField().getCognome();
@@ -72,13 +75,11 @@ public class AggiornaVeterinariActionListener implements ActionListener {
 
 	}
 
-	public AggiornaVeterinariActionListener(VeterinariPanel veterinariPanel, DbControllerSingleton dbControl,
-			ArrayList<Veterinari> veterinari) {
+	public AggiornaVeterinariActionListener(SmartVetModel model, DbControllerSingleton dbControl, MainView view) {
 		super();
-		this.veterinariPanel = veterinariPanel;
+		this.model = model;
 		this.dbControl = dbControl;
-		this.veterinari = veterinari;
-
+		this.view = view;
 	}
 
 	public void pulisciTextField() {

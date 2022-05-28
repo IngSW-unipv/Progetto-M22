@@ -4,30 +4,34 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
-import java.util.ArrayList;
 import java.util.Date;
 
 import javax.swing.table.DefaultTableModel;
 
 import database.connectionSQL.DbControllerSingleton;
+import model.SmartVetModel;
 import model.anagrafica.fornitori.Fornitori;
 import model.magazzino.farmaci.LottoFarmaci;
+import view.MainView;
 import view.magazzino.farmaci.FarmaciPanel;
 
 public class AggiornaFarmaciActionListener implements ActionListener {
 
-	private FarmaciPanel farmaciPanel;
+	private SmartVetModel model;
 	private DbControllerSingleton dbControl;
-	private ArrayList<LottoFarmaci> lf;
+	private MainView view;
+	private FarmaciPanel farmaciPanel;
 
 	@Override
 	public void actionPerformed(ActionEvent e) {
 		// TODO Auto-generated method stub
 
+		farmaciPanel = view.getFarmaciPanel();
+
 		int elementoSelezionato = farmaciPanel.getTabellaFarmaci().getTable().getSelectedRow();
 		((DefaultTableModel) farmaciPanel.getTabellaFarmaci().getTable().getModel()).removeRow(elementoSelezionato);
-		dbControl.deleteLotto(lf.get(elementoSelezionato));
-		lf.remove(elementoSelezionato);
+		dbControl.deleteLotto(model.getLottoFarmaciArray().get(elementoSelezionato));
+		model.getLottoFarmaciArray().remove(elementoSelezionato);
 
 		String IDLotto = farmaciPanel.getIDLottoText().getText();
 		String mode = farmaciPanel.getModeText().getText();
@@ -47,7 +51,6 @@ public class AggiornaFarmaciActionListener implements ActionListener {
 		java.sql.Date sqlDate = new java.sql.Date(dataScadenza.getTime());
 		int qt = (int) farmaciPanel.getSpinner().getValue();
 
-		
 		DefaultTableModel modello = (DefaultTableModel) farmaciPanel.getTabellaFarmaci().getTable().getModel();
 		LottoFarmaci lo = new LottoFarmaci(IDLotto, mode, type, forn, sqlDate, qt);
 		boolean flag = dbControl.addNuovoLotto(lo);
@@ -55,26 +58,25 @@ public class AggiornaFarmaciActionListener implements ActionListener {
 		Object rowData[] = new Object[6];
 
 		if (flag) {
-			
+
 			rowData[0] = IDLotto;
 			rowData[1] = mode;
 			rowData[2] = type;
 			rowData[3] = forn.getPIVA();
 			rowData[4] = sqlDate;
 			rowData[5] = qt;
-			
+
 			modello.addRow(rowData);
 		}
 
 		pulisciTextField();
 	}
 
-	public AggiornaFarmaciActionListener(FarmaciPanel farmaciPanel, DbControllerSingleton dbControl,
-			ArrayList<LottoFarmaci> lf) {
+	public AggiornaFarmaciActionListener(SmartVetModel model, DbControllerSingleton dbControl, MainView view) {
 		super();
-		this.farmaciPanel = farmaciPanel;
+		this.model = model;
 		this.dbControl = dbControl;
-		this.lf = lf;
+		this.view = view;
 	}
 
 	public Fornitori costruisciFornitore() {

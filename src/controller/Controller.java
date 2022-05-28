@@ -41,19 +41,15 @@ public class Controller {
 		populateArrays();
 		DynamicPromemoria();
 
-		dashControl = new DashBoardController(model.getVeterinariArray(), view.getDashboard(), model.getFarmaciScadenzaArray());
+		dashControl = new DashBoardController(model, view);
 
-		clientiController = new ClientiController(model.getClientiArray(), view, view.getDashboard(),
-				view.getClientiPanel(), dbControl);
-		
-		veterinariController = new VeterinariController(model.getVeterinariArray(), view, view.getDashboard(),
-				view.getVeterinariPanel(), dbControl);
-		
-		fornitoriController = new FornitoriController(model.getFornitoriArray(), view, view.getDashboard(),
-				view.getFornitoriPanel(), dbControl);
-		
-		farmaciController = new FarmaciController(model.getLottoFarmaciArray(), view, view.getDashboard(), view.getFarmaciPanel(), dbControl,
-				model.getFornitoriArray()) ;
+		clientiController = new ClientiController(model, view, dbControl);
+
+		veterinariController = new VeterinariController(model, view, dbControl);
+
+		fornitoriController = new FornitoriController(model, view, dbControl);
+
+		farmaciController = new FarmaciController(model, view, dbControl);
 
 	}
 

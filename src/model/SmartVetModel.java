@@ -3,13 +3,13 @@ package model;
 import java.util.ArrayList;
 
 import model.anagrafica.clienti.Clienti;
+import model.anagrafica.fornitori.Fornitori;
 import model.anagrafica.veterinari.Veterinari;
 import model.appuntamenti.Appuntamenti;
 import model.magazzino.farmaci.LottoFarmaci;
 import model.magazzino.prodottiUtili.ProdottiUtili;
 import model.magazzino.prodottiVendita.ProdottiVendita;
 import model.pazienti.Paziente;
-import model.anagrafica.fornitori.*;
 
 public class SmartVetModel {
 // ArrayList di tutto
@@ -31,7 +31,7 @@ public class SmartVetModel {
 
 	public SmartVetModel() {
 
-//exoert pattern
+//expert pattern
 
 		this.clienti = new ArrayList<Clienti>();
 		this.vets = new ArrayList<Veterinari>();
@@ -116,8 +116,20 @@ public class SmartVetModel {
 		return clienti;
 	}
 
+	public void addNewCliente(Clienti cl) {
+		clienti.add(cl);
+	}
+
+	public void EliminaCliente(Clienti cl) {
+		clienti.remove(cl);
+	}
+
 	public ArrayList<Veterinari> getVeterinariArray() {
 		return vets;
+	}
+
+	public boolean addNewVet(Veterinari vet) {
+		return vets.add(vet);
 	}
 
 	public ArrayList<Paziente> getPazientiArray() {
@@ -126,6 +138,10 @@ public class SmartVetModel {
 
 	public ArrayList<Fornitori> getFornitoriArray() {
 		return forn;
+	}
+
+	public boolean addNewForn(Fornitori forni) {
+		return forn.add(forni);
 	}
 
 	public ArrayList<Appuntamenti> getAppuntamentiArray() {
@@ -150,6 +166,18 @@ public class SmartVetModel {
 
 	public ArrayList<ProdottiVendita> getProdottiVenditaArray() {
 		return prods_v;
+	}
+
+	public void updateLotto(ArrayList<Fornitori> forns, ArrayList<LottoFarmaci> farms) {
+
+		for (int j = 0; j < farms.size(); j++) { 
+			for (int i = 0; i < forns.size(); i++) {
+			
+				if (farms.get(j).getFornitore() != forns.get(i))
+						farms.get(j).setFornitore(null);
+			}
+		}
+
 	}
 
 }

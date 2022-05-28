@@ -85,7 +85,6 @@ public class FornitoriDAO implements IFornitoriDAO {
 
 		catch (SQLException e) {
 			e.printStackTrace();
-			PopupError.infoBox("Esiste già un fornitore con questo CODF", "ERRORE");
 			return false;
 		}
 		return true;

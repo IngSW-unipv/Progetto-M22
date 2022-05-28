@@ -2,34 +2,23 @@ package controller.fornitoriController;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.util.ArrayList;
-import javax.swing.JFrame;
-import javax.swing.JTable;
+
 import javax.swing.table.DefaultTableModel;
 
-import database.classiDAO.anagraficaDAO.fornitoriDAO.FornitoriDAO;
 import database.connectionSQL.DbControllerSingleton;
-import model.anagrafica.fornitori.Fornitori;
-import model.anagrafica.veterinari.Veterinari;
-import view.fornitori.FornitoriPanel;
-import view.dashboard.DashBoardView;
-import view.dashboard.MenuView;
+import model.SmartVetModel;
+import view.MainView;
 
 public class FornitoriController {
 
-	private ArrayList<Fornitori> res;
-	private JFrame principale;
-	private DashBoardView panelDash;
-	private FornitoriPanel fornitoriPanel;
+	private SmartVetModel model;
+	private MainView view;
 	private DbControllerSingleton dbControl;
 
-	public FornitoriController(ArrayList<Fornitori> res, JFrame principale, DashBoardView panelDash,
-			FornitoriPanel fornitoriPanel, DbControllerSingleton dbControl) {
+	public FornitoriController(SmartVetModel model, MainView view, DbControllerSingleton dbControl) {
 		super();
-		this.res = res;
-		this.principale = principale;
-		this.panelDash = panelDash;
-		this.fornitoriPanel = fornitoriPanel;
+		this.model = model;
+		this.view = view;
 		this.dbControl = dbControl;
 
 		fillTable();
@@ -39,17 +28,16 @@ public class FornitoriController {
 	}
 
 	public void fillTable() {
-		String rowData[][] = new String[res.size()][6];
-		DefaultTableModel modello = (DefaultTableModel) fornitoriPanel.getTab().getTable().getModel();
-		for (int i = 0; i < res.size(); i++) {
-			
-			
-			rowData[i][0] = res.get(i).getPIVA();
-			rowData[i][1] = res.get(i).getNomeAzienda();
-			rowData[i][2] = res.get(i).getnTelefono();
-			rowData[i][3] = res.get(i).getEmail();
-			rowData[i][4] = res.get(i).getSede();
-			rowData[i][5] = res.get(i).getIBAN();
+		String rowData[][] = new String[model.getFornitoriArray().size()][6];
+		DefaultTableModel modello = (DefaultTableModel) view.getFornitoriPanel().getTab().getTable().getModel();
+		for (int i = 0; i < model.getFornitoriArray().size(); i++) {
+
+			rowData[i][0] = model.getFornitoriArray().get(i).getPIVA();
+			rowData[i][1] = model.getFornitoriArray().get(i).getNomeAzienda();
+			rowData[i][2] = model.getFornitoriArray().get(i).getnTelefono();
+			rowData[i][3] = model.getFornitoriArray().get(i).getEmail();
+			rowData[i][4] = model.getFornitoriArray().get(i).getSede();
+			rowData[i][5] = model.getFornitoriArray().get(i).getIBAN();
 
 			modello.addRow(rowData[i]);
 		}
@@ -57,40 +45,39 @@ public class FornitoriController {
 
 	public void addActionListenersMenu() {
 		System.out.println("7777");
-		panelDash.getMenu().getMntmFornitori().addActionListener(new ActionListener() {
-			
+		view.getDashboard().getMenu().getMntmFornitori().addActionListener(new ActionListener() {
+
 			public void actionPerformed(ActionEvent e) {
-				panelDash.setVisible(false);
-				principale.add(fornitoriPanel);
-				fornitoriPanel.setVisible(true);
+				view.getDashboard().setVisible(false);
+				view.add(view.getFornitoriPanel());
+				view.getFornitoriPanel().setVisible(true);
 			}
 		});
 
 	}
 
 	public void addActionListenerButtons() {
-		AggiungiFornitoriActionListener addFornitore = new AggiungiFornitoriActionListener(fornitoriPanel, res, dbControl);
+		AggiungiFornitoriActionListener addFornitore = new AggiungiFornitoriActionListener(model, view, dbControl);
 
-		fornitoriPanel.getBtnAggiungi().addActionListener(addFornitore);
+		view.getFornitoriPanel().getBtnAggiungi().addActionListener(addFornitore);
 
-		EliminaFornitoriActionListener deleteFornitore = new EliminaFornitoriActionListener(fornitoriPanel.getTab().getTable(),
-				dbControl, res);
-		fornitoriPanel.getBtnElimina().addActionListener(deleteFornitore);
+		EliminaFornitoriActionListener deleteFornitore = new EliminaFornitoriActionListener(model, view, dbControl);
+		view.getFornitoriPanel().getBtnElimina().addActionListener(deleteFornitore);
 
-		ModificaFornitoriActionListener modificaFornitore = new ModificaFornitoriActionListener(fornitoriPanel, res);
-		fornitoriPanel.getBtnModifica().addActionListener(modificaFornitore);
+		ModificaFornitoriActionListener modificaFornitore = new ModificaFornitoriActionListener(model, view);
+		view.getFornitoriPanel().getBtnModifica().addActionListener(modificaFornitore);
 
-		AggiornaFornitoriActionListener aggiornaFornitore = new AggiornaFornitoriActionListener(fornitoriPanel, dbControl, res);
-		fornitoriPanel.getBtnAggiorna().addActionListener(aggiornaFornitore);
+		AggiornaFornitoriActionListener aggiornaFornitore = new AggiornaFornitoriActionListener(model, dbControl, view);
+		view.getFornitoriPanel().getBtnAggiorna().addActionListener(aggiornaFornitore);
 
 	}
 
 	public void addActionListenerHome() {
-		fornitoriPanel.getBtnHome().addActionListener(new ActionListener() {
+		view.getFornitoriPanel().getBtnHome().addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				fornitoriPanel.setVisible(false);
-				principale.add(panelDash);
-				panelDash.setVisible(true);
+				view.getFornitoriPanel().setVisible(false);
+				view.add(view.getDashboard());
+				view.getDashboard().setVisible(true);
 			}
 		});
 	}

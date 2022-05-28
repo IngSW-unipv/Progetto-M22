@@ -17,6 +17,10 @@ public class Fornitori {
 		return PIVA;
 	}
 
+	public void setPIVA(String pIVA) {
+		PIVA = pIVA;
+	}
+
 	public String getEmail() {
 		return email;
 	}

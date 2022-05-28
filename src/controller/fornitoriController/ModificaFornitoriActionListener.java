@@ -2,48 +2,46 @@ package controller.fornitoriController;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.util.ArrayList;
 
-import model.anagrafica.fornitori.Fornitori;
-import model.anagrafica.veterinari.Veterinari;
-import view.fornitori.FornitoriPanel;
-import view.veterinari.VeterinariPanel;
+import model.SmartVetModel;
+import view.MainView;
 
 public class ModificaFornitoriActionListener implements ActionListener {
-	
-	FornitoriPanel fornitoriPanel;
-	ArrayList<Fornitori> fo;
+
+	private SmartVetModel model;
+	private MainView view;
 
 	@Override
 	public void actionPerformed(ActionEvent e) {
 		// TODO Auto-generated method stub
-		fornitoriPanel.getPIVAText().setEditable(false);
 		
-		int rigaSelezionata = fornitoriPanel.getTab().getTable().getSelectedRow();
+		view.getFornitoriPanel().getPIVAText().setEditable(false);
+
+		int rigaSelezionata = view.getFornitoriPanel().getTab().getTable().getSelectedRow();
 
 		if (rigaSelezionata >= 0) {
 
-			String PIVA = fo.get(rigaSelezionata).getPIVA();
-			String nomeAzienda = fo.get(rigaSelezionata).getNomeAzienda();
-			String nTelefono = fo.get(rigaSelezionata).getnTelefono();
-			String email = fo.get(rigaSelezionata).getEmail();
-			String sede = fo.get(rigaSelezionata).getSede();
-			String IBAN = fo.get(rigaSelezionata).getIBAN();
-			
-			fornitoriPanel.getPIVAText().setText(PIVA);
-			fornitoriPanel.getNomeAziendaText().setText(nomeAzienda);
-			fornitoriPanel.getnTelefonoText().setText(nTelefono);
-			fornitoriPanel.getEmailText().setText(email);
-			fornitoriPanel.getSedeText().setText(sede);
-			fornitoriPanel.getIBANText().setText(IBAN);
+			String PIVA = model.getFornitoriArray().get(rigaSelezionata).getPIVA();
+			String nomeAzienda = model.getFornitoriArray().get(rigaSelezionata).getNomeAzienda();
+			String nTelefono = model.getFornitoriArray().get(rigaSelezionata).getnTelefono();
+			String email = model.getFornitoriArray().get(rigaSelezionata).getEmail();
+			String sede = model.getFornitoriArray().get(rigaSelezionata).getSede();
+			String IBAN = model.getFornitoriArray().get(rigaSelezionata).getIBAN();
+
+			view.getFornitoriPanel().getPIVAText().setText(PIVA);
+			view.getFornitoriPanel().getNomeAziendaText().setText(nomeAzienda);
+			view.getFornitoriPanel().getnTelefonoText().setText(nTelefono);
+			view.getFornitoriPanel().getEmailText().setText(email);
+			view.getFornitoriPanel().getSedeText().setText(sede);
+			view.getFornitoriPanel().getIBANText().setText(IBAN);
 		}
 	}
 
-	public ModificaFornitoriActionListener(FornitoriPanel fornitoriPanel, ArrayList<Fornitori> fo) {
+	public ModificaFornitoriActionListener(SmartVetModel model, MainView view) {
 		super();
-		this.fornitoriPanel = fornitoriPanel;
-		this.fo = fo;
+		this.model = model;
+		this.view = view;
+
 	}
 
 }
-

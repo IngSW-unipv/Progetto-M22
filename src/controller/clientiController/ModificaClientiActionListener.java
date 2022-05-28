@@ -4,45 +4,47 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.ArrayList;
 
+import model.SmartVetModel;
 import model.anagrafica.clienti.Clienti;
+import view.MainView;
 import view.clienti.ClientiPanel;
 
 public class ModificaClientiActionListener implements ActionListener {
-	
-	ClientiPanel clientiPanel;
-	ArrayList<Clienti> cl;
+
+	private SmartVetModel model;
+	private MainView view;
 
 	@Override
 	public void actionPerformed(ActionEvent e) {
 		// TODO Auto-generated method stub
 
-		int rigaSelezionata = clientiPanel.getTab().getTable().getSelectedRow();
+		int rigaSelezionata = view.getClientiPanel().getTab().getTable().getSelectedRow();
 
 		if (rigaSelezionata >= 0) {
 
-			String nome = cl.get(rigaSelezionata).getNome();
-			String cognome = cl.get(rigaSelezionata).getCognome();
-			String CF = cl.get(rigaSelezionata).getCF();
-			String email = cl.get(rigaSelezionata).getEmail();
-			String cell = cl.get(rigaSelezionata).getCellulare();
-			String citta = cl.get(rigaSelezionata).getCitta();
-			String indirizzo = cl.get(rigaSelezionata).getIndirizzo();
+			String nome = model.getClientiArray().get(rigaSelezionata).getNome();
+			String cognome = model.getClientiArray().get(rigaSelezionata).getCognome();
+			String CF = model.getClientiArray().get(rigaSelezionata).getCF();
+			String email = model.getClientiArray().get(rigaSelezionata).getEmail();
+			String cell = model.getClientiArray().get(rigaSelezionata).getCellulare();
+			String citta = model.getClientiArray().get(rigaSelezionata).getCitta();
+			String indirizzo = model.getClientiArray().get(rigaSelezionata).getIndirizzo();
 
-			clientiPanel.getNomeText().setText(nome);
-			clientiPanel.getCognomeText().setText(cognome);
-			clientiPanel.getCFText().setText(CF);
-			clientiPanel.getCFText().setEditable(false);
-			clientiPanel.getEmailText().setText(email);
-			clientiPanel.getCellulareText().setText(cell);
-			clientiPanel.getCittaText().setText(citta);
-			clientiPanel.getIndirizzoText().setText(indirizzo);
+			view.getClientiPanel().getNomeText().setText(nome);
+			view.getClientiPanel().getCognomeText().setText(cognome);
+			view.getClientiPanel().getCFText().setText(CF);
+			view.getClientiPanel().getCFText().setEditable(false);
+			view.getClientiPanel().getEmailText().setText(email);
+			view.getClientiPanel().getCellulareText().setText(cell);
+			view.getClientiPanel().getCittaText().setText(citta);
+			view.getClientiPanel().getIndirizzoText().setText(indirizzo);
 		}
 	}
 
-	public ModificaClientiActionListener(ClientiPanel clientiPanel, ArrayList<Clienti> cl) {
+	public ModificaClientiActionListener(SmartVetModel model, MainView view) {
 		super();
-		this.clientiPanel = clientiPanel;
-		this.cl = cl;
+		this.model = model;
+		this.view = view;
 	}
 
 }

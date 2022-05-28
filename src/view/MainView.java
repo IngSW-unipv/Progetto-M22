@@ -1,5 +1,9 @@
 package view;
 
+import java.awt.Dimension;
+import java.awt.Image;
+import java.awt.Toolkit;
+
 import javax.swing.JFrame;
 
 import view.clienti.ClientiPanel;
@@ -10,6 +14,7 @@ import view.veterinari.VeterinariPanel;
 
 public class MainView extends JFrame {
 
+	private static final long serialVersionUID = 1L;
 	private DashBoardView dashboard;
 	private ClientiPanel clientiPanel;
 	private FornitoriPanel fornitoriPanel;
@@ -17,9 +22,18 @@ public class MainView extends JFrame {
 	private VeterinariPanel veterinariPanel;
 
 	public MainView() {
+		Toolkit kit = Toolkit.getDefaultToolkit();
+		Dimension screenSize = kit.getScreenSize(); //restituisce la dimensione dello schermo come oggetto Dimension
+		int screenHeight = screenSize.height;
+		int screenWidth = screenSize.width;
+
+		//centra il frame nello schermo
+		setSize(screenWidth, screenHeight); //dimezza la larghezza ed altezza delle dimensioni del video precdentemente acquisite
+		setLocation(screenWidth/4, screenHeight/4); //consente di riposizionare il frame
+
 
 		setVisible(true);
-		setBounds(500, 500, 2700, 2200);
+		//setBounds(500, 500, 2700, 2200);
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		getContentPane().setLayout(null);
 

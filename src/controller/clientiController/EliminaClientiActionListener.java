@@ -2,37 +2,37 @@ package controller.clientiController;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.util.ArrayList;
 
-import javax.swing.JTable;
 import javax.swing.table.DefaultTableModel;
 
 import database.connectionSQL.DbControllerSingleton;
-import model.anagrafica.clienti.Clienti;
+import model.SmartVetModel;
+import view.MainView;
 
 public class EliminaClientiActionListener implements ActionListener {
-	
-	private JTable table;
+
+	private MainView view;
 	private DbControllerSingleton dbControl;
-	private ArrayList<Clienti> cl;
+	private SmartVetModel model;
 
 	@Override
 	public void actionPerformed(ActionEvent e) {
 
-		DefaultTableModel model = (DefaultTableModel) table.getModel();
+		DefaultTableModel modello = (DefaultTableModel) view.getClientiPanel().getTab().getTable().getModel();
 
-		int elementoSelezionato = table.getSelectedRow();
-		model.removeRow(elementoSelezionato);
+		int elementoSelezionato = view.getClientiPanel().getTab().getTable().getSelectedRow();
+		modello.removeRow(elementoSelezionato);
 
-		dbControl.deleteCliente(cl.get(elementoSelezionato));
-		cl.remove(elementoSelezionato);
+		dbControl.deleteCliente(model.getClientiArray().get(elementoSelezionato));
+		model.getClientiArray().get(elementoSelezionato);
 
 	}
 
-	public EliminaClientiActionListener(JTable table, DbControllerSingleton dbControl, ArrayList<Clienti> cl) {
-		this.table = table;
+	public EliminaClientiActionListener(MainView view, DbControllerSingleton dbControl, SmartVetModel model) {
+		super();
+		this.view = view;
 		this.dbControl = dbControl;
-		this.cl = cl;
+		this.model = model;
 	}
 
 }

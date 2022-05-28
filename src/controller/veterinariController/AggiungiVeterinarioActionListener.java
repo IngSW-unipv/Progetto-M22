@@ -2,31 +2,33 @@ package controller.veterinariController;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.util.ArrayList;
 
 import javax.swing.table.DefaultTableModel;
 
 import database.connectionSQL.DbControllerSingleton;
-import model.anagrafica.veterinari.Veterinari;
+import model.SmartVetModel;
+import view.MainView;
 import view.PopupError;
 import view.veterinari.VeterinariPanel;
 
 public class AggiungiVeterinarioActionListener implements ActionListener {
 
-	private VeterinariPanel veterinariPanel;
-	private ArrayList<Veterinari> res;// IMPO se no punta null
+	private SmartVetModel model;
+	private MainView view;
 	private DbControllerSingleton dbControl;
+	private VeterinariPanel veterinariPanel;
 
 	@Override
 	public void actionPerformed(ActionEvent e) {
 		// TODO Auto-generated method stub
 
-		// Aggiungi nuovo vet
+		veterinariPanel = view.getVeterinariPanel();
+
 		boolean flag = dbControl.addNuovoVeterinario(veterinariPanel.getNuovoVeterinarioTextField());
 
 		if (flag) {
 
-			res.add(veterinariPanel.getNuovoVeterinarioTextField());
+			model.getVeterinariArray().add(veterinariPanel.getNuovoVeterinarioTextField());
 
 			Object rowData[] = new Object[12];
 
@@ -54,7 +56,7 @@ public class AggiungiVeterinarioActionListener implements ActionListener {
 
 			{
 				PopupError err = new PopupError();
-				err.infoBox("Esiste già un veterinario con questo CF", "Impossibile inserire veterinario");
+				err.infoBox("Esiste giï¿½ un veterinario con questo CF", "Impossibile inserire veterinario");
 				pulisciTextField();
 
 			}
@@ -62,12 +64,11 @@ public class AggiungiVeterinarioActionListener implements ActionListener {
 
 	}
 
-	public AggiungiVeterinarioActionListener(VeterinariPanel veterinariPanel, ArrayList<Veterinari> res,
-			DbControllerSingleton dbControl) {
-		this.veterinariPanel = veterinariPanel;
-		this.res = res;
+	public AggiungiVeterinarioActionListener(SmartVetModel model, MainView view, DbControllerSingleton dbControl) {
+		super();
+		this.model = model;
+		this.view = view;
 		this.dbControl = dbControl;
-
 	}
 
 	public void pulisciTextField() {

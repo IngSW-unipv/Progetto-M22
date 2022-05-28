@@ -2,31 +2,22 @@ package controller.veterinariController;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.util.ArrayList;
 
-import javax.swing.JFrame;
 import javax.swing.table.DefaultTableModel;
 
 import database.connectionSQL.DbControllerSingleton;
-import model.anagrafica.veterinari.Veterinari;
-import view.dashboard.DashBoardView;
-import view.veterinari.VeterinariPanel;
+import model.SmartVetModel;
+import view.MainView;
 
 public class VeterinariController {
 
-	private ArrayList<Veterinari> res;
-	private JFrame principale;
-	private DashBoardView panelDash;
-	private VeterinariPanel veterinariPanel;
+	private SmartVetModel model;
+	private MainView view;
 	private DbControllerSingleton dbControl;
 
-	public VeterinariController(ArrayList<Veterinari> res, JFrame principale, DashBoardView panelDash,
-			VeterinariPanel veterinariPanel, DbControllerSingleton dbControl) {
-		super();
-		this.res = res;
-		this.principale = principale;
-		this.panelDash = panelDash;
-		this.veterinariPanel = veterinariPanel;
+	public VeterinariController(SmartVetModel model, MainView view, DbControllerSingleton dbControl) {
+		this.model = model;
+		this.view = view;
 		this.dbControl = dbControl;
 
 		fillTable();
@@ -36,64 +27,61 @@ public class VeterinariController {
 	}
 
 	public void fillTable() {
-		Object rowData[][] = new Object[res.size()][12];
-		DefaultTableModel modello = (DefaultTableModel) veterinariPanel.getTab().getTable().getModel();
-		for (int i = 0; i < res.size(); i++) {
+		Object rowData[][] = new Object[model.getVeterinariArray().size()][12];
+		DefaultTableModel modello = (DefaultTableModel) view.getVeterinariPanel().getTab().getTable().getModel();
+		for (int i = 0; i < model.getVeterinariArray().size(); i++) {
 
-			rowData[i][0] = res.get(i).getNome();
-			rowData[i][1] = res.get(i).getCognome();
-			rowData[i][2] = res.get(i).getCF();
-			rowData[i][3] = res.get(i).getEmail();
-			rowData[i][4] = res.get(i).getCellulare();
-			rowData[i][5] = res.get(i).getCitta();
-			rowData[i][6] = res.get(i).getIndirizzo();
-			rowData[i][7] = res.get(i).getPIVA();
-			rowData[i][8] = res.get(i).getContratto();
-			rowData[i][9] = res.get(i).getStipendio();
-			rowData[i][10] = res.get(i).getCommissioni();
-			rowData[i][11] = res.get(i).getIBAN();
+			rowData[i][0] = model.getVeterinariArray().get(i).getNome();
+			rowData[i][1] = model.getVeterinariArray().get(i).getCognome();
+			rowData[i][2] = model.getVeterinariArray().get(i).getCF();
+			rowData[i][3] = model.getVeterinariArray().get(i).getEmail();
+			rowData[i][4] = model.getVeterinariArray().get(i).getCellulare();
+			rowData[i][5] = model.getVeterinariArray().get(i).getCitta();
+			rowData[i][6] = model.getVeterinariArray().get(i).getIndirizzo();
+			rowData[i][7] = model.getVeterinariArray().get(i).getPIVA();
+			rowData[i][8] = model.getVeterinariArray().get(i).getContratto();
+			rowData[i][9] = model.getVeterinariArray().get(i).getStipendio();
+			rowData[i][10] = model.getVeterinariArray().get(i).getCommissioni();
+			rowData[i][11] = model.getVeterinariArray().get(i).getIBAN();
 
 			modello.addRow(rowData[i]);
 		}
 	}
 
 	public void addActionListenersMenu() {
-		panelDash.getMenu().getMntmDipendenti().addActionListener(new ActionListener() {
+		view.getDashboard().getMenu().getMntmDipendenti().addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				panelDash.setVisible(false);
-				principale.add(veterinariPanel);
-				veterinariPanel.setVisible(true);
+				view.getDashboard().setVisible(false);
+				view.add(view.getVeterinariPanel());
+				view.getVeterinariPanel().setVisible(true);
 			}
 		});
 
 	}
 
 	public void addActionListenerButtons() {
-		AggiungiVeterinarioActionListener addVeterinario = new AggiungiVeterinarioActionListener(veterinariPanel, res,
+		AggiungiVeterinarioActionListener addVeterinario = new AggiungiVeterinarioActionListener(model, view,
 				dbControl);
 
-		veterinariPanel.getBtnAggiungi().addActionListener(addVeterinario);
+		view.getVeterinariPanel().getBtnAggiungi().addActionListener(addVeterinario);
 
-		EliminaVeterinariActionListener deleteVeterinario = new EliminaVeterinariActionListener(
-				veterinariPanel.getTab().getTable(), dbControl, res);
-		veterinariPanel.getBtnElimina().addActionListener(deleteVeterinario);
+		EliminaVeterinariActionListener deleteVeterinario = new EliminaVeterinariActionListener(model, view, dbControl);
+		view.getVeterinariPanel().getBtnElimina().addActionListener(deleteVeterinario);
 
-		ModificaVeterinariActionListener modificaVeterinario = new ModificaVeterinariActionListener(veterinariPanel,
-				res);
-		veterinariPanel.getBtnModifica().addActionListener(modificaVeterinario);
+		ModificaVeterinariActionListener modificaVeterinario = new ModificaVeterinariActionListener(model, view);
+		view.getVeterinariPanel().getBtnModifica().addActionListener(modificaVeterinario);
 
-		AggiornaVeterinariActionListener aggiornaVeterinario = new AggiornaVeterinariActionListener(veterinariPanel,
-				dbControl, res);
-		veterinariPanel.getBtnAggiorna().addActionListener(aggiornaVeterinario);
+		AggiornaVeterinariActionListener aggiornaVeterinario = new AggiornaVeterinariActionListener(model, dbControl, view);
+		view.getVeterinariPanel().getBtnAggiorna().addActionListener(aggiornaVeterinario);
 
 	}
 
 	public void addActionListenerHome() {
-		veterinariPanel.getBtnHome().addActionListener(new ActionListener() {
+		view.getVeterinariPanel().getBtnHome().addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				veterinariPanel.setVisible(false);
-				principale.add(panelDash);
-				panelDash.setVisible(true);
+				view.getVeterinariPanel().setVisible(false);
+				view.add(view.getDashboard());
+				view.getDashboard().setVisible(true);
 			}
 		});
 	}

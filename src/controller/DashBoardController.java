@@ -4,19 +4,16 @@ import java.util.ArrayList;
 
 import javax.swing.table.DefaultTableModel;
 
-import model.anagrafica.veterinari.Veterinari;
-import model.magazzino.farmaci.LottoFarmaci;
-import view.dashboard.DashBoardView;
+import model.SmartVetModel;
+import view.MainView;
 
 public class DashBoardController {
-	private ArrayList<Veterinari> vet;
-	private DashBoardView dash;
-	private ArrayList<LottoFarmaci> f;
+	private SmartVetModel model;
+	private MainView view;
 
-	public DashBoardController(ArrayList<Veterinari> vet, DashBoardView dash, ArrayList<LottoFarmaci> f) {
-		this.vet = vet;
-		this.dash = dash;
-		this.f = f;
+	public DashBoardController(SmartVetModel model, MainView view) {
+		this.model = model;
+		this.view = view;
 
 		inizializzaComboBoxVet();
 		fillTableFarmaciScadenza();
@@ -26,24 +23,29 @@ public class DashBoardController {
 
 		ArrayList<String> lista_CF = new ArrayList<String>();
 
-		for (int i = 0; i < vet.size(); i++) {
+		for (int i = 0; i < model.getVeterinariArray().size(); i++) {
 
-			lista_CF.add(vet.get(i).getCF());
-			dash.getComboBox1().addItem(lista_CF.get(i));
+			lista_CF.add(model.getVeterinariArray().get(i).getCF());
+			
+			view.getDashboard().getComboBox1().addItem(lista_CF.get(i));
 		}
 	}
 
 	public void fillTableFarmaciScadenza() {
-		DefaultTableModel model = (DefaultTableModel) dash.getTabellaFarmaciView().getTable().getModel();
+
+		DefaultTableModel modello = (DefaultTableModel) view.getDashboard().getTabellaFarmaciView().getTable()
+				.getModel();
 		Object rowData[] = new Object[4];
-		for (int i = 0; i < f.size(); i++) {
+		for (int i = 0; i < model.getFarmaciScadenzaArray().size(); i++) {
 
-			rowData[0] = f.get(i).getIDLotto();
-			rowData[1] = f.get(i).getDataScadenza();
-			rowData[2] = f.get(i).getQuantita();
-			rowData[3] = f.get(i).getMode();
+			rowData[0] = model.getFarmaciScadenzaArray().get(i).getIDLotto();
+			rowData[1] = model.getFarmaciScadenzaArray().get(i).getDataScadenza();
+			rowData[2] = model.getFarmaciScadenzaArray().get(i).getQuantita();
+			rowData[3] = model.getFarmaciScadenzaArray().get(i).getMode();
 
-			model.addRow(rowData);
+			modello.addRow(rowData);
 		}
 	}
+	
+	
 }

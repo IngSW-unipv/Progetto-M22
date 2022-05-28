@@ -2,31 +2,33 @@ package controller.clientiController;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.util.ArrayList;
 
 import javax.swing.table.DefaultTableModel;
 
 import database.connectionSQL.DbControllerSingleton;
-import model.anagrafica.clienti.Clienti;
+import model.SmartVetModel;
+import view.MainView;
 import view.PopupError;
 import view.clienti.ClientiPanel;
 
 public class AggiungiClienteActionListener implements ActionListener {
 
-	private ClientiPanel clientiPanel;
-	private ArrayList<Clienti> res;// IMPO se no punta null
+	private SmartVetModel model;
+	private MainView view;
 	private DbControllerSingleton dbControl;
+	private ClientiPanel clientiPanel;
 
 	@Override
 	public void actionPerformed(ActionEvent e) {
 		// TODO Auto-generated method stub
 
+		clientiPanel = view.getClientiPanel();
 		// Aggiungi nuovo cliente
 		boolean flag = dbControl.addNuovoCliente(clientiPanel.getNuovoClienteTextField());
 
 		if (flag) {
 
-			res.add(clientiPanel.getNuovoClienteTextField());
+			model.addNewCliente(clientiPanel.getNuovoClienteTextField());
 
 			String rowData[] = new String[7];
 
@@ -58,12 +60,11 @@ public class AggiungiClienteActionListener implements ActionListener {
 
 	}
 
-	public AggiungiClienteActionListener(ClientiPanel clientiPanel, ArrayList<Clienti> res,
-			DbControllerSingleton dbControl) {
-		this.clientiPanel = clientiPanel;
-		this.res = res;
+	public AggiungiClienteActionListener(SmartVetModel model, MainView view, DbControllerSingleton dbControl) {
+		super();
+		this.model = model;
+		this.view = view;
 		this.dbControl = dbControl;
-
 	}
 
 	public void pulisciTextField() {

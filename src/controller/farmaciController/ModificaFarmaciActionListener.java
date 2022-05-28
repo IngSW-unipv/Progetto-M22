@@ -2,47 +2,45 @@ package controller.farmaciController;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.util.ArrayList;
 import java.util.Date;
 
-import model.magazzino.farmaci.LottoFarmaci;
-import view.magazzino.farmaci.FarmaciPanel;
+import model.SmartVetModel;
+import view.MainView;
 
 public class ModificaFarmaciActionListener implements ActionListener {
 
-	FarmaciPanel farmaciPanel;
-	ArrayList<LottoFarmaci> lf;
+	private SmartVetModel model;
+	private MainView view;
 
 	@Override
 	public void actionPerformed(ActionEvent e) {
 		// TODO Auto-generated method stub
 
-		int rigaSelezionata = farmaciPanel.getTabellaFarmaci().getTable().getSelectedRow();
+		int rigaSelezionata = view.getFarmaciPanel().getTabellaFarmaci().getTable().getSelectedRow();
 
 		if (rigaSelezionata >= 0) {
 
-			String IDLotto = lf.get(rigaSelezionata).getIDLotto();
-			String mode = lf.get(rigaSelezionata).getMode();
-			String type = lf.get(rigaSelezionata).getType();
-			String PIVA = lf.get(rigaSelezionata).getFornitore().getPIVA();
-			Date dataScadenza = lf.get(rigaSelezionata).getDataScadenza();
-			int quantita = lf.get(rigaSelezionata).getQuantita();
+			String IDLotto = model.getLottoFarmaciArray().get(rigaSelezionata).getIDLotto();
+			String mode = model.getLottoFarmaciArray().get(rigaSelezionata).getMode();
+			String type = model.getLottoFarmaciArray().get(rigaSelezionata).getType();
+			String PIVA = model.getLottoFarmaciArray().get(rigaSelezionata).getFornitore().getPIVA();
+			Date dataScadenza = model.getLottoFarmaciArray().get(rigaSelezionata).getDataScadenza();
+			int quantita = model.getLottoFarmaciArray().get(rigaSelezionata).getQuantita();
 
-			farmaciPanel.getIDLottoText().setText(IDLotto);
-			farmaciPanel.getModeText().setText(mode);
-			farmaciPanel.getTipoText().setText(type);
-			farmaciPanel.getFornitoriBox().setSelectedItem(PIVA);
-			farmaciPanel.getDataScadenza().setDate(dataScadenza);
-			farmaciPanel.getSpinner().setValue(quantita);
+			view.getFarmaciPanel().getIDLottoText().setText(IDLotto);
+			view.getFarmaciPanel().getModeText().setText(mode);
+			view.getFarmaciPanel().getTipoText().setText(type);
+			view.getFarmaciPanel().getFornitoriBox().setSelectedItem(PIVA);
+			view.getFarmaciPanel().getDataScadenza().setDate(dataScadenza);
+			view.getFarmaciPanel().getSpinner().setValue(quantita);
 		}
 
 	}
 
-	public ModificaFarmaciActionListener(FarmaciPanel farmaciPanel, ArrayList<LottoFarmaci> lf) {
+	public ModificaFarmaciActionListener(SmartVetModel model, MainView view) {
 		super();
-		this.farmaciPanel = farmaciPanel;
-		this.lf = lf;
+		this.model = model;
+		this.view = view;
 	}
-	
 
 }

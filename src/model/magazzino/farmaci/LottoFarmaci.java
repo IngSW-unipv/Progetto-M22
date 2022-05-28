@@ -1,7 +1,5 @@
 package model.magazzino.farmaci;
 
-
-
 import java.sql.Date;
 
 import model.anagrafica.fornitori.Fornitori;
@@ -36,6 +34,10 @@ public class LottoFarmaci implements Vendibile {
 		return fornitore;
 	}
 
+	public void setFornitore(Fornitori fornitore) {
+		this.fornitore = fornitore;
+	}
+
 	public int getQuantita() {
 		return quantita;
 	}
@@ -50,7 +52,6 @@ public class LottoFarmaci implements Vendibile {
 		this.dataScadenza = dataScadenza;
 		this.quantita = quantita;
 	}
-
 
 	@Override
 	public String toString() {

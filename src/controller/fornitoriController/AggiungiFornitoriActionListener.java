@@ -2,49 +2,40 @@ package controller.fornitoriController;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.util.ArrayList;
 
-import javax.swing.JTable;
-import javax.swing.JTextField;
 import javax.swing.table.DefaultTableModel;
 
-import database.classiDAO.anagraficaDAO.fornitoriDAO.FornitoriDAO;
 import database.connectionSQL.DbControllerSingleton;
-import model.anagrafica.clienti.Clienti;
-import model.anagrafica.fornitori.Fornitori;
-import model.anagrafica.veterinari.Veterinari;
+import model.SmartVetModel;
+import view.MainView;
 import view.PopupError;
-import view.clienti.ClientiPanel;
-import view.fornitori.FornitoriPanel;
-import view.veterinari.VeterinariPanel;
 
 public class AggiungiFornitoriActionListener implements ActionListener {
 
-	private FornitoriPanel fornitoriPanel;
-	private ArrayList<Fornitori> res;// IMPO se no punta null
+	private SmartVetModel model;
+	private MainView view;
 	private DbControllerSingleton dbControl;
 
 	@Override
 	public void actionPerformed(ActionEvent e) {
 		// TODO Auto-generated method stub
 
-		// Aggiungi nuovo cliente
-		boolean flag = dbControl.addNuovoFornitore(fornitoriPanel.getNuovoFornitoreTextField());
+		boolean flag = dbControl.addNuovoFornitore(view.getFornitoriPanel().getNuovoFornitoreTextField());
 
 		if (flag) {
 
-			res.add(fornitoriPanel.getNuovoFornitoreTextField());
+			model.getFornitoriArray().add(view.getFornitoriPanel().getNuovoFornitoreTextField());
 
 			String rowData[] = new String[6];
 
-			DefaultTableModel model = (DefaultTableModel) fornitoriPanel.getTab().getTable().getModel();
+			DefaultTableModel model = (DefaultTableModel) view.getFornitoriPanel().getTab().getTable().getModel();
 
-			rowData[0] = fornitoriPanel.getNuovoFornitoreTextField().getPIVA();
-			rowData[1] = fornitoriPanel.getNuovoFornitoreTextField().getNomeAzienda();
-			rowData[2] = fornitoriPanel.getNuovoFornitoreTextField().getnTelefono();
-			rowData[3] = fornitoriPanel.getNuovoFornitoreTextField().getEmail();
-			rowData[4] = fornitoriPanel.getNuovoFornitoreTextField().getSede();
-			rowData[5] = fornitoriPanel.getNuovoFornitoreTextField().getIBAN();
+			rowData[0] = view.getFornitoriPanel().getNuovoFornitoreTextField().getPIVA();
+			rowData[1] = view.getFornitoriPanel().getNuovoFornitoreTextField().getNomeAzienda();
+			rowData[2] = view.getFornitoriPanel().getNuovoFornitoreTextField().getnTelefono();
+			rowData[3] = view.getFornitoriPanel().getNuovoFornitoreTextField().getEmail();
+			rowData[4] = view.getFornitoriPanel().getNuovoFornitoreTextField().getSede();
+			rowData[5] = view.getFornitoriPanel().getNuovoFornitoreTextField().getIBAN();
 
 			model.addRow(rowData);
 
@@ -63,21 +54,20 @@ public class AggiungiFornitoriActionListener implements ActionListener {
 
 	}
 
-	public AggiungiFornitoriActionListener(FornitoriPanel fornitoriPanel, ArrayList<Fornitori> res,
-			DbControllerSingleton dbControl) {
-		this.fornitoriPanel = fornitoriPanel;
-		this.res = res;
+	public AggiungiFornitoriActionListener(SmartVetModel model, MainView view, DbControllerSingleton dbControl) {
+		super();
+		this.model = model;
+		this.view = view;
 		this.dbControl = dbControl;
-
 	}
 
 	public void pulisciTextField() {
-		
-		fornitoriPanel.getPIVAText().setText(null);
-		fornitoriPanel.getNomeAziendaText().setText(null);
-		fornitoriPanel.getnTelefonoText().setText(null);
-		fornitoriPanel.getEmailText().setText(null);
-		fornitoriPanel.getSedeText().setText(null);
-		fornitoriPanel.getIBANText().setText(null);
+
+		view.getFornitoriPanel().getPIVAText().setText(null);
+		view.getFornitoriPanel().getNomeAziendaText().setText(null);
+		view.getFornitoriPanel().getnTelefonoText().setText(null);
+		view.getFornitoriPanel().getEmailText().setText(null);
+		view.getFornitoriPanel().getSedeText().setText(null);
+		view.getFornitoriPanel().getIBANText().setText(null);
 	}
 }

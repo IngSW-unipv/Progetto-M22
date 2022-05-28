@@ -2,33 +2,37 @@ package controller.clientiController;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.util.ArrayList;
 
 import javax.swing.table.DefaultTableModel;
 
 import database.connectionSQL.DbControllerSingleton;
-import model.anagrafica.clienti.Clienti;
+import model.SmartVetModel;
+import view.MainView;
 import view.clienti.ClientiPanel;
 
 public class AggiornaClientiActionListener implements ActionListener {
 
-	private ClientiPanel clientiPanel;
+	private MainView view;
 	private DbControllerSingleton dbControl;
-	private ArrayList<Clienti> clienti;
+	private SmartVetModel model;
+	private ClientiPanel clientiPanel;
 
 	@Override
 	public void actionPerformed(ActionEvent e) {
 		// TODO Auto-generated method stub
+		
+		clientiPanel = view.getClientiPanel();
 		clientiPanel.getCFText().setEditable(true);
+		
 		// Aggiungi nuovo cliente
 		int elementoSelezionato = clientiPanel.getTab().getTable().getSelectedRow();
 		((DefaultTableModel) clientiPanel.getTab().getTable().getModel()).removeRow(elementoSelezionato);
-		
-		dbControl.deleteCliente(clienti.get(elementoSelezionato));
-		clienti.remove(elementoSelezionato);
-		
+
+		dbControl.deleteCliente(model.getClientiArray().get(elementoSelezionato));
+		model.getClientiArray().remove(elementoSelezionato);
+
 		boolean flag = dbControl.addNuovoCliente(clientiPanel.getNuovoClienteTextField());
-		
+
 		String nome = clientiPanel.getNuovoClienteTextField().getNome();
 		String cognome = clientiPanel.getNuovoClienteTextField().getCognome();
 		String CF = clientiPanel.getNuovoClienteTextField().getCF();
@@ -36,7 +40,6 @@ public class AggiornaClientiActionListener implements ActionListener {
 		String cellulare = clientiPanel.getNuovoClienteTextField().getCellulare();
 		String citta = clientiPanel.getNuovoClienteTextField().getCitta();
 		String indirizzo = clientiPanel.getNuovoClienteTextField().getIndirizzo();
-
 
 		String rowData[] = new String[7];
 
@@ -60,13 +63,11 @@ public class AggiornaClientiActionListener implements ActionListener {
 
 	}
 
-	public AggiornaClientiActionListener(ClientiPanel clientiPanel, DbControllerSingleton dbControl,
-			ArrayList<Clienti> clienti) {
+	public AggiornaClientiActionListener(MainView view, DbControllerSingleton dbControl, SmartVetModel model) {
 		super();
-		this.clientiPanel = clientiPanel;
+		this.view = view;
 		this.dbControl = dbControl;
-		this.clienti = clienti;
-
+		this.model = model;
 	}
 
 	public void pulisciTextField() {
