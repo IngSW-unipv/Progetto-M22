@@ -46,7 +46,7 @@ public class ProdottiUtiliDAO implements IProdottiUtiliDAO {
 	}
 	
 	@Override
-	public boolean insertProdottiUtili(ProdottiUtili p) {
+	/*public boolean insertProdottiUtili(ProdottiUtili p) {
 
 		String query = "INSERT INTO PRODOTTI_UTILI (NOME, QTA, COD_PROD, PIVA) values (?, ?, ?, ?, ?, ?);";
 
@@ -101,8 +101,8 @@ public class ProdottiUtiliDAO implements IProdottiUtiliDAO {
 		for (ProdottiUtili r : res)
 			System.out.println(r.toString());
 	}
-
-	@Override
+*/
+	
 	public boolean insertProdottiUtili(ProdottiUtili p) {
 		// TODO Auto-generated method stub
 		return false;
