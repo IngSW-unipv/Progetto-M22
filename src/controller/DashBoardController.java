@@ -35,13 +35,14 @@ public class DashBoardController {
 
 		DefaultTableModel modello = (DefaultTableModel) view.getDashboard().getTabellaFarmaciView().getTable()
 				.getModel();
-		Object rowData[] = new Object[4];
+		Object rowData[] = new Object[5];
 		for (int i = 0; i < model.getFarmaciScadenzaArray().size(); i++) {
-
+			
 			rowData[0] = model.getFarmaciScadenzaArray().get(i).getIDLotto();
-			rowData[1] = model.getFarmaciScadenzaArray().get(i).getDataScadenza();
-			rowData[2] = model.getFarmaciScadenzaArray().get(i).getQuantita();
-			rowData[3] = model.getFarmaciScadenzaArray().get(i).getMode();
+			rowData[4] = model.getFarmaciScadenzaArray().get(i).getType();
+			rowData[2] = model.getFarmaciScadenzaArray().get(i).getDataScadenza();
+			rowData[3] = model.getFarmaciScadenzaArray().get(i).getQuantita();
+			rowData[1] = model.getFarmaciScadenzaArray().get(i).getMode();
 
 			modello.addRow(rowData);
 		}
