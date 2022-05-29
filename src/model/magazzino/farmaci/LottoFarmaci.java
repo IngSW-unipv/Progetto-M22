@@ -1,7 +1,5 @@
 package model.magazzino.farmaci;
 
-import java.sql.Date;
-
 import model.anagrafica.fornitori.Fornitori;
 import model.magazzino.Vendibile;
 

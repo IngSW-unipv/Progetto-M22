@@ -1,15 +1,12 @@
 package model.magazzino;
 
-import java.util.ArrayList;
-
-import database.classiDAO.anagraficaDAO.fornitoriDAO.FornitoriDAO;
 import model.anagrafica.fornitori.Fornitori;
 
 public class ProdottoBase {
 	private String type;
 	private int quantita;
 	private String cod;
-	private Fornitori fornitore;
+	private Fornitori forn;
 
 	public String getCod() {
 		return cod;
@@ -24,31 +21,21 @@ public class ProdottoBase {
 	}
 
 	public Fornitori getFornitore() {
-		return fornitore;
+		return forn;
 	}
 
-	public ProdottoBase(String type, int quantita, String cod, String fornitore) {
+	public ProdottoBase(String type, int quantita, String cod, Fornitori forn) {
 		super();
 		this.type = type;
 		this.quantita = quantita;
-
-		FornitoriDAO fornitoridao = new FornitoriDAO();
-		ArrayList<Fornitori> forn = fornitoridao.selectAll();
-
-		for (Fornitori fornitori : forn) {
-
-			if (fornitore.equals(fornitori.getPIVA())) {
-
-				this.fornitore = fornitori;
-			}
-		}
+		this.forn = forn;
 		this.cod = cod;
 
 	}
 
 	@Override
 	public String toString() {
-		return "ProdottoBase [type=" + type + ", quantita=" + quantita + ", forn=" + fornitore + ", cod=" + cod + "]";
+		return "ProdottoBase [type=" + type + ", quantita=" + quantita + ", forn=" + forn + ", cod=" + cod + "]";
 	}
 
 }
