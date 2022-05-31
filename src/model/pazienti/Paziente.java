@@ -122,4 +122,9 @@ public class Paziente {
 		
 	}
 
+	public String getIDPAZText() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
 }
