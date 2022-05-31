@@ -91,6 +91,14 @@ public class DbControllerSingleton {
 	public Fornitori selectFornitoreFromPiva(String PIVA) {
 		return fornitori.select_Forn(PIVA);
 	}
+	
+	public Veterinari selectVeterinarioFromCF(String CF) {
+		return Veterinari.select_Vet(CF);
+	}
+	
+	public Clienti selectClienteFromCF(String CF) {
+		return clienti.select_Cl(CF);
+	}
 
 	public boolean addNuovoLotto(LottoFarmaci lf) {
 		return farm.insertFarmaci(lf);
@@ -114,30 +122,31 @@ public class DbControllerSingleton {
 	}
 
 	public boolean addNuovoFornitore(Fornitori fo) {
-
 		return fornitori.insertFornitore(fo);
-
 	}
-
 	
 	public boolean addNuovoCliente(Clienti cl) {
-
 		return clienti.insertClienti(cl);
-
 	}
 
 	public void deleteCliente(Clienti cl) {
-
 		clienti.deleteClienti(cl);
 	}
 
 	public boolean addNuovoVeterinario(Veterinari vet) {
 		return vets.insertVeterinari(vet) ;
-
 	}
 	
 	public void deleteVeterinario(Veterinari vet) {
 		vets.deleteVeterinari(vet);
+	}
+
+	public boolean addNuovoPaziente(Paziente paz) {
+		return paz.insertPaziente(paz) ;
+	}
+	
+	public void deletePazienti(Paziente paziente) {
+		paz.deletePazienti(paz);
 	}
 	
 }

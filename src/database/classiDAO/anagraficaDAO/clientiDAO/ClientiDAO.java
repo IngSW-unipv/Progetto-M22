@@ -114,4 +114,9 @@ public class ClientiDAO implements IClientiDAO {
 			e.printStackTrace();
 		}
 	}
+
+	public Clienti select_Cl(String cF) {
+		// TODO Auto-generated method stub
+		return null;
+	}
 }

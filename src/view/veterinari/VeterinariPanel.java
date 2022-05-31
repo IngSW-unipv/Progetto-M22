@@ -2,6 +2,7 @@ package view.veterinari;
 
 import javax.swing.Icon;
 import javax.swing.JButton;
+import javax.swing.JComboBox;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
@@ -13,7 +14,7 @@ public class VeterinariPanel extends JPanel {
 
 	private static final long serialVersionUID = 1L;
 	private JScrollPane scrollPane;
-	
+	private JComboBox veterinariBox;
 	private JTextField nomeText;
 	private JTextField cognomeText;
 	private JTextField emailText;
@@ -343,5 +344,9 @@ public class VeterinariPanel extends JPanel {
 				cellulareText.getText(), cittaText.getText(), indirizzoText.getText(), pivaText.getText(), contrattoText.getText(),
 				stipendio, commiss, ibanText.getText());
 		return vet;
+	}
+
+	public JComboBox getVeterinariBox() {
+		return veterinariBox;
 	}
 }

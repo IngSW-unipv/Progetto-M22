@@ -3,6 +3,8 @@ package model.pazienti;
 import java.util.ArrayList;
 import java.util.Date;
 
+import com.toedter.calendar.JDateChooser;
+
 import database.classiDAO.anagraficaDAO.clientiDAO.ClientiDAO;
 import database.classiDAO.anagraficaDAO.veterinariDAO.VeterinariDAO;
 import model.anagrafica.clienti.Clienti;
@@ -10,23 +12,23 @@ import model.anagrafica.veterinari.Veterinari;
 
 public class Paziente {
 
-	private String cod;
+	private String ID_PAZ;
 	private String nome;
 	private String specie;
 	private String razza;
-	private Date born;
+	private Date DataNascita;
 	private String sesso;
-	private Veterinari medicoBase;
-	private String gs;
+	private Veterinari Veterinario;
+	private String GruppoSanguigno;
 	private String microchip;
 	private String sterilizzato;
 	private double peso;
-	private Date death;
-	private Clienti proprietario;
+	private Date DataMorte;
+	private Clienti Cliente;
 	private String note;
 
-	public String getCod() {
-		return cod;
+	public String getID_PAZ() {
+		return ID_PAZ;
 	}
 
 	public String getNome() {
@@ -41,20 +43,20 @@ public class Paziente {
 		return razza;
 	}
 
-	public Date getBorn() {
-		return born;
+	public Date getDataNascita() {
+		return DataNascita;
 	}
 
 	public String getSesso() {
 		return sesso;
 	}
 
-	public Veterinari getMedicoBase() {
-		return medicoBase;
+	public Veterinari getVeterinario() {
+		return Veterinario;
 	}
 
-	public String getGs() {
-		return gs;
+	public String getGruppoSanguigno() {
+		return GruppoSanguigno;
 	}
 
 	public String getMicrochip() {
@@ -69,45 +71,55 @@ public class Paziente {
 		return peso;
 	}
 
-	public Date getDeath() {
-		return death;
+	public Date getDataMorte() {
+		return DataMorte;
 	}
 
-	public Clienti getProprietario() {
-		return proprietario;
+	public Clienti getCliente() {
+		return Cliente;
 	}
 
 	public String getNote() {
 		return note;
 	}
 
-	public Paziente(String cod, String nome, String specie, String razza, Date born, String sesso,
-			Veterinari medicoBase, String gs, String microchip, String sterilizzato, double peso, Date death,
-			Clienti proprietario, String note) {
+	public Paziente(String ID_PAZ, String nome, String specie, String razza, String sesso, Date DataNascita, String GruppoSanguigno,
+			String microchip, Veterinari Vet, double peso, String sterilizzato, Clienti Cl, Date DataMorte, java.sql.Date sqlDate1, int qt1,
+					java.sql.Date sqlDate2, int qt2, String note) {
 		super();
-		this.cod = cod;
+		this.ID_PAZ = ID_PAZ;
 		this.nome = nome;
 		this.specie = specie;
 		this.razza = razza;
-		this.born = born;
+		this.DataNascita = DataNascita;
 		this.sesso = sesso;
-		this.medicoBase = medicoBase;
-		this.gs = gs;
+		this.Veterinario = Vet;
+		this.GruppoSanguigno = GruppoSanguigno;
 		this.microchip = microchip;
 		this.sterilizzato = sterilizzato;
 		this.peso = peso;
-		this.death = death;
+		this.DataMorte = DataMorte;
 		this.note = note;
-		this.proprietario = proprietario;
+		this.Cliente = Cl;
 
 	}
 
 	@Override
 	public String toString() {
-		return "Paziente [cod=" + cod + ", nome=" + nome + ", specie=" + specie + ", razza=" + razza + ", born=" + born
-				+ ", sesso=" + sesso + ", medicoBase=" + medicoBase + ", gs=" + gs + ", microchip=" + microchip
-				+ ", sterilizzato=" + sterilizzato + ", peso=" + peso + ", death=" + death + ", proprietario="
-				+ proprietario + ", note=" + note + "]";
+		return "Paziente [ID_PAZ=" + ID_PAZ + ", nome=" + nome + ", specie=" + specie + ", razza=" + razza + ", born=" + DataNascita
+				+ ", sesso=" + sesso + ", medicoBase=" + Veterinario + ", gs=" + GruppoSanguigno + ", microchip=" + microchip
+				+ ", sterilizzato=" + sterilizzato + ", peso=" + peso + ", death=" + DataMorte + ", proprietario="
+				+ Cliente + ", note=" + note + "]";
+	}
+
+	public boolean insertPaziente(Paziente paz) {
+		// TODO Auto-generated method stub
+		return false;
+	}
+
+	public void setVeterinario(Veterinari veterinario) {
+		this.Veterinario = veterinario;
+		
 	}
 
 }

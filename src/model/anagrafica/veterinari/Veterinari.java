@@ -45,6 +45,11 @@ public class Veterinari extends Persona {
 				+ stipendio + ", commissioni=" + commissioni + ", IBAN=" + IBAN + "]";
 	}
 
+	public static Veterinari select_Vet(String cF) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
 	
 
 }

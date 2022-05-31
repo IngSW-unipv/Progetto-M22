@@ -18,7 +18,7 @@ public class ConnectionSQL {
 		// "jdbc:mysql://localhost/"+schema+"?socketFactory=SSHSocketFactory&SSHHost=192.168.3.42&SSHUser=nino&SSHPassword=nocera369";
 		// System.out.println(DbURL);
 		username = "root";
-		password = "Alemag1929";
+		password = "prova123";
 		if (isOpen(conn))
 			closeConnection(conn);
 		try {

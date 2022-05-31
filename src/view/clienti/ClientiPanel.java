@@ -2,6 +2,7 @@ package view.clienti;
 
 import javax.swing.Icon;
 import javax.swing.JButton;
+import javax.swing.JComboBox;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
@@ -14,6 +15,7 @@ public class ClientiPanel extends JPanel {
 
 	private static final long serialVersionUID = 1L;
 	private JScrollPane scrollPane;
+	private JComboBox clientiBox;
 	private JTextField nomeText;
 	private JTextField cognomeText;
 	private JTextField emailText;
@@ -230,5 +232,9 @@ public class ClientiPanel extends JPanel {
 		Clienti cl = new Clienti(nomeText.getText(), cognomeText.getText(), CFText.getText(), emailText.getText(),
 				cellulareText.getText(), cittaText.getText(), indirizzoText.getText());
 		return cl;
+	}
+
+	public JComboBox getClientiBox() {
+		return clientiBox;
 	}
 }

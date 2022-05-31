@@ -179,5 +179,23 @@ public class SmartVetModel {
 		}
 
 	}
+	
+	public void updatePazienti(ArrayList<Veterinari> vet, ArrayList<Paziente> paz) {
 
+		for (int j = 0; j < paz.size(); j++) { 
+			for (int i = 0; i < vet.size(); i++) {
+			
+				if (paz.get(j).getVeterinario() != vet.get(i))
+						paz.get(j).setVeterinario(null);
+			}
+		}
+
+	}
+
+	public ArrayList<Paziente> getPazientiPanelArray() {
+		// TODO Auto-generated method stub
+		return paz;
+	}
+	
+	
 }

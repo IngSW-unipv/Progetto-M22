@@ -10,6 +10,7 @@ import view.clienti.ClientiPanel;
 import view.dashboard.DashBoardView;
 import view.fornitori.FornitoriPanel;
 import view.magazzino.farmaci.FarmaciPanel;
+import view.pazienti.PazientiPanel;
 import view.veterinari.VeterinariPanel;
 
 public class MainView extends JFrame {
@@ -20,6 +21,7 @@ public class MainView extends JFrame {
 	private FornitoriPanel fornitoriPanel;
 	private FarmaciPanel farmaciPanel;
 	private VeterinariPanel veterinariPanel;
+	private PazientiPanel pazientiPanel;
 
 	public MainView() {
 		
@@ -43,6 +45,7 @@ public class MainView extends JFrame {
 		fornitoriPanel = new FornitoriPanel();
 		farmaciPanel = new FarmaciPanel();
 		veterinariPanel = new VeterinariPanel();
+		pazientiPanel = new PazientiPanel();
 
 	}
 
@@ -64,6 +67,10 @@ public class MainView extends JFrame {
 	
 	public VeterinariPanel getVeterinariPanel() {
 		return veterinariPanel;
+	}
+
+	public PazientiPanel getPazientiPanel() {
+		return pazientiPanel;
 	}  
 
 }

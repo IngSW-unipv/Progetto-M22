@@ -36,8 +36,8 @@ public class PazienteDAO implements IPazienteDAO {
 				Clienti cliente = cl.select_paziente_from_CF(rs1.getString(13));
 
 				Paziente paz = new Paziente(rs1.getString(1), rs1.getString(2), rs1.getString(3), rs1.getString(4),
-						rs1.getDate(5), rs1.getString(6), vet, rs1.getString(8), rs1.getString(9), rs1.getString(10),
-						rs1.getDouble(11), rs1.getDate(12), cliente, rs1.getString(14));
+						rs1.getString(5), rs1.getDate(6), rs1.getString(7), rs1.getString(8), vet, rs1.getDouble(10),
+						rs1.getString(11), cliente, rs1.getDate(13),  null, 0, null, 0, rs1.getString(14));
 
 			}
 		}
@@ -67,8 +67,8 @@ public class PazienteDAO implements IPazienteDAO {
 				Clienti cliente = cl.select_paziente_from_CF(rs1.getString(13));
 
 				Paziente paz = new Paziente(rs1.getString(1), rs1.getString(2), rs1.getString(3), rs1.getString(4),
-						rs1.getDate(5), rs1.getString(6), vet, rs1.getString(8), rs1.getString(9), rs1.getString(10),
-						rs1.getDouble(11), rs1.getDate(12), cliente, rs1.getString(14));
+						rs1.getString(5), rs1.getDate(6), rs1.getString(7), rs1.getString(8), vet, rs1.getDouble(10),
+						rs1.getString(11), cliente, rs1.getDate(13),  null, 0, null, 0, rs1.getString(14));
 
 				result.add(paz);
 			}
@@ -97,5 +97,10 @@ public class PazienteDAO implements IPazienteDAO {
 				System.out.println(r.toString());
 		}
 
+	}
+
+	public void deletePazienti(PazienteDAO paz) {
+		// TODO Auto-generated method stub
+		
 	}
 }
