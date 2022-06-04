@@ -59,7 +59,6 @@ public class DbControllerSingleton {
 		return clienti.selectAll();
 	}
 
-
 	public ArrayList<Fornitori> selectAllFornitori() {
 		return fornitori.selectAll();
 	}
@@ -83,21 +82,21 @@ public class DbControllerSingleton {
 	public ArrayList<LottoFarmaci> selectAllLottoFarmaci() {
 		return farm.selectAll();
 	}
-	
-	public ArrayList <LottoFarmaci> selectFarmaciScadenza() {
+
+	public ArrayList<LottoFarmaci> selectFarmaciScadenza() {
 		return farm.getFarmaciScadenza();
 	}
 
 	public Fornitori selectFornitoreFromPiva(String PIVA) {
 		return fornitori.select_Forn(PIVA);
 	}
-	
+
 	public Veterinari selectVeterinarioFromCF(String CF) {
-		return Veterinari.select_Vet(CF);
+		return vets.select_Veterinari_from_CF(CF);
 	}
-	
+
 	public Clienti selectClienteFromCF(String CF) {
-		return clienti.select_Cl(CF);
+		return clienti.select_cliente_from_CF(CF);
 	}
 
 	public boolean addNuovoLotto(LottoFarmaci lf) {
@@ -124,7 +123,7 @@ public class DbControllerSingleton {
 	public boolean addNuovoFornitore(Fornitori fo) {
 		return fornitori.insertFornitore(fo);
 	}
-	
+
 	public boolean addNuovoCliente(Clienti cl) {
 		return clienti.insertClienti(cl);
 	}
@@ -134,19 +133,19 @@ public class DbControllerSingleton {
 	}
 
 	public boolean addNuovoVeterinario(Veterinari vet) {
-		return vets.insertVeterinari(vet) ;
+		return vets.insertVeterinari(vet);
 	}
-	
+
+	public boolean addNuovoPaziente(Paziente pazNew) {
+		return paz.insertPaziente(pazNew);
+	}
+
 	public void deleteVeterinario(Veterinari vet) {
 		vets.deleteVeterinari(vet);
 	}
 
-	public boolean addNuovoPaziente(Paziente paz) {
-		return paz.insertPaziente(paz) ;
-	}
-	
 	public void deletePazienti(Paziente paziente) {
 		paz.deletePazienti(paz);
 	}
-	
+
 }

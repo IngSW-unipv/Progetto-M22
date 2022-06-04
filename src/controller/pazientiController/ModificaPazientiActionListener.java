@@ -3,9 +3,8 @@ package controller.pazientiController;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.Date;
+
 import model.SmartVetModel;
-import model.anagrafica.clienti.Clienti;
-import model.anagrafica.veterinari.Veterinari;
 import view.MainView;
 
 public class ModificaPazientiActionListener implements ActionListener {
@@ -21,32 +20,33 @@ public class ModificaPazientiActionListener implements ActionListener {
 
 		if (rigaSelezionata >= 0) {
 
-			String ID_PAZ = model.getPazientiPanelArray().get(rigaSelezionata).getIDPAZText();
-			String nome = model.getPazientiPanelArray().get(rigaSelezionata).getNomeText();
-			String tipo = model.getPazientiPanelArray().get(rigaSelezionata).getSpecieText();
-			String razza = model.getPazientiPanelArray().get(rigaSelezionata).getRazzaText();
-			String sesso = model.getPazientiPanelArray().get(rigaSelezionata).getSessoText();
-			String GruppoSanguigno = model.getPazientiPanelArray().get(rigaSelezionata).getGruppoSanguignoText();
-			String microchip = model.getPazientiPanelArray().get(rigaSelezionata).getMicrochipText();
-			String sterilizzato = model.getPazientiPanelArray().get(rigaSelezionata).getSterilizzatoText();
-			String peso = model.getPazientiPanelArray().get(rigaSelezionata).getPesoText();
-			String note = model.getPazientiPanelArray().get(rigaSelezionata).getNoteText();
-			Date dataNascita = model.getPazientiPanelArray().get(rigaSelezionata).getDataNascita();
-			Date dataMorte = model.getPazientiPanelArray().get(rigaSelezionata).getDataMorte();
-			//int quantita = model.getLottoFarmaciArray().get(rigaSelezionata).getQuantita();
+			String ID_PAZ = model.getPazientiArray().get(rigaSelezionata).getID_PAZ();
+			String nome = model.getPazientiArray().get(rigaSelezionata).getNome();
+			String specie = model.getPazientiArray().get(rigaSelezionata).getSpecie();
+			String razza = model.getPazientiArray().get(rigaSelezionata).getRazza();
+			String sesso = model.getPazientiArray().get(rigaSelezionata).getSesso();
+			String GruppoSanguigno = model.getPazientiArray().get(rigaSelezionata).getGruppoSanguigno();
+			boolean microchip = model.getPazientiArray().get(rigaSelezionata).getMicrochip();
+			boolean sterilizzato = model.getPazientiArray().get(rigaSelezionata).getSterilizzato();
+			double peso = model.getPazientiArray().get(rigaSelezionata).getPeso();
+			String note = model.getPazientiArray().get(rigaSelezionata).getNote();
+			Date dataNascita = model.getPazientiArray().get(rigaSelezionata).getDataNascita();
+			Date dataMorte = model.getPazientiArray().get(rigaSelezionata).getDataMorte();
+			// int quantita =
+			// model.getLottoFarmaciArray().get(rigaSelezionata).getQuantita();
 
-			view.getPazientiPanel().getID_PAZText().setText(ID_PAZ);
+			//view.getPazientiPanel().getID_PAZText().setText(ID_PAZ);
 			view.getPazientiPanel().getNomeText().setText(nome);
-			view.getPazientiPanel().getSpecieText().setText(tipo);
+			view.getPazientiPanel().getSpecieText().setText(specie);
 			view.getPazientiPanel().getRazzaText().setText(razza);
 			view.getPazientiPanel().getSessoText().setText(sesso);
 			view.getPazientiPanel().getGruppoSanguignoText().setText(GruppoSanguigno);
-			view.getPazientiPanel().getMicrochipText().setText(microchip);
-			view.getPazientiPanel().getSterilizzatoText().setText(sterilizzato);
-			view.getPazientiPanel().getPesoText().setText(peso);
+			view.getPazientiPanel().getMicrochip().setSelected(microchip);
+			view.getPazientiPanel().getSteril().setSelected(sterilizzato);
+			view.getPazientiPanel().getPesoText().setText(Double.toString(peso));
 			view.getPazientiPanel().getNoteText().setText(note);
-			view.getPazientiPanel().getSpinner().setValue(0); // quantità???
-
+			view.getPazientiPanel().getDataNascita().setDate(dataNascita);
+			view.getPazientiPanel().getDataMorte().setDate(dataMorte);
 		}
 
 	}

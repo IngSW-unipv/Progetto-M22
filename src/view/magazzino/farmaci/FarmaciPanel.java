@@ -15,8 +15,6 @@ import javax.swing.UIManager;
 
 import com.toedter.calendar.JDateChooser;
 
-import model.magazzino.farmaci.LottoFarmaci;
-
 public class FarmaciPanel extends JPanel {
 
 	private static final long serialVersionUID = 1L;

@@ -1,12 +1,7 @@
 package model.pazienti;
 
-import java.util.ArrayList;
-import java.util.Date;
+import java.sql.Date;
 
-import com.toedter.calendar.JDateChooser;
-
-import database.classiDAO.anagraficaDAO.clientiDAO.ClientiDAO;
-import database.classiDAO.anagraficaDAO.veterinariDAO.VeterinariDAO;
 import model.anagrafica.clienti.Clienti;
 import model.anagrafica.veterinari.Veterinari;
 
@@ -20,8 +15,8 @@ public class Paziente {
 	private String sesso;
 	private Veterinari Veterinario;
 	private String GruppoSanguigno;
-	private String microchip;
-	private String sterilizzato;
+	private Boolean microchip;
+	private Boolean sterilizzato;
 	private double peso;
 	private Date DataMorte;
 	private Clienti Cliente;
@@ -59,11 +54,11 @@ public class Paziente {
 		return GruppoSanguigno;
 	}
 
-	public String getMicrochip() {
+	public Boolean getMicrochip() {
 		return microchip;
 	}
 
-	public String isSterilizzato() {
+	public Boolean getSterilizzato() {
 		return sterilizzato;
 	}
 
@@ -83,48 +78,31 @@ public class Paziente {
 		return note;
 	}
 
-	public Paziente(String ID_PAZ, String nome, String specie, String razza, String sesso, Date DataNascita, String GruppoSanguigno,
-			String microchip, Veterinari Vet, double peso, String sterilizzato, Clienti Cl, Date DataMorte, java.sql.Date sqlDate1, int qt1,
-					java.sql.Date sqlDate2, int qt2, String note) {
+	public Paziente(String nome, String specie, String razza, Date dataNascita, String sesso, Veterinari veterinario,
+			String gruppoSanguigno, Boolean microchip, Boolean sterilizzato, double peso, Date dataMorte,
+			Clienti cliente, String note) {
 		super();
-		this.ID_PAZ = ID_PAZ;
 		this.nome = nome;
 		this.specie = specie;
 		this.razza = razza;
-		this.DataNascita = DataNascita;
+		this.DataNascita = dataNascita;
 		this.sesso = sesso;
-		this.Veterinario = Vet;
-		this.GruppoSanguigno = GruppoSanguigno;
+		this.Veterinario = veterinario;
+		this.GruppoSanguigno = gruppoSanguigno;
 		this.microchip = microchip;
 		this.sterilizzato = sterilizzato;
 		this.peso = peso;
-		this.DataMorte = DataMorte;
+		this.DataMorte = dataMorte;
+		this.Cliente = cliente;
 		this.note = note;
-		this.Cliente = Cl;
-
 	}
 
 	@Override
 	public String toString() {
-		return "Paziente [ID_PAZ=" + ID_PAZ + ", nome=" + nome + ", specie=" + specie + ", razza=" + razza + ", born=" + DataNascita
-				+ ", sesso=" + sesso + ", medicoBase=" + Veterinario + ", gs=" + GruppoSanguigno + ", microchip=" + microchip
-				+ ", sterilizzato=" + sterilizzato + ", peso=" + peso + ", death=" + DataMorte + ", proprietario="
-				+ Cliente + ", note=" + note + "]";
-	}
-
-	public boolean insertPaziente(Paziente paz) {
-		// TODO Auto-generated method stub
-		return false;
-	}
-
-	public void setVeterinario(Veterinari veterinario) {
-		this.Veterinario = veterinario;
-		
-	}
-
-	public String getIDPAZText() {
-		// TODO Auto-generated method stub
-		return null;
+		return "Paziente [ID_PAZ=" + ID_PAZ + ", nome=" + nome + ", specie=" + specie + ", razza=" + razza
+				+ ", DataNascita=" + DataNascita + ", sesso=" + sesso + ", Veterinario=" + Veterinario
+				+ ", GruppoSanguigno=" + GruppoSanguigno + ", microchip=" + microchip + ", sterilizzato=" + sterilizzato
+				+ ", peso=" + peso + ", DataMorte=" + DataMorte + ", Cliente=" + Cliente + ", note=" + note + "]";
 	}
 
 }

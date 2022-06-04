@@ -168,34 +168,6 @@ public class SmartVetModel {
 		return prods_v;
 	}
 
-	public void updateLotto(ArrayList<Fornitori> forns, ArrayList<LottoFarmaci> farms) {
-
-		for (int j = 0; j < farms.size(); j++) { 
-			for (int i = 0; i < forns.size(); i++) {
-			
-				if (farms.get(j).getFornitore() != forns.get(i))
-						farms.get(j).setFornitore(null);
-			}
-		}
-
-	}
-	
-	public void updatePazienti(ArrayList<Veterinari> vet, ArrayList<Paziente> paz) {
-
-		for (int j = 0; j < paz.size(); j++) { 
-			for (int i = 0; i < vet.size(); i++) {
-			
-				if (paz.get(j).getVeterinario() != vet.get(i))
-						paz.get(j).setVeterinario(null);
-			}
-		}
-
-	}
-
-	public ArrayList<Paziente> getPazientiPanelArray() {
-		// TODO Auto-generated method stub
-		return paz;
-	}
 	
 	
 }

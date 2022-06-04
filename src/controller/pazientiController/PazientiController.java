@@ -3,7 +3,9 @@ package controller.pazientiController;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.ArrayList;
+
 import javax.swing.table.DefaultTableModel;
+
 import database.connectionSQL.DbControllerSingleton;
 import model.SmartVetModel;
 import view.MainView;
@@ -20,57 +22,58 @@ public class PazientiController {
 		this.view = view;
 		this.dbControl = dbControl;
 
-		addActionListenersMenu();
 		fillTable();
 		fillComboBox();
+		fillComboBox1();
+		addActionListenersMenu();
 		addActionListenerButtons();
 		addActionListenerHome();
+
 	}
 
 	public void fillTable() {
-		Object rowData[][] = new Object[model.getPazientiArray().size()][15];
+		Object rowData[][] = new Object[model.getPazientiArray().size()][14];
 
 		DefaultTableModel modello = (DefaultTableModel) view.getPazientiPanel().getTabellaPazienti().getTable()
 				.getModel();
 
 		for (int i = 0; i < model.getPazientiArray().size(); i++) {
 
-			rowData[i][0] = model.getPazientiArray().get(i).getID_PAZ();
-			rowData[i][1] = model.getPazientiArray().get(i).getNome();
-			rowData[i][2] = model.getPazientiArray().get(i).getSpecie();
-			// rowData[i][3] = res.get(i).getVeterinario().getPIVA();
-			// rowData[i][4] = res.get(i).getCliente().getPIVA();
-			rowData[i][5] = model.getPazientiArray().get(i).getRazza();
-			//rowData[i][6] = model.getPazientiArray().get(i).getQuantita();
-			rowData[i][7] = model.getPazientiArray().get(i).getSesso();
-			rowData[i][8] = model.getPazientiArray().get(i).getGruppoSanguigno();
-			rowData[i][9] = model.getPazientiArray().get(i).getMicrochip();
-			rowData[i][10] = model.getPazientiArray().get(i).isSterilizzato();
-			rowData[i][11] = model.getPazientiArray().get(i).getPeso();
-			rowData[i][12] = model.getPazientiArray().get(i).getNote();
-			rowData[i][13] = model.getPazientiArray().get(i).getDataNascita();
-			rowData[i][14] = model.getPazientiArray().get(i).getDataMorte();
-			
+			//rowData[i][0] = model.getPazientiArray().get(i).getID_PAZ();
+			rowData[i][0] = model.getPazientiArray().get(i).getNome();
+			rowData[i][1] = model.getPazientiArray().get(i).getSpecie();
+			rowData[i][2] = model.getPazientiArray().get(i).getRazza();
+			rowData[i][3] = model.getPazientiArray().get(i).getDataNascita();
+			rowData[i][4] = model.getPazientiArray().get(i).getSesso();
+
+			rowData[i][6] = model.getPazientiArray().get(i).getGruppoSanguigno();
+			rowData[i][7] = model.getPazientiArray().get(i).getMicrochip();
+
+			rowData[i][10] = model.getPazientiArray().get(i).getDataMorte();
+
 			if (model.getPazientiArray().get(i).getVeterinario() == null) {
-				rowData[i][3] = null;
+				rowData[i][5] = null;
 			}
 
-			else 
-				rowData[i][3] = model.getPazientiArray().get(i).getVeterinario().getCF();
+			else {
+				rowData[i][5] = model.getPazientiArray().get(i).getVeterinario().getCF();
 
-			modello.addRow(rowData[i]);
-			
-		
-			if (model.getPazientiArray().get(i).getCliente() == null) {
-				rowData[i][4] = null;
+				rowData[i][9] = model.getPazientiArray().get(i).getPeso();
+				rowData[i][8] = model.getPazientiArray().get(i).getSterilizzato();
+
+				if (model.getPazientiArray().get(i).getCliente() == null) {
+					rowData[i][11] = null;
+				}
+
+				else
+					rowData[i][11] = model.getPazientiArray().get(i).getCliente().getCF();
+
 			}
 
-			else
-				rowData[i][4] = model.getPazientiArray().get(i).getCliente().getCF();
-
+			rowData[i][12] = model.getPazientiArray().get(i).getNote();
 			modello.addRow(rowData[i]);
 		}
-		
+
 	}
 
 	public void fillComboBox() {
@@ -81,12 +84,18 @@ public class PazientiController {
 
 			lista_CF.add(model.getVeterinariArray().get(i).getCF());
 
-			if (lista_CF != null) {
-				view.getVeterinariPanel().getVeterinariBox().addItem(lista_CF.get(i));
+			if (lista_CF.get(i) != null) {
+				view.getPazientiPanel().getVeterinariBox().addItem(lista_CF.get(i));
+
 			}
+
+			else {
+
+			}
+
 		}
 	}
-	
+
 	public void fillComboBox1() {
 
 		ArrayList<String> lista_CF = new ArrayList<String>();
@@ -95,19 +104,17 @@ public class PazientiController {
 
 			lista_CF.add(model.getClientiArray().get(i).getCF());
 
-			if (lista_CF != null) {
-				view.getClientiPanel().getClientiBox().addItem(lista_CF.get(i));
+			if (lista_CF.get(i) != null) {
+				view.getPazientiPanel().getClientiBox().addItem(lista_CF.get(i));
 			}
 		}
 	}
 
 	public void addActionListenersMenu() {
-		
 
 		view.getDashboard().getMenu().getMntmPazienti().addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				model.updatePazienti(model.getVeterinariArray(), model.getPazientiArray());
-				
+
 				view.getDashboard().setVisible(false);
 				view.add(view.getPazientiPanel());
 				view.getPazientiPanel().setVisible(true);
@@ -117,7 +124,7 @@ public class PazientiController {
 	}
 
 	public void addActionListenerButtons() {
-		
+
 		AggiungiPazientiActionListener addPazienti = new AggiungiPazientiActionListener(model, view, dbControl);
 		view.getPazientiPanel().getBtnAggiungi().addActionListener(addPazienti);
 
@@ -133,10 +140,10 @@ public class PazientiController {
 	}
 
 	public void addActionListenerHome() {
-		
+
 		view.getPazientiPanel().getBtnHome().addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				view.getFarmaciPanel().setVisible(false);
+				view.getPazientiPanel().setVisible(false);
 				view.add(view.getDashboard());
 				view.getDashboard().setVisible(true);
 			}
@@ -144,4 +151,3 @@ public class PazientiController {
 	}
 
 }
-

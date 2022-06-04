@@ -42,7 +42,6 @@ public class AggiornaFarmaciActionListener implements ActionListener {
 
 		try {
 			dataScadenza = sdf.parse(sdf.format(dataScadenza));
-			System.out.println(dataScadenza);
 		} catch (ParseException e1) {
 			// TODO Auto-generated catch block
 			e1.printStackTrace();

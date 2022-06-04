@@ -74,7 +74,6 @@ public class FarmaciController {
 
 		view.getDashboard().getMenu().getMntmFarmaci().addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				model.updateLotto(model.getFornitoriArray(), model.getLottoFarmaciArray());
 				
 				view.getDashboard().setVisible(false);
 				view.add(view.getFarmaciPanel());

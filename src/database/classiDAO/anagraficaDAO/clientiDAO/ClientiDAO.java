@@ -20,7 +20,7 @@ public class ClientiDAO implements IClientiDAO {
 
 	}
 
-	public Clienti select_paziente_from_CF(String CF) {
+	public Clienti select_cliente_from_CF(String CF) {
 
 		ResultSet rs1;
 		db = DbSingleton.getInstance();
@@ -115,8 +115,4 @@ public class ClientiDAO implements IClientiDAO {
 		}
 	}
 
-	public Clienti select_Cl(String cF) {
-		// TODO Auto-generated method stub
-		return null;
-	}
 }

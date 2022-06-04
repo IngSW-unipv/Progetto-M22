@@ -14,7 +14,7 @@ public class TabellaPazientiPanel {
 		scrollPane.setViewportView(table);
 		
 		DefaultTableModel modello1 = new DefaultTableModel(new Object[][] {},
-				new String[] { "ID_PAZ", "Nome", "Tipo", "Razza", "Data nascita", "Sesso",
+				new String[] {"Nome", "Tipo", "Razza", "Data nascita", "Sesso",
 							"Veterinario", "Gruppo Sanguigno", "Microchip", "Sterilizzato", "Peso", 
 							"Data Morte", "Proprietario", "Note"});
 

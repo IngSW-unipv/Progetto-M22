@@ -94,7 +94,7 @@ public class AggiungiFarmaciActionListener implements ActionListener {
 	}
 
 	public Fornitori costruisciFornitore() {
-		String PIVA = (String) view.getFarmaciPanel().getFornitoriBox().getSelectedItem();
+		String PIVA = view.getFarmaciPanel().getFornitoriBox().getSelectedItem().toString();
 		Fornitori forn = dbControl.selectFornitoreFromPiva(PIVA);
 		return forn;
 

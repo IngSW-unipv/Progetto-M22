@@ -31,7 +31,7 @@ public class Veterinari extends Persona {
 
 	public Veterinari(String nome, String cognome, String cF, String email, String cellulare, String citta,
 			String indirizzo, String pIVA, String contratto, double stipendio, double commissioni, String iBAN) {
-		super(nome, cognome, cF,email, cellulare,  citta, indirizzo);
+		super(nome, cognome, cF, email, cellulare, citta, indirizzo);
 		PIVA = pIVA;
 		this.contratto = contratto;
 		this.stipendio = stipendio;
@@ -44,12 +44,5 @@ public class Veterinari extends Persona {
 		return "Veterinari " + super.toString() + "[PIVA=" + PIVA + ", contratto=" + contratto + ", stipendio="
 				+ stipendio + ", commissioni=" + commissioni + ", IBAN=" + IBAN + "]";
 	}
-
-	public static Veterinari select_Vet(String cF) {
-		// TODO Auto-generated method stub
-		return null;
-	}
-
-	
 
 }
