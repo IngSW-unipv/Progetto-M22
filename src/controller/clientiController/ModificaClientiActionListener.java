@@ -2,12 +2,9 @@ package controller.clientiController;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.util.ArrayList;
 
 import model.SmartVetModel;
-import model.anagrafica.clienti.Clienti;
 import view.MainView;
-import view.clienti.ClientiPanel;
 
 public class ModificaClientiActionListener implements ActionListener {
 

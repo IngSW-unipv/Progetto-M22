@@ -1,11 +1,11 @@
 package test;
 
 import java.awt.EventQueue;
-import javax.swing.JFrame;
+
 import controller.Controller;
 import model.SmartVetModel;
 import view.MainView;
-import view.dashboard.MenuView;
+import view.login.LoginView;
 
 public class Test {
 	public static void main(String[] args) {
@@ -14,13 +14,15 @@ public class Test {
 				try {
 					SmartVetModel model = new SmartVetModel();
 
+					//LoginView log = new LoginView();
 					MainView view = new MainView();
 
+					@SuppressWarnings("unused")
 					Controller ctrl = new Controller(model, view);
 				} catch (Exception e) {
 					e.printStackTrace();
 				}
-		}
+			}
 		});
 	}
 

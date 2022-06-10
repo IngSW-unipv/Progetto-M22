@@ -21,9 +21,15 @@ public class EliminaClientiActionListener implements ActionListener {
 		DefaultTableModel modello = (DefaultTableModel) view.getClientiPanel().getTab().getTable().getModel();
 
 		int elementoSelezionato = view.getClientiPanel().getTab().getTable().getSelectedRow();
+		
+		//elimino anche nelle combobox nelle altre finestre
+		view.getPazientiPanel().getClientiBox().removeItem(model.getClientiArray().get(elementoSelezionato).getCF());
+		//
+		
 		modello.removeRow(elementoSelezionato);
 
 		dbControl.deleteCliente(model.getClientiArray().get(elementoSelezionato));
+		
 		model.getClientiArray().get(elementoSelezionato);
 
 	}

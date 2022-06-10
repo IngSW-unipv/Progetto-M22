@@ -8,7 +8,6 @@ import java.util.ArrayList;
 import database.classiDAO.anagraficaDAO.fornitoriDAO.FornitoriDAO;
 import database.connectionSQL.DbSingleton;
 import model.anagrafica.fornitori.Fornitori;
-import model.magazzino.farmaci.LottoFarmaci;
 import model.magazzino.prodottiUtili.ProdottiUtili;
 
 public class ProdottiUtiliDAO implements IProdottiUtiliDAO {
@@ -23,19 +22,19 @@ public class ProdottiUtiliDAO implements IProdottiUtiliDAO {
 
 		ResultSet rs1;
 		db = DbSingleton.getInstance();
+		FornitoriDAO forn = new FornitoriDAO();
 
 		try {
-			String query = "SELECT * FROM PRODOTTI_UTILI";
+			String query = "SELECT * FROM PRODOTTI_UTILI ORDER BY COD_PROD";
 			rs1 = db.executeQuery(query);
 
 			while (rs1.next()) {
-				FornitoriDAO forn = new FornitoriDAO();
-				String PIVA_Fornitore = rs1.getString(4);
+
+				String PIVA_Fornitore = rs1.getString(5);
 
 				Fornitori fornitore = forn.select_Forn(PIVA_Fornitore);
-				
-				ProdottiUtili p = new ProdottiUtili(rs1.getString(1), rs1.getInt(2), rs1.getString(3),
-						fornitore);
+
+				ProdottiUtili p = new ProdottiUtili(rs1.getString(1), rs1.getString(2), rs1.getInt(3), fornitore);
 
 				result.add(p);
 			}
@@ -44,25 +43,22 @@ public class ProdottiUtiliDAO implements IProdottiUtiliDAO {
 		}
 		return result;
 	}
-	
-	@Override
-	/*public boolean insertProdottiUtili(ProdottiUtili p) {
 
-		String query = "INSERT INTO PRODOTTI_UTILI (NOME, QTA, COD_PROD, PIVA) values (?, ?, ?, ?, ?, ?);";
+	@Override
+	public boolean insertProdottiUtili(ProdottiUtili p) {
+
+		String query = "INSERT INTO PRODOTTI_UTILI (NOME,TIPO,QTA,PIVA) values (?, ?, ?, ?);";
 
 		PreparedStatement stmt = null;
 
 		try {
-			
 
 			stmt = db.getConnection().prepareStatement(query);
 
-			stmt.setString(1, p.get());
-			stmt.setString(2, f.getMode());
-			stmt.setString(3, f.getType());
-			stmt.setString(4, f.getFornitore().getPIVA());
-			stmt.setDate(5, f.getDataScadenza());
-			stmt.setInt(6, f.getQuantita());
+			stmt.setString(1, p.getNome());
+			stmt.setString(2, p.getType());
+			stmt.setInt(3, p.getQuantita());
+			stmt.setString(4, p.getFornitore().getPIVA());
 			stmt.executeUpdate();
 		}
 
@@ -73,9 +69,33 @@ public class ProdottiUtiliDAO implements IProdottiUtiliDAO {
 		return true;
 	}
 
-	public void deleteFarmaci(LottoFarmaci f) {
-		String IDLotto = f.getIDLotto();
-		String query = "delete from FARMACI where LOTTO=\"" + IDLotto + "\"";
+	public int selectCODprodotto(int rigaSelezionata) {
+
+		ResultSet rs1;
+		db = DbSingleton.getInstance();
+		rigaSelezionata = rigaSelezionata + 1;
+		String query = "SELECT COD_PROD FROM\n" + "(\n"
+				+ "SELECT  COD_PROD, ROW_NUMBER() OVER (ORDER BY COD_PROD) AS RowNumber\n" + "FROM PRODOTTI_UTILI\n"
+				+ ") A\n" + "WHERE RowNumber = \"" + rigaSelezionata + "\"";
+		rs1 = db.executeQuery(query);
+
+		try {
+			if (rs1.next()) {
+
+				return rs1.getInt(1);
+			}
+
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+
+		}
+		return -1;
+	}
+
+	public void deleteProdottiUtili(int cod) {
+
+		String query = "delete from PRODOTTI_UTILI where COD_PROD=\"" + cod + "\"";
 		PreparedStatement stmt = null;
 		try {
 			stmt = db.getConnection().prepareStatement(query);
@@ -91,6 +111,30 @@ public class ProdottiUtiliDAO implements IProdottiUtiliDAO {
 		}
 	}
 
+	public void updateProdottiUtili(int COD, ProdottiUtili p) {
+
+		String query = "UPDATE PRODOTTI_UTILI SET NOME = ?, TIPO = ?, QTA = ?, PIVA = ?" + " where COD_PROD=\"" + COD
+				+ "\"";
+		PreparedStatement stmt = null;
+
+		try {
+
+			stmt = db.getConnection().prepareStatement(query);
+
+			stmt.setString(1, p.getNome());
+			stmt.setString(2, p.getType());
+			stmt.setInt(3, p.getQuantita());
+			stmt.setString(4, p.getFornitore().getPIVA());
+			stmt.executeUpdate();
+
+			stmt.executeUpdate();
+		}
+
+		catch (SQLException e) {
+			e.printStackTrace();
+		}
+
+	}
 
 	public static void main(String[] args) {
 
@@ -100,12 +144,6 @@ public class ProdottiUtiliDAO implements IProdottiUtiliDAO {
 
 		for (ProdottiUtili r : res)
 			System.out.println(r.toString());
-	}
-*/
-	
-	public boolean insertProdottiUtili(ProdottiUtili p) {
-		// TODO Auto-generated method stub
-		return false;
 	}
 
 }

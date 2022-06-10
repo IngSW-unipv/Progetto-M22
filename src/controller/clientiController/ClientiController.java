@@ -14,7 +14,7 @@ public class ClientiController {
 	private SmartVetModel model;
 	private MainView view;
 	private DbControllerSingleton dbControl;
-
+ 
 	public ClientiController(SmartVetModel model, MainView view, DbControllerSingleton dbControl) {
 		super();
 		this.model = model;

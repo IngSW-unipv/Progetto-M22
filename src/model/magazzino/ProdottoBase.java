@@ -3,13 +3,14 @@ package model.magazzino;
 import model.anagrafica.fornitori.Fornitori;
 
 public class ProdottoBase {
+
+	private String nome;
 	private String type;
 	private int quantita;
-	private String cod;
 	private Fornitori forn;
 
-	public String getCod() {
-		return cod;
+	public String getNome() {
+		return nome;
 	}
 
 	public String getType() {
@@ -24,18 +25,23 @@ public class ProdottoBase {
 		return forn;
 	}
 
-	public ProdottoBase(String type, int quantita, String cod, Fornitori forn) {
+
+	public void setForn(Fornitori forn) {
+		this.forn = forn;
+	}
+
+	public ProdottoBase(String nome, String type, int quantita, Fornitori forn) {
 		super();
+		this.nome = nome;
 		this.type = type;
 		this.quantita = quantita;
 		this.forn = forn;
-		this.cod = cod;
 
 	}
 
 	@Override
 	public String toString() {
-		return "ProdottoBase [type=" + type + ", quantita=" + quantita + ", forn=" + forn + ", cod=" + cod + "]";
+		return "ProdottoBase [nome=" + nome + "type=" + type + ", quantita=" + quantita + ", forn=" + forn + "]";
 	}
 
 }

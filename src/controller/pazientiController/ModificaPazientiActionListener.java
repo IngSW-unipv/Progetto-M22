@@ -20,30 +20,41 @@ public class ModificaPazientiActionListener implements ActionListener {
 
 		if (rigaSelezionata >= 0) {
 
-			String ID_PAZ = model.getPazientiArray().get(rigaSelezionata).getID_PAZ();
 			String nome = model.getPazientiArray().get(rigaSelezionata).getNome();
 			String specie = model.getPazientiArray().get(rigaSelezionata).getSpecie();
 			String razza = model.getPazientiArray().get(rigaSelezionata).getRazza();
 			String sesso = model.getPazientiArray().get(rigaSelezionata).getSesso();
-			String GruppoSanguigno = model.getPazientiArray().get(rigaSelezionata).getGruppoSanguigno();
+			String gruppoSanguigno = model.getPazientiArray().get(rigaSelezionata).getGruppoSanguigno();
 			boolean microchip = model.getPazientiArray().get(rigaSelezionata).getMicrochip();
 			boolean sterilizzato = model.getPazientiArray().get(rigaSelezionata).getSterilizzato();
 			double peso = model.getPazientiArray().get(rigaSelezionata).getPeso();
 			String note = model.getPazientiArray().get(rigaSelezionata).getNote();
 			Date dataNascita = model.getPazientiArray().get(rigaSelezionata).getDataNascita();
 			Date dataMorte = model.getPazientiArray().get(rigaSelezionata).getDataMorte();
+			String CFvet = null;
+			String CFcliente = null;
 			// int quantita =
 			// model.getLottoFarmaciArray().get(rigaSelezionata).getQuantita();
 
-			//view.getPazientiPanel().getID_PAZText().setText(ID_PAZ);
+			if (model.getPazientiArray().get(rigaSelezionata).getVeterinario() != null)
+				CFvet = model.getPazientiArray().get(rigaSelezionata).getVeterinario().getCF();
+
+			if (model.getPazientiArray().get(rigaSelezionata).getCliente() != null)
+				CFcliente = model.getPazientiArray().get(rigaSelezionata).getCliente().getCF();
+
+			
+			
 			view.getPazientiPanel().getNomeText().setText(nome);
 			view.getPazientiPanel().getSpecieText().setText(specie);
 			view.getPazientiPanel().getRazzaText().setText(razza);
-			view.getPazientiPanel().getSessoText().setText(sesso);
-			view.getPazientiPanel().getGruppoSanguignoText().setText(GruppoSanguigno);
+			view.getPazientiPanel().getSessoBox().setSelectedItem(sesso);
+			view.getPazientiPanel().getGruppoSanguignoBox().setSelectedItem(gruppoSanguigno);
+			;
 			view.getPazientiPanel().getMicrochip().setSelected(microchip);
 			view.getPazientiPanel().getSteril().setSelected(sterilizzato);
 			view.getPazientiPanel().getPesoText().setText(Double.toString(peso));
+			view.getPazientiPanel().getVeterinariBox().setSelectedItem(CFvet);
+			view.getPazientiPanel().getClientiBox().setSelectedItem(CFcliente);
 			view.getPazientiPanel().getNoteText().setText(note);
 			view.getPazientiPanel().getDataNascita().setDate(dataNascita);
 			view.getPazientiPanel().getDataMorte().setDate(dataMorte);

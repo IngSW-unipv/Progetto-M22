@@ -16,6 +16,7 @@ public class AggiungiFornitoriActionListener implements ActionListener {
 	private MainView view;
 	private DbControllerSingleton dbControl;
 
+	@SuppressWarnings("static-access")
 	@Override
 	public void actionPerformed(ActionEvent e) {
 		// TODO Auto-generated method stub
@@ -25,7 +26,11 @@ public class AggiungiFornitoriActionListener implements ActionListener {
 		if (flag) {
 
 			model.getFornitoriArray().add(view.getFornitoriPanel().getNuovoFornitoreTextField());
-
+			
+			//aggiorno combobox delle altre finestre
+			view.getFarmaciPanel().getFornitoriBox().addItem(view.getFornitoriPanel().getNuovoFornitoreTextField().getPIVA());	
+			view.getProdottiUtiliPanel().getFornitoriBox().addItem(view.getFornitoriPanel().getNuovoFornitoreTextField().getPIVA());
+			
 			String rowData[] = new String[6];
 
 			DefaultTableModel model = (DefaultTableModel) view.getFornitoriPanel().getTab().getTable().getModel();
@@ -40,6 +45,8 @@ public class AggiungiFornitoriActionListener implements ActionListener {
 			model.addRow(rowData);
 
 			pulisciTextField();
+			
+			
 		}
 
 		else {

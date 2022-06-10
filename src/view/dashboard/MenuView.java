@@ -1,27 +1,17 @@
 package view.dashboard;
 
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
-
-import javax.swing.AbstractButton;
-import javax.swing.JFrame;
 import javax.swing.JMenu;
 import javax.swing.JMenuBar;
 import javax.swing.JMenuItem;
 import javax.swing.JPanel;
 
-import view.clienti.ClientiPanel;
-import view.fornitori.FornitoriPanel;
-import view.magazzino.farmaci.FarmaciPanel;
-
-public class MenuView extends JPanel {
+public class MenuView extends JMenuBar {
 	private static final long serialVersionUID = 1L;
 
 	private JPanel panel;
-	private JMenuBar menuBar;
 	private JMenu mnAnagrafica;
 	private JMenuItem mntmClienti;
-	private JMenuItem mntmPazienti;
+	private JMenu mnPazienti;
 	private JMenuItem mntmFornitori;
 	private JMenuItem mntmDipendenti;
 	private JMenu mnMagazzino;
@@ -29,24 +19,21 @@ public class MenuView extends JPanel {
 	private JMenuItem mntmProdottiutili;
 	private JMenuItem mntmProdottiVendita;
 	private JMenu mnAppuntamenti;
+	private JMenuItem menuItemPazienti;
+	private JMenuItem menuItemAppuntamenti;
 
 	public MenuView() {
 
 		setBounds(51, 31, 396, 63);
-		setLayout(null);
-
-		menuBar = new JMenuBar();
-		menuBar.setBounds(51, 31, 396, 63);
-		add(menuBar);
 
 		mnAnagrafica = new JMenu("Anagrafica");
-		menuBar.add(mnAnagrafica);
+		add(mnAnagrafica);
 
 		mntmClienti = new JMenuItem("Clienti");
 		mnAnagrafica.add(mntmClienti);
 
-		mntmPazienti = new JMenuItem("Pazienti");
-		mnAnagrafica.add(mntmPazienti);
+		mnPazienti = new JMenu("Pazienti");
+		add(mnPazienti);
 
 		mntmFornitori = new JMenuItem("Fornitori");
 		mnAnagrafica.add(mntmFornitori);
@@ -55,7 +42,7 @@ public class MenuView extends JPanel {
 		mnAnagrafica.add(mntmDipendenti);
 
 		mnMagazzino = new JMenu("Magazzino");
-		menuBar.add(mnMagazzino);
+		add(mnMagazzino);
 
 		mntmFarmaci = new JMenuItem("Farmaci");
 		mnMagazzino.add(mntmFarmaci);
@@ -67,7 +54,14 @@ public class MenuView extends JPanel {
 		mnMagazzino.add(mntmProdottiVendita);
 
 		mnAppuntamenti = new JMenu("Appuntamenti");
-		menuBar.add(mnAppuntamenti);
+		add(mnAppuntamenti);
+		
+		
+		menuItemPazienti = new JMenuItem("Pazienti\n");
+		getMnPazienti().add(menuItemPazienti);
+		
+	    menuItemAppuntamenti = new JMenuItem("Appuntamenti\n");
+		getMnAppuntamenti().add(menuItemAppuntamenti);
 	}
 
 	public static long getSerialversionuid() {
@@ -78,10 +72,6 @@ public class MenuView extends JPanel {
 		return panel;
 	}
 
-	public JMenuBar getMenuBar() {
-		return menuBar;
-	}
-
 	public JMenu getMnAnagrafica() {
 		return mnAnagrafica;
 	}
@@ -90,8 +80,8 @@ public class MenuView extends JPanel {
 		return mntmClienti;
 	}
 
-	public JMenuItem getMntmPazienti() {
-		return mntmPazienti;
+	public JMenu getMnPazienti() {
+		return mnPazienti;
 	}
 
 	public JMenuItem getMntmFornitori() {
@@ -121,5 +111,15 @@ public class MenuView extends JPanel {
 	public JMenu getMnAppuntamenti() {
 		return mnAppuntamenti;
 	}
+
+	public JMenuItem getMenuItemPazienti() {
+		return menuItemPazienti;
+	}
+
+
+	public JMenuItem getMenuItemAppuntamenti() {
+		return menuItemAppuntamenti;
+	}
+
 
 }

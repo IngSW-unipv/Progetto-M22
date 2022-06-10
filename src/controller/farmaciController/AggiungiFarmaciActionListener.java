@@ -22,6 +22,7 @@ public class AggiungiFarmaciActionListener implements ActionListener {
 	private MainView view;
 	private DbControllerSingleton dbControl;
 
+	@SuppressWarnings("static-access")
 	@Override
 	public void actionPerformed(ActionEvent e) {
 		// TODO Auto-generated method stub
@@ -49,7 +50,7 @@ public class AggiungiFarmaciActionListener implements ActionListener {
 		int Quantita = (int) view.getFarmaciPanel().getSpinner().getValue();
 
 		LottoFarmaci nuovoLotto = new LottoFarmaci(IDLotto, type, mode, forn, sqlDate, Quantita);
-		boolean flag = dbControl.addNuovoLotto(nuovoLotto);
+		boolean flag = dbControl.addLottoFarmaci(nuovoLotto);
 
 		if (flag) {
 
@@ -82,11 +83,12 @@ public class AggiungiFarmaciActionListener implements ActionListener {
 
 		}
 
-	}
+	} 
 
 	public void pulisciTextField() {
 
 		view.getFarmaciPanel().getIDLottoText().setText(null);
+		view.getFarmaciPanel().getDataScadenza().setDate(null);
 		view.getFarmaciPanel().getModeText().setText(null);
 		view.getFarmaciPanel().getTipoText().setText(null);
 		view.getFarmaciPanel().getFornitoriBox().setSelectedIndex(0);

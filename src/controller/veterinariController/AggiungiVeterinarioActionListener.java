@@ -18,6 +18,7 @@ public class AggiungiVeterinarioActionListener implements ActionListener {
 	private DbControllerSingleton dbControl;
 	private VeterinariPanel veterinariPanel;
 
+	@SuppressWarnings("static-access")
 	@Override
 	public void actionPerformed(ActionEvent e) {
 		// TODO Auto-generated method stub
@@ -29,6 +30,10 @@ public class AggiungiVeterinarioActionListener implements ActionListener {
 		if (flag) {
 
 			model.getVeterinariArray().add(veterinariPanel.getNuovoVeterinarioTextField());
+
+			// aggiungo vet nelle comboBox di altre finestre
+			view.getAppuntamentiPanel().getCFvetText().addItem(veterinariPanel.getNuovoVeterinarioTextField().getCF());
+			view.getPazientiPanel().getVeterinariBox().addItem(veterinariPanel.getNuovoVeterinarioTextField().getCF());
 
 			Object rowData[] = new Object[12];
 

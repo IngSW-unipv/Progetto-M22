@@ -24,16 +24,17 @@ public class AggiungiPazientiActionListener implements ActionListener {
 	private MainView view;
 	private DbControllerSingleton dbControl;
 
+	@SuppressWarnings("static-access")
 	@Override
 	public void actionPerformed(ActionEvent e) {
+
 		// TODO Auto-generated method stub
 
-		// String ID_PAZ = view.getPazientiPanel().getID_PAZText().getText();
 		String nome = view.getPazientiPanel().getNomeText().getText();
 		String specie = view.getPazientiPanel().getSpecieText().getText();
 		String razza = view.getPazientiPanel().getRazzaText().getText();
-		String sesso = view.getPazientiPanel().getSessoText().getText();
-		String GruppoSanguigno = view.getPazientiPanel().getGruppoSanguignoText().getText();
+		String sesso = view.getPazientiPanel().getSessoBox().getSelectedItem().toString();
+		String GruppoSanguigno = view.getPazientiPanel().getGruppoSanguignoBox().getSelectedItem().toString();
 		Boolean microchip = view.getPazientiPanel().getMicrochip().isSelected();
 		Boolean sterilizzato = view.getPazientiPanel().getSteril().isSelected();
 		double peso = 0.0;
@@ -49,9 +50,8 @@ public class AggiungiPazientiActionListener implements ActionListener {
 			nfe.printStackTrace();
 
 		}
-		// String proprietario = pazientiPanel.getProprietarioText().getText();
+
 		Clienti cl = costruisciCliente();
-		System.out.println(cl);
 		String note = view.getPazientiPanel().getNoteText().getText();
 		Veterinari vet = costruisciVeterinario();
 		Date dataNascita = null;
@@ -93,16 +93,22 @@ public class AggiungiPazientiActionListener implements ActionListener {
 		Paziente paz = new Paziente(nome, specie, razza, sqlDate, sesso, vet, GruppoSanguigno, microchip, sterilizzato,
 				peso, sqlDate2, cl, note);
 
+		// aggiungo pazient nelle combobox delle altre finestre
+
 		boolean flag = dbControl.addNuovoPaziente(paz);
+
+		int rigaUltima = dbControl.selectAllIDPaz().length;
+		int IDpaz = dbControl.selectID_PAZ(rigaUltima);
+		view.getAppuntamentiPanel().getIDpazText().addItem(IDpaz);
 
 		if (flag) {
 
 			model.getPazientiArray().add(paz);
 
-			Object rowData[] = new Object[16];
+			Object rowData[] = new Object[13];
 
-			DefaultTableModel model = (DefaultTableModel) view.getPazientiPanel().getTabellaPazienti().getTable().getModel();
-			
+			DefaultTableModel modello = (DefaultTableModel) view.getPazientiPanel().getTabellaPazienti().getTable()
+					.getModel();
 
 			// rowData[0] = ID_PAZ;
 			rowData[0] = nome;
@@ -119,7 +125,7 @@ public class AggiungiPazientiActionListener implements ActionListener {
 			rowData[11] = cl.getCF();
 			rowData[12] = note;
 
-			model.addRow(rowData);
+			modello.addRow(rowData);
 
 			pulisciTextField();
 
@@ -138,24 +144,20 @@ public class AggiungiPazientiActionListener implements ActionListener {
 
 	public void pulisciTextField() {
 
-		// view.getPazientiPanel().getID_PAZText().setText(null);
 		view.getPazientiPanel().getNomeText().setText(null);
 		view.getPazientiPanel().getSpecieText().setText(null);
 		view.getPazientiPanel().getRazzaText().setText(null);
-		view.getPazientiPanel().getSessoText().setText(null);
-		view.getPazientiPanel().getGruppoSanguignoText().setText(null);
+		view.getPazientiPanel().getSessoBox().setSelectedIndex(0);
+		view.getPazientiPanel().getDataMorte().setDate(null);
+		view.getPazientiPanel().getDataNascita().setDate(null);
+		view.getPazientiPanel().getGruppoSanguignoBox().setSelectedIndex(0);
+		;
 		view.getPazientiPanel().getMicrochip().setSelected(false);
 		view.getPazientiPanel().getSteril().setSelected(false);
 		view.getPazientiPanel().getPesoText().setText(null);
 		view.getPazientiPanel().getClientiBox().setSelectedIndex(0);
 		view.getPazientiPanel().getNoteText().setText(null);
 		view.getPazientiPanel().getVeterinariBox().setSelectedIndex(0);
-	}
-
-	public Fornitori costruisciFornitore() {
-		String PIVA = (String) view.getFarmaciPanel().getFornitoriBox().getSelectedItem();
-		Fornitori forn = dbControl.selectFornitoreFromPiva(PIVA);
-		return forn;
 	}
 
 	public Veterinari costruisciVeterinario() {

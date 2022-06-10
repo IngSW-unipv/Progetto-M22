@@ -39,7 +39,7 @@ public class PazientiController {
 
 		for (int i = 0; i < model.getPazientiArray().size(); i++) {
 
-			//rowData[i][0] = model.getPazientiArray().get(i).getID_PAZ();
+			// rowData[i][0] = model.getPazientiArray().get(i).getID_PAZ();
 			rowData[i][0] = model.getPazientiArray().get(i).getNome();
 			rowData[i][1] = model.getPazientiArray().get(i).getSpecie();
 			rowData[i][2] = model.getPazientiArray().get(i).getRazza();
@@ -76,6 +76,7 @@ public class PazientiController {
 
 	}
 
+	@SuppressWarnings("unchecked")
 	public void fillComboBox() {
 
 		ArrayList<String> lista_CF = new ArrayList<String>();
@@ -96,6 +97,7 @@ public class PazientiController {
 		}
 	}
 
+	@SuppressWarnings("unchecked")
 	public void fillComboBox1() {
 
 		ArrayList<String> lista_CF = new ArrayList<String>();
@@ -112,7 +114,7 @@ public class PazientiController {
 
 	public void addActionListenersMenu() {
 
-		view.getDashboard().getMenu().getMntmPazienti().addActionListener(new ActionListener() {
+		view.getDashboard().getMenu().getMenuItemPazienti().addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 
 				view.getDashboard().setVisible(false);

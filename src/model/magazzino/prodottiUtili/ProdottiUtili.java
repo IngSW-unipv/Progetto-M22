@@ -5,8 +5,8 @@ import model.magazzino.ProdottoBase;
 
 public class ProdottiUtili extends ProdottoBase {
 
-	public ProdottiUtili(String type, int quantita, String cod, Fornitori forn) {
-		super(type, quantita, cod, forn);
+	public ProdottiUtili(String nome, String type, int quantita, Fornitori forn) {
+		super(nome, type, quantita, forn);
 		// TODO Auto-generated constructor stub
 	}
 

@@ -18,6 +18,7 @@ public class AggiungiClienteActionListener implements ActionListener {
 	private DbControllerSingleton dbControl;
 	private ClientiPanel clientiPanel;
 
+	@SuppressWarnings("static-access")
 	@Override
 	public void actionPerformed(ActionEvent e) {
 		// TODO Auto-generated method stub
@@ -26,9 +27,12 @@ public class AggiungiClienteActionListener implements ActionListener {
 		// Aggiungi nuovo cliente
 		boolean flag = dbControl.addNuovoCliente(clientiPanel.getNuovoClienteTextField());
 
+		// aggiorno combobox delle altre finestre
+		view.getPazientiPanel().getClientiBox().addItem(clientiPanel.getNuovoClienteTextField().getCF());
+
 		if (flag) {
 
-			model.addNewCliente(clientiPanel.getNuovoClienteTextField());
+			model.getClientiArray().add(clientiPanel.getNuovoClienteTextField());
 
 			String rowData[] = new String[7];
 

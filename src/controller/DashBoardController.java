@@ -12,13 +12,14 @@ public class DashBoardController {
 	private MainView view;
 
 	public DashBoardController(SmartVetModel model, MainView view) {
-		this.model = model;
+		this.model = model; 
 		this.view = view;
 
 		inizializzaComboBoxVet();
 		fillTableFarmaciScadenza();
 	}
 
+	@SuppressWarnings("unchecked")
 	public void inizializzaComboBoxVet() {
 
 		ArrayList<String> lista_CF = new ArrayList<String>();

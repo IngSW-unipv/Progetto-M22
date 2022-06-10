@@ -21,7 +21,7 @@ public class PazienteDAO implements IPazienteDAO {
 
 	}
 
-	public Paziente select_Paziente_from_CF(String ID) {
+	public Paziente selectPazientefromID(int ID) {
 
 		ResultSet rs1;
 		db = DbSingleton.getInstance();
@@ -30,7 +30,7 @@ public class PazienteDAO implements IPazienteDAO {
 		ClientiDAO cl = new ClientiDAO();
 
 		try {
-			String query = "SELECT * FROM PAZIENTI WHERE ID_PAZ =\"" + ID + "\"";
+			String query = "SELECT * FROM PAZIENTI WHERE ID_PAZ =\"" + ID + "\" ORDER BY ID_PAZ";
 			rs1 = db.executeQuery(query);
 
 			while (rs1.next()) {
@@ -86,7 +86,8 @@ public class PazienteDAO implements IPazienteDAO {
 	@Override
 	public boolean insertPaziente(Paziente p) {
 		String query = "INSERT INTO PAZIENTI (NOME,TIPO,RAZZA,DATA_NASC,SESSO, VET_REFERENTE, GRUP_SANG, MICROCHIP,"
-				+ "STERILIZZATO, PESO, DATA_MORTE, PROPRIETARIO, NOTE) values (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?);";
+				+ "STERILIZZATO, PESO, DATA_MORTE, PROPRIETARIO, NOTE) values (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?) "
+				+ ";" + "";
 
 		PreparedStatement stmt = null;
 
@@ -132,8 +133,82 @@ public class PazienteDAO implements IPazienteDAO {
 
 	}
 
-	public void deletePazienti(PazienteDAO paz) {
-		// TODO Auto-generated method stub
+	public int selectID_PAZ(int rigaSelezionata) {
+
+		ResultSet rs1;
+		db = DbSingleton.getInstance();
+		rigaSelezionata = rigaSelezionata + 1;
+		String query = "SELECT ID_PAZ FROM\n" + "(\n"
+				+ "SELECT  ID_PAZ, ROW_NUMBER() OVER (ORDER BY ID_PAZ) AS RowNumber\n" + "FROM PAZIENTI\n" + ") A\n"
+				+ "WHERE RowNumber = \"" + rigaSelezionata + "\"";
+		rs1 = db.executeQuery(query);
+
+		try {
+			if (rs1.next()) {
+
+				return rs1.getInt(1);
+			}
+
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+
+		}
+		return -1;
+	}
+
+	
+	public void deletePazienti(int id) {
+
+		String query = "delete from PAZIENTI where ID_PAZ=\"" + id + "\"";
+		PreparedStatement stmt = null;
+
+		try {
+			stmt = db.getConnection().prepareStatement(query);
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		try {
+			stmt.executeUpdate();
+
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+	}
+
+	public void updatePaziente(int id, Paziente p) {
+
+		String query = "UPDATE PAZIENTI SET NOME = ?,TIPO = ?,RAZZA = ? ,DATA_NASC = ? ,SESSO = ?,"
+				+ " VET_REFERENTE = ? , GRUP_SANG = ?, MICROCHIP = ?, STERILIZZATO = ?, PESO = ?, "
+				+ "DATA_MORTE = ?, PROPRIETARIO = ?, NOTE = ?" + " where ID_PAZ=\"" + id + "\"";
+		PreparedStatement stmt = null;
+
+		try {
+
+			stmt = db.getConnection().prepareStatement(query);
+
+			stmt.setString(1, p.getNome());
+			stmt.setString(2, p.getSpecie());
+			stmt.setString(3, p.getRazza());
+			stmt.setDate(4, p.getDataNascita());
+			stmt.setString(5, p.getSesso());
+			stmt.setString(6, p.getVeterinario().getCF());
+			stmt.setString(7, p.getGruppoSanguigno());
+			stmt.setBoolean(8, p.getMicrochip());
+			stmt.setBoolean(9, p.getSterilizzato());
+			stmt.setDouble(10, p.getPeso());
+			stmt.setDate(11, p.getDataMorte());
+			stmt.setString(12, p.getCliente().getCF());
+			stmt.setString(13, p.getNote());
+
+			stmt.executeUpdate();
+		}
+
+		catch (SQLException e) {
+			e.printStackTrace();
+		}
 
 	}
 }

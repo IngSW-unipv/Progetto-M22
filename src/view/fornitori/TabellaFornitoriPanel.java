@@ -6,17 +6,16 @@ import javax.swing.table.DefaultTableModel;
 
 public class TabellaFornitoriPanel {
 
-	//private JScrollPane scrollPane;
-	private JTable table; // ATTENZIONE QUI SE NO PUNTA NULLO
+	private JTable table;
 
 	public TabellaFornitoriPanel(JScrollPane scrollPane) {
 
 		table = new JTable();
-		//this.scrollPane = scrollPane;
+
 		scrollPane.setViewportView(table);
 
 		DefaultTableModel modello1 = new DefaultTableModel(new Object[][] {},
-				new String[] { "PIVA", "NomeAzienda", "NumeroDiTelefono", "Email", "Sede", "IBAN "});
+				new String[] { "PIVA", "NomeAzienda", "NumeroDiTelefono", "Email", "Sede", "IBANï¿½" });
 
 		table.setModel(modello1);
 		table.getColumnModel().getColumn(0).setPreferredWidth(95);

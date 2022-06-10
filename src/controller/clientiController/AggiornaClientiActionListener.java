@@ -7,6 +7,7 @@ import javax.swing.table.DefaultTableModel;
 
 import database.connectionSQL.DbControllerSingleton;
 import model.SmartVetModel;
+import model.anagrafica.clienti.Clienti;
 import view.MainView;
 import view.clienti.ClientiPanel;
 
@@ -20,10 +21,10 @@ public class AggiornaClientiActionListener implements ActionListener {
 	@Override
 	public void actionPerformed(ActionEvent e) {
 		// TODO Auto-generated method stub
-		
+
 		clientiPanel = view.getClientiPanel();
 		clientiPanel.getCFText().setEditable(true);
-		
+
 		// Aggiungi nuovo cliente
 		int elementoSelezionato = clientiPanel.getTab().getTable().getSelectedRow();
 		((DefaultTableModel) clientiPanel.getTab().getTable().getModel()).removeRow(elementoSelezionato);
@@ -43,7 +44,7 @@ public class AggiornaClientiActionListener implements ActionListener {
 
 		String rowData[] = new String[7];
 
-		DefaultTableModel model = (DefaultTableModel) clientiPanel.getTab().getTable().getModel();
+		DefaultTableModel modello = (DefaultTableModel) clientiPanel.getTab().getTable().getModel();
 
 		if (flag) {
 
@@ -55,7 +56,9 @@ public class AggiornaClientiActionListener implements ActionListener {
 			rowData[5] = citta;
 			rowData[6] = indirizzo;
 
-			model.addRow(rowData);
+			modello.addRow(rowData);
+
+			model.getClientiArray().add(new Clienti(nome, cognome, CF, email, cellulare, citta, indirizzo));
 
 		}
 

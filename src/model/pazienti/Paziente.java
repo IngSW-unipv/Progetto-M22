@@ -7,7 +7,7 @@ import model.anagrafica.veterinari.Veterinari;
 
 public class Paziente {
 
-	private String ID_PAZ;
+	//private String ID_PAZ;
 	private String nome;
 	private String specie;
 	private String razza;
@@ -22,9 +22,7 @@ public class Paziente {
 	private Clienti Cliente;
 	private String note;
 
-	public String getID_PAZ() {
-		return ID_PAZ;
-	}
+	
 
 	public String getNome() {
 		return nome;
@@ -52,7 +50,7 @@ public class Paziente {
 
 	public String getGruppoSanguigno() {
 		return GruppoSanguigno;
-	}
+	} 
 
 	public Boolean getMicrochip() {
 		return microchip;
@@ -99,7 +97,7 @@ public class Paziente {
 
 	@Override
 	public String toString() {
-		return "Paziente [ID_PAZ=" + ID_PAZ + ", nome=" + nome + ", specie=" + specie + ", razza=" + razza
+		return "Paziente [nome=" + nome + ", specie=" + specie + ", razza=" + razza
 				+ ", DataNascita=" + DataNascita + ", sesso=" + sesso + ", Veterinario=" + Veterinario
 				+ ", GruppoSanguigno=" + GruppoSanguigno + ", microchip=" + microchip + ", sterilizzato=" + sterilizzato
 				+ ", peso=" + peso + ", DataMorte=" + DataMorte + ", Cliente=" + Cliente + ", note=" + note + "]";

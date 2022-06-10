@@ -39,6 +39,8 @@ public class LottoFarmaci implements Vendibile {
 	public int getQuantita() {
 		return quantita;
 	}
+	
+	
 
 	public LottoFarmaci(String IDLotto, String mode, String type, Fornitori fornitore, java.sql.Date dataScadenza,
 			int quantita) {

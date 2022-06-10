@@ -7,6 +7,7 @@ import javax.swing.table.DefaultTableModel;
 
 import database.connectionSQL.DbControllerSingleton;
 import model.SmartVetModel;
+import model.anagrafica.fornitori.Fornitori;
 import view.MainView;
 
 public class EliminaFornitoriActionListener implements ActionListener {
@@ -21,10 +22,21 @@ public class EliminaFornitoriActionListener implements ActionListener {
 		DefaultTableModel modello = (DefaultTableModel) view.getFornitoriPanel().getTab().getTable().getModel();
 
 		int elementoSelezionato = view.getFornitoriPanel().getTab().getTable().getSelectedRow();
+
+		Fornitori forn = model.getFornitoriArray().get(elementoSelezionato);
+
+		// elimino anche da comboBox delle altre finestre
+		view.getFarmaciPanel().getFornitoriBox().removeItem(forn.getPIVA());
+		view.getProdottiUtiliPanel().getFornitoriBox().removeItem(forn.getPIVA());
+
+		model.setNullDueToFornitori(forn);
+
 		modello.removeRow(elementoSelezionato);
 
-		dbControl.deleteFornitore(model.getFornitoriArray().get(elementoSelezionato));
+		dbControl.deleteFornitore(forn);
 		model.getFornitoriArray().remove(elementoSelezionato);
+
+		// setto a null ogni tabella che ha fornitore come foreign key
 
 	}
 

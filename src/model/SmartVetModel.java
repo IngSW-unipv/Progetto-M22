@@ -26,7 +26,7 @@ public class SmartVetModel {
 	private ArrayList<ProdottiUtili> prods_u;
 	private ArrayList<ProdottiVendita> prods_v;
 	private ArrayList<Appuntamenti> promemoria;
-
+	private String CFuser;
 	private static SmartVetModel jSmartVet;
 
 	public SmartVetModel() {
@@ -43,6 +43,7 @@ public class SmartVetModel {
 		this.prods_v = new ArrayList<ProdottiVendita>();
 		this.promemoria = new ArrayList<Appuntamenti>();
 		this.scadenza = new ArrayList<LottoFarmaci>();
+		this.CFuser = new String();
 	}
 
 	public static SmartVetModel getInstance() {
@@ -112,24 +113,16 @@ public class SmartVetModel {
 
 	}
 
+	public void populateCFuser(String CFuser) {
+		this.CFuser = CFuser;
+	}
+
 	public ArrayList<Clienti> getClientiArray() {
 		return clienti;
 	}
 
-	public void addNewCliente(Clienti cl) {
-		clienti.add(cl);
-	}
-
-	public void EliminaCliente(Clienti cl) {
-		clienti.remove(cl);
-	}
-
 	public ArrayList<Veterinari> getVeterinariArray() {
 		return vets;
-	}
-
-	public boolean addNewVet(Veterinari vet) {
-		return vets.add(vet);
 	}
 
 	public ArrayList<Paziente> getPazientiArray() {
@@ -138,10 +131,6 @@ public class SmartVetModel {
 
 	public ArrayList<Fornitori> getFornitoriArray() {
 		return forn;
-	}
-
-	public boolean addNewForn(Fornitori forni) {
-		return forn.add(forni);
 	}
 
 	public ArrayList<Appuntamenti> getAppuntamentiArray() {
@@ -168,6 +157,25 @@ public class SmartVetModel {
 		return prods_v;
 	}
 
-	
-	
+	public String getCFuser() {
+		return CFuser;
+	}
+
+	public void setNullDueToFornitori(Fornitori forn) {
+
+		for (LottoFarmaci l : farmaci) {
+			if (l.getFornitore() != null && l.getFornitore().equals(forn)) {
+				l.setFornitore(null);
+				System.out.println("ok si sono dentro ma non funz");
+			}
+
+		}
+
+		for (ProdottiUtili p : prods_u) {
+
+			if (p.getFornitore() != null && p.getFornitore().equals(forn))
+				p.setForn(null);
+		}
+	}
+
 }

@@ -21,6 +21,14 @@ public class EliminaVeterinariActionListener implements ActionListener {
 		DefaultTableModel modello = (DefaultTableModel) view.getVeterinariPanel().getTab().getTable().getModel();
 
 		int elementoSelezionato = view.getVeterinariPanel().getTab().getTable().getSelectedRow();
+
+		///// elimino anche da comboBox delle altre finestre
+		view.getPazientiPanel().getVeterinariBox()
+				.removeItem(model.getVeterinariArray().get(elementoSelezionato).getCF());
+		view.getAppuntamentiPanel().getCFvetText()
+				.removeItem(model.getVeterinariArray().get(elementoSelezionato).getCF());
+		///
+		
 		modello.removeRow(elementoSelezionato);
 
 		dbControl.deleteVeterinario(model.getVeterinariArray().remove(elementoSelezionato));

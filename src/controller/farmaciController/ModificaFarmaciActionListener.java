@@ -23,7 +23,11 @@ public class ModificaFarmaciActionListener implements ActionListener {
 			String IDLotto = model.getLottoFarmaciArray().get(rigaSelezionata).getIDLotto();
 			String mode = model.getLottoFarmaciArray().get(rigaSelezionata).getMode();
 			String type = model.getLottoFarmaciArray().get(rigaSelezionata).getType();
-			String PIVA = model.getLottoFarmaciArray().get(rigaSelezionata).getFornitore().getPIVA();
+			String PIVA = null;
+			
+			if (model.getLottoFarmaciArray().get(rigaSelezionata).getFornitore() != null)
+				PIVA = model.getLottoFarmaciArray().get(rigaSelezionata).getFornitore().getPIVA();
+		
 			Date dataScadenza = model.getLottoFarmaciArray().get(rigaSelezionata).getDataScadenza();
 			int quantita = model.getLottoFarmaciArray().get(rigaSelezionata).getQuantita();
 

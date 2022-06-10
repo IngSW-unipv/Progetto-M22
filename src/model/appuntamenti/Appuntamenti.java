@@ -1,16 +1,13 @@
 package model.appuntamenti;
 
+import java.sql.Date;
 import java.sql.Time;
-import java.util.ArrayList;
-import java.util.Date;
 
-import database.classiDAO.anagraficaDAO.veterinariDAO.VeterinariDAO;
-import database.classiDAO.pazientiDAO.PazienteDAO;
 import model.anagrafica.veterinari.Veterinari;
 import model.pazienti.Paziente;
 
 public class Appuntamenti {
-	private String cod;
+
 	private Paziente paziente;
 	private String sala;
 	private String tipo;
@@ -19,10 +16,6 @@ public class Appuntamenti {
 	private Veterinari veterinario;
 	private double costo;
 	private String note;
-
-	public String getCod() {
-		return cod;
-	}
 
 	public String getTipo() {
 		return tipo;
@@ -44,7 +37,7 @@ public class Appuntamenti {
 		return note;
 	}
 
-	public Date getData() {
+	public java.sql.Date getData() {
 		return data;
 	}
 
@@ -56,11 +49,10 @@ public class Appuntamenti {
 		return time;
 	}
 
-	public Appuntamenti(String cod, Paziente paziente, String sala, String tipo, Date data, Time time,
-			Veterinari veterinario, double costo, String note) {
+	public Appuntamenti(Paziente paziente, String sala, String tipo, Date data, Time time, Veterinari veterinario,
+			double costo, String note) {
 		super();
 
-		this.cod = cod;
 		this.sala = sala;
 		this.tipo = tipo;
 		this.data = data;
@@ -73,8 +65,8 @@ public class Appuntamenti {
 
 	@Override
 	public String toString() {
-		return "Visite [cod=" + cod + ", paziente=" + paziente + ", sala=" + sala + ", tipo=" + tipo + ", data=" + data
-				+ ", time=" + time + ", veterinario=" + veterinario + ", costo=" + costo + ", note=" + note + "]";
+		return "Visite [paziente=" + paziente + ", sala=" + sala + ", tipo=" + tipo + ", data=" + data + ", time="
+				+ time + ", veterinario=" + veterinario + ", costo=" + costo + ", note=" + note + "]";
 	}
 
 }

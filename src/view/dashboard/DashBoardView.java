@@ -5,6 +5,10 @@ import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 
 import view.dashboard.farmaciScadenza.TabellaFarmaciScadenzaView;
+import java.awt.event.ActionListener;
+import java.awt.event.ActionEvent;
+import javax.swing.JMenuBar;
+import javax.swing.JMenuItem;
 
 public class DashBoardView extends JPanel {
 
@@ -22,7 +26,7 @@ public class DashBoardView extends JPanel {
 		setLayout(null);
 
 		menu = new MenuView();
-		menu.setBounds(-46, -45, 397, 75);
+		menu.setBounds(24, 24, 373, 31);
 		add(menu);
 
 		// creo un pannello con scrollo per promemoria
@@ -40,7 +44,7 @@ public class DashBoardView extends JPanel {
 		add(farmaciScadenzaScrollPane);
 		f = new TabellaFarmaciScadenzaView(farmaciScadenzaScrollPane);
 	}
-
+ 
 	public MenuView getMenu() {
 		return menu;
 	}
@@ -60,5 +64,4 @@ public class DashBoardView extends JPanel {
 	public TabellaFarmaciScadenzaView getTabellaFarmaciView() {
 		return f;
 	}
-
 }

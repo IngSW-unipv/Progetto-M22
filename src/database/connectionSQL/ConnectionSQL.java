@@ -7,12 +7,11 @@ import java.sql.SQLException;
 public class ConnectionSQL {
 
 	public static Connection startConnection(Connection conn, String schema) {
-		String DbDriver = null;
+
 		String DbURL = null;
 		String username = null;
 		String password = null;
 
-		DbDriver = "com.mysql.jdbc.Driver";
 		DbURL = "jdbc:mysql://localhost:3306/clinica";
 		// DbURL =
 		// "jdbc:mysql://localhost/"+schema+"?socketFactory=SSHSocketFactory&SSHHost=192.168.3.42&SSHUser=nino&SSHPassword=nocera369";

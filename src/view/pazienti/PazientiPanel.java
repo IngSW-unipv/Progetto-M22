@@ -1,6 +1,7 @@
 package view.pazienti;
 
 import java.awt.EventQueue;
+import java.util.ArrayList;
 
 import javax.swing.Icon;
 import javax.swing.JButton;
@@ -19,12 +20,12 @@ public class PazientiPanel extends JPanel {
 	private static final long serialVersionUID = 1L;
 	private JScrollPane scrollPane;
 
-	//private JTextField ID_PAZText;
+	// private JTextField ID_PAZText;
 	private JTextField nomeText;
 	private JTextField specieText;
 	private JTextField razzaText;
-	private JTextField sessoText;
-	private JTextField GruppoSanguignoText;
+	private JComboBox sessoBox;
+	private JComboBox gruppoSanguignoBox;
 	private JTextField pesoText;
 	private JTextField noteText;
 
@@ -91,11 +92,6 @@ public class PazientiPanel extends JPanel {
 		scrollPane.setBounds(22, 0, 930, 644);
 		add(scrollPane);
 
-		/*ID_PAZText = new JTextField();
-		ID_PAZText.setBounds(1096, 12, 100, 25);
-		add(ID_PAZText);
-		ID_PAZText.setColumns(10);*/
-
 		nomeText = new JTextField();
 		nomeText.setBounds(1096, 72, 100, 25);
 		add(nomeText);
@@ -111,15 +107,37 @@ public class PazientiPanel extends JPanel {
 		add(razzaText);
 		razzaText.setColumns(10);
 
-		sessoText = new JTextField();
-		sessoText.setBounds(1096, 312, 100, 25);
-		add(sessoText);
-		sessoText.setColumns(10);
+		sessoBox = new JComboBox();
+		{
+			ArrayList<String> sesso = new ArrayList<String>();
 
-		GruppoSanguignoText = new JTextField();
-		GruppoSanguignoText.setColumns(10);
-		GruppoSanguignoText.setBounds(1096, 426, 100, 25);
-		add(GruppoSanguignoText);
+			sesso.add("M");
+			sesso.add("F");
+
+			for (int i = 0; i < 2; i++) {
+				sessoBox.addItem(sesso.get(i));
+			}
+		}
+
+		sessoBox.setBounds(1096, 312, 100, 25);
+		add(sessoBox);
+
+		gruppoSanguignoBox = new JComboBox();
+		{
+			ArrayList<String> gs = new ArrayList<String>();
+
+			gs.add("A");
+			gs.add("B");
+			gs.add("AB");
+			gs.add("0+");
+			gs.add("0-");
+
+			for (int i = 0; i < 5; i++) {
+				gruppoSanguignoBox.addItem(gs.get(i));
+			}
+		}
+		gruppoSanguignoBox.setBounds(1096, 426, 100, 25);
+		add(gruppoSanguignoBox);
 
 		pesoText = new JTextField();
 		pesoText.setColumns(10);
@@ -248,10 +266,6 @@ public class PazientiPanel extends JPanel {
 		return scrollPane;
 	}
 
-	/*public JTextField getID_PAZText() {
-		return ID_PAZText;
-	}*/
-
 	public JTextField getNomeText() {
 		return nomeText;
 	}
@@ -264,12 +278,12 @@ public class PazientiPanel extends JPanel {
 		return razzaText;
 	}
 
-	public JTextField getSessoText() {
-		return sessoText;
+	public JComboBox getSessoBox() {
+		return sessoBox;
 	}
 
-	public JTextField getGruppoSanguignoText() {
-		return GruppoSanguignoText;
+	public JComboBox getGruppoSanguignoBox() {
+		return gruppoSanguignoBox;
 	}
 
 	public JTextField getPesoText() {

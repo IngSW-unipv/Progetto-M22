@@ -8,5 +8,5 @@ public interface IAppuntamentiDAO {
 	
 	public ArrayList<Appuntamenti> selectAll();
 
-	public boolean insertAppuntamenti(Appuntamenti v);
+	public boolean insertAppuntamenti(Appuntamenti p, int ID_PAZ);
 }

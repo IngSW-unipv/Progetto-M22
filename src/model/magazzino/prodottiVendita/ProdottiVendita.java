@@ -1,20 +1,18 @@
 package model.magazzino.prodottiVendita;
 
-import java.util.Date;
-
 import model.anagrafica.fornitori.Fornitori;
 import model.magazzino.ProdottoBase;
 
 public class ProdottiVendita extends ProdottoBase {
 
-	private Date dataScadenza;
+	private java.sql.Date dataScadenza;
 
-	public Date getDataScadenza() {
+	public java.sql.Date getDataScadenza() {
 		return dataScadenza;
 	}
 
-	public ProdottiVendita(String type, int quantita, String cod, Fornitori fornitore, Date dataScadenza) {
-		super(type, quantita, cod, fornitore);
+	public ProdottiVendita(String nome, String type, int quantita, Fornitori fornitore, java.sql.Date dataScadenza) {
+		super(nome, type, quantita, fornitore);
 		this.dataScadenza = dataScadenza;
 	}
 

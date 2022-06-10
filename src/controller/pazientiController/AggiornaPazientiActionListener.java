@@ -29,17 +29,20 @@ public class AggiornaPazientiActionListener implements ActionListener {
 
 		pazientiPanel = view.getPazientiPanel();
 
-		int elementoSelezionato = pazientiPanel.getTabellaPazienti().getTable().getSelectedRow();
+		int elementoSelezionato = view.getPazientiPanel().getTabellaPazienti().getTable().getSelectedRow();
+
+		int ID_PAZ = dbControl.selectID_PAZ(elementoSelezionato);
+
 		((DefaultTableModel) pazientiPanel.getTabellaPazienti().getTable().getModel()).removeRow(elementoSelezionato);
-		dbControl.deletePazienti(model.getPazientiArray().get(elementoSelezionato));
+
 		model.getPazientiArray().remove(elementoSelezionato);
 
-		//String ID_PAZ = pazientiPanel.getID_PAZText().getText();
+		// String ID_PAZ = pazientiPanel.getID_PAZText().getText();
 		String nome = pazientiPanel.getNomeText().getText();
 		String specie = pazientiPanel.getSpecieText().getText();
 		String razza = pazientiPanel.getRazzaText().getText();
-		String sesso = pazientiPanel.getSessoText().getText();
-		String GruppoSanguigno = pazientiPanel.getGruppoSanguignoText().getText();
+		String sesso = pazientiPanel.getSessoBox().getSelectedItem().toString();
+		String GruppoSanguigno = pazientiPanel.getGruppoSanguignoBox().getSelectedItem().toString();
 		Boolean microchip = pazientiPanel.getMicrochip().isEnabled();
 		Boolean sterilizzato = pazientiPanel.getSteril().isEnabled();
 
@@ -61,31 +64,34 @@ public class AggiornaPazientiActionListener implements ActionListener {
 		String note = pazientiPanel.getNoteText().getText();
 		Veterinari vet = costruisciVeterinario();
 		SimpleDateFormat sdf = new SimpleDateFormat("MM-dd-yyyy");
-		Date dataNascita = pazientiPanel.getDataNascita().getDate();
-		Date dataMorte = pazientiPanel.getDataMorte().getDate();
+		Date dataNascita = null;
+		Date dataMorte = null;
+		java.sql.Date sqlDate = null;
+		java.sql.Date sqlDate2 = null;
 
 		try {
-			dataNascita = sdf.parse(sdf.format(dataNascita));
-			dataMorte = sdf.parse(sdf.format(dataMorte));
-		} catch (ParseException e1) {
-			// TODO Auto-generated catch block
-			e1.printStackTrace();
-		}
 
-		java.sql.Date sqlDate = new java.sql.Date(dataNascita.getTime());
-		java.sql.Date sqlDate2 = new java.sql.Date(dataMorte.getTime());
+			dataNascita = view.getPazientiPanel().getDataNascita().getDate();
+			dataMorte = view.getPazientiPanel().getDataMorte().getDate();
 
-		try {
-			dataNascita = sdf.parse(sdf.format(dataNascita));
-			System.out.println(dataNascita);
-		} catch (ParseException e1) {
-			// TODO Auto-generated catch block
-			e1.printStackTrace();
-		}
+			if (dataNascita != null) {
 
-		try {
-			dataMorte = sdf.parse(sdf.format(dataMorte));
-			System.out.println(dataMorte);
+				dataNascita = sdf.parse(sdf.format(dataNascita));
+				System.out.println(dataNascita);
+
+				sqlDate = new java.sql.Date(dataNascita.getTime());
+
+			}
+
+			if (dataMorte != null) {
+
+				dataMorte = sdf.parse(sdf.format(dataMorte));
+				System.out.println(dataMorte);
+
+				sqlDate2 = new java.sql.Date(dataMorte.getTime());
+
+			}
+
 		} catch (ParseException e1) {
 			// TODO Auto-generated catch block
 			e1.printStackTrace();
@@ -93,32 +99,32 @@ public class AggiornaPazientiActionListener implements ActionListener {
 
 		DefaultTableModel modello = (DefaultTableModel) pazientiPanel.getTabellaPazienti().getTable().getModel();
 
-		Paziente paz = new Paziente(nome, specie, razza, sqlDate, sesso, vet, GruppoSanguigno, microchip,
-				sterilizzato, peso, sqlDate2, cl, note);
+		Paziente paz = new Paziente(nome, specie, razza, sqlDate, sesso, vet, GruppoSanguigno, microchip, sterilizzato,
+				peso, sqlDate2, cl, note);
 
-		boolean flag = dbControl.addNuovoPaziente(paz);
+		dbControl.updatePaziente(paz, ID_PAZ);
 
-		Object rowData[] = new Object[14];
+		// boolean flag = dbControl.addNuovoPaziente(paz);
 
-		if (flag) {
+		Object rowData[] = new Object[13];
 
-			//rowData[0] = ID_PAZ;
-			rowData[0] = nome;
-			rowData[1] = specie;
-			rowData[2] = razza;
-			rowData[3] = sesso;
-			rowData[4] = sqlDate;
-			rowData[5] = GruppoSanguigno;
-			rowData[6] = microchip;
-			rowData[7] = vet.getCF();
-			rowData[8] = peso;
-			rowData[9] = sterilizzato;
-			rowData[10] = cl.getCF();
-			rowData[11] = sqlDate2;
-			rowData[12] = note;
+		// rowData[0] = ID_PAZ;
+		rowData[0] = nome;
+		rowData[1] = specie;
+		rowData[2] = razza;
+		rowData[3] = sqlDate;
+		rowData[4] = sesso;
+		rowData[5] = vet.getCF();
+		rowData[6] = GruppoSanguigno;
+		rowData[7] = microchip;
+		rowData[8] = sterilizzato;
+		rowData[9] = peso;
+		rowData[10] = sqlDate2;
+		rowData[11] = cl.getCF();
+		rowData[12] = note;
 
-			modello.addRow(rowData);
-		}
+		model.getPazientiArray().add(paz);
+		modello.addRow(rowData);
 
 		pulisciTextField();
 	}
@@ -144,12 +150,14 @@ public class AggiornaPazientiActionListener implements ActionListener {
 	}
 
 	public void pulisciTextField() {
-		//pazientiPanel.getID_PAZText().setText(null);
+		
 		pazientiPanel.getNomeText().setText(null);
+		view.getPazientiPanel().getDataMorte().setDate(null);
+		view.getPazientiPanel().getDataNascita().setDate(null);
 		pazientiPanel.getSpecieText().setText(null);
 		pazientiPanel.getRazzaText().setText(null);
-		pazientiPanel.getSessoText().setText(null);
-		pazientiPanel.getGruppoSanguignoText().setText(null);
+		pazientiPanel.getSessoBox().setSelectedIndex(0);
+		pazientiPanel.getGruppoSanguignoBox().setSelectedIndex(0);
 		pazientiPanel.getMicrochip().setSelected(false);
 		pazientiPanel.getSteril().setSelected(false);
 		pazientiPanel.getPesoText().setText(null);

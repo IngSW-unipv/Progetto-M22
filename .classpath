@@ -16,5 +16,7 @@
 			<attribute name="module" value="true"/>
 		</attributes>
 	</classpathentry>
+	<classpathentry kind="lib" path="Time Chooser.jar"/>
+	<classpathentry kind="lib" path="JTimeChooser_0.1.0.jar"/>
 	<classpathentry kind="output" path="bin"/>
 </classpath>

@@ -52,7 +52,7 @@ public class AggiornaFarmaciActionListener implements ActionListener {
 
 		DefaultTableModel modello = (DefaultTableModel) farmaciPanel.getTabellaFarmaci().getTable().getModel();
 		LottoFarmaci lo = new LottoFarmaci(IDLotto, mode, type, forn, sqlDate, qt);
-		boolean flag = dbControl.addNuovoLotto(lo);
+		boolean flag = model.getLottoFarmaciArray().add(lo);
 
 		Object rowData[] = new Object[6];
 
@@ -87,6 +87,7 @@ public class AggiornaFarmaciActionListener implements ActionListener {
 
 	public void pulisciTextField() {
 		farmaciPanel.getIDLottoText().setText(null);
+		farmaciPanel.getDataScadenza().setDate(null);
 		farmaciPanel.getModeText().setText(null);
 		farmaciPanel.getTipoText().setText(null);
 		farmaciPanel.getFornitoriBox().setSelectedIndex(0);

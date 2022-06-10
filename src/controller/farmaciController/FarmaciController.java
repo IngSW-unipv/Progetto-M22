@@ -55,16 +55,17 @@ public class FarmaciController {
 		}
 	}
 
+	@SuppressWarnings("unchecked")
 	public void fillComboBox() {
 
-		ArrayList<String> lista_PIVA = new ArrayList<String>();
+		ArrayList<String> listaPIVA = new ArrayList<String>();
 
 		for (int i = 0; i < model.getFornitoriArray().size(); i++) {
 
-			lista_PIVA.add(model.getFornitoriArray().get(i).getPIVA());
+			listaPIVA.add(model.getFornitoriArray().get(i).getPIVA());
 
-			if (lista_PIVA != null) {
-				view.getFarmaciPanel().getFornitoriBox().addItem(lista_PIVA.get(i));
+			if (listaPIVA != null) {
+				view.getFarmaciPanel().getFornitoriBox().addItem(listaPIVA.get(i));
 			}
 		}
 	}

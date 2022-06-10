@@ -33,7 +33,7 @@ public class EliminaFarmaciActionListener implements ActionListener {
 		super();
 		this.model = model;
 		this.view = view;
-		this.dbControl = dbControl;
+		this.dbControl = dbControl; 
 	}
 
 }
