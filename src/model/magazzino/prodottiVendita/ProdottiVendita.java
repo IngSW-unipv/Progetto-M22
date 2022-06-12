@@ -11,8 +11,8 @@ public class ProdottiVendita extends ProdottoBase {
 		return dataScadenza;
 	}
 
-	public ProdottiVendita(String nome, String type, int quantita, Fornitori fornitore, java.sql.Date dataScadenza) {
-		super(nome, type, quantita, fornitore);
+	public ProdottiVendita(int COD, String nome, String type, int quantita, Fornitori fornitore, java.sql.Date dataScadenza) {
+		super(COD, nome, type, quantita, fornitore);
 		this.dataScadenza = dataScadenza;
 	}
 

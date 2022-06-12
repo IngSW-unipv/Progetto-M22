@@ -27,7 +27,7 @@ public class AggiungiProdottiUtiliActionListener implements ActionListener {
 		Fornitori forn = costruisciFornitore();
 		int qt = (int) view.getProdottiUtiliPanel().getSpinner().getValue();
 
-		ProdottiUtili nuovoProdottoUtile = new ProdottiUtili(nome, tipo, qt, forn);
+		ProdottiUtili nuovoProdottoUtile = new ProdottiUtili(0, nome, tipo, qt, forn);
 
 		boolean flag = dbControl.addProdottiUtili(nuovoProdottoUtile);
 

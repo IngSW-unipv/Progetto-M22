@@ -25,10 +25,15 @@ public class EliminaVeterinariActionListener implements ActionListener {
 		///// elimino anche da comboBox delle altre finestre
 		view.getPazientiPanel().getVeterinariBox()
 				.removeItem(model.getVeterinariArray().get(elementoSelezionato).getCF());
-		view.getAppuntamentiPanel().getCFvetText()
-				.removeItem(model.getVeterinariArray().get(elementoSelezionato).getCF());
+
+		if (model.getCFuser().equals("direzione")) {
+
+			view.getAppuntamentiPanel().getCFvetText()
+					.removeItem(model.getVeterinariArray().get(elementoSelezionato).getCF());
+		}
+
 		///
-		
+
 		modello.removeRow(elementoSelezionato);
 
 		dbControl.deleteVeterinario(model.getVeterinariArray().remove(elementoSelezionato));

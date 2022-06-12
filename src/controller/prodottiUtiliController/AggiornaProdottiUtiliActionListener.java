@@ -37,14 +37,15 @@ public class AggiornaProdottiUtiliActionListener implements ActionListener {
 		String nome = prodottiutiliPanel.getNomeText().getText();
 		String tipo = prodottiutiliPanel.getTipoText().getText();
 		Fornitori forn = costruisciFornitore();
+		
 		int qt = (int) prodottiutiliPanel.getSpinner().getValue();
 
 		DefaultTableModel modello = (DefaultTableModel) prodottiutiliPanel.getTabellaProdottiUtili().getTable()
 				.getModel();
 
-		ProdottiUtili pu = new ProdottiUtili(nome, tipo, qt, forn);
+		ProdottiUtili pu = new ProdottiUtili(COD, nome, tipo, qt, forn);
 
-		dbControl.updateProdottiUtili(pu, COD);
+		dbControl.updateProdottiUtili(pu);
 
 		Object rowData[] = new Object[4];
 
@@ -54,6 +55,7 @@ public class AggiornaProdottiUtiliActionListener implements ActionListener {
 		rowData[3] = forn.getPIVA();
 
 		modello.addRow(rowData);
+		model.getProdottiUtiliArray().add(pu);
 
 		pulisciTextField();
 	}

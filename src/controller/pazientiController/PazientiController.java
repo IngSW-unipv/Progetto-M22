@@ -39,38 +39,38 @@ public class PazientiController {
 
 		for (int i = 0; i < model.getPazientiArray().size(); i++) {
 
-			// rowData[i][0] = model.getPazientiArray().get(i).getID_PAZ();
-			rowData[i][0] = model.getPazientiArray().get(i).getNome();
-			rowData[i][1] = model.getPazientiArray().get(i).getSpecie();
-			rowData[i][2] = model.getPazientiArray().get(i).getRazza();
-			rowData[i][3] = model.getPazientiArray().get(i).getDataNascita();
-			rowData[i][4] = model.getPazientiArray().get(i).getSesso();
+			rowData[i][0] = model.getPazientiArray().get(i).getIDpaz();
+			rowData[i][1] = model.getPazientiArray().get(i).getNome();
+			rowData[i][2] = model.getPazientiArray().get(i).getSpecie();
+			rowData[i][3] = model.getPazientiArray().get(i).getRazza();
+			rowData[i][4] = model.getPazientiArray().get(i).getDataNascita();
+			rowData[i][5] = model.getPazientiArray().get(i).getSesso();
 
-			rowData[i][6] = model.getPazientiArray().get(i).getGruppoSanguigno();
-			rowData[i][7] = model.getPazientiArray().get(i).getMicrochip();
+			rowData[i][7] = model.getPazientiArray().get(i).getGruppoSanguigno();
+			rowData[i][8] = model.getPazientiArray().get(i).getMicrochip();
 
-			rowData[i][10] = model.getPazientiArray().get(i).getDataMorte();
+			rowData[i][11] = model.getPazientiArray().get(i).getDataMorte();
 
 			if (model.getPazientiArray().get(i).getVeterinario() == null) {
-				rowData[i][5] = null;
+				rowData[i][6] = null;
 			}
 
 			else {
-				rowData[i][5] = model.getPazientiArray().get(i).getVeterinario().getCF();
+				rowData[i][6] = model.getPazientiArray().get(i).getVeterinario().getCF();
 
-				rowData[i][9] = model.getPazientiArray().get(i).getPeso();
-				rowData[i][8] = model.getPazientiArray().get(i).getSterilizzato();
+				rowData[i][10] = model.getPazientiArray().get(i).getPeso();
+				rowData[i][9] = model.getPazientiArray().get(i).getSterilizzato();
 
 				if (model.getPazientiArray().get(i).getCliente() == null) {
-					rowData[i][11] = null;
+					rowData[i][12] = null;
 				}
 
 				else
-					rowData[i][11] = model.getPazientiArray().get(i).getCliente().getCF();
+					rowData[i][12] = model.getPazientiArray().get(i).getCliente().getCF();
 
 			}
 
-			rowData[i][12] = model.getPazientiArray().get(i).getNote();
+			rowData[i][13] = model.getPazientiArray().get(i).getNote();
 			modello.addRow(rowData[i]);
 		}
 

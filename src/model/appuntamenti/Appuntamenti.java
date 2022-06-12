@@ -8,6 +8,7 @@ import model.pazienti.Paziente;
 
 public class Appuntamenti {
 
+	private int COD;
 	private Paziente paziente;
 	private String sala;
 	private String tipo;
@@ -16,6 +17,14 @@ public class Appuntamenti {
 	private Veterinari veterinario;
 	private double costo;
 	private String note;
+
+	public int getCOD() {
+		return COD;
+	}
+
+	public void setCOD(int cOD) {
+		COD = cOD;
+	}
 
 	public String getTipo() {
 		return tipo;
@@ -49,8 +58,8 @@ public class Appuntamenti {
 		return time;
 	}
 
-	public Appuntamenti(Paziente paziente, String sala, String tipo, Date data, Time time, Veterinari veterinario,
-			double costo, String note) {
+	public Appuntamenti(int COD, Paziente paziente, String sala, String tipo, Date data, Time time,
+			Veterinari veterinario, double costo, String note) {
 		super();
 
 		this.sala = sala;
@@ -61,6 +70,7 @@ public class Appuntamenti {
 		this.veterinario = veterinario;
 		this.costo = costo;
 		this.note = note;
+		this.COD = COD;
 	}
 
 	@Override

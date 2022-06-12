@@ -7,6 +7,7 @@ import javax.swing.table.DefaultTableModel;
 
 import database.connectionSQL.DbControllerSingleton;
 import model.SmartVetModel;
+import model.anagrafica.fornitori.Fornitori;
 import view.MainView;
 import view.fornitori.FornitoriPanel;
 
@@ -26,7 +27,9 @@ public class AggiornaFornitoriActionListener implements ActionListener {
 
 		int elementoSelezionato = fornitoriPanel.getTab().getTable().getSelectedRow();
 		((DefaultTableModel) fornitoriPanel.getTab().getTable().getModel()).removeRow(elementoSelezionato);
+
 		dbControl.deleteFornitore(model.getFornitoriArray().get(elementoSelezionato));
+
 		model.getFornitoriArray().remove(elementoSelezionato);
 
 		String PIVA = fornitoriPanel.getNuovoFornitoreTextField().getPIVA();
@@ -40,7 +43,7 @@ public class AggiornaFornitoriActionListener implements ActionListener {
 
 		String rowData[] = new String[6];
 
-		DefaultTableModel model = (DefaultTableModel) fornitoriPanel.getTab().getTable().getModel();
+		DefaultTableModel modello = (DefaultTableModel) fornitoriPanel.getTab().getTable().getModel();
 
 		if (flag) {
 
@@ -51,7 +54,9 @@ public class AggiornaFornitoriActionListener implements ActionListener {
 			rowData[4] = sede;
 			rowData[5] = IBAN;
 
-			model.addRow(rowData);
+			modello.addRow(rowData);
+			
+			model.getFornitoriArray().add(new Fornitori(PIVA, nomeAzienda, nTelefono, email, sede, IBAN));
 
 		}
 

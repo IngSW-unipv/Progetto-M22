@@ -8,13 +8,14 @@ import javax.swing.JScrollPane;
 import javax.swing.JTable;
 import javax.swing.table.DefaultTableModel;
 
-import controller.appuntamentiController.AppuntamentiController;
+import controller.appuntamentiController.occupazioneSaleController.OccupazioneSaleController;
 import controller.clientiController.ClientiController;
 import controller.farmaciController.FarmaciController;
 import controller.fornitoriController.FornitoriController;
 import controller.loginController.LoginController;
 import controller.pazientiController.PazientiController;
 import controller.prodottiUtiliController.ProdottiUtiliController;
+import controller.prodottiVenditaController.ProdottiVenditaController;
 import controller.veterinariController.VeterinariController;
 import database.connectionSQL.DbControllerSingleton;
 import model.SmartVetModel;
@@ -31,9 +32,10 @@ public class Controller {
 	private FornitoriController fornitoriController;
 	private FarmaciController farmaciController;
 	private PazientiController pazientiController;
-	private AppuntamentiController appuntamentiController;
 	private ProdottiUtiliController prodottiUtiliController;
 	private LoginController loginController;
+	private OccupazioneSaleController occupazioneSaleController;
+	private ProdottiVenditaController prodottiVenditaController;
 
 	public Controller(SmartVetModel m, MainView v) {
 
@@ -45,16 +47,14 @@ public class Controller {
 	}
 
 	private void initComponents() {
-		
+
 		dbControl = new DbControllerSingleton();
-		
+
 		loginController = new LoginController(view, model, dbControl);
-		
-		System.out.println(model.getCFuser() + "nel controler");
-		
+
 		populateArrays();
 		DynamicPromemoria();
-		
+
 		dashControl = new DashBoardController(model, view);
 
 		clientiController = new ClientiController(model, view, dbControl);
@@ -67,19 +67,20 @@ public class Controller {
 
 		pazientiController = new PazientiController(model, view, dbControl);
 
-		//appuntamentiController = new AppuntamentiController(model, view, dbControl);
+		// appuntamentiController = new AppuntamentiController(model, view, dbControl);
 
 		prodottiUtiliController = new ProdottiUtiliController(model, view, dbControl);
 		
-	}
-		
-	
+		prodottiVenditaController = new ProdottiVenditaController(model, view, dbControl);
 
-	
+		occupazioneSaleController = new OccupazioneSaleController(model, view, dbControl);
+
+		// storicoController = new StoricoController(model, view, dbControl);
+
+	}
 
 	private void populateArrays() {
-		
-	
+
 		model.populateClienti(dbControl.selectAllClienti());
 		model.populateFornitori(dbControl.selectAllFornitori());
 		model.populatePazienti(dbControl.selectAllPazienti());
@@ -88,7 +89,7 @@ public class Controller {
 		model.populateProdottivendibili(dbControl.selectAllProdottiVendita());
 		model.populateLottoFarmaci(dbControl.selectAllLottoFarmaci());
 		model.populateFarmaciScadenza(dbControl.selectFarmaciScadenza());
-
+		model.populateSaleOccupate(dbControl.selectAllAppuntamenti());
 	}
 
 	private void DynamicPromemoria() {

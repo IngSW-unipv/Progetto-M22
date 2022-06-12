@@ -12,17 +12,15 @@ import view.MainView;
 public class ModificaAppuntamentiActionListener implements ActionListener {
 	private SmartVetModel model;
 	private MainView view;
-	private DbControllerSingleton dbControl;
 
 	@Override
 	public void actionPerformed(ActionEvent e) {
 		// TODO Auto-generated method stub
 		int rigaSelezionata = view.getAppuntamentiPanel().getTab().getTable().getSelectedRow();
-		int[] IDpazs = dbControl.selectAllIDPaz();
 
 		if (rigaSelezionata >= 0) {
 
-			int IDpaz = IDpazs[rigaSelezionata];
+			int IDpaz = model.getAppuntamentiArray().get(rigaSelezionata).getPaziente().getIDpaz();
 			String sala = model.getAppuntamentiArray().get(rigaSelezionata).getSala();
 			String tipo = model.getAppuntamentiArray().get(rigaSelezionata).getTipo();
 			Date data = model.getAppuntamentiArray().get(rigaSelezionata).getData();
@@ -46,11 +44,10 @@ public class ModificaAppuntamentiActionListener implements ActionListener {
 		}
 	}
 
-	public ModificaAppuntamentiActionListener(SmartVetModel model, MainView view, DbControllerSingleton dbControl) {
+	public ModificaAppuntamentiActionListener(SmartVetModel model, MainView view) {
 		super();
 		this.model = model;
 		this.view = view;
-		this.dbControl = dbControl;
 	}
 
 }

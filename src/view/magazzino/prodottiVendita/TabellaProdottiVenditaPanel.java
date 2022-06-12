@@ -1,23 +1,20 @@
-package view.veterinari;
+package view.magazzino.prodottiVendita;
 
 import javax.swing.JScrollPane;
 import javax.swing.JTable;
 import javax.swing.table.DefaultTableModel;
 
-public class TabellaVeterinariPanel {
+public class TabellaProdottiVenditaPanel {
+	
+	private JTable table;
 
-	//private JScrollPane scrollPane;
-	private JTable table; // ATTENZIONE QUI SE NO PUNTA NULLO
-
-	public TabellaVeterinariPanel(JScrollPane scrollPane) {
+	public TabellaProdottiVenditaPanel(JScrollPane scrollPane) {
 
 		table = new JTable();
-		//this.scrollPane = scrollPane;
 		scrollPane.setViewportView(table);
-
+		
 		DefaultTableModel modello1 = new DefaultTableModel(new Object[][] {},
-				new String[] { "Nome", "Cognome", "CF", "Email", "Cellulare", "Città", "Indirizzo", "Piva", "Contratto", 
-								"Stipendio", "Commissioni", "Iban" });
+				new String[] { "Nome", "Tipo", "Quantita", "Fornitore", "Data Scadenza"});
 
 		table.setModel(modello1);
 		table.getColumnModel().getColumn(0).setPreferredWidth(95);

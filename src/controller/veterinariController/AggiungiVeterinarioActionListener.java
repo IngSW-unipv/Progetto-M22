@@ -32,12 +32,18 @@ public class AggiungiVeterinarioActionListener implements ActionListener {
 			model.getVeterinariArray().add(veterinariPanel.getNuovoVeterinarioTextField());
 
 			// aggiungo vet nelle comboBox di altre finestre
-			view.getAppuntamentiPanel().getCFvetText().addItem(veterinariPanel.getNuovoVeterinarioTextField().getCF());
+
+			if (model.getCFuser().equals("direzione")) {
+
+				view.getAppuntamentiPanel().getCFvetText()
+						.addItem(veterinariPanel.getNuovoVeterinarioTextField().getCF());
+			}
+
 			view.getPazientiPanel().getVeterinariBox().addItem(veterinariPanel.getNuovoVeterinarioTextField().getCF());
 
 			Object rowData[] = new Object[12];
 
-			DefaultTableModel model = (DefaultTableModel) veterinariPanel.getTab().getTable().getModel();
+			DefaultTableModel modello = (DefaultTableModel) veterinariPanel.getTab().getTable().getModel();
 
 			rowData[0] = veterinariPanel.getNuovoVeterinarioTextField().getNome();
 			rowData[1] = veterinariPanel.getNuovoVeterinarioTextField().getCognome();
@@ -52,7 +58,7 @@ public class AggiungiVeterinarioActionListener implements ActionListener {
 			rowData[10] = veterinariPanel.getNuovoVeterinarioTextField().getCommissioni();
 			rowData[11] = veterinariPanel.getNuovoVeterinarioTextField().getIBAN();
 
-			model.addRow(rowData);
+			modello.addRow(rowData);
 
 			pulisciTextField();
 		}

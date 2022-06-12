@@ -21,7 +21,7 @@ public class ModificaVeterinariActionListener implements ActionListener {
 		veterinariPanel.getCFText().setEditable(false);
 
 		int rigaSelezionata = veterinariPanel.getTab().getTable().getSelectedRow();
-
+		
 		if (rigaSelezionata >= 0) {
 
 			String nome = model.getVeterinariArray().get(rigaSelezionata).getNome();

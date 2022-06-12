@@ -28,7 +28,7 @@ public class EliminaFornitoriActionListener implements ActionListener {
 		// elimino anche da comboBox delle altre finestre
 		view.getFarmaciPanel().getFornitoriBox().removeItem(forn.getPIVA());
 		view.getProdottiUtiliPanel().getFornitoriBox().removeItem(forn.getPIVA());
-
+		view.getProdottiVenditaPanel().getFornitoriBox().removeItem(forn.getPIVA());
 		model.setNullDueToFornitori(forn);
 
 		modello.removeRow(elementoSelezionato);

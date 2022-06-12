@@ -15,6 +15,8 @@ public class ModificaClientiActionListener implements ActionListener {
 	public void actionPerformed(ActionEvent e) {
 		// TODO Auto-generated method stub
 
+		view.getClientiPanel().getCFText().setEditable(false);
+		
 		int rigaSelezionata = view.getClientiPanel().getTab().getTable().getSelectedRow();
 
 		if (rigaSelezionata >= 0) {

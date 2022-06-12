@@ -26,6 +26,8 @@ public class SmartVetModel {
 	private ArrayList<ProdottiUtili> prods_u;
 	private ArrayList<ProdottiVendita> prods_v;
 	private ArrayList<Appuntamenti> promemoria;
+	private ArrayList<Appuntamenti> storico;
+	private ArrayList<Appuntamenti> saleOccupate;
 	private String CFuser;
 	private static SmartVetModel jSmartVet;
 
@@ -44,6 +46,7 @@ public class SmartVetModel {
 		this.promemoria = new ArrayList<Appuntamenti>();
 		this.scadenza = new ArrayList<LottoFarmaci>();
 		this.CFuser = new String();
+		this.storico = new ArrayList<Appuntamenti>();
 	}
 
 	public static SmartVetModel getInstance() {
@@ -117,6 +120,14 @@ public class SmartVetModel {
 		this.CFuser = CFuser;
 	}
 
+	public void populateStorico(ArrayList<Appuntamenti> storico) {
+		this.storico = storico;
+	}
+
+	public void populateSaleOccupate(ArrayList<Appuntamenti> saleOccupate) {
+		this.saleOccupate = saleOccupate;
+	}
+
 	public ArrayList<Clienti> getClientiArray() {
 		return clienti;
 	}
@@ -159,6 +170,14 @@ public class SmartVetModel {
 
 	public String getCFuser() {
 		return CFuser;
+	}
+
+	public ArrayList<Appuntamenti> getStoricoArray() {
+		return storico;
+	}
+
+	public ArrayList<Appuntamenti> getSaleOccupateArray() {
+		return saleOccupate;
 	}
 
 	public void setNullDueToFornitori(Fornitori forn) {

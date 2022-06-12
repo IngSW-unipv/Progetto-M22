@@ -22,11 +22,12 @@ public class AggiornaVeterinariActionListener implements ActionListener {
 	public void actionPerformed(ActionEvent e) {
 		// TODO Auto-generated method stub
 		veterinariPanel = view.getVeterinariPanel();
-		
+
 		veterinariPanel.getCFText().setEditable(true);
 
 		int elementoSelezionato = veterinariPanel.getTab().getTable().getSelectedRow();
 		((DefaultTableModel) veterinariPanel.getTab().getTable().getModel()).removeRow(elementoSelezionato);
+
 		dbControl.deleteVeterinario(model.getVeterinariArray().get(elementoSelezionato));
 		model.getVeterinariArray().remove(elementoSelezionato);
 
@@ -50,7 +51,7 @@ public class AggiornaVeterinariActionListener implements ActionListener {
 
 		Object rowData[] = new Object[12];
 
-		DefaultTableModel model = (DefaultTableModel) veterinariPanel.getTab().getTable().getModel();
+		DefaultTableModel modello = (DefaultTableModel) veterinariPanel.getTab().getTable().getModel();
 
 		if (flag) {
 
@@ -67,7 +68,9 @@ public class AggiornaVeterinariActionListener implements ActionListener {
 			rowData[10] = commissioni;
 			rowData[11] = iban;
 
-			model.addRow(rowData);
+			modello.addRow(rowData);
+
+			model.getVeterinariArray().add(vet);
 
 		}
 

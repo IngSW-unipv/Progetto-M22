@@ -324,6 +324,7 @@ public class VeterinariPanel extends JPanel {
 	}
 
 	public Veterinari getNuovoVeterinarioTextField() {
+		
 		double stipendio = 0.0;
 		double commiss = 0.0;
 		

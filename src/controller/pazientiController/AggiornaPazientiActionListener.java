@@ -37,7 +37,6 @@ public class AggiornaPazientiActionListener implements ActionListener {
 
 		model.getPazientiArray().remove(elementoSelezionato);
 
-		// String ID_PAZ = pazientiPanel.getID_PAZText().getText();
 		String nome = pazientiPanel.getNomeText().getText();
 		String specie = pazientiPanel.getSpecieText().getText();
 		String razza = pazientiPanel.getRazzaText().getText();
@@ -99,29 +98,29 @@ public class AggiornaPazientiActionListener implements ActionListener {
 
 		DefaultTableModel modello = (DefaultTableModel) pazientiPanel.getTabellaPazienti().getTable().getModel();
 
-		Paziente paz = new Paziente(nome, specie, razza, sqlDate, sesso, vet, GruppoSanguigno, microchip, sterilizzato,
+		Paziente paz = new Paziente(ID_PAZ, nome, specie, razza, sqlDate, sesso, vet, GruppoSanguigno, microchip, sterilizzato,
 				peso, sqlDate2, cl, note);
 
-		dbControl.updatePaziente(paz, ID_PAZ);
+		dbControl.updatePaziente(paz);
 
 		// boolean flag = dbControl.addNuovoPaziente(paz);
 
-		Object rowData[] = new Object[13];
+		Object rowData[] = new Object[14];
 
-		// rowData[0] = ID_PAZ;
-		rowData[0] = nome;
-		rowData[1] = specie;
-		rowData[2] = razza;
-		rowData[3] = sqlDate;
-		rowData[4] = sesso;
-		rowData[5] = vet.getCF();
-		rowData[6] = GruppoSanguigno;
-		rowData[7] = microchip;
-		rowData[8] = sterilizzato;
-		rowData[9] = peso;
-		rowData[10] = sqlDate2;
-		rowData[11] = cl.getCF();
-		rowData[12] = note;
+		rowData[0] = ID_PAZ;
+		rowData[1] = nome;
+		rowData[2] = specie;
+		rowData[3] = razza;
+		rowData[4] = sqlDate;
+		rowData[5] = sesso;
+		rowData[6] = vet.getCF();
+		rowData[7] = GruppoSanguigno;
+		rowData[8] = microchip;
+		rowData[9] = sterilizzato;
+		rowData[10] = peso;
+		rowData[11] = sqlDate2;
+		rowData[12] = cl.getCF();
+		rowData[13] = note;
 
 		model.getPazientiArray().add(paz);
 		modello.addRow(rowData);

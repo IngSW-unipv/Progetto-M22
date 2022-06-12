@@ -30,24 +30,36 @@ public class AggiornaFarmaciActionListener implements ActionListener {
 
 		int elementoSelezionato = farmaciPanel.getTabellaFarmaci().getTable().getSelectedRow();
 		((DefaultTableModel) farmaciPanel.getTabellaFarmaci().getTable().getModel()).removeRow(elementoSelezionato);
+
 		dbControl.deleteLotto(model.getLottoFarmaciArray().get(elementoSelezionato));
+
 		model.getLottoFarmaciArray().remove(elementoSelezionato);
 
 		String IDLotto = farmaciPanel.getIDLottoText().getText();
 		String mode = farmaciPanel.getModeText().getText();
 		String type = farmaciPanel.getTipoText().getText();
 		Fornitori forn = costruisciFornitore();
-		Date dataScadenza = farmaciPanel.getDataScadenza().getDate();
+		Date dataScadenza = null;
+		java.sql.Date sqlDate = null;
 		SimpleDateFormat sdf = new SimpleDateFormat("MM-dd-yyyy");
 
 		try {
-			dataScadenza = sdf.parse(sdf.format(dataScadenza));
-		} catch (ParseException e1) {
+
+			dataScadenza = view.getFarmaciPanel().getDataScadenza().getDate();
+
+			if (dataScadenza != null) {
+
+				dataScadenza = sdf.parse(sdf.format(dataScadenza));
+
+				sqlDate = new java.sql.Date(dataScadenza.getTime());
+			}
+		}
+
+		catch (ParseException e1) {
 			// TODO Auto-generated catch block
 			e1.printStackTrace();
 		}
 
-		java.sql.Date sqlDate = new java.sql.Date(dataScadenza.getTime());
 		int qt = (int) farmaciPanel.getSpinner().getValue();
 
 		DefaultTableModel modello = (DefaultTableModel) farmaciPanel.getTabellaFarmaci().getTable().getModel();
@@ -66,6 +78,7 @@ public class AggiornaFarmaciActionListener implements ActionListener {
 			rowData[5] = qt;
 
 			modello.addRow(rowData);
+			model.getFarmaciScadenzaArray().add(lo);
 		}
 
 		pulisciTextField();

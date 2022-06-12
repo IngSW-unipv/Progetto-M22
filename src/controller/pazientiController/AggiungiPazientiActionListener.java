@@ -90,40 +90,42 @@ public class AggiungiPazientiActionListener implements ActionListener {
 			e1.printStackTrace();
 		}
 
-		Paziente paz = new Paziente(nome, specie, razza, sqlDate, sesso, vet, GruppoSanguigno, microchip, sterilizzato,
+		Paziente paz = new Paziente(0, nome, specie, razza, sqlDate, sesso, vet, GruppoSanguigno, microchip, sterilizzato,
 				peso, sqlDate2, cl, note);
 
 		// aggiungo pazient nelle combobox delle altre finestre
 
 		boolean flag = dbControl.addNuovoPaziente(paz);
+		
 
-		int rigaUltima = dbControl.selectAllIDPaz().length;
+		/*int rigaUltima = dbControl.selectAllIDPazInApp().length;
 		int IDpaz = dbControl.selectID_PAZ(rigaUltima);
-		view.getAppuntamentiPanel().getIDpazText().addItem(IDpaz);
+		view.getAppuntamentiPanel().getIDpazText().addItem(IDpaz);*/
+		int IDpaz = paz.getIDpaz();
 
 		if (flag) {
 
 			model.getPazientiArray().add(paz);
 
-			Object rowData[] = new Object[13];
+			Object rowData[] = new Object[14];
 
 			DefaultTableModel modello = (DefaultTableModel) view.getPazientiPanel().getTabellaPazienti().getTable()
 					.getModel();
 
-			// rowData[0] = ID_PAZ;
-			rowData[0] = nome;
-			rowData[1] = specie;
-			rowData[2] = razza;
-			rowData[3] = sqlDate;
-			rowData[4] = sesso;
-			rowData[5] = vet.getCF();
-			rowData[6] = GruppoSanguigno;
-			rowData[7] = microchip;
-			rowData[8] = sterilizzato;
-			rowData[9] = peso;
-			rowData[10] = sqlDate2;
-			rowData[11] = cl.getCF();
-			rowData[12] = note;
+			rowData[0] = IDpaz;
+			rowData[1] = nome;
+			rowData[2] = specie;
+			rowData[3] = razza;
+			rowData[4] = sqlDate;
+			rowData[5] = sesso;
+			rowData[6] = vet.getCF();
+			rowData[7] = GruppoSanguigno;
+			rowData[8] = microchip;
+			rowData[9] = sterilizzato;
+			rowData[10] = peso;
+			rowData[11] = sqlDate2;
+			rowData[12] = cl.getCF();
+			rowData[13] = note;
 
 			modello.addRow(rowData);
 

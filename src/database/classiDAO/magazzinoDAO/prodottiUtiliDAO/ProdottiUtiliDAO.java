@@ -3,6 +3,7 @@ package database.classiDAO.magazzinoDAO.prodottiUtiliDAO;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.sql.Statement;
 import java.util.ArrayList;
 
 import database.classiDAO.anagraficaDAO.fornitoriDAO.FornitoriDAO;
@@ -34,7 +35,7 @@ public class ProdottiUtiliDAO implements IProdottiUtiliDAO {
 
 				Fornitori fornitore = forn.select_Forn(PIVA_Fornitore);
 
-				ProdottiUtili p = new ProdottiUtili(rs1.getString(1), rs1.getString(2), rs1.getInt(3), fornitore);
+				ProdottiUtili p = new ProdottiUtili(rs1.getInt(4), rs1.getString(1), rs1.getString(2), rs1.getInt(3), fornitore);
 
 				result.add(p);
 			}
@@ -49,17 +50,26 @@ public class ProdottiUtiliDAO implements IProdottiUtiliDAO {
 
 		String query = "INSERT INTO PRODOTTI_UTILI (NOME,TIPO,QTA,PIVA) values (?, ?, ?, ?);";
 
+		
+		ResultSet rs;
 		PreparedStatement stmt = null;
+		int COD = 0;
 
 		try {
 
-			stmt = db.getConnection().prepareStatement(query);
+			stmt = db.getConnection().prepareStatement(query,  Statement.RETURN_GENERATED_KEYS);
 
 			stmt.setString(1, p.getNome());
 			stmt.setString(2, p.getType());
 			stmt.setInt(3, p.getQuantita());
 			stmt.setString(4, p.getFornitore().getPIVA());
+			
 			stmt.executeUpdate();
+			
+			rs = stmt.getGeneratedKeys();
+			rs.next();
+			COD = rs.getInt(1);
+			p.setCOD(COD);
 		}
 
 		catch (SQLException e) {
@@ -111,9 +121,9 @@ public class ProdottiUtiliDAO implements IProdottiUtiliDAO {
 		}
 	}
 
-	public void updateProdottiUtili(int COD, ProdottiUtili p) {
+	public void updateProdottiUtili(ProdottiUtili p) {
 
-		String query = "UPDATE PRODOTTI_UTILI SET NOME = ?, TIPO = ?, QTA = ?, PIVA = ?" + " where COD_PROD=\"" + COD
+		String query = "UPDATE PRODOTTI_UTILI SET NOME = ?, TIPO = ?, QTA = ?, PIVA = ?" + " where COD_PROD=\"" + p.getCOD()
 				+ "\"";
 		PreparedStatement stmt = null;
 
@@ -128,6 +138,8 @@ public class ProdottiUtiliDAO implements IProdottiUtiliDAO {
 			stmt.executeUpdate();
 
 			stmt.executeUpdate();
+			
+			p.setCOD(p.getCOD());
 		}
 
 		catch (SQLException e) {

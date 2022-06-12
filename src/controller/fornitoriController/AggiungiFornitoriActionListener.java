@@ -33,7 +33,7 @@ public class AggiungiFornitoriActionListener implements ActionListener {
 			
 			String rowData[] = new String[6];
 
-			DefaultTableModel model = (DefaultTableModel) view.getFornitoriPanel().getTab().getTable().getModel();
+			DefaultTableModel modello = (DefaultTableModel) view.getFornitoriPanel().getTab().getTable().getModel();
 
 			rowData[0] = view.getFornitoriPanel().getNuovoFornitoreTextField().getPIVA();
 			rowData[1] = view.getFornitoriPanel().getNuovoFornitoreTextField().getNomeAzienda();
@@ -42,7 +42,7 @@ public class AggiungiFornitoriActionListener implements ActionListener {
 			rowData[4] = view.getFornitoriPanel().getNuovoFornitoreTextField().getSede();
 			rowData[5] = view.getFornitoriPanel().getNuovoFornitoreTextField().getIBAN();
 
-			model.addRow(rowData);
+			modello.addRow(rowData);
 
 			pulisciTextField();
 			

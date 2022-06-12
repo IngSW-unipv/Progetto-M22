@@ -6,7 +6,7 @@ import javax.swing.table.DefaultTableModel;
 
 public class TabellaAppuntamentiPanel {
 
-	JTable table;
+	private JTable table;
 
 	public TabellaAppuntamentiPanel(JScrollPane scrollPane) {
 

@@ -4,10 +4,19 @@ import model.anagrafica.fornitori.Fornitori;
 
 public class ProdottoBase {
 
+	private int COD;
 	private String nome;
 	private String type;
 	private int quantita;
 	private Fornitori forn;
+
+	public int getCOD() {
+		return COD;
+	}
+
+	public void setCOD(int cOD) {
+		COD = cOD;
+	}
 
 	public String getNome() {
 		return nome;
@@ -25,13 +34,13 @@ public class ProdottoBase {
 		return forn;
 	}
 
-
 	public void setForn(Fornitori forn) {
 		this.forn = forn;
 	}
 
-	public ProdottoBase(String nome, String type, int quantita, Fornitori forn) {
+	public ProdottoBase(int COD, String nome, String type, int quantita, Fornitori forn) {
 		super();
+		this.COD = COD;
 		this.nome = nome;
 		this.type = type;
 		this.quantita = quantita;

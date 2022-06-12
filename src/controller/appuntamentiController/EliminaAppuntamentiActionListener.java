@@ -20,16 +20,22 @@ public class EliminaAppuntamentiActionListener implements ActionListener {
 		// TODO Auto-generated method stub
 
 		DefaultTableModel modello = (DefaultTableModel) view.getAppuntamentiPanel().getTab().getTable().getModel();
-
+		DefaultTableModel modelloStorico = (DefaultTableModel) view.getStoricoPanel().getTable().getModel();
+		DefaultTableModel modelloSale= (DefaultTableModel) view.getSaleOccupatePanel().getTable().getModel();
+		
 		int elementoSelezionato = view.getAppuntamentiPanel().getTab().getTable().getSelectedRow();
 
 		int cod = dbControl.selectIDappuntamenti(elementoSelezionato);
 
 		modello.removeRow(elementoSelezionato);
+		modelloStorico.removeRow(elementoSelezionato);
+		modelloSale.removeRow(elementoSelezionato);
 
 		dbControl.deleteAppuntamenti(cod);
 
 		model.getAppuntamentiArray().remove(elementoSelezionato);
+		model.getStoricoArray().remove(elementoSelezionato);
+		model.getSaleOccupateArray().remove(elementoSelezionato);
 	}
 
 	public EliminaAppuntamentiActionListener(SmartVetModel model, MainView view, DbControllerSingleton dbControl) {

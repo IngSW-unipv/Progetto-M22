@@ -21,6 +21,8 @@ public class MenuView extends JMenuBar {
 	private JMenu mnAppuntamenti;
 	private JMenuItem menuItemPazienti;
 	private JMenuItem menuItemAppuntamenti;
+	private JMenuItem menuItemStorico;
+	private JMenuItem mntmSaleOccupate;
 
 	public MenuView() {
 
@@ -55,13 +57,18 @@ public class MenuView extends JMenuBar {
 
 		mnAppuntamenti = new JMenu("Appuntamenti");
 		add(mnAppuntamenti);
-		
-		
+
 		menuItemPazienti = new JMenuItem("Pazienti\n");
 		getMnPazienti().add(menuItemPazienti);
-		
-	    menuItemAppuntamenti = new JMenuItem("Appuntamenti\n");
+
+		menuItemAppuntamenti = new JMenuItem("Appuntamenti\n");
 		getMnAppuntamenti().add(menuItemAppuntamenti);
+
+		menuItemStorico = new JMenuItem("Storico");
+		mnAppuntamenti.add(menuItemStorico);
+
+		mntmSaleOccupate = new JMenuItem("Occupazione sale");
+		mnAppuntamenti.add(mntmSaleOccupate);
 	}
 
 	public static long getSerialversionuid() {
@@ -116,10 +123,16 @@ public class MenuView extends JMenuBar {
 		return menuItemPazienti;
 	}
 
-
 	public JMenuItem getMenuItemAppuntamenti() {
 		return menuItemAppuntamenti;
 	}
 
+	public JMenuItem getMenuItemStorico() {
+		return menuItemStorico;
+	}
+
+	public JMenuItem getMntmSaleOccupate() {
+		return mntmSaleOccupate;
+	}
 
 }

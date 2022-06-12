@@ -83,8 +83,11 @@ public class AggiungiAppuntamentiActionListener implements ActionListener {
 		Paziente paz = costruisciPaziente();
 		Veterinari vet = costruisciVeterinario();
 
-		Appuntamenti nuovoApp = new Appuntamenti(paz, sala, tipo, sqlDate, timeValue, vet, costo, note);
-		boolean flag = dbControl.addNuovoAppuntamento(nuovoApp, ID_PAZ);
+		Appuntamenti nuovoApp = new Appuntamenti(0, paz, sala, tipo, sqlDate, timeValue, vet, costo, note);
+		
+		boolean flag = dbControl.addNuovoAppuntamento(nuovoApp);
+		model.getStoricoArray().add(nuovoApp);
+		model.getSaleOccupateArray().add(nuovoApp);
 
 		if (flag) {
 
@@ -93,8 +96,10 @@ public class AggiungiAppuntamentiActionListener implements ActionListener {
 			Object rowData[] = new Object[8];
 
 			DefaultTableModel modello = (DefaultTableModel) view.getAppuntamentiPanel().getTab().getTable().getModel();
+			DefaultTableModel modelloStorico = (DefaultTableModel) view.getStoricoPanel().getTable().getModel();
+			DefaultTableModel modelloSale= (DefaultTableModel) view.getSaleOccupatePanel().getTable().getModel();
 
-			// rowData[0] = ID_PAZ;
+	
 			rowData[0] = ID_PAZ;
 			rowData[1] = sala;
 			rowData[2] = tipo;
@@ -105,6 +110,18 @@ public class AggiungiAppuntamentiActionListener implements ActionListener {
 			rowData[7] = note;
 
 			modello.addRow(rowData);
+			modelloStorico.addRow(rowData);
+			
+			Object rowData2[] = new Object[5];
+			
+			rowData2[0] = ID_PAZ;
+			rowData2[1] = sala;
+			rowData2[2] = tipo;
+			rowData2[3] = sqlDate;
+			rowData2[4] = timeValue;
+	
+			
+			modelloSale.addRow(rowData2);
 
 			pulisciTextField();
 
@@ -156,6 +173,7 @@ public class AggiungiAppuntamentiActionListener implements ActionListener {
 	}
 
 	public Veterinari costruisciVeterinario() {
+		
 		String CF = null;
 		
 		

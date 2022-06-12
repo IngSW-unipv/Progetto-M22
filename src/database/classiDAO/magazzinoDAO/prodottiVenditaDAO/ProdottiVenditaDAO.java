@@ -3,6 +3,7 @@ package database.classiDAO.magazzinoDAO.prodottiVenditaDAO;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.sql.Statement;
 import java.util.ArrayList;
 
 import database.classiDAO.anagraficaDAO.fornitoriDAO.FornitoriDAO;
@@ -31,12 +32,12 @@ public class ProdottiVenditaDAO implements IProdottiVenditaDAO {
 
 			while (rs1.next()) {
 				FornitoriDAO forn = new FornitoriDAO();
-				String PIVA_Fornitore = rs1.getString(4);
+				String PIVA_Fornitore = rs1.getString(5);
 
 				Fornitori fornitore = forn.select_Forn(PIVA_Fornitore);
 
-				ProdottiVendita p = new ProdottiVendita(rs1.getString(1), rs1.getString(2), rs1.getInt(3), fornitore,
-						rs1.getDate(5));
+				ProdottiVendita p = new ProdottiVendita(rs1.getInt(4), rs1.getString(1), rs1.getString(2),
+						rs1.getInt(3), fornitore, rs1.getDate(6));
 
 				result.add(p);
 			}
@@ -50,20 +51,28 @@ public class ProdottiVenditaDAO implements IProdottiVenditaDAO {
 	@Override
 	public boolean insertProdottiVendita(ProdottiVendita p) {
 
-		String query = "INSERT INTO PRODOTTI_UTILI (NOME,TIPO,QTA,PIVA, DATA_SCAD) values (?, ?, ?, ?, ?);";
+		String query = "INSERT INTO PRODOTTI_VENDITA (NOME, TIPO, QTA, PIVA, DATA_SCAD) values (?, ?, ?, ?, ?);";
 
+		ResultSet rs;
 		PreparedStatement stmt = null;
+		int COD = 0;
 
 		try {
 
-			stmt = db.getConnection().prepareStatement(query);
+			stmt = db.getConnection().prepareStatement(query,  Statement.RETURN_GENERATED_KEYS);
 
 			stmt.setString(1, p.getNome());
 			stmt.setString(2, p.getType());
 			stmt.setInt(3, p.getQuantita());
 			stmt.setString(4, p.getFornitore().getPIVA());
-			stmt.setDate(4, p.getDataScadenza());
+			stmt.setDate(5, p.getDataScadenza());
+
 			stmt.executeUpdate();
+
+			rs = stmt.getGeneratedKeys();
+			rs.next();
+			COD = rs.getInt(1);
+			p.setCOD(COD);
 		}
 
 		catch (SQLException e) {
@@ -115,10 +124,10 @@ public class ProdottiVenditaDAO implements IProdottiVenditaDAO {
 		}
 	}
 
-	public void updateProdottiVendita(int COD, ProdottiVendita p) {
+	public void updateProdottiVendita(ProdottiVendita p) {
 
-		String query = "UPDATE PRODOTTI_UTILI SET NOME = ?, TIPO = ?, QTA = ?, PIVA = ?, DATA_SCAD = ?" + ""
-				+ " where COD_PROD=\"" + COD + "\"";
+		String query = "UPDATE PRODOTTI_VENDITA SET NOME = ?, TIPO = ?, QTA = ?, PIVA = ?, DATA_SCAD = ?" + ""
+				+ " where COD_PROD=\"" + p.getCOD() + "\"";
 		PreparedStatement stmt = null;
 
 		try {
@@ -133,6 +142,8 @@ public class ProdottiVenditaDAO implements IProdottiVenditaDAO {
 			stmt.executeUpdate();
 
 			stmt.executeUpdate();
+
+			p.setCOD(p.getCOD());
 		}
 
 		catch (SQLException e) {

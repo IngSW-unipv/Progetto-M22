@@ -8,6 +8,7 @@ import java.awt.event.ActionListener;
 import javax.swing.JFrame;
 
 import controller.appuntamentiController.AppuntamentiController;
+import controller.appuntamentiController.StoricoController.StoricoController;
 import database.connectionSQL.DbControllerSingleton;
 import model.SmartVetModel;
 import view.MainView;
@@ -20,7 +21,8 @@ public class GoBtnActionListener implements ActionListener {
 	private DbControllerSingleton dbControl;
 	private String CF;
 	private AppuntamentiController appuntamentiController;
-
+	private StoricoController storicoController;
+	
 	@Override
 	public void actionPerformed(ActionEvent e) {
 		// TODO Auto-generated method stub
@@ -31,7 +33,9 @@ public class GoBtnActionListener implements ActionListener {
 		boolean isMatching = dbControl.isMatchingLogin(user, pw);
 
 		if (isMatching) {
-
+			
+			CF = dbControl.getCFuserLoggedIn(user, pw);
+			
 			view.getLoginView().setVisible(false);
 			Toolkit kit = Toolkit.getDefaultToolkit();
 			Dimension screenSize = kit.getScreenSize(); // restituisce la dimensione dello schermo come oggetto
@@ -49,21 +53,29 @@ public class GoBtnActionListener implements ActionListener {
 
 			view.getContentPane().add(view.getDashboard());
 
-			CF = dbControl.getCFuserLoggedIn(user, pw);
-
+			
 			model.populateCFuser(CF);
-
+			
+			System.out.println(CF + "dimmmi");
+			
+			
+			
 			if (CF.equals("direzione")) {
+				
 				model.populateAppuntamenti(dbControl.selectAllAppuntamenti());
+				model.populateStorico(dbControl.selectAllStorico());
 			}
 
 			else {
+				
 				model.populateAppuntamenti(dbControl.selectAllAppuntamentiDuetovet(CF));
+				model.populateStorico(dbControl.selectAllStoricoDuetovet(CF));
+
 			}
 
 			appuntamentiController = new AppuntamentiController(model, view, dbControl);
-
-			System.out.println("nel listener" + CF);
+			storicoController = new StoricoController(model, view);
+			
 		}
 
 		else {
@@ -77,7 +89,6 @@ public class GoBtnActionListener implements ActionListener {
 	}
 
 	public String getUserEntrato() {
-		System.out.println("nel metodo" + CF);
 		return CF;
 	}
 

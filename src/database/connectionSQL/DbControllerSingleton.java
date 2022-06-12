@@ -8,6 +8,7 @@ import database.classiDAO.anagraficaDAO.fornitoriDAO.FornitoriDAO;
 import database.classiDAO.anagraficaDAO.veterinariDAO.VeterinariDAO;
 import database.classiDAO.appuntamentiDAO.AppuntamentiDAO;
 import database.classiDAO.appuntamentiDAO.SalaDAO;
+import database.classiDAO.appuntamentiDAO.StoricoDAO;
 import database.classiDAO.loginDAO.LoginDAO;
 import database.classiDAO.magazzinoDAO.farmaciDAO.LottoFarmaciDAO;
 import database.classiDAO.magazzinoDAO.prodottiUtiliDAO.ProdottiUtiliDAO;
@@ -38,6 +39,7 @@ public class DbControllerSingleton {
 	private ProdottiVenditaDAO prods_v = new ProdottiVenditaDAO();
 	private SalaDAO sale = new SalaDAO();
 	private LoginDAO log = new LoginDAO();
+	private StoricoDAO storico = new StoricoDAO();
 
 	public DbControllerSingleton() {
 
@@ -131,12 +133,12 @@ public class DbControllerSingleton {
 		return paz.selectAll();
 	}
 
-	public int[] selectAllIDPaz() {
-		return app.selectAllIDpaz();
+	public int[] selectAllIDpaz() {
+		return paz.selectAllIDpaz();
 	}
 
-	public void updatePaziente(Paziente paziente, int ID_PAZ) {
-		paz.updatePaziente(ID_PAZ, paziente);
+	public void updatePaziente(Paziente paziente) {
+		paz.updatePaziente(paziente);
 	}
 
 	public boolean addNuovoPaziente(Paziente pazNew) {
@@ -154,6 +156,8 @@ public class DbControllerSingleton {
 	public Paziente selectPazienteFromID(int ID) {
 		return paz.selectPazientefromID(ID);
 	}
+	
+
 	
 	
 	
@@ -177,21 +181,34 @@ public class DbControllerSingleton {
 		return app.selectAllDueToVeterinario(CFvet);
 	}
 
-	public int[] selectAllIDdueToVeterinari(String CFvet) {
-		return app.selectAllIDpazdueToVeterinario(CFvet);
-	}
 
 	public void deleteAppuntamenti(int cod) {
 		app.deleteAppuntamenti(cod);
 	}
 
-	public void updateAppuntamenti(int COD, Appuntamenti p, int IDpaz) {
-		app.updateAppuntamenti(COD, p, IDpaz);
+	public void updateAppuntamenti(Appuntamenti p) {
+		app.updateAppuntamenti( p);
 	}
 
-	public boolean addNuovoAppuntamento(Appuntamenti p, int ID_PAZ) {
-		return app.insertAppuntamenti(p, ID_PAZ);
+	public boolean addNuovoAppuntamento(Appuntamenti p) {
+		return app.insertAppuntamenti(p);
 	}
+
+	
+	
+	
+	
+	// STORICO
+	
+	public ArrayList<Appuntamenti> selectAllStorico() {
+		return storico.selectAll();
+	}
+	
+	public ArrayList<Appuntamenti> selectAllStoricoDuetovet(String CFvet) {
+		return storico.selectAllDueToVeterinario(CFvet);
+	}
+	
+	
 	
 	
 	
@@ -240,8 +257,8 @@ public class DbControllerSingleton {
 		prods_u.deleteProdottiUtili(cod);
 	}
 
-	public void updateProdottiUtili(ProdottiUtili p, int COD) {
-		prods_u.updateProdottiUtili(COD, p);
+	public void updateProdottiUtili(ProdottiUtili p) {
+		prods_u.updateProdottiUtili(p);
 	}
 	
 	
@@ -255,9 +272,13 @@ public class DbControllerSingleton {
 	public ArrayList<ProdottiVendita> selectAllProdottiVendita() {
 		return prods_v.selectAll();
 	}
+	
+	public boolean addProdottiVendita(ProdottiVendita p) {
+		return prods_v.insertProdottiVendita(p);
+	}
 
-	public void updateProdottiVendita(ProdottiVendita p, int COD) {
-		prods_v.updateProdottiVendita(COD, p);
+	public void updateProdottiVendita(ProdottiVendita p) {
+		prods_v.updateProdottiVendita(p);
 	}
 
 	public void deleteProdottiVendita(int cod) {
@@ -276,7 +297,6 @@ public class DbControllerSingleton {
 	public String[] selectallIDsale() {
 		return sale.selectSale();
 	}
-	
 	
 	
 	

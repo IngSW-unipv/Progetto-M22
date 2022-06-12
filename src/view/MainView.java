@@ -5,13 +5,17 @@ import java.awt.Toolkit;
 
 import javax.swing.JFrame;
 
+import controller.prodottiVenditaController.ProdottiVenditaController;
 import view.appuntamenti.AppuntamentiPanel;
+import view.appuntamenti.StoricoPanel;
 import view.clienti.ClientiPanel;
 import view.dashboard.DashBoardView;
 import view.fornitori.FornitoriPanel;
 import view.login.LoginView;
 import view.magazzino.farmaci.FarmaciPanel;
 import view.magazzino.prodottiUtili.ProdottiUtiliPanel;
+import view.magazzino.prodottiVendita.ProdottiVenditaPanel;
+import view.occupazioneSale.OccupazioneSalePanel;
 import view.pazienti.PazientiPanel;
 import view.veterinari.VeterinariPanel;
 
@@ -28,16 +32,19 @@ public class MainView extends JFrame {
 	private PazientiPanel pazientiPanel;
 	private AppuntamentiPanel appuntamentiPanel;
 	private ProdottiUtiliPanel prodottiUtiliPanel;
+	private StoricoPanel storicoPanel;
+	private OccupazioneSalePanel saleOccupatePanel;
+	private ProdottiVenditaPanel prodottiVenditaPanel;
 
 	public MainView() {
-		
+
 		Toolkit kit = Toolkit.getDefaultToolkit();
 		Dimension screenSize = kit.getScreenSize(); // restituisce la dimensione dello schermo come oggetto Dimension
 		int screenHeight = screenSize.height;
 		int screenWidth = screenSize.width;
 
 		// centra il frame nello schermo
-		setSize(screenWidth/3, screenHeight/3);
+		setSize(screenWidth / 3, screenHeight / 3);
 		setLocationRelativeTo(null); // consente di riposizionare il frame
 		setResizable(false);
 		setVisible(true);
@@ -46,10 +53,10 @@ public class MainView extends JFrame {
 
 		loginView = new LoginView();
 		getContentPane().add(loginView);
-		
+
 		dashboard = new DashBoardView();
-		
-		//getContentPane().add(dashboard);
+
+		// getContentPane().add(dashboard);
 
 		clientiPanel = new ClientiPanel();
 		fornitoriPanel = new FornitoriPanel();
@@ -58,6 +65,9 @@ public class MainView extends JFrame {
 		pazientiPanel = new PazientiPanel();
 		appuntamentiPanel = new AppuntamentiPanel();
 		prodottiUtiliPanel = new ProdottiUtiliPanel();
+		storicoPanel = new StoricoPanel();
+		saleOccupatePanel = new OccupazioneSalePanel();
+		prodottiVenditaPanel = new ProdottiVenditaPanel();
 	}
 
 	public DashBoardView getDashboard() {
@@ -95,6 +105,17 @@ public class MainView extends JFrame {
 	public LoginView getLoginView() {
 		return loginView;
 	}
-	
+
+	public StoricoPanel getStoricoPanel() {
+		return storicoPanel;
+	}
+
+	public OccupazioneSalePanel getSaleOccupatePanel() {
+		return saleOccupatePanel;
+	}
+
+	public ProdottiVenditaPanel getProdottiVenditaPanel() {
+		return prodottiVenditaPanel;
+	}
 
 }

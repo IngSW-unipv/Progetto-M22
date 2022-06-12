@@ -47,7 +47,7 @@ public class AppuntamentiController {
 
 		for (int i = 0; i < model.getAppuntamentiArray().size(); i++) {
 
-			rowData[i][0] = dbControl.selectAllIDPaz()[i];
+			rowData[i][0] = model.getAppuntamentiArray().get(i).getPaziente().getIDpaz();
 			rowData[i][1] = model.getAppuntamentiArray().get(i).getSala();
 			rowData[i][2] = model.getAppuntamentiArray().get(i).getTipo();
 			rowData[i][3] = model.getAppuntamentiArray().get(i).getData();
@@ -67,7 +67,7 @@ public class AppuntamentiController {
 
 		for (int i = 0; i < model.getAppuntamentiArray().size(); i++) {
 
-			rowData[i][0] = dbControl.selectAllIDdueToVeterinari(model.getCFuser())[i];
+			rowData[i][0] = model.getAppuntamentiArray().get(i).getPaziente().getIDpaz();
 			rowData[i][1] = model.getAppuntamentiArray().get(i).getSala();
 			rowData[i][2] = model.getAppuntamentiArray().get(i).getTipo();
 			rowData[i][3] = model.getAppuntamentiArray().get(i).getData();
@@ -102,8 +102,7 @@ public class AppuntamentiController {
 				dbControl);
 		view.getAppuntamentiPanel().getBtnElimina().addActionListener(deleteAppuntamenti);
 
-		ModificaAppuntamentiActionListener modificaAppuntamenti = new ModificaAppuntamentiActionListener(model, view,
-				dbControl);
+		ModificaAppuntamentiActionListener modificaAppuntamenti = new ModificaAppuntamentiActionListener(model, view);
 		view.getAppuntamentiPanel().getBtnModifica().addActionListener(modificaAppuntamenti);
 
 		AggiornaAppuntamentiActionListener aggiornaAppuntamenti = new AggiornaAppuntamentiActionListener(model,

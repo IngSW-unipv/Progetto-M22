@@ -24,7 +24,7 @@ public class AggiungiClienteActionListener implements ActionListener {
 		// TODO Auto-generated method stub
 
 		clientiPanel = view.getClientiPanel();
-		// Aggiungi nuovo cliente
+		
 		boolean flag = dbControl.addNuovoCliente(clientiPanel.getNuovoClienteTextField());
 
 		// aggiorno combobox delle altre finestre

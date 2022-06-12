@@ -31,6 +31,8 @@ public class AggiornaAppuntamentiActionListener implements ActionListener {
 		int COD = dbControl.selectIDappuntamenti(elementoSelezionato);
 
 		model.getAppuntamentiArray().remove(elementoSelezionato);
+		model.getStoricoArray().remove(elementoSelezionato);
+		model.getSaleOccupateArray().remove(elementoSelezionato);
 
 		int IDpaz = (int) view.getAppuntamentiPanel().getIDpazText().getSelectedItem();
 		String sala = view.getAppuntamentiPanel().getSalaText().getSelectedItem().toString();
@@ -84,13 +86,15 @@ public class AggiornaAppuntamentiActionListener implements ActionListener {
 		String note = view.getAppuntamentiPanel().getNoteText().getText().toString();
 
 		DefaultTableModel modello = (DefaultTableModel) view.getAppuntamentiPanel().getTab().getTable().getModel();
+		DefaultTableModel modelloStorico = (DefaultTableModel) view.getStoricoPanel().getTable().getModel();
+		DefaultTableModel modelloSale = (DefaultTableModel) view.getSaleOccupatePanel().getTable().getModel();
 
 		Paziente paz = costruisciPaziente();
 		Veterinari vet = costruisciVeterinario();
 
-		Appuntamenti app = new Appuntamenti(paz, sala, tipo, sqlDate, timeValue, vet, costo, note);
+		Appuntamenti app = new Appuntamenti(COD, paz, sala, tipo, sqlDate, timeValue, vet, costo, note);
 
-		dbControl.updateAppuntamenti(COD, app, IDpaz);
+		dbControl.updateAppuntamenti(app);
 
 		Object rowData[] = new Object[8];
 
@@ -103,8 +107,22 @@ public class AggiornaAppuntamentiActionListener implements ActionListener {
 		rowData[6] = costo;
 		rowData[7] = note;
 
-		model.getPazientiArray().add(paz);
+		model.getAppuntamentiArray().add(app);
+		model.getStoricoArray().add(app);
+		model.getSaleOccupateArray().add(app);
+
 		modello.addRow(rowData);
+		modelloStorico.addRow(rowData);
+
+		Object rowData2[] = new Object[5];
+
+		rowData2[0] = IDpaz;
+		rowData2[1] = sala;
+		rowData2[2] = tipo;
+		rowData2[3] = sqlDate;
+		rowData2[4] = timeValue;
+
+		modelloSale.addRow(rowData2);
 
 		pulisciTextField();
 	}
@@ -119,7 +137,7 @@ public class AggiornaAppuntamentiActionListener implements ActionListener {
 	public Veterinari costruisciVeterinario() {
 
 		String CF = null;
-		
+
 		if (model.getCFuser() == "direzione") {
 
 			CF = (String) view.getAppuntamentiPanel().getCFvetText().getSelectedItem();

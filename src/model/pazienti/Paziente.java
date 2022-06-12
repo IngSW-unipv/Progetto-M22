@@ -7,7 +7,7 @@ import model.anagrafica.veterinari.Veterinari;
 
 public class Paziente {
 
-	//private String ID_PAZ;
+	private int IDpaz;
 	private String nome;
 	private String specie;
 	private String razza;
@@ -22,10 +22,16 @@ public class Paziente {
 	private Clienti Cliente;
 	private String note;
 
-	
-
 	public String getNome() {
 		return nome;
+	}
+
+	public int getIDpaz() {
+		return IDpaz;
+	}
+
+	public void setIDpaz(int iDpaz) {
+		IDpaz = iDpaz;
 	}
 
 	public String getSpecie() {
@@ -50,7 +56,7 @@ public class Paziente {
 
 	public String getGruppoSanguigno() {
 		return GruppoSanguigno;
-	} 
+	}
 
 	public Boolean getMicrochip() {
 		return microchip;
@@ -76,10 +82,11 @@ public class Paziente {
 		return note;
 	}
 
-	public Paziente(String nome, String specie, String razza, Date dataNascita, String sesso, Veterinari veterinario,
+	public Paziente(int IDpaz, String nome, String specie, String razza, Date dataNascita, String sesso, Veterinari veterinario,
 			String gruppoSanguigno, Boolean microchip, Boolean sterilizzato, double peso, Date dataMorte,
 			Clienti cliente, String note) {
 		super();
+		this.IDpaz = IDpaz;
 		this.nome = nome;
 		this.specie = specie;
 		this.razza = razza;
@@ -97,10 +104,11 @@ public class Paziente {
 
 	@Override
 	public String toString() {
-		return "Paziente [nome=" + nome + ", specie=" + specie + ", razza=" + razza
-				+ ", DataNascita=" + DataNascita + ", sesso=" + sesso + ", Veterinario=" + Veterinario
-				+ ", GruppoSanguigno=" + GruppoSanguigno + ", microchip=" + microchip + ", sterilizzato=" + sterilizzato
-				+ ", peso=" + peso + ", DataMorte=" + DataMorte + ", Cliente=" + Cliente + ", note=" + note + "]";
+		return "Paziente [nome=" + nome + ", specie=" + specie + ", razza=" + razza + ", DataNascita=" + DataNascita
+				+ ", sesso=" + sesso + ", Veterinario=" + Veterinario + ", GruppoSanguigno=" + GruppoSanguigno
+				+ ", microchip=" + microchip + ", sterilizzato=" + sterilizzato + ", peso=" + peso + ", DataMorte="
+				+ DataMorte + ", Cliente=" + Cliente + ", note=" + note + "]";
 	}
+
 
 }

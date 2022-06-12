@@ -26,6 +26,7 @@ public class EliminaFarmaciActionListener implements ActionListener {
 		modello.removeRow(elementoSelezionato);
 
 		dbControl.deleteLotto(model.getLottoFarmaciArray().get(elementoSelezionato));
+		
 		model.getLottoFarmaciArray().remove(elementoSelezionato);
 	}
 
