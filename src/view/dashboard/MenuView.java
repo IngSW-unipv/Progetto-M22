@@ -32,7 +32,7 @@ public class MenuView extends JMenuBar {
 
 	public MenuView() {
 
-		setBounds(24, 24, 500, 31);
+		setBounds(24, 24, 600, 31);
 
 		mnAnagrafica = new JMenu("Anagrafica");
 		add(mnAnagrafica);
@@ -170,7 +170,7 @@ public class MenuView extends JMenuBar {
 
 	public JMenuItem getMntmEntrate() {
 		return mntmEntrate;
-	}
+	} 
 
 	public JMenuItem getMntmUscite() {
 		return mntmUscite;

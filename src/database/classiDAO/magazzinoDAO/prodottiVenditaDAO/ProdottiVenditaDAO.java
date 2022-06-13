@@ -16,15 +16,18 @@ public class ProdottiVenditaDAO implements IProdottiVenditaDAO {
 	private DbSingleton db;
 
 	public ProdottiVenditaDAO() {
-		super();
+		super(); 
+		db = DbSingleton.getInstance();
 
 	}
-
+	
+	
+	@Override
 	public ArrayList<ProdottiVendita> selectAll() {
 		ArrayList<ProdottiVendita> result = new ArrayList<>();
 
 		ResultSet rs1;
-		db = DbSingleton.getInstance();
+		
 
 		try {
 			String query = "SELECT * FROM PRODOTTI_VENDITA";
@@ -82,6 +85,8 @@ public class ProdottiVenditaDAO implements IProdottiVenditaDAO {
 		return true;
 	}
 
+	
+	@Override
 	public int selectCODprodotto(int rigaSelezionata) {
 
 		ResultSet rs1;
@@ -106,6 +111,8 @@ public class ProdottiVenditaDAO implements IProdottiVenditaDAO {
 		return -1;
 	}
 
+	
+	@Override
 	public void deleteProdottiVenditai(int cod) {
 
 		String query = "delete from PRODOTTI_VENDITA where COD_PROD=\"" + cod + "\"";
@@ -124,6 +131,8 @@ public class ProdottiVenditaDAO implements IProdottiVenditaDAO {
 		}
 	}
 
+	
+	@Override
 	public void updateProdottiVendita(ProdottiVendita p) {
 
 		String query = "UPDATE PRODOTTI_VENDITA SET NOME = ?, TIPO = ?, QTA = ?, PIVA = ?, DATA_SCAD = ?" + ""

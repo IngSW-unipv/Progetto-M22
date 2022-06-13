@@ -11,7 +11,7 @@ public class DbSingleton {
 	private static DbSingleton db;
 	private Statement statement;
 
-	private DbSingleton() {
+	private DbSingleton() { 
 
 		startConnection();
 

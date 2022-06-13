@@ -36,6 +36,7 @@ public class ProdottiVenditaPanel extends JPanel {
 	private JButton btnAggiorna;
 	private JButton btnHome;
 	private JLabel lblNewLabel;
+	private JButton btnFattura;
 
 	/**
 	 * Create the panel.
@@ -106,7 +107,7 @@ public class ProdottiVenditaPanel extends JPanel {
 		lblFornitore.setBounds(964, 205, 70, 15);
 		add(lblFornitore);
 
-		lblQt = new JLabel("Qt.");
+		lblQt = new JLabel("Qt."); 
 		lblQt.setBounds(970, 132, 70, 15);
 		add(lblQt);
 
@@ -137,6 +138,10 @@ public class ProdottiVenditaPanel extends JPanel {
 		lblNewLabel = new JLabel("Data scadenza");
 		lblNewLabel.setBounds(964, 276, 100, 16);
 		add(lblNewLabel);
+
+		btnFattura = new JButton("Fattura");
+		btnFattura.setBounds(1024, 387, 117, 29);
+		add(btnFattura);
 
 	}
 
@@ -210,6 +215,10 @@ public class ProdottiVenditaPanel extends JPanel {
 
 	public JLabel getLblDataScadenza() {
 		return lblDataScadenza;
+	}
+	
+	public JButton getBtnFattura() {
+		return btnFattura;
 	}
 
 }

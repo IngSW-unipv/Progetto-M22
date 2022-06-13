@@ -19,7 +19,7 @@ public class EliminaProdottiVenditaActionListener implements ActionListener {
 		// TODO Auto-generated method stub
 
 		DefaultTableModel modello = (DefaultTableModel) view.getProdottiVenditaPanel().getTabellaProdottiVenditaPanel()
-				.getTable().getModel();
+				.getTable().getModel(); 
 
 		int elementoSelezionato = view.getProdottiVenditaPanel().getTabellaProdottiVenditaPanel().getTable()
 				.getSelectedRow();

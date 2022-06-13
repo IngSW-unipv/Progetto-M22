@@ -18,7 +18,7 @@ public class ProdottiVendita extends ProdottoBase {
 
 	@Override
 	public String toString() {
-		return "ProdottiVendita [" + super.toString() + "dataScadenza=" + dataScadenza + "]";
+		return "ProdottiVendita [" + super.toString() + "dataScadenza=" + dataScadenza + "]"; 
 	}
 
 }

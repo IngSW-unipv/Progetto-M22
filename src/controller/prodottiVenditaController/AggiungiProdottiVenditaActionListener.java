@@ -16,6 +16,7 @@ import view.MainView;
 import view.PopupError;
 
 public class AggiungiProdottiVenditaActionListener implements ActionListener {
+	
 	private SmartVetModel model;
 	private MainView view;
 	private DbControllerSingleton dbControl;
@@ -28,7 +29,7 @@ public class AggiungiProdottiVenditaActionListener implements ActionListener {
 		String tipo = view.getProdottiVenditaPanel().getTipoText().getText();
 		Fornitori forn = costruisciFornitore();
 		Date dataScadenza = view.getProdottiVenditaPanel().getDataScadenza().getDate();
-
+ 
 		SimpleDateFormat sdf = new SimpleDateFormat("MM-dd-yyyy");
 
 		try {
@@ -73,7 +74,7 @@ public class AggiungiProdottiVenditaActionListener implements ActionListener {
 
 			{
 				PopupError err = new PopupError();
-				err.infoBox("Esiste gi� un prodotto con questo codice", "Impossibile inserire prodotto");
+				err.infoBox("Impossibile inserire prodotto", "Errore");
 				pulisciTextField();
 
 			}

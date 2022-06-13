@@ -11,10 +11,10 @@ public class DashBoardController {
 	private MainView view;
 	private DbControllerSingleton dbControl;
 
-	public DashBoardController(SmartVetModel model, MainView view, DbControllerSingleton dbControl) {
+	public DashBoardController(SmartVetModel model, MainView view) {
 		this.model = model;
 		this.view = view;
-		this.dbControl = dbControl;
+		dbControl = DbControllerSingleton.getInstance();
 
 		fillTableFarmaciScadenza();
 		fillTableAppuntamentiOggi();

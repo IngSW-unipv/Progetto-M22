@@ -1,18 +1,38 @@
-package view;
+package view.amministrazione;
+
+import java.awt.Dimension;
+import java.awt.Toolkit;
 
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JSpinner;
 import javax.swing.JTextField;
+import javax.swing.JButton;
 
 public class PopupQuantitàPrezzo extends JFrame {
+	
+	private static final long serialVersionUID = 1L;
 	private JTextField prezzotext;
 	private JSpinner quantitàSpinner;
 	private JLabel lblprezzo1;
 	private JLabel lblPrezzo2;
 	private JLabel lblQuantità;
+	private JButton btnGo;
 
 	public PopupQuantitàPrezzo() {
+
+		Toolkit kit = Toolkit.getDefaultToolkit();
+		Dimension screenSize = kit.getScreenSize(); // restituisce la dimensione dello schermo come oggetto Dimension
+		int screenHeight = screenSize.height;
+		int screenWidth = screenSize.width;
+
+		// centra il frame nello schermo
+		setSize(screenWidth / 3, screenHeight / 3);
+		setLocationRelativeTo(null); // consente di riposizionare il frame
+		setResizable(false);
+		setVisible(false);
+		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		getContentPane().setLayout(null);
 		getContentPane().setLayout(null);
 
 		quantitàSpinner = new JSpinner();
@@ -35,6 +55,10 @@ public class PopupQuantitàPrezzo extends JFrame {
 		lblQuantità = new JLabel("Inserisci la quantità");
 		lblQuantità.setBounds(32, 162, 136, 16);
 		getContentPane().add(lblQuantità);
+
+		btnGo = new JButton("OK");
+		btnGo.setBounds(342, 211, 117, 29);
+		getContentPane().add(btnGo);
 	}
 
 	public JTextField getPrezzotext() {
@@ -55,6 +79,10 @@ public class PopupQuantitàPrezzo extends JFrame {
 
 	public JLabel getLblQuantità() {
 		return lblQuantità;
+	}
+
+	public JButton getBtnGo() {
+		return btnGo;
 	}
 
 }

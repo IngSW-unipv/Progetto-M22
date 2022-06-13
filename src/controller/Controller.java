@@ -1,8 +1,9 @@
 package controller;
 
+import controller.amministrazioneController.entrateController.EntrateController;
+import controller.amministrazioneController.usciteController.UsciteController;
 import controller.appuntamentiController.occupazioneSaleController.OccupazioneSaleController;
 import controller.clientiController.ClientiController;
-import controller.entrateController.EntrateController;
 import controller.farmaciController.FarmaciController;
 import controller.fornitoriController.FornitoriController;
 import controller.loginController.LoginController;
@@ -31,6 +32,7 @@ public class Controller {
 	private ProdottiVenditaController prodottiVenditaController;
 	private RegistratiController registratiController;
 	private EntrateController entrateController;
+	private UsciteController usciteController;
 
 	public Controller(SmartVetModel m, MainView v) {
 
@@ -43,34 +45,33 @@ public class Controller {
 
 	private void initComponents() {
 
-		dbControl = new DbControllerSingleton();
+		dbControl = DbControllerSingleton.getInstance();
 
-		loginController = new LoginController(view, model, dbControl);
+		loginController = new LoginController(view, model);
 
 		populateArrays();
 
-		clientiController = new ClientiController(model, view, dbControl);
+		clientiController = new ClientiController(model, view);
 
-		veterinariController = new VeterinariController(model, view, dbControl);
+		veterinariController = new VeterinariController(model, view);
 
-		fornitoriController = new FornitoriController(model, view, dbControl);
+		fornitoriController = new FornitoriController(model, view);
 
-		farmaciController = new FarmaciController(model, view, dbControl);
+		farmaciController = new FarmaciController(model, view);
 
-		pazientiController = new PazientiController(model, view, dbControl);
+		pazientiController = new PazientiController(model, view);
 
-		// appuntamentiController = new AppuntamentiController(model, view, dbControl);
+		prodottiUtiliController = new ProdottiUtiliController(model, view);
 
-		prodottiUtiliController = new ProdottiUtiliController(model, view, dbControl);
+		prodottiVenditaController = new ProdottiVenditaController(model, view);
 
-		prodottiVenditaController = new ProdottiVenditaController(model, view, dbControl);
+		occupazioneSaleController = new OccupazioneSaleController(model, view);
 
-		occupazioneSaleController = new OccupazioneSaleController(model, view, dbControl);
-
-		registratiController = new RegistratiController(view, model, dbControl);
-		// storicoController = new StoricoController(model, view, dbControl);
+		registratiController = new RegistratiController(view, model);
 
 		entrateController = new EntrateController(model, view);
+
+		usciteController = new UsciteController(model, view);
 	}
 
 	private void populateArrays() {
@@ -84,6 +85,8 @@ public class Controller {
 		model.populateLottoFarmaci(dbControl.selectAllLottoFarmaci());
 		model.populateFarmaciScadenza(dbControl.selectFarmaciScadenza());
 		model.populateSaleOccupate(dbControl.selectAllAppuntamenti());
+		model.populateEntrate(dbControl.selectAllEntrate());
+		model.populateUscite(dbControl.selectAllUscite());
 	}
 
 }

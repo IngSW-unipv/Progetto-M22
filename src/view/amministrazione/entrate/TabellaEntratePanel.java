@@ -14,8 +14,8 @@ public class TabellaEntratePanel {
 		// this.scrollPane = scrollPane;
 		scrollPane.setViewportView(table);
 
-		DefaultTableModel modello1 = new DefaultTableModel(new Object[][] {}, new String[] {  "Causa", "Tipo","Prezzo" });
-
+		DefaultTableModel modello1 = new DefaultTableModel(new Object[][] {}, new String[] {  "Causa", "Tipo","Prezzo", "Data"});
+ 
 		table.setModel(modello1);
 		table.getColumnModel().getColumn(0).setPreferredWidth(95);
 		table.getColumnModel().getColumn(0).setMinWidth(95);

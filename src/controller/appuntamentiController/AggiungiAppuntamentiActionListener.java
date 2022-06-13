@@ -28,7 +28,7 @@ public class AggiungiAppuntamentiActionListener implements ActionListener {
 	public void actionPerformed(ActionEvent e) {
 		// TODO Auto-generated method stub
 		int ID_PAZ = (int) view.getAppuntamentiPanel().getIDpazText().getSelectedItem();
-
+  
 		String sala = view.getAppuntamentiPanel().getSalaText().getSelectedItem().toString();
 		String tipo = view.getAppuntamentiPanel().getTipoText().getText();
 		java.sql.Date sqlDate = null;
@@ -65,11 +65,11 @@ public class AggiungiAppuntamentiActionListener implements ActionListener {
 		} catch (ParseException e1) {
 			// TODO Auto-generated catch block
 			e1.printStackTrace();
-		}
+		} 
 
 		double costo = 0.0;
 
-		try {
+		try { 
 
 			costo = Double.parseDouble(view.getAppuntamentiPanel().getCostoText().getText());
 
@@ -87,7 +87,7 @@ public class AggiungiAppuntamentiActionListener implements ActionListener {
 
 		boolean flag = dbControl.addNuovoAppuntamento(nuovoApp);
 
-		model.getStoricoArray().add(nuovoApp);
+		
 
 		if (flag) {
 
@@ -117,6 +117,7 @@ public class AggiungiAppuntamentiActionListener implements ActionListener {
 				modello.addRow(rowData);
 				model.getAppuntamentiArray().add(nuovoApp);
 				model.getSaleOccupateArray().add(nuovoApp);
+			
 			}
 
 			model.getStoricoArray().add(nuovoApp);

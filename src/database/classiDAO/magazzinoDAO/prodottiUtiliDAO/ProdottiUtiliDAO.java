@@ -15,14 +15,17 @@ public class ProdottiUtiliDAO implements IProdottiUtiliDAO {
 	private DbSingleton db;
 
 	public ProdottiUtiliDAO() {
-		super();
+		
+		super(); 
+		db = DbSingleton.getInstance();
 	}
 
+	@Override
 	public ArrayList<ProdottiUtili> selectAll() {
 		ArrayList<ProdottiUtili> result = new ArrayList<>(); 
 
 		ResultSet rs1;
-		db = DbSingleton.getInstance();
+		
 		FornitoriDAO forn = new FornitoriDAO();
 
 		try {
@@ -78,11 +81,13 @@ public class ProdottiUtiliDAO implements IProdottiUtiliDAO {
 		}
 		return true;
 	}
-
+	
+	
+	@Override
 	public int selectCODprodotto(int rigaSelezionata) {
 
 		ResultSet rs1;
-		db = DbSingleton.getInstance();
+		
 		rigaSelezionata = rigaSelezionata + 1;
 		String query = "SELECT COD_PROD FROM\n" + "(\n"
 				+ "SELECT  COD_PROD, ROW_NUMBER() OVER (ORDER BY COD_PROD) AS RowNumber\n" + "FROM PRODOTTI_UTILI\n"
@@ -103,6 +108,8 @@ public class ProdottiUtiliDAO implements IProdottiUtiliDAO {
 		return -1;
 	}
 
+	
+	@Override
 	public void deleteProdottiUtili(int cod) {
 
 		String query = "delete from PRODOTTI_UTILI where COD_PROD=\"" + cod + "\"";
@@ -121,6 +128,8 @@ public class ProdottiUtiliDAO implements IProdottiUtiliDAO {
 		}
 	}
 
+	
+	@Override
 	public void updateProdottiUtili(ProdottiUtili p) {
 
 		String query = "UPDATE PRODOTTI_UTILI SET NOME = ?, TIPO = ?, QTA = ?, PIVA = ?" + " where COD_PROD=\"" + p.getCOD()
@@ -146,16 +155,6 @@ public class ProdottiUtiliDAO implements IProdottiUtiliDAO {
 			e.printStackTrace();
 		}
 
-	}
-
-	public static void main(String[] args) {
-
-		ProdottiUtiliDAO pdao = new ProdottiUtiliDAO();
-
-		ArrayList<ProdottiUtili> res = pdao.selectAll();
-
-		for (ProdottiUtili r : res)
-			System.out.println(r.toString());
 	}
 
 }

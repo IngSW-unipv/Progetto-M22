@@ -15,11 +15,12 @@ public class FornitoriController {
 	private MainView view;
 	private DbControllerSingleton dbControl;
 
-	public FornitoriController(SmartVetModel model, MainView view, DbControllerSingleton dbControl) {
+	public FornitoriController(SmartVetModel model, MainView view) {
+		
 		super();
 		this.model = model;
 		this.view = view;
-		this.dbControl = dbControl;
+		dbControl = DbControllerSingleton.getInstance();
 
 		fillTable();
 		addActionListenersMenu();

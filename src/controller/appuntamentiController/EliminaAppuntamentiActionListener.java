@@ -26,7 +26,7 @@ public class EliminaAppuntamentiActionListener implements ActionListener {
 		
 		int elementoSelezionato = view.getAppuntamentiPanel().getTab().getTable().getSelectedRow();
 
-		int cod = dbControl.selectIDappuntamenti(elementoSelezionato);
+		int cod = dbControl.selectIDappuntamenti(elementoSelezionato); 
 
 		modello.removeRow(elementoSelezionato);
 		modelloStorico.removeRow(elementoSelezionato);

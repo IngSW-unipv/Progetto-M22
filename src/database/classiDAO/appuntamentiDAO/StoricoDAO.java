@@ -10,18 +10,21 @@ import model.anagrafica.veterinari.Veterinari;
 import model.appuntamenti.Appuntamenti;
 import model.pazienti.Paziente;
 
-public class StoricoDAO {
+public class StoricoDAO implements IStoricoDAO {
 	private DbSingleton db;
 
 	public StoricoDAO() {
 		super();
+		db = DbSingleton.getInstance();
 	}
 
+	
+	@Override
 	public ArrayList<Appuntamenti> selectAll() {
 		ArrayList<Appuntamenti> result = new ArrayList<>();
 
 		ResultSet rs1;
-		db = DbSingleton.getInstance();
+		
 
 		VeterinariDAO v = new VeterinariDAO();
 		PazienteDAO paz = new PazienteDAO();
@@ -36,8 +39,8 @@ public class StoricoDAO {
 				Veterinari vet = v.select_Veterinari_from_CF(rs1.getString(7));
 				Paziente p = paz.selectPazientefromID(rs1.getInt(2));
 
-				Appuntamenti app = new Appuntamenti(rs1.getInt(1), p, rs1.getString(3), rs1.getString(4), rs1.getDate(5),
-						rs1.getTime(6), vet, rs1.getDouble(8), rs1.getString(9));
+				Appuntamenti app = new Appuntamenti(rs1.getInt(1), p, rs1.getString(3), rs1.getString(4),
+						rs1.getDate(5), rs1.getTime(6), vet, rs1.getDouble(8), rs1.getString(9));
 
 				result.add(app);
 			}
@@ -48,11 +51,12 @@ public class StoricoDAO {
 		return result;
 	}
 
+	
+	@Override
 	public ArrayList<Appuntamenti> selectAllDueToVeterinario(String CFvet) {
 		ArrayList<Appuntamenti> result = new ArrayList<>();
 
 		ResultSet rs1;
-		db = DbSingleton.getInstance();
 
 		VeterinariDAO v = new VeterinariDAO();
 		PazienteDAO paz = new PazienteDAO();
@@ -67,8 +71,8 @@ public class StoricoDAO {
 				Veterinari vet = v.select_Veterinari_from_CF(rs1.getString(7));
 				Paziente p = paz.selectPazientefromID(rs1.getInt(2));
 
-				Appuntamenti app = new Appuntamenti(rs1.getInt(1), p, rs1.getString(3), rs1.getString(4), rs1.getDate(5),
-						rs1.getTime(6), vet, rs1.getDouble(8), rs1.getString(9));
+				Appuntamenti app = new Appuntamenti(rs1.getInt(1), p, rs1.getString(3), rs1.getString(4),
+						rs1.getDate(5), rs1.getTime(6), vet, rs1.getDouble(8), rs1.getString(9));
 
 				result.add(app);
 			}
@@ -79,19 +83,4 @@ public class StoricoDAO {
 		return result;
 	}
 
-
-
-	public static class Engine1 {
-
-		public static void main(String[] args) {
-
-			StoricoDAO pdao = new StoricoDAO();
-
-			ArrayList<Appuntamenti> res = pdao.selectAll();
-
-			for (Appuntamenti r : res)
-				System.out.println(r.toString());
-		}
-
-	}
 }

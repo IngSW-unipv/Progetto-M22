@@ -15,11 +15,11 @@ public class OccupazioneSaleController {
 	private MainView view;
 	private DbControllerSingleton dbControl;
 
-	public OccupazioneSaleController(SmartVetModel model, MainView view, DbControllerSingleton dbControl) {
+	public OccupazioneSaleController(SmartVetModel model, MainView view) {
 
 		this.model = model;
 		this.view = view;
-		this.dbControl = dbControl;
+		dbControl = DbControllerSingleton.getInstance();
 
 		fillTable();
 		addActionListenersMenu();

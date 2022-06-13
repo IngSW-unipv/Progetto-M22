@@ -16,13 +16,15 @@ public class LottoFarmaciDAO implements ILottoFarmaciDAO {
 
 	public LottoFarmaciDAO() {
 		super();
-	}
+		db = DbSingleton.getInstance();
+	} 
 
+	@Override
 	public ArrayList<LottoFarmaci> selectAll() {
 		ArrayList<LottoFarmaci> result = new ArrayList<>();
 
 		ResultSet rs1;
-		db = DbSingleton.getInstance();
+		
 
 		try {
 			String query = "SELECT * FROM FARMACI";
@@ -45,12 +47,14 @@ public class LottoFarmaciDAO implements ILottoFarmaciDAO {
 		return result;
 	}
 
+	
+	@Override
 	public ArrayList<LottoFarmaci> getFarmaciScadenza() {
 
 		ArrayList<LottoFarmaci> farmaciScadenza = new ArrayList<>();
 
 		ResultSet rs1;
-		db = DbSingleton.getInstance();
+	
 
 		try {
 			String query = "SELECT * FROM FARMACI WHERE MONTH(SCADENZA) = MONTH(CURRENT_TIMESTAMP) AND YEAR(SCADENZA) = \n"
@@ -85,7 +89,7 @@ public class LottoFarmaciDAO implements ILottoFarmaciDAO {
 		try {
 			
 
-			stmt = db.getConnection().prepareStatement(query);
+			stmt = db.getConnection().prepareStatement(query); 
 
 			stmt.setString(1, f.getIDLotto());
 			stmt.setString(2, f.getMode());
@@ -103,6 +107,8 @@ public class LottoFarmaciDAO implements ILottoFarmaciDAO {
 		return true;
 	}
 
+	
+	@Override
 	public void deleteFarmaci(LottoFarmaci f) {
 		String IDLotto = f.getIDLotto();
 		String query = "delete from FARMACI where LOTTO=\"" + IDLotto + "\"";
@@ -119,16 +125,6 @@ public class LottoFarmaciDAO implements ILottoFarmaciDAO {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-	}
-
-	public static void main(String[] args) {
-
-		LottoFarmaciDAO fdao = new LottoFarmaciDAO();
-
-		ArrayList<LottoFarmaci> res = fdao.selectAll();
-
-		for (LottoFarmaci r : res)
-			System.out.println(r.toString());
 	}
 
 }

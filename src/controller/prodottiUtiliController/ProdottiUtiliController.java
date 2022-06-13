@@ -15,11 +15,11 @@ public class ProdottiUtiliController {
 	private MainView view;
 	private DbControllerSingleton dbControl;
 
-	public ProdottiUtiliController(SmartVetModel model, MainView view, DbControllerSingleton dbControl) {
+	public ProdottiUtiliController(SmartVetModel model, MainView view) {
 		super();
 		this.model = model;
 		this.view = view;
-		this.dbControl = dbControl;
+		dbControl = DbControllerSingleton.getInstance();
 
 		addActionListenersMenu();
 		fillTable();

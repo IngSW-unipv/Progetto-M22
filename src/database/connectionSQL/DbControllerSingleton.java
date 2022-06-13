@@ -16,12 +16,12 @@ import database.classiDAO.magazzinoDAO.farmaciDAO.LottoFarmaciDAO;
 import database.classiDAO.magazzinoDAO.prodottiUtiliDAO.ProdottiUtiliDAO;
 import database.classiDAO.magazzinoDAO.prodottiVenditaDAO.ProdottiVenditaDAO;
 import database.classiDAO.pazientiDAO.PazienteDAO;
+import model.amministrazione.Entrate;
+import model.amministrazione.Uscite;
 import model.anagrafica.clienti.Clienti;
 import model.anagrafica.fornitori.Fornitori;
 import model.anagrafica.veterinari.Veterinari;
 import model.appuntamenti.Appuntamenti;
-import model.economia.Entrate;
-import model.economia.Uscite;
 import model.magazzino.farmaci.LottoFarmaci;
 import model.magazzino.prodottiUtili.ProdottiUtili;
 import model.magazzino.prodottiVendita.ProdottiVendita;
@@ -47,7 +47,7 @@ public class DbControllerSingleton {
 	private EntrateDAO entrate = new EntrateDAO();
 	private UsciteDAO uscite = new UsciteDAO();
 
-	public DbControllerSingleton() {
+	private DbControllerSingleton() {
 
 		super();
 		this.schema = "clinica";
@@ -139,10 +139,6 @@ public class DbControllerSingleton {
 		return paz.selectAll();
 	}
 
-	public int[] selectAllIDpaz() {
-		return paz.selectAllIDpaz();
-	}
-
 	public void updatePaziente(Paziente paziente) {
 		paz.updatePaziente(paziente);
 	}
@@ -185,7 +181,7 @@ public class DbControllerSingleton {
 
 	public int selectIDappuntamenti(int rigaSelezionata) {
 		return app.selectIDappuntamenti(rigaSelezionata);
-	}
+	} 
 
 	public ArrayList<Appuntamenti> selectAllAppuntamentiDuetovet(String CFvet) {
 		return app.selectAllDueToVeterinario(CFvet);
@@ -306,7 +302,7 @@ public class DbControllerSingleton {
 	// SALE
 	public String[] selectallIDsale() {
 		return sale.selectSale();
-	}
+	} 
 	
 	
 	
@@ -342,13 +338,17 @@ public class DbControllerSingleton {
 		entrate.deleteEntrate(ID);
 	}
 	
+	public int selectIDentrate(int rigaSelezionata) {
+		return entrate.selectIDentrata(rigaSelezionata);
+	}
+	
 	
 	
 	// USCITE
 	
 	public ArrayList<Uscite> selectAllUscite() {
 		return uscite.selectAll();
-	}
+	} 
 	
 	public boolean insertUscite(Uscite uscita) {
 		return uscite.insertUscite(uscita);
@@ -356,6 +356,10 @@ public class DbControllerSingleton {
 	
 	public void deleteUscite(int ID) {
 		uscite.deleteUscite(ID);
+	} 
+	
+	public int selectIDuscite(int rigaSelezionata) {
+		return uscite.selectIDuscita(rigaSelezionata);
 	}
 	
 	

@@ -5,6 +5,8 @@ import java.awt.event.ActionListener;
 import java.util.ArrayList;
 
 import javax.swing.table.DefaultTableModel;
+
+import controller.farmaciController.PopUpGoBtnActionListener;
 import database.connectionSQL.DbControllerSingleton;
 import model.SmartVetModel;
 import view.MainView;
@@ -15,11 +17,12 @@ public class ProdottiVenditaController {
 	private MainView view;
 	private DbControllerSingleton dbControl;
 
-	public ProdottiVenditaController(SmartVetModel model, MainView view, DbControllerSingleton dbControl) {
-		super();
+	public ProdottiVenditaController(SmartVetModel model, MainView view) {
+		
+		super(); 
 		this.model = model;
 		this.view = view;
-		this.dbControl = dbControl;
+		dbControl = DbControllerSingleton.getInstance();
 
 		addActionListenersMenu();
 		fillTable();
@@ -90,13 +93,19 @@ public class ProdottiVenditaController {
 		view.getProdottiVenditaPanel().getBtnAggiungi().addActionListener(addProdottiVendita);
 
 		EliminaProdottiVenditaActionListener deleteProdottiVendita = new EliminaProdottiVenditaActionListener(model, view, dbControl);
-		view.getProdottiVenditaPanel().getBtnElimina().addActionListener((ActionListener) deleteProdottiVendita);
+		view.getProdottiVenditaPanel().getBtnElimina().addActionListener(deleteProdottiVendita);
 
 		ModificaProdottiVenditaActionListener modificaProdottiVendita = new ModificaProdottiVenditaActionListener(model, view);
 		view.getProdottiVenditaPanel().getBtnModifica().addActionListener(modificaProdottiVendita);
 
 		AggiornaProdottiVenditaActionListener aggiornaProdottiVendita = new AggiornaProdottiVenditaActionListener(model, dbControl, view);
-		view.getProdottiVenditaPanel().getBtnAggiorna().addActionListener(aggiornaProdottiVendita);
+		view.getProdottiVenditaPanel().getBtnAggiorna().addActionListener(aggiornaProdottiVendita); 
+		
+		FatturaProdottiVenditaActionListener fattura = new FatturaProdottiVenditaActionListener(model, view, dbControl);
+		view.getProdottiVenditaPanel().getBtnFattura().addActionListener(fattura);
+		
+		PopUpGoBtnActionListenerPr go = new PopUpGoBtnActionListenerPr(model, view, dbControl, fattura);
+		fattura.getPopup().getBtnGo().addActionListener(go);
 
 	}
 

@@ -1,4 +1,4 @@
-package view.occupazioneSale;
+package view.appuntamenti;
 
 import javax.swing.Icon;
 import javax.swing.JButton;

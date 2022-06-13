@@ -27,7 +27,7 @@ public class AggiornaFarmaciActionListener implements ActionListener {
 		// TODO Auto-generated method stub
 
 		farmaciPanel = view.getFarmaciPanel();
-
+ 
 		int elementoSelezionato = farmaciPanel.getTabellaFarmaci().getTable().getSelectedRow();
 		((DefaultTableModel) farmaciPanel.getTabellaFarmaci().getTable().getModel()).removeRow(elementoSelezionato);
 
@@ -64,12 +64,13 @@ public class AggiornaFarmaciActionListener implements ActionListener {
 
 		DefaultTableModel modello = (DefaultTableModel) farmaciPanel.getTabellaFarmaci().getTable().getModel();
 		LottoFarmaci lo = new LottoFarmaci(IDLotto, mode, type, forn, sqlDate, qt);
-		boolean flag = model.getLottoFarmaciArray().add(lo);
+		
+		boolean flag = dbControl.addLottoFarmaci(lo);
 
 		Object rowData[] = new Object[6];
 
 		if (flag) {
-
+ 
 			rowData[0] = IDLotto;
 			rowData[1] = mode;
 			rowData[2] = type;
@@ -78,7 +79,7 @@ public class AggiornaFarmaciActionListener implements ActionListener {
 			rowData[5] = qt;
 
 			modello.addRow(rowData);
-			model.getFarmaciScadenzaArray().add(lo);
+			model.getLottoFarmaciArray().add(lo);
 		}
 
 		pulisciTextField();

@@ -16,11 +16,11 @@ public class AppuntamentiController {
 	private MainView view;
 	private DbControllerSingleton dbControl;
 
-	public AppuntamentiController(SmartVetModel model, MainView view, DbControllerSingleton dbControl) {
+	public AppuntamentiController(SmartVetModel model, MainView view) {
 
 		this.model = model; 
 		this.view = view;
-		this.dbControl = dbControl;
+		dbControl = DbControllerSingleton.getInstance();
 		
 		if (model.getCFuser().equals("direzione") ) {
 			
@@ -108,6 +108,9 @@ public class AppuntamentiController {
 		AggiornaAppuntamentiActionListener aggiornaAppuntamenti = new AggiornaAppuntamentiActionListener(model,
 				dbControl, view);
 		view.getAppuntamentiPanel().getBtnAggiorna().addActionListener(aggiornaAppuntamenti);
+		
+		FatturaAppuntamentiActionListener fattura = new FatturaAppuntamentiActionListener(model, view, dbControl);
+		view.getAppuntamentiPanel().getBtnFattura().addActionListener(fattura);
 
 	}
 

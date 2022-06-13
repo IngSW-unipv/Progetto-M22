@@ -11,7 +11,7 @@ public class TabellaFarmaciPanel {
 	public TabellaFarmaciPanel(JScrollPane scrollPane) {
 
 		table = new JTable();
-		scrollPane.setViewportView(table);
+		scrollPane.setViewportView(table); 
 		
 		DefaultTableModel modello1 = new DefaultTableModel(new Object[][] {},
 				new String[] { "Lotto", "Assunzione", "Tipo", "Fornitore", "Data scadenza", "Qt." });

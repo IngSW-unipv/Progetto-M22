@@ -1,6 +1,5 @@
 package database.classiDAO.pazientiDAO;
 
-import java.sql.Date;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -9,11 +8,9 @@ import java.util.ArrayList;
 
 import database.classiDAO.anagraficaDAO.clientiDAO.ClientiDAO;
 import database.classiDAO.anagraficaDAO.veterinariDAO.VeterinariDAO;
-import database.classiDAO.appuntamentiDAO.AppuntamentiDAO;
 import database.connectionSQL.DbSingleton;
 import model.anagrafica.clienti.Clienti;
 import model.anagrafica.veterinari.Veterinari;
-import model.appuntamenti.Appuntamenti;
 import model.pazienti.Paziente;
 
 public class PazienteDAO implements IPazienteDAO {
@@ -22,13 +19,14 @@ public class PazienteDAO implements IPazienteDAO {
 
 	public PazienteDAO() {
 		super();
+		db = DbSingleton.getInstance();
 
 	}
 
+	@Override
 	public Paziente selectPazientefromID(int ID) {
 
 		ResultSet rs1;
-		db = DbSingleton.getInstance();
 
 		VeterinariDAO v = new VeterinariDAO();
 		ClientiDAO cl = new ClientiDAO();
@@ -41,8 +39,8 @@ public class PazienteDAO implements IPazienteDAO {
 				Veterinari vet = v.select_Veterinari_from_CF(rs1.getString(7));
 				Clienti cliente = cl.select_cliente_from_CF(rs1.getString(13));
 
-				Paziente paz = new Paziente(rs1.getInt(1), rs1.getString(2), rs1.getString(3), rs1.getString(4), rs1.getDate(5),
-						rs1.getString(6), vet, rs1.getString(8), rs1.getBoolean(9), rs1.getBoolean(10),
+				Paziente paz = new Paziente(rs1.getInt(1), rs1.getString(2), rs1.getString(3), rs1.getString(4),
+						rs1.getDate(5), rs1.getString(6), vet, rs1.getString(8), rs1.getBoolean(9), rs1.getBoolean(10),
 						rs1.getDouble(11), rs1.getDate(12), cliente, rs1.getString(14));
 
 				return paz;
@@ -55,47 +53,8 @@ public class PazienteDAO implements IPazienteDAO {
 		}
 		return null;
 	}
-	
-	public int[] selectAllIDpaz() {
-		
-		int len=0;
-		ResultSet rs1;
-		db = DbSingleton.getInstance();
-		
-		try {
 
-			String query = "SELECT COUNT(ID_PAZ) FROM PAZIENTI ";
-			rs1 = db.executeQuery(query);
-			rs1.next();
-			len = rs1.getInt(1);
-					
-		} catch (Exception e) {
-			e.printStackTrace();
-		}
-		
-		int[] result = new int[len];
-
-		try {
-
-			String query = "SELECT ID_PAZ FROM PAZIENTI";
-			rs1 = db.executeQuery(query);
-			int i=0;
-
-			while (rs1.next()) {
-
-				int ID = rs1.getInt(1);
-
-				result[i++]=ID;
-
-				
-			}
-		} catch (Exception e) {
-			e.printStackTrace();
-		}
-
-		return result;
-	}
-
+	@Override
 	public ArrayList<Paziente> selectAll() {
 		ArrayList<Paziente> result = new ArrayList<>();
 
@@ -114,8 +73,8 @@ public class PazienteDAO implements IPazienteDAO {
 				Veterinari vet = v.select_Veterinari_from_CF(rs1.getString(7));
 				Clienti cliente = cl.select_cliente_from_CF(rs1.getString(13));
 
-				Paziente paz = new Paziente(rs1.getInt(1), rs1.getString(2), rs1.getString(3), rs1.getString(4), rs1.getDate(5),
-						rs1.getString(6), vet, rs1.getString(8), rs1.getBoolean(9), rs1.getBoolean(10),
+				Paziente paz = new Paziente(rs1.getInt(1), rs1.getString(2), rs1.getString(3), rs1.getString(4),
+						rs1.getDate(5), rs1.getString(6), vet, rs1.getString(8), rs1.getBoolean(9), rs1.getBoolean(10),
 						rs1.getDouble(11), rs1.getDate(12), cliente, rs1.getString(14));
 
 				result.add(paz);
@@ -132,15 +91,15 @@ public class PazienteDAO implements IPazienteDAO {
 		String query = "INSERT INTO PAZIENTI (NOME,TIPO,RAZZA,DATA_NASC,SESSO, VET_REFERENTE, GRUP_SANG, MICROCHIP,"
 				+ "STERILIZZATO, PESO, DATA_MORTE, PROPRIETARIO, NOTE) values (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?) "
 				+ ";" + "";
-		
+
 		ResultSet rs;
 		PreparedStatement stmt = null;
 		int autoID = 0;
 
 		try {
-			
+
 			stmt = db.getConnection().prepareStatement(query, Statement.RETURN_GENERATED_KEYS);
-			
+
 			stmt.setString(1, p.getNome());
 			stmt.setString(2, p.getSpecie());
 			stmt.setString(3, p.getRazza());
@@ -156,13 +115,13 @@ public class PazienteDAO implements IPazienteDAO {
 			stmt.setString(13, p.getNote());
 
 			stmt.executeUpdate();
-			
-			rs= stmt.getGeneratedKeys();
+
+			rs = stmt.getGeneratedKeys();
 			rs.next();
 			autoID = rs.getInt(1);
 			p.setIDpaz(autoID);
-			
-			//System.out.println(p + "ID" + auto_id);
+
+			// System.out.println(p + "ID" + auto_id);
 		}
 
 		catch (SQLException e) {
@@ -172,20 +131,8 @@ public class PazienteDAO implements IPazienteDAO {
 		return true;
 	}
 
-	public static class Engine1 {
 
-		public static void main(String[] args) {
-
-			PazienteDAO pdao = new PazienteDAO();
-
-			ArrayList<Paziente> res = pdao.selectAll();
-
-			for (Paziente r : res)
-				System.out.println(r.toString());
-		}
-
-	}
-
+	@Override
 	public int selectID_PAZ(int rigaSelezionata) {
 
 		ResultSet rs1;
@@ -210,7 +157,7 @@ public class PazienteDAO implements IPazienteDAO {
 		return -1;
 	}
 
-	
+	@Override
 	public void deletePazienti(int id) {
 
 		String query = "delete from PAZIENTI where ID_PAZ=\"" + id + "\"";
@@ -231,15 +178,15 @@ public class PazienteDAO implements IPazienteDAO {
 		}
 	}
 
+	@Override
 	public void updatePaziente(Paziente p) {
 
 		String query = "UPDATE PAZIENTI SET NOME = ?,TIPO = ?,RAZZA = ? ,DATA_NASC = ? ,SESSO = ?,"
 				+ " VET_REFERENTE = ? , GRUP_SANG = ?, MICROCHIP = ?, STERILIZZATO = ?, PESO = ?, "
 				+ "DATA_MORTE = ?, PROPRIETARIO = ?, NOTE = ?" + " where ID_PAZ=\"" + p.getIDpaz() + "\"";
-		
+
 		PreparedStatement stmt = null;
-		
-		
+
 		try {
 
 			stmt = db.getConnection().prepareStatement(query);
@@ -268,21 +215,5 @@ public class PazienteDAO implements IPazienteDAO {
 		}
 
 	}
-	
-	public static void main(String[] args) {
-			/*VeterinariDAO vdao = new VeterinariDAO();
-			Veterinari vet = vdao.select_Veterinari_from_CF("LCSMRA80A43B963A");
-			System.out.println(vet);
-			
-			ClientiDAO cdao = new ClientiDAO();
-			Clienti cl = cdao.select_cliente_from_CF("E6GE55G626366BF9");
-			System.out.println(cl);
-			
-			Date nato = new Date(2018-06-07);
-			
-			PazienteDAO pdao = new PazienteDAO();
-			Paziente paz = new Paziente ("robin", "cane", "pastore", nato , "F", vet, "AB", true, true, 23, nato, cl,"eee");
-			pdao.insertPaziente(paz);*/
 
-		}
 }

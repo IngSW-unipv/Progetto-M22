@@ -108,7 +108,7 @@ public class FarmaciPanel extends JPanel {
 
 		lblMode = new JLabel("Assunzione");
 		lblMode.setBounds(970, 72, 108, 15);
-		add(lblMode);
+		add(lblMode); 
 
 		lblTipo = new JLabel("Tipo");
 		lblTipo.setBounds(970, 132, 70, 15);
@@ -217,7 +217,7 @@ public class FarmaciPanel extends JPanel {
 		return btnAggiungi;
 	}
 
-	public JButton getBtnElimina() {
+	public JButton getBtnElimina() { 
 		return btnElimina;
 	}
 
@@ -239,10 +239,6 @@ public class FarmaciPanel extends JPanel {
 
 	public JButton getBtnFattura() {
 		return btnFattura;
-	}
-
-	public void setBtnFattura(JButton btnFattura) {
-		this.btnFattura = btnFattura;
 	}
 
 }

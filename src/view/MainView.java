@@ -6,7 +6,9 @@ import java.awt.Toolkit;
 import javax.swing.JFrame;
 
 import view.amministrazione.entrate.EntratePanel;
+import view.amministrazione.uscite.UscitePanel;
 import view.appuntamenti.AppuntamentiPanel;
+import view.appuntamenti.OccupazioneSalePanel;
 import view.appuntamenti.StoricoPanel;
 import view.clienti.ClientiPanel;
 import view.dashboard.DashBoardView;
@@ -16,7 +18,6 @@ import view.login.RegistratiView;
 import view.magazzino.farmaci.FarmaciPanel;
 import view.magazzino.prodottiUtili.ProdottiUtiliPanel;
 import view.magazzino.prodottiVendita.ProdottiVenditaPanel;
-import view.occupazioneSale.OccupazioneSalePanel;
 import view.pazienti.PazientiPanel;
 import view.veterinari.VeterinariPanel;
 
@@ -38,6 +39,7 @@ public class MainView extends JFrame {
 	private ProdottiVenditaPanel prodottiVenditaPanel;
 	private RegistratiView registratiView;
 	private EntratePanel entratePanel;
+	private UscitePanel uscitePanel;
 
 	public MainView() {
 
@@ -73,7 +75,8 @@ public class MainView extends JFrame {
 		prodottiVenditaPanel = new ProdottiVenditaPanel();
 		registratiView = new RegistratiView();
 		entratePanel = new EntratePanel();
-	}
+		uscitePanel = new UscitePanel();
+	} 
 
 	public DashBoardView getDashboard() {
 		return dashboard;
@@ -129,6 +132,10 @@ public class MainView extends JFrame {
 
 	public EntratePanel getEntratePanel() {
 		return entratePanel;
+	}
+
+	public UscitePanel getUscitePanel() {
+		return uscitePanel;
 	}
 
 }

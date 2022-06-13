@@ -23,7 +23,7 @@ public class DashBoardView extends JPanel {
 		setLayout(null);
 
 		menu = new MenuView();
-		add(menu);
+		add(menu); 
 
 		// creo un pannello con scrollo per promemoria
 		promemoriaScrollPane = new JScrollPane();

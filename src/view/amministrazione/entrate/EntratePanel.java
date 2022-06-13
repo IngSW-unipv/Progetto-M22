@@ -7,6 +7,8 @@ import javax.swing.JScrollPane;
 import javax.swing.UIManager;
 
 public class EntratePanel extends JPanel {
+
+	private static final long serialVersionUID = 1L;
 	private JScrollPane scrollPane;
 	private JButton btnElimina;
 	private TabellaEntratePanel tab;
@@ -27,7 +29,6 @@ public class EntratePanel extends JPanel {
 		add(btnElimina);
 
 		tab = new TabellaEntratePanel(scrollPane);
-		
 
 		btnHome = new JButton();
 		btnHome.setBounds(1058, 551, 52, 43);
@@ -39,9 +40,13 @@ public class EntratePanel extends JPanel {
 	public TabellaEntratePanel getTab() {
 		return tab;
 	}
-	
+
 	public JButton getBtnHome() {
 		return btnHome;
+	}
+
+	public JButton getBtnElimina() {
+		return btnElimina;
 	}
 
 }

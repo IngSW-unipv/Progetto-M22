@@ -16,11 +16,11 @@ public class PazientiController {
 	private MainView view;
 	private DbControllerSingleton dbControl;
 
-	public PazientiController(SmartVetModel model, MainView view, DbControllerSingleton dbControl) {
+	public PazientiController(SmartVetModel model, MainView view) {
 		super();
 		this.model = model;
 		this.view = view;
-		this.dbControl = dbControl;
+		dbControl = DbControllerSingleton.getInstance();
 
 		fillTable();
 		fillComboBox();

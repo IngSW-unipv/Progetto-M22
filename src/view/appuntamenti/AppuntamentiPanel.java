@@ -42,6 +42,7 @@ public class AppuntamentiPanel extends JPanel {
 	private JButton btnElimina;
 	private JButton btnAggiorna;
 	private JButton btnHome;
+	private JButton btnFattura;
 
 	public AppuntamentiPanel() {
 
@@ -133,6 +134,10 @@ public class AppuntamentiPanel extends JPanel {
 		Icon icon = UIManager.getIcon("FileChooser.homeFolderIcon");
 		btnHome.setIcon(icon);
 		add(btnHome);
+
+		btnFattura = new JButton("Fattura");
+		btnFattura.setBounds(1024, 387, 117, 29);
+		add(btnFattura);
 
 	}
 
@@ -242,6 +247,10 @@ public class AppuntamentiPanel extends JPanel {
 
 	public JButton getBtnHome() {
 		return btnHome;
+	}
+
+	public JButton getBtnFattura() {
+		return btnFattura;
 	}
 
 }

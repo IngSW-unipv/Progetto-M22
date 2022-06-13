@@ -11,17 +11,27 @@ public class LoginController {
 	private DbControllerSingleton dbControl;
 	private GoBtnActionListener go;
 
-	public LoginController(MainView view, SmartVetModel model, DbControllerSingleton dbControl) {
+	public LoginController(MainView view, SmartVetModel model) {
 
-		this.view = view;
+		this.view = view; 
 		this.model = model;
-		this.dbControl = dbControl;
+		
+		dbControl = DbControllerSingleton.getInstance();
 
-		go = new GoBtnActionListener(view, model, dbControl);
+		go = new GoBtnActionListener(view, model);
 		view.getLoginView().getBtnGo().addActionListener(go);
+
+		addEsciActionListener();
 	}
 
 	public GoBtnActionListener getGo() {
 		return go;
 	}
+
+	public void addEsciActionListener() {
+
+		EsciAccountActionListener esci = new EsciAccountActionListener(view, model);
+		view.getDashboard().getMenu().getMntmEsciAccount().addActionListener(esci);
+	}
+
 }

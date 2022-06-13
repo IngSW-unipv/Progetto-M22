@@ -7,13 +7,17 @@ import java.sql.SQLException;
 import database.connectionSQL.DbSingleton;
 
 public class LoginDAO implements ILoginDAO {
-	private DbSingleton db;
+	
+	private DbSingleton db; 
 
+	
+	
+	@Override
 	public boolean isMatching(String user, String password) {
 
 		int number = 0;
 		ResultSet rs1;
-		db = DbSingleton.getInstance();
+		
 
 		try {
 			String query = "SELECT count(USERNAME), USERNAME, PASSWORD FROM" + " LOGIN WHERE USERNAME = \"" + user
@@ -36,10 +40,13 @@ public class LoginDAO implements ILoginDAO {
 			return false;
 	}
 
+	
+	
+	@Override
 	public String getCFuserLoggedIn(String user, String password) {
 
 		ResultSet rs1;
-		db = DbSingleton.getInstance();
+		
 		String CF = null;
 		try {
 			String query = "SELECT CF FROM LOGIN WHERE USERNAME = \"" + user + "\"  AND PASSWORD = \"" + password
@@ -58,7 +65,9 @@ public class LoginDAO implements ILoginDAO {
 		}
 		return null;
 	}
-
+	
+	
+	@Override
 	public void insertNuovoUtente(String user, String password, String CFdip) {
 
 		String query = "INSERT INTO LOGIN (USERNAME, PASSWORD, CF )" + "values (?, ?, ?);";
@@ -83,5 +92,12 @@ public class LoginDAO implements ILoginDAO {
 		}
 
 	}
+
+	public LoginDAO() {
+		super();
+		db = DbSingleton.getInstance();
+	}
+	
+	
 
 }

@@ -14,10 +14,10 @@ public class RegistratiController {
 	private SmartVetModel model;
 	private DbControllerSingleton dbControl;
 
-	public RegistratiController(MainView view, SmartVetModel model, DbControllerSingleton dbControl) {
+	public RegistratiController(MainView view, SmartVetModel model) {
 
 		this.view = view;
-		this.dbControl = dbControl;
+		dbControl = DbControllerSingleton.getInstance();
 		this.model = model;
 
 		fillComboBoxVet();

@@ -10,4 +10,7 @@ public interface ILottoFarmaciDAO {
 
 	public boolean insertFarmaci(LottoFarmaci f);
 
+	public ArrayList<LottoFarmaci> getFarmaciScadenza();
+	
+	public void deleteFarmaci(LottoFarmaci f);
 }

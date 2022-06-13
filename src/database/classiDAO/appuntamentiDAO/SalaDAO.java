@@ -13,7 +13,6 @@ public class SalaDAO implements ISalaDAO {
 
 		int len = 0;
 		ResultSet rs1;
-		db = DbSingleton.getInstance();
 
 		try {
 
@@ -47,6 +46,11 @@ public class SalaDAO implements ISalaDAO {
 		}
 
 		return result;
+	}
+
+	public SalaDAO() {
+		super();
+		db = DbSingleton.getInstance();
 	}
 
 }

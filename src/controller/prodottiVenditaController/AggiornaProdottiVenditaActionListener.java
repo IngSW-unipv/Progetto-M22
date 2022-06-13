@@ -26,7 +26,7 @@ public class AggiornaProdottiVenditaActionListener implements ActionListener {
 	public void actionPerformed(ActionEvent e) {
 		// TODO Auto-generated method stub
 
-		prodottivenditaPanel = view.getProdottiVenditaPanel();
+		prodottivenditaPanel = view.getProdottiVenditaPanel(); 
 
 		int elementoSelezionato = prodottivenditaPanel.getTabellaProdottiVenditaPanel().getTable().getSelectedRow();
 

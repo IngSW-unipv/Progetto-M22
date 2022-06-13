@@ -2,15 +2,15 @@ package controller.farmaciController;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-
-import javax.swing.table.DefaultTableModel;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 
 import database.connectionSQL.DbControllerSingleton;
 import model.SmartVetModel;
-import model.economia.Entrate;
+import model.anagrafica.fornitori.Fornitori;
 import view.MainView;
-import view.PopupError;
-import view.PopupQuantitàPrezzo;
+import view.amministrazione.PopupQuantitàPrezzo;
 
 public class FatturaFarmaciActionListener implements ActionListener {
 
@@ -19,57 +19,29 @@ public class FatturaFarmaciActionListener implements ActionListener {
 	private DbControllerSingleton dbControl;
 	private PopupQuantitàPrezzo popup;
 
+	private String causa;
+	private String tipo;
+	private int qtVecchia;
+	private String IDLotto;
+	private String mode;
+	private Fornitori forn;
+	private java.sql.Date sqlDate;
+	private int rigaSelezionata;
+	
+	private java.sql.Date date;
+
 	@Override
 	public void actionPerformed(ActionEvent e) {
 		// TODO Auto-generated method stub
-		int rigaSelezionata = view.getFarmaciPanel().getTabellaFarmaci().getTable().getSelectedRow();
 
-		String causa = "Farmaci";
-		String tipo = model.getLottoFarmaciArray().get(rigaSelezionata).getType();
-		double prezzo = .0;
+		rigaSelezionata = view.getFarmaciPanel().getTabellaFarmaci().getTable().getSelectedRow();
 
-		popup = new PopupQuantitàPrezzo();
+		causa = "Farmaci";
+		tipo = model.getLottoFarmaciArray().get(rigaSelezionata).getType();
 
-		int qt = (int) popup.getQuantitàSpinner().getValue();
+		memorizzaFarmaco();
 
-		try {
-
-			prezzo = Double.parseDouble(popup.getPrezzotext().getText());
-		}
-
-		catch (NumberFormatException e1) {
-
-			PopupError err = new PopupError();
-			err.infoBox("il prezzo non è valido", "errore");
-
-		}
-
-		if (qt != 0) {
-
-			prezzo = qt * prezzo;
-			Entrate entrata = new Entrate(0, tipo, prezzo, causa);
-
-			dbControl.insertEntrate(entrata);
-
-			model.getEntrateArray().add(entrata);
-
-			DefaultTableModel modello = (DefaultTableModel) view.getEntratePanel().getTab().getTable().getModel();
-			Object rowData[] = new Object[3];
-
-			rowData[0] = causa;
-			rowData[1] = tipo;
-			rowData[2] = prezzo;
-
-			modello.addRow(rowData);
-			popup.setVisible(false);
-
-		}
-
-		else {
-
-			PopupError err = new PopupError();
-			err.infoBox("la quantità non può essere nulla", "errore");
-		}
+		popup.setVisible(true);
 
 	}
 
@@ -78,6 +50,100 @@ public class FatturaFarmaciActionListener implements ActionListener {
 		this.model = model;
 		this.view = view;
 		this.dbControl = dbControl;
+
+		popup = new PopupQuantitàPrezzo();
+	}
+
+	public void memorizzaFarmaco() {
+
+		if (rigaSelezionata >= 0) {
+
+			IDLotto = model.getLottoFarmaciArray().get(rigaSelezionata).getIDLotto();
+			mode = model.getLottoFarmaciArray().get(rigaSelezionata).getMode();
+			tipo = model.getLottoFarmaciArray().get(rigaSelezionata).getType();
+			String PIVA = null;
+			qtVecchia = model.getLottoFarmaciArray().get(rigaSelezionata).getQuantita();
+
+			if (model.getLottoFarmaciArray().get(rigaSelezionata).getFornitore() != null)
+				PIVA = model.getLottoFarmaciArray().get(rigaSelezionata).getFornitore().getPIVA();
+
+			forn = dbControl.selectFornitoreFromPiva(PIVA);
+
+			Date dataScadenza = null;
+			sqlDate = null;
+
+			SimpleDateFormat sdf = new SimpleDateFormat("MM-dd-yyyy");
+
+			try {
+
+				dataScadenza = model.getLottoFarmaciArray().get(rigaSelezionata).getDataScadenza();
+
+				if (dataScadenza != null) {
+
+					dataScadenza = sdf.parse(sdf.format(dataScadenza));
+
+					sqlDate = new java.sql.Date(dataScadenza.getTime());
+				}
+			}
+
+			catch (ParseException e1) {
+				// TODO Auto-generated catch block
+				e1.printStackTrace();
+			}
+
+		}
+	}
+
+	public PopupQuantitàPrezzo getPopup() {
+		return popup;
+	}
+
+	public SmartVetModel getModel() {
+		return model;
+	}
+
+	public MainView getView() {
+		return view;
+	}
+
+	public DbControllerSingleton getDbControl() {
+		return dbControl;
+	}
+
+	public String getCausa() {
+		return causa;
+	}
+
+	public String getTipo() {
+		return tipo;
+	}
+
+	public int getQtVecchia() {
+		return qtVecchia;
+	}
+
+	public String getIDLotto() {
+		return IDLotto;
+	}
+
+	public String getMode() {
+		return mode;
+	}
+
+	public Fornitori getForn() {
+		return forn;
+	}
+
+	public java.sql.Date getSqlDate() {
+		return sqlDate;
+	}
+
+	public int getRigaSelezionata() {
+		return rigaSelezionata;
+	}
+
+	public Date getDate() {
+		return date;
 	}
 
 }

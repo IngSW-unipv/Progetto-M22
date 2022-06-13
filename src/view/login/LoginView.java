@@ -30,7 +30,7 @@ public class LoginView extends JPanel {
 		Toolkit kit = Toolkit.getDefaultToolkit();
 		Dimension screenSize = kit.getScreenSize(); // restituisce la dimensione dello schermo come oggetto Dimension
 		int screenHeight = screenSize.height;
-		int screenWidth = screenSize.width;
+		int screenWidth = screenSize.width; 
 
 		// centra il frame nello schermo
 		setSize(screenWidth/3, screenHeight/3);
@@ -59,7 +59,7 @@ public class LoginView extends JPanel {
 		lblPassword.setBounds(46, 186, 88, 16);
 		add(lblPassword);
 
-		btnGo = new JButton("->");
+		btnGo = new JButton("OK");
 		btnGo.setBounds(357, 237, 117, 29);
 		add(btnGo);
 

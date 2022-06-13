@@ -16,13 +16,15 @@ public class VeterinariDAO implements IVeterinariDAO {
 	private DbSingleton db;
 
 	public VeterinariDAO() {
+		
 		super();
+		db = DbSingleton.getInstance();
 	}
 
+	@Override
 	public Veterinari select_Veterinari_from_CF(String CF) {
 
 		ResultSet rs1;
-		db = DbSingleton.getInstance();
 
 		try {
 			String query = "SELECT * FROM DIPENDENTI WHERE CF_DIP =\"" + CF + "\"";
@@ -42,11 +44,12 @@ public class VeterinariDAO implements IVeterinariDAO {
 		return null;
 	}
 
+	@Override
 	public ArrayList<Veterinari> selectAll() {
+		
 		ArrayList<Veterinari> result = new ArrayList<>();
 
 		ResultSet rs1;
-		db = DbSingleton.getInstance();
 
 		try {
 			String query = "SELECT * FROM DIPENDENTI";
@@ -65,10 +68,14 @@ public class VeterinariDAO implements IVeterinariDAO {
 		return result;
 	}
 
+	
+	@Override
 	public ArrayList<String> getCFDAO() {
+		
 		ResultSet rs1;
-		db = DbSingleton.getInstance();
+
 		ArrayList<String> listeCF = new ArrayList<>();
+		
 		try {
 			String query = "SELECT CF_DIP FROM DIPENDENTI";
 			rs1 = db.executeQuery(query);
@@ -125,9 +132,12 @@ public class VeterinariDAO implements IVeterinariDAO {
 
 	}
 
+	@Override
 	public void deleteVeterinari(Veterinari vet) {
+		
 		String CF = vet.getCF();
 		String query = "delete from DIPENDENTI where CF_DIP=\"" + CF + "\"";
+		
 		PreparedStatement stmt = null;
 		try {
 			stmt = db.getConnection().prepareStatement(query);
@@ -143,30 +153,5 @@ public class VeterinariDAO implements IVeterinariDAO {
 		}
 	}
 
-	public static class Engine1 {
-
-		public static void main(String[] args) {
-
-			VeterinariDAO vdao = new VeterinariDAO();
-
-			ArrayList<Veterinari> res = vdao.selectAll();
-
-			for (Veterinari r : res)
-				System.out.println(r.toString());
-
-			// vdao.deleteVeterinari("00");
-			vdao.getCFDAO();
-			// Veterinari vet1 = new Veterinari("peppe", "denico", "00", "@", "cell",
-			// "citta", "indirizzo", "pivs",
-			// "contratto", 300, 900, "iban");
-
-			// vdao.insertVeterinari(vet1);
-
-			Connection connection = null;
-			ConnectionSQL.closeConnection(connection);
-
-		}
-
-	}
 
 }

@@ -16,11 +16,11 @@ public class FarmaciController {
 	private MainView view;
 	private DbControllerSingleton dbControl;
 
-	public FarmaciController(SmartVetModel model, MainView view, DbControllerSingleton dbControl) {
+	public FarmaciController(SmartVetModel model, MainView view) {
 		super();
-		this.model = model; 
+		this.model = model;
 		this.view = view;
-		this.dbControl = dbControl;
+		dbControl = DbControllerSingleton.getInstance();
 
 		addActionListenersMenu();
 		fillTable();
@@ -71,21 +71,20 @@ public class FarmaciController {
 	}
 
 	public void addActionListenersMenu() {
-		
 
 		view.getDashboard().getMenu().getMntmFarmaci().addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				
+
 				view.getDashboard().setVisible(false);
 				view.add(view.getFarmaciPanel());
-				view.getFarmaciPanel().setVisible(true);
+				view.getFarmaciPanel().setVisible(true); 
 			}
 		});
 
 	}
 
 	public void addActionListenerButtons() {
-		
+
 		AggiungiFarmaciActionListener addFarmaci = new AggiungiFarmaciActionListener(model, view, dbControl);
 		view.getFarmaciPanel().getBtnAggiungi().addActionListener(addFarmaci);
 
@@ -97,14 +96,17 @@ public class FarmaciController {
 
 		AggiornaFarmaciActionListener aggiornaFarmaci = new AggiornaFarmaciActionListener(model, dbControl, view);
 		view.getFarmaciPanel().getBtnAggiorna().addActionListener(aggiornaFarmaci);
-		
+
 		FatturaFarmaciActionListener fatturaFarmaci = new FatturaFarmaciActionListener(model, view, dbControl);
-		view.getFarmaciPanel().getBtnFattura().addActionListener(aggiornaFarmaci);
+		view.getFarmaciPanel().getBtnFattura().addActionListener(fatturaFarmaci);
+
+		PopUpGoBtnActionListener go = new PopUpGoBtnActionListener(model, view, dbControl, fatturaFarmaci);
+		fatturaFarmaci.getPopup().getBtnGo().addActionListener(go);
 
 	}
 
 	public void addActionListenerHome() {
-		
+
 		view.getFarmaciPanel().getBtnHome().addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				view.getFarmaciPanel().setVisible(false);

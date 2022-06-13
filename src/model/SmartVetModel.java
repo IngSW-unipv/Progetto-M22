@@ -2,12 +2,12 @@ package model;
 
 import java.util.ArrayList;
 
+import model.amministrazione.Entrate;
+import model.amministrazione.Uscite;
 import model.anagrafica.clienti.Clienti;
 import model.anagrafica.fornitori.Fornitori;
 import model.anagrafica.veterinari.Veterinari;
 import model.appuntamenti.Appuntamenti;
-import model.economia.Entrate;
-import model.economia.Uscite;
 import model.magazzino.farmaci.LottoFarmaci;
 import model.magazzino.prodottiUtili.ProdottiUtili;
 import model.magazzino.prodottiVendita.ProdottiVendita;
@@ -192,7 +192,7 @@ public class SmartVetModel {
 
 	public ArrayList<Appuntamenti> getSaleOccupateArray() {
 		return saleOccupate;
-	}
+	} 
 	
 	public ArrayList<Uscite> getUsciteArray() {
 		return uscite;

@@ -7,7 +7,6 @@ import java.util.ArrayList;
 
 import database.connectionSQL.DbSingleton;
 import model.anagrafica.fornitori.Fornitori;
-import view.PopupError;
 
 public class FornitoriDAO implements IFornitoriDAO {
 
@@ -15,12 +14,13 @@ public class FornitoriDAO implements IFornitoriDAO {
 
 	public FornitoriDAO() {
 		super();
+		db = DbSingleton.getInstance();
 	}
 
+	@Override
 	public Fornitori select_Forn(String PIVA) {
 
 		ResultSet rs1;
-		db = DbSingleton.getInstance(); 
 
 		try {
 			String query = "SELECT * FROM FORNITORI WHERE PIVA =\"" + PIVA + "\"";
@@ -40,11 +40,11 @@ public class FornitoriDAO implements IFornitoriDAO {
 		return null;
 	}
 
+	@Override
 	public ArrayList<Fornitori> selectAll() {
 		ArrayList<Fornitori> result = new ArrayList<>();
 
 		ResultSet rs1;
-		db = DbSingleton.getInstance();
 
 		try {
 			String query = "SELECT * from FORNITORI";
@@ -90,7 +90,9 @@ public class FornitoriDAO implements IFornitoriDAO {
 		return true;
 	}
 
+	@Override
 	public void deleteFornitori(Fornitori fo) {
+
 		String PIVA = fo.getPIVA();
 		if (PIVA != null) {
 			// deleteAllElementsWithThisFornitore(fo);
@@ -112,6 +114,5 @@ public class FornitoriDAO implements IFornitoriDAO {
 			}
 		}
 	}
-
 
 }

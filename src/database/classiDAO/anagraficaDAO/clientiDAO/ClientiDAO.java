@@ -7,9 +7,6 @@ import java.util.ArrayList;
 
 import database.connectionSQL.DbSingleton;
 import model.anagrafica.clienti.Clienti;
-import model.anagrafica.fornitori.Fornitori;
-import model.anagrafica.veterinari.Veterinari;
-import view.PopupError;
 
 public class ClientiDAO implements IClientiDAO {
 
@@ -17,13 +14,13 @@ public class ClientiDAO implements IClientiDAO {
 
 	public ClientiDAO() {
 		super();
+		db = DbSingleton.getInstance();
 
 	}
-
+	@Override
 	public Clienti select_cliente_from_CF(String CF) {
 
 		ResultSet rs1;
-		db = DbSingleton.getInstance();
 
 		try {
 			String query = "SELECT * FROM CLIENTI WHERE CF_CL =\"" + CF + "\"";
@@ -43,12 +40,12 @@ public class ClientiDAO implements IClientiDAO {
 		return null;
 	}
 
+	@Override
 	public ArrayList<Clienti> selectAll() {
 		ArrayList<Clienti> result = new ArrayList<>();
 
 		ResultSet rs1;
-		db = DbSingleton.getInstance();
- 
+
 		try {
 			String query = "SELECT * FROM CLIENTI";
 			rs1 = db.executeQuery(query);
@@ -95,7 +92,9 @@ public class ClientiDAO implements IClientiDAO {
 		}
 		return true;
 	}
-
+	
+	
+	@Override
 	public void deleteClienti(Clienti cl) {
 		String CF_CL = cl.getCF();
 		String query = "delete from CLIENTI where CF_CL=\"" + CF_CL + "\"";

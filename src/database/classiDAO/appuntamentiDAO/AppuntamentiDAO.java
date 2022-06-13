@@ -18,15 +18,19 @@ public class AppuntamentiDAO implements IAppuntamentiDAO {
 	private DbSingleton db;
 
 	public AppuntamentiDAO() {
+		
 		super();
+		db = DbSingleton.getInstance();
 
-	}
+	} 
 
+	
+	@Override
 	public ArrayList<Appuntamenti> selectAll() {
 		ArrayList<Appuntamenti> result = new ArrayList<>(); 
 
 		ResultSet rs1;
-		db = DbSingleton.getInstance(); 
+		
 
 		VeterinariDAO v = new VeterinariDAO();
 		PazienteDAO paz = new PazienteDAO();
@@ -47,16 +51,17 @@ public class AppuntamentiDAO implements IAppuntamentiDAO {
 				result.add(app);
 			}
 		} catch (Exception e) {
-			e.printStackTrace();
+			e.printStackTrace(); 
 		}
 
 		return result;
 	}
-
+	
+	@Override
 	public int selectIDappuntamenti(int rigaSelezionata) {
 
 		ResultSet rs1;
-		db = DbSingleton.getInstance();
+	
 		rigaSelezionata = rigaSelezionata + 1;
 		String query = "SELECT COD_VISITA FROM\n" + "(\n"
 				+ "SELECT COD_VISITA,GIORNO, ROW_NUMBER() OVER (ORDER BY GIORNO DESC) AS RowNumber\n"
@@ -78,6 +83,8 @@ public class AppuntamentiDAO implements IAppuntamentiDAO {
 		return -1;
 	}
 
+	
+	@Override
 	public void deleteAppuntamenti(int cod) {
 
 		String query = "delete from APPUNTAMENTI where COD_VISITA=\"" + cod + "\"";
@@ -98,6 +105,8 @@ public class AppuntamentiDAO implements IAppuntamentiDAO {
 		}
 	}
 
+	
+	@Override
 	public ArrayList<Appuntamenti> appuntamentiOggiDueToVet(String CF_vetReferente) {
 		// restituisce gli appuntamenti promemoria del giorno corrente del vet
 		// sopra-elencatp
@@ -105,7 +114,7 @@ public class AppuntamentiDAO implements IAppuntamentiDAO {
 		ArrayList<Appuntamenti> result = new ArrayList<>();
 
 		ResultSet rs1;
-		db = DbSingleton.getInstance();
+	
 
 		VeterinariDAO v = new VeterinariDAO();
 		PazienteDAO paz = new PazienteDAO();
@@ -133,6 +142,8 @@ public class AppuntamentiDAO implements IAppuntamentiDAO {
 		return result;
 	}
 
+	
+	@Override
 	public ArrayList<Appuntamenti> appuntamentiOggi() {
 		// restituisce gli appuntamenti promemoria del giorno corrente del vet
 		// sopra-elencatp
@@ -140,7 +151,7 @@ public class AppuntamentiDAO implements IAppuntamentiDAO {
 		ArrayList<Appuntamenti> result = new ArrayList<>();
 
 		ResultSet rs1;
-		db = DbSingleton.getInstance();
+	
 
 		VeterinariDAO v = new VeterinariDAO();
 		PazienteDAO paz = new PazienteDAO();
@@ -167,6 +178,7 @@ public class AppuntamentiDAO implements IAppuntamentiDAO {
 		return result;
 	}
 
+	@Override
 	public boolean insertAppuntamenti(Appuntamenti p) {
 
 		String query = "INSERT INTO APPUNTAMENTI (ID_PAZ, SALA, TIPO , GIORNO ,"
@@ -182,7 +194,7 @@ public class AppuntamentiDAO implements IAppuntamentiDAO {
 
 			stmt.setInt(1, p.getPaziente().getIDpaz());
 			stmt.setString(2, p.getSala());
-			stmt.setString(3, p.getTipo());
+			stmt.setString(3, p.getTipo()); 
 			stmt.setDate(4, p.getData());
 			stmt.setTime(5, p.getTime());
 			stmt.setString(6, p.getVeterinario().getCF());
@@ -204,6 +216,8 @@ public class AppuntamentiDAO implements IAppuntamentiDAO {
 		return true;
 	}
 
+	
+	@Override
 	public void updateAppuntamenti(Appuntamenti p) {
 
 		String query = "UPDATE APPUNTAMENTI SET ID_PAZ = ?,SALA = ? ,TIPO = ? ,GIORNO = ?,"
@@ -236,12 +250,14 @@ public class AppuntamentiDAO implements IAppuntamentiDAO {
 		}
 
 	}
-
+	
+	
+	@Override
 	public ArrayList<Appuntamenti> selectAllDueToVeterinario(String CFvet) {
 		ArrayList<Appuntamenti> result = new ArrayList<>();
 
 		ResultSet rs1;
-		db = DbSingleton.getInstance();
+		
 
 		VeterinariDAO v = new VeterinariDAO();
 		PazienteDAO paz = new PazienteDAO();

@@ -24,20 +24,20 @@ public class GoBtnActionListener implements ActionListener {
 	private AppuntamentiController appuntamentiController;
 	private StoricoController storicoController;
 	private DashBoardController dashControl;
-	
+
 	@Override
 	public void actionPerformed(ActionEvent e) {
 		// TODO Auto-generated method stub
 
-		String user = view.getLoginView().getUsernameText().getText().toString(); 
+		String user = view.getLoginView().getUsernameText().getText().toString();
 		String pw = view.getLoginView().getPasswordField().getText().toString();
 
 		boolean isMatching = dbControl.isMatchingLogin(user, pw);
 
 		if (isMatching) {
-			
+
 			CF = dbControl.getCFuserLoggedIn(user, pw);
-			
+
 			view.getLoginView().setVisible(false);
 			Toolkit kit = Toolkit.getDefaultToolkit();
 			Dimension screenSize = kit.getScreenSize(); // restituisce la dimensione dello schermo come oggetto
@@ -55,34 +55,32 @@ public class GoBtnActionListener implements ActionListener {
 
 			view.getContentPane().add(view.getDashboard());
 
-			
 			model.populateCFuser(CF);
-			
+
 			System.out.println(CF + "dimmmi");
-			
-			
-			
+
 			if (CF.equals("direzione")) {
-				
+
 				model.populateAppuntamenti(dbControl.selectAllAppuntamenti());
-				model.populateStorico(dbControl.selectAllStorico());	
+				model.populateStorico(dbControl.selectAllStorico());
 				model.populatePromemoriaOggi(dbControl.selectAllPromemoriaOggi());
-				
+
 			}
 
 			else {
-				
+
 				model.populateAppuntamenti(dbControl.selectAllAppuntamentiDuetovet(CF));
 				model.populateStorico(dbControl.selectAllStoricoDuetovet(CF));
 				model.populatePromemoriaOggi(dbControl.selectAllPromemoriaOggiDueToVet(model.getCFuser()));
 
 			}
 
-			appuntamentiController = new AppuntamentiController(model, view, dbControl);
+			appuntamentiController = new AppuntamentiController(model, view);
 			storicoController = new StoricoController(model, view);
-			dashControl = new DashBoardController(model, view, dbControl);
+			dashControl = new DashBoardController(model, view);
 
-			
+			pulisciTextField();
+ 
 		}
 
 		else {
@@ -104,11 +102,11 @@ public class GoBtnActionListener implements ActionListener {
 		view.getLoginView().getPasswordField().setText(null);
 	}
 
-	public GoBtnActionListener(MainView view, SmartVetModel model, DbControllerSingleton dbControl) {
+	public GoBtnActionListener(MainView view, SmartVetModel model) {
 		super();
 		this.view = view;
 		this.model = model;
-		this.dbControl = dbControl;
+		dbControl = DbControllerSingleton.getInstance();
 	}
 
 }

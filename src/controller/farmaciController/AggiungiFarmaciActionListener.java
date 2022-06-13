@@ -58,21 +58,21 @@ public class AggiungiFarmaciActionListener implements ActionListener {
 
 		int Quantita = (int) view.getFarmaciPanel().getSpinner().getValue();
 
-		LottoFarmaci nuovoLotto = new LottoFarmaci(IDLotto, type, mode, forn, sqlDate, Quantita);
+		LottoFarmaci nuovoLotto = new LottoFarmaci(IDLotto, mode, type, forn, sqlDate, Quantita);
 		boolean flag = dbControl.addLottoFarmaci(nuovoLotto);
 
 		if (flag) {
 
 			model.getLottoFarmaciArray().add(nuovoLotto);
 
-			Object rowData[] = new Object[6];
+			Object rowData[] = new Object[6]; 
 
 			DefaultTableModel model = (DefaultTableModel) view.getFarmaciPanel().getTabellaFarmaci().getTable()
 					.getModel();
 
 			rowData[0] = IDLotto;
-			rowData[1] = type;
-			rowData[2] = mode;
+			rowData[1] = mode;
+			rowData[2] = type;
 			rowData[3] = forn.getPIVA();
 			rowData[4] = sqlDate;
 			rowData[5] = Quantita;
