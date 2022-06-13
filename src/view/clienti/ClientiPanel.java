@@ -37,7 +37,7 @@ public class ClientiPanel extends JPanel {
 	private JButton btnAggiorna;
 	private JButton btnHome;
 
-	public ClientiPanel() {
+	public ClientiPanel() { 
 
 		setBounds(0, 0, 2700, 2200);
 		// setBorder(new EmptyBorder(5, 5, 5, 5));

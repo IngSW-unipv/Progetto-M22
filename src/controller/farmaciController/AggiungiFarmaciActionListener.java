@@ -53,7 +53,7 @@ public class AggiungiFarmaciActionListener implements ActionListener {
 			// TODO Auto-generated catch block
 			e1.printStackTrace();
 		}
-
+ 
 		//
 
 		int Quantita = (int) view.getFarmaciPanel().getSpinner().getValue();

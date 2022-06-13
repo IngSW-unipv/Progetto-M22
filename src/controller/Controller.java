@@ -2,6 +2,7 @@ package controller;
 
 import controller.appuntamentiController.occupazioneSaleController.OccupazioneSaleController;
 import controller.clientiController.ClientiController;
+import controller.entrateController.EntrateController;
 import controller.farmaciController.FarmaciController;
 import controller.fornitoriController.FornitoriController;
 import controller.loginController.LoginController;
@@ -29,6 +30,7 @@ public class Controller {
 	private OccupazioneSaleController occupazioneSaleController;
 	private ProdottiVenditaController prodottiVenditaController;
 	private RegistratiController registratiController;
+	private EntrateController entrateController;
 
 	public Controller(SmartVetModel m, MainView v) {
 
@@ -68,6 +70,7 @@ public class Controller {
 		registratiController = new RegistratiController(view, model, dbControl);
 		// storicoController = new StoricoController(model, view, dbControl);
 
+		entrateController = new EntrateController(model, view);
 	}
 
 	private void populateArrays() {

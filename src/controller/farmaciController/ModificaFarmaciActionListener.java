@@ -17,7 +17,7 @@ public class ModificaFarmaciActionListener implements ActionListener {
 		// TODO Auto-generated method stub
 
 		int rigaSelezionata = view.getFarmaciPanel().getTabellaFarmaci().getTable().getSelectedRow();
-
+ 
 		if (rigaSelezionata >= 0) {
 
 			String IDLotto = model.getLottoFarmaciArray().get(rigaSelezionata).getIDLotto();

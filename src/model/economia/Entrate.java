@@ -2,6 +2,7 @@ package model.economia;
 
 public class Entrate {
 	private int ID;
+	private String tipo;
 	private double prezzo;
 	private String causa;
 
@@ -29,9 +30,18 @@ public class Entrate {
 		this.causa = causa;
 	}
 
-	public Entrate(int iD, double prezzo, String causa) {
+	public String getTipo() {
+		return tipo;
+	}
+
+	public void setTipo(String tipo) {
+		this.tipo = tipo;
+	}
+
+	public Entrate(int iD, String tipo, double prezzo, String causa) {
 		super();
 		ID = iD;
+		this.tipo = tipo;
 		this.prezzo = prezzo;
 		this.causa = causa;
 	}

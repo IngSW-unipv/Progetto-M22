@@ -19,7 +19,7 @@ public class ProdottiUtiliDAO implements IProdottiUtiliDAO {
 	}
 
 	public ArrayList<ProdottiUtili> selectAll() {
-		ArrayList<ProdottiUtili> result = new ArrayList<>();
+		ArrayList<ProdottiUtili> result = new ArrayList<>(); 
 
 		ResultSet rs1;
 		db = DbSingleton.getInstance();

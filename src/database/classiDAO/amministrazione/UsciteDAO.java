@@ -25,7 +25,7 @@ public class UsciteDAO {
 			rs1 = db.executeQuery(query);
 
 			while (rs1.next()) {
-				Uscite uscite = new Uscite(rs1.getInt(1), rs1.getDouble(2), rs1.getString(3));
+				Uscite uscite = new Uscite(rs1.getInt(1), rs1.getString(2), rs1.getDouble(3), rs1.getString(4));
 
 				result.add(uscite);
 
@@ -39,7 +39,7 @@ public class UsciteDAO {
 	
 	public boolean insertUscite(Uscite uscite) {
 
-		String query = "INSERT INTO USCITE (ID, PREZZO, CAUSA) values (?, ?, ?);";
+		String query = "INSERT INTO USCITE (ID, PREZZO, CAUSA, TIPO) values (?, ?, ?, ?);";
 
 		PreparedStatement stmt = null;
 
@@ -48,8 +48,9 @@ public class UsciteDAO {
 			stmt = db.getConnection().prepareStatement(query);
 
 			stmt.setInt(1, uscite.getID());
-			stmt.setDouble(2, uscite.getPrezzo());
 			stmt.setString(3, uscite.getCausa());
+			stmt.setDouble(2, uscite.getPrezzo());
+			stmt.setString(4, uscite.getTipo());
 			
 			stmt.executeUpdate();
 		}

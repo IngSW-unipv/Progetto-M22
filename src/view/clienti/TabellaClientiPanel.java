@@ -22,7 +22,7 @@ public class TabellaClientiPanel {
 		table.getColumnModel().getColumn(0).setPreferredWidth(95);
 		table.getColumnModel().getColumn(0).setMinWidth(95);
 
-	}
+	} 
 
 	public JTable getTable() {
 		return table;

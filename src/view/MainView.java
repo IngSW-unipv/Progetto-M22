@@ -5,6 +5,7 @@ import java.awt.Toolkit;
 
 import javax.swing.JFrame;
 
+import view.amministrazione.entrate.EntratePanel;
 import view.appuntamenti.AppuntamentiPanel;
 import view.appuntamenti.StoricoPanel;
 import view.clienti.ClientiPanel;
@@ -22,7 +23,7 @@ import view.veterinari.VeterinariPanel;
 public class MainView extends JFrame {
 
 	private static final long serialVersionUID = 1L;
-	
+
 	private DashBoardView dashboard;
 	private LoginView loginView;
 	private ClientiPanel clientiPanel;
@@ -36,10 +37,11 @@ public class MainView extends JFrame {
 	private OccupazioneSalePanel saleOccupatePanel;
 	private ProdottiVenditaPanel prodottiVenditaPanel;
 	private RegistratiView registratiView;
+	private EntratePanel entratePanel;
 
 	public MainView() {
 
-		Toolkit kit = Toolkit.getDefaultToolkit(); 
+		Toolkit kit = Toolkit.getDefaultToolkit();
 		Dimension screenSize = kit.getScreenSize(); // restituisce la dimensione dello schermo come oggetto Dimension
 		int screenHeight = screenSize.height;
 		int screenWidth = screenSize.width;
@@ -70,6 +72,7 @@ public class MainView extends JFrame {
 		saleOccupatePanel = new OccupazioneSalePanel();
 		prodottiVenditaPanel = new ProdottiVenditaPanel();
 		registratiView = new RegistratiView();
+		entratePanel = new EntratePanel();
 	}
 
 	public DashBoardView getDashboard() {
@@ -122,6 +125,10 @@ public class MainView extends JFrame {
 
 	public RegistratiView getRegistratiView() {
 		return registratiView;
+	}
+
+	public EntratePanel getEntratePanel() {
+		return entratePanel;
 	}
 
 }

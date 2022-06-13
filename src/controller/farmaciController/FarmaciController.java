@@ -18,7 +18,7 @@ public class FarmaciController {
 
 	public FarmaciController(SmartVetModel model, MainView view, DbControllerSingleton dbControl) {
 		super();
-		this.model = model;
+		this.model = model; 
 		this.view = view;
 		this.dbControl = dbControl;
 
@@ -97,6 +97,9 @@ public class FarmaciController {
 
 		AggiornaFarmaciActionListener aggiornaFarmaci = new AggiornaFarmaciActionListener(model, dbControl, view);
 		view.getFarmaciPanel().getBtnAggiorna().addActionListener(aggiornaFarmaci);
+		
+		FatturaFarmaciActionListener fatturaFarmaci = new FatturaFarmaciActionListener(model, view, dbControl);
+		view.getFarmaciPanel().getBtnFattura().addActionListener(aggiornaFarmaci);
 
 	}
 

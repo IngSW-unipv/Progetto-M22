@@ -48,7 +48,7 @@ public class ClientiDAO implements IClientiDAO {
 
 		ResultSet rs1;
 		db = DbSingleton.getInstance();
-
+ 
 		try {
 			String query = "SELECT * FROM CLIENTI";
 			rs1 = db.executeQuery(query);

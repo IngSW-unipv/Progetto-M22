@@ -6,6 +6,8 @@ import model.anagrafica.clienti.Clienti;
 import model.anagrafica.fornitori.Fornitori;
 import model.anagrafica.veterinari.Veterinari;
 import model.appuntamenti.Appuntamenti;
+import model.economia.Entrate;
+import model.economia.Uscite;
 import model.magazzino.farmaci.LottoFarmaci;
 import model.magazzino.prodottiUtili.ProdottiUtili;
 import model.magazzino.prodottiVendita.ProdottiVendita;
@@ -28,6 +30,8 @@ public class SmartVetModel {
 	private ArrayList<Appuntamenti> promemoria;
 	private ArrayList<Appuntamenti> storico;
 	private ArrayList<Appuntamenti> saleOccupate;
+	private ArrayList <Entrate> entrate;
+	private ArrayList <Uscite> uscite;
 	private String CFuser;
 	private static SmartVetModel jSmartVet;
 
@@ -47,6 +51,8 @@ public class SmartVetModel {
 		this.scadenza = new ArrayList<LottoFarmaci>();
 		this.CFuser = new String();
 		this.storico = new ArrayList<Appuntamenti>();
+		this.entrate = new ArrayList<Entrate>();
+		this.uscite = new ArrayList<Uscite>();
 	}
 
 	public static SmartVetModel getInstance() {
@@ -127,6 +133,14 @@ public class SmartVetModel {
 	public void populateSaleOccupate(ArrayList<Appuntamenti> saleOccupate) {
 		this.saleOccupate = saleOccupate;
 	}
+	
+	public void populateEntrate(ArrayList<Entrate> entrate) {
+		this.entrate = entrate;
+	}
+	
+	public void populateUscite(ArrayList<Uscite> uscite) {
+		this.uscite = uscite;
+	}
 
 	public ArrayList<Clienti> getClientiArray() {
 		return clienti;
@@ -178,6 +192,14 @@ public class SmartVetModel {
 
 	public ArrayList<Appuntamenti> getSaleOccupateArray() {
 		return saleOccupate;
+	}
+	
+	public ArrayList<Uscite> getUsciteArray() {
+		return uscite;
+	}
+	
+	public ArrayList<Entrate> getEntrateArray() {
+		return entrate;
 	}
 
 	public void setNullDueToFornitori(Fornitori forn) {

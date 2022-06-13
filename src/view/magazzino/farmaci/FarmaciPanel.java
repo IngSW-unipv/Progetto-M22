@@ -24,7 +24,7 @@ public class FarmaciPanel extends JPanel {
 	private JTextField tipoText;
 	private JComboBox fornitoriBox;
 	private JDateChooser dataScadenza;
-	private JSpinner spinner; 
+	private JSpinner spinner;
 	private JLabel lblIDLotto;
 	private JLabel lblMode;
 	private JLabel lblTipo;
@@ -37,6 +37,7 @@ public class FarmaciPanel extends JPanel {
 	private JButton btnModifica;
 	private JButton btnAggiorna;
 	private JButton btnHome;
+	private JButton btnFattura;
 
 	/**
 	 * Create the panel.
@@ -145,10 +146,14 @@ public class FarmaciPanel extends JPanel {
 		add(btnAggiorna);
 
 		btnHome = new JButton();
-		btnHome.setBounds(1058, 551, 52, 43);
+		btnHome.setBounds(1057, 556, 52, 43);
 		Icon icon = UIManager.getIcon("FileChooser.homeFolderIcon");
 		btnHome.setIcon(icon);
 		add(btnHome);
+
+		btnFattura = new JButton("Fattura");
+		btnFattura.setBounds(1024, 387, 117, 29);
+		add(btnFattura);
 
 	}
 
@@ -231,12 +236,13 @@ public class FarmaciPanel extends JPanel {
 	public JButton getBtnHome() {
 		return btnHome;
 	}
-	
 
-	/*public LottoFarmaci getNuovoLotto() {
-		LottoFarmaci lf = new LottoFarmaci(IDLottoText.getText(), modeText.getText(), tipoText.getText(), fornitoriBox.getSelectedItem().toString(), 
-				dataScadenza.getDate(),(int)spinner.getValue());
-		return lf;
-	}*/
+	public JButton getBtnFattura() {
+		return btnFattura;
+	}
+
+	public void setBtnFattura(JButton btnFattura) {
+		this.btnFattura = btnFattura;
+	}
 
 }

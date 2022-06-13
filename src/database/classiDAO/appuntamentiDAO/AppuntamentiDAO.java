@@ -23,7 +23,7 @@ public class AppuntamentiDAO implements IAppuntamentiDAO {
 	}
 
 	public ArrayList<Appuntamenti> selectAll() {
-		ArrayList<Appuntamenti> result = new ArrayList<>();
+		ArrayList<Appuntamenti> result = new ArrayList<>(); 
 
 		ResultSet rs1;
 		db = DbSingleton.getInstance(); 
