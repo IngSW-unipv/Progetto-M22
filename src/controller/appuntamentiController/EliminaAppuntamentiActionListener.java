@@ -18,10 +18,11 @@ public class EliminaAppuntamentiActionListener implements ActionListener {
 	@Override
 	public void actionPerformed(ActionEvent e) {
 		// TODO Auto-generated method stub
-
+ 
 		DefaultTableModel modello = (DefaultTableModel) view.getAppuntamentiPanel().getTab().getTable().getModel();
 		DefaultTableModel modelloStorico = (DefaultTableModel) view.getStoricoPanel().getTable().getModel();
 		DefaultTableModel modelloSale= (DefaultTableModel) view.getSaleOccupatePanel().getTable().getModel();
+		DefaultTableModel modelloPromemoria = (DefaultTableModel) view.getDashboard().getPromemoria().getTable().getModel();
 		
 		int elementoSelezionato = view.getAppuntamentiPanel().getTab().getTable().getSelectedRow();
 
@@ -30,6 +31,7 @@ public class EliminaAppuntamentiActionListener implements ActionListener {
 		modello.removeRow(elementoSelezionato);
 		modelloStorico.removeRow(elementoSelezionato);
 		modelloSale.removeRow(elementoSelezionato);
+		
 
 		dbControl.deleteAppuntamenti(cod);
 

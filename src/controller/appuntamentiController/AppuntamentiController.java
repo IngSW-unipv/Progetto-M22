@@ -18,7 +18,7 @@ public class AppuntamentiController {
 
 	public AppuntamentiController(SmartVetModel model, MainView view, DbControllerSingleton dbControl) {
 
-		this.model = model;
+		this.model = model; 
 		this.view = view;
 		this.dbControl = dbControl;
 		

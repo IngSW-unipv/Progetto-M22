@@ -24,7 +24,7 @@ public class StoricoController {
 			fillTable();
 		}
 
-		else {
+		else { 
 
 			fillTableDueToVeterinario();
 		}

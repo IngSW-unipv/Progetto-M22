@@ -3,6 +3,8 @@ package database.connectionSQL;
 import java.sql.Connection;
 import java.util.ArrayList;
 
+import database.classiDAO.amministrazione.EntrateDAO;
+import database.classiDAO.amministrazione.UsciteDAO;
 import database.classiDAO.anagraficaDAO.clientiDAO.ClientiDAO;
 import database.classiDAO.anagraficaDAO.fornitoriDAO.FornitoriDAO;
 import database.classiDAO.anagraficaDAO.veterinariDAO.VeterinariDAO;
@@ -18,6 +20,8 @@ import model.anagrafica.clienti.Clienti;
 import model.anagrafica.fornitori.Fornitori;
 import model.anagrafica.veterinari.Veterinari;
 import model.appuntamenti.Appuntamenti;
+import model.economia.Entrate;
+import model.economia.Uscite;
 import model.magazzino.farmaci.LottoFarmaci;
 import model.magazzino.prodottiUtili.ProdottiUtili;
 import model.magazzino.prodottiVendita.ProdottiVendita;
@@ -39,7 +43,9 @@ public class DbControllerSingleton {
 	private ProdottiVenditaDAO prods_v = new ProdottiVenditaDAO();
 	private SalaDAO sale = new SalaDAO();
 	private LoginDAO log = new LoginDAO();
-	private StoricoDAO storico = new StoricoDAO();
+	private StoricoDAO storico = new StoricoDAO();  
+	private EntrateDAO entrate = new EntrateDAO();
+	private UsciteDAO uscite = new UsciteDAO();
 
 	public DbControllerSingleton() {
 
@@ -169,8 +175,12 @@ public class DbControllerSingleton {
 		return app.selectAll();
 	}
 
-	public ArrayList<Appuntamenti> selectAllPromemoriaOggi(String CF_vet) {
-		return app.appuntamentiOggi(CF_vet);
+	public ArrayList<Appuntamenti> selectAllPromemoriaOggiDueToVet(String CF_vet) {
+		return app.appuntamentiOggiDueToVet(CF_vet);
+	}
+	
+	public ArrayList<Appuntamenti> selectAllPromemoriaOggi() {
+		return app.appuntamentiOggi();
 	}
 
 	public int selectIDappuntamenti(int rigaSelezionata) {
@@ -312,6 +322,41 @@ public class DbControllerSingleton {
 		return log.getCFuserLoggedIn(user, pw);
 	}
 	
+	public void insertNuovoUtente(String user, String pw, String CFvet) {
+		log.insertNuovoUtente(user, pw, CFvet);
+	}
+	
+	
+	
+	// ENTRATE
+	
+	public ArrayList<Entrate> selectAllEntrate() {
+		return entrate.selectAll();
+	}
+	
+	public boolean insertEntrate(Entrate entrata) {
+		return entrate.insertEntrate(entrata);
+	}
+	
+	public void deleteEntrate(int ID) {
+		entrate.deleteEntrate(ID);
+	}
+	
+	
+	
+	// USCITE
+	
+	public ArrayList<Uscite> selectAllUscite() {
+		return uscite.selectAll();
+	}
+	
+	public boolean insertUscite(Uscite uscita) {
+		return uscite.insertUscite(uscita);
+	}
+	
+	public void deleteUscite(int ID) {
+		uscite.deleteUscite(ID);
+	}
 	
 	
 	

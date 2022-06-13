@@ -236,9 +236,9 @@ public class PazientiPanel extends JPanel {
 
 		btnHome = new JButton();
 		btnHome.setBounds(1300, 552, 52, 43);
-		Icon icon = UIManager.getIcon("FileChooser.homeFolderIcon");
+		Icon icon = UIManager.getIcon("FileChooser.homeIcon");
 		btnHome.setIcon(icon);
-		add(btnHome);
+		add(btnHome); 
 
 		microchip = new JCheckBox("Microchip");
 		microchip.setBounds(964, 487, 128, 23);

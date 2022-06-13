@@ -1,6 +1,8 @@
 package database.classiDAO.loginDAO;
 
+import java.sql.PreparedStatement;
 import java.sql.ResultSet;
+import java.sql.SQLException;
 
 import database.connectionSQL.DbSingleton;
 
@@ -56,4 +58,30 @@ public class LoginDAO implements ILoginDAO {
 		}
 		return null;
 	}
+
+	public void insertNuovoUtente(String user, String password, String CFdip) {
+
+		String query = "INSERT INTO LOGIN (USERNAME, PASSWORD, CF )" + "values (?, ?, ?);";
+
+		PreparedStatement stmt = null;
+
+		try {
+
+			stmt = db.getConnection().prepareStatement(query);
+
+			stmt.setString(1, user);
+			stmt.setString(2, password);
+			stmt.setString(3, CFdip);
+
+			stmt.executeUpdate();
+
+		}
+
+		catch (SQLException e) {
+			e.printStackTrace();
+
+		}
+
+	}
+
 }

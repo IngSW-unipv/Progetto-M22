@@ -23,10 +23,16 @@ public class MenuView extends JMenuBar {
 	private JMenuItem menuItemAppuntamenti;
 	private JMenuItem menuItemStorico;
 	private JMenuItem mntmSaleOccupate;
+	private JMenu mnAccount;
+	private JMenuItem mntmNuovoAccount;
+	private JMenuItem mntmEsciAccount;
+	private JMenu mnAmministrazione;
+	private JMenuItem mntmEntrate;
+	private JMenuItem mntmUscite;
 
 	public MenuView() {
 
-		setBounds(51, 31, 396, 63);
+		setBounds(24, 24, 500, 31);
 
 		mnAnagrafica = new JMenu("Anagrafica");
 		add(mnAnagrafica);
@@ -69,6 +75,25 @@ public class MenuView extends JMenuBar {
 
 		mntmSaleOccupate = new JMenuItem("Occupazione sale");
 		mnAppuntamenti.add(mntmSaleOccupate);
+
+		mnAccount = new JMenu("Account");
+		add(mnAccount);
+
+		mntmEsciAccount = new JMenuItem("Esci");
+		mnAccount.add(mntmEsciAccount);
+
+		mntmNuovoAccount = new JMenuItem("Nuovo account");
+		mnAccount.add(mntmNuovoAccount);
+
+		mnAmministrazione = new JMenu("Amministrazione");
+		add(mnAmministrazione);
+
+		mntmEntrate = new JMenuItem("Entrate");
+		mnAmministrazione.add(mntmEntrate);
+
+		mntmUscite = new JMenuItem("Uscite");
+		mnAmministrazione.add(mntmUscite);
+
 	}
 
 	public static long getSerialversionuid() {
@@ -133,6 +158,22 @@ public class MenuView extends JMenuBar {
 
 	public JMenuItem getMntmSaleOccupate() {
 		return mntmSaleOccupate;
+	}
+
+	public JMenuItem getMntmNuovoAccount() {
+		return mntmNuovoAccount;
+	}
+
+	public JMenuItem getMntmEsciAccount() {
+		return mntmEsciAccount;
+	}
+
+	public JMenuItem getMntmEntrate() {
+		return mntmEntrate;
+	}
+
+	public JMenuItem getMntmUscite() {
+		return mntmUscite;
 	}
 
 }

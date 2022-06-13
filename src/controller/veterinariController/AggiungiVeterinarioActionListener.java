@@ -33,13 +33,14 @@ public class AggiungiVeterinarioActionListener implements ActionListener {
 
 			// aggiungo vet nelle comboBox di altre finestre
 
-			if (model.getCFuser().equals("direzione")) {
+			if (model.getCFuser().equals("direzione")) { 
 
 				view.getAppuntamentiPanel().getCFvetText()
 						.addItem(veterinariPanel.getNuovoVeterinarioTextField().getCF());
 			}
 
 			view.getPazientiPanel().getVeterinariBox().addItem(veterinariPanel.getNuovoVeterinarioTextField().getCF());
+			view.getRegistratiView().getComboBox().addItem(veterinariPanel.getNuovoVeterinarioTextField().getCF());
 
 			Object rowData[] = new Object[12];
 

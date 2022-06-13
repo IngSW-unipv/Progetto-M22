@@ -20,7 +20,7 @@ public class FornitoriDAO implements IFornitoriDAO {
 	public Fornitori select_Forn(String PIVA) {
 
 		ResultSet rs1;
-		db = DbSingleton.getInstance();
+		db = DbSingleton.getInstance(); 
 
 		try {
 			String query = "SELECT * FROM FORNITORI WHERE PIVA =\"" + PIVA + "\"";

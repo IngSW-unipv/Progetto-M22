@@ -103,7 +103,6 @@ public class AggiornaPazientiActionListener implements ActionListener {
 
 		dbControl.updatePaziente(paz);
 
-		// boolean flag = dbControl.addNuovoPaziente(paz);
 
 		Object rowData[] = new Object[14];
 

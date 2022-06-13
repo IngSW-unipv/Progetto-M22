@@ -41,7 +41,7 @@ public class AggiungiFarmaciActionListener implements ActionListener {
 
 			dataScadenza = view.getFarmaciPanel().getDataScadenza().getDate();
 
-			if (dataScadenza != null) {
+			if (dataScadenza != null) { 
 
 				dataScadenza = sdf.parse(sdf.format(dataScadenza));
 

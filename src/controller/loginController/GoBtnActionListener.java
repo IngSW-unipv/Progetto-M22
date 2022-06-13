@@ -7,6 +7,7 @@ import java.awt.event.ActionListener;
 
 import javax.swing.JFrame;
 
+import controller.DashBoardController;
 import controller.appuntamentiController.AppuntamentiController;
 import controller.appuntamentiController.StoricoController.StoricoController;
 import database.connectionSQL.DbControllerSingleton;
@@ -22,12 +23,13 @@ public class GoBtnActionListener implements ActionListener {
 	private String CF;
 	private AppuntamentiController appuntamentiController;
 	private StoricoController storicoController;
+	private DashBoardController dashControl;
 	
 	@Override
 	public void actionPerformed(ActionEvent e) {
 		// TODO Auto-generated method stub
 
-		String user = view.getLoginView().getUsernameText().getText().toString();
+		String user = view.getLoginView().getUsernameText().getText().toString(); 
 		String pw = view.getLoginView().getPasswordField().getText().toString();
 
 		boolean isMatching = dbControl.isMatchingLogin(user, pw);
@@ -63,18 +65,23 @@ public class GoBtnActionListener implements ActionListener {
 			if (CF.equals("direzione")) {
 				
 				model.populateAppuntamenti(dbControl.selectAllAppuntamenti());
-				model.populateStorico(dbControl.selectAllStorico());
+				model.populateStorico(dbControl.selectAllStorico());	
+				model.populatePromemoriaOggi(dbControl.selectAllPromemoriaOggi());
+				
 			}
 
 			else {
 				
 				model.populateAppuntamenti(dbControl.selectAllAppuntamentiDuetovet(CF));
 				model.populateStorico(dbControl.selectAllStoricoDuetovet(CF));
+				model.populatePromemoriaOggi(dbControl.selectAllPromemoriaOggiDueToVet(model.getCFuser()));
 
 			}
 
 			appuntamentiController = new AppuntamentiController(model, view, dbControl);
 			storicoController = new StoricoController(model, view);
+			dashControl = new DashBoardController(model, view, dbControl);
+
 			
 		}
 

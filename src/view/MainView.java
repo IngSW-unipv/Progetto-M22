@@ -5,13 +5,13 @@ import java.awt.Toolkit;
 
 import javax.swing.JFrame;
 
-import controller.prodottiVenditaController.ProdottiVenditaController;
 import view.appuntamenti.AppuntamentiPanel;
 import view.appuntamenti.StoricoPanel;
 import view.clienti.ClientiPanel;
 import view.dashboard.DashBoardView;
 import view.fornitori.FornitoriPanel;
 import view.login.LoginView;
+import view.login.RegistratiView;
 import view.magazzino.farmaci.FarmaciPanel;
 import view.magazzino.prodottiUtili.ProdottiUtiliPanel;
 import view.magazzino.prodottiVendita.ProdottiVenditaPanel;
@@ -22,9 +22,9 @@ import view.veterinari.VeterinariPanel;
 public class MainView extends JFrame {
 
 	private static final long serialVersionUID = 1L;
+	
 	private DashBoardView dashboard;
 	private LoginView loginView;
-
 	private ClientiPanel clientiPanel;
 	private FornitoriPanel fornitoriPanel;
 	private FarmaciPanel farmaciPanel;
@@ -35,10 +35,11 @@ public class MainView extends JFrame {
 	private StoricoPanel storicoPanel;
 	private OccupazioneSalePanel saleOccupatePanel;
 	private ProdottiVenditaPanel prodottiVenditaPanel;
+	private RegistratiView registratiView;
 
 	public MainView() {
 
-		Toolkit kit = Toolkit.getDefaultToolkit();
+		Toolkit kit = Toolkit.getDefaultToolkit(); 
 		Dimension screenSize = kit.getScreenSize(); // restituisce la dimensione dello schermo come oggetto Dimension
 		int screenHeight = screenSize.height;
 		int screenWidth = screenSize.width;
@@ -68,6 +69,7 @@ public class MainView extends JFrame {
 		storicoPanel = new StoricoPanel();
 		saleOccupatePanel = new OccupazioneSalePanel();
 		prodottiVenditaPanel = new ProdottiVenditaPanel();
+		registratiView = new RegistratiView();
 	}
 
 	public DashBoardView getDashboard() {
@@ -116,6 +118,10 @@ public class MainView extends JFrame {
 
 	public ProdottiVenditaPanel getProdottiVenditaPanel() {
 		return prodottiVenditaPanel;
+	}
+
+	public RegistratiView getRegistratiView() {
+		return registratiView;
 	}
 
 }

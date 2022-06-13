@@ -16,7 +16,7 @@ public class TabellaFarmaciScadenzaView {
 		table.setModel(
 				new DefaultTableModel(new Object[][] {}, new String[] { "Lotto", "Tipo", "Data scadenza", "Qt", "Assunzione" }));
 		table.getColumnModel().getColumn(0).setMinWidth(95);
-		table.setBounds(0, 0, 1000, 1500);
+		table.setBounds(0, 0, 1000, 1500); 
 
 	}
 

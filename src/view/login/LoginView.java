@@ -4,11 +4,13 @@ import java.awt.Dimension;
 import java.awt.Font;
 import java.awt.Toolkit;
 
+import javax.swing.Icon;
 import javax.swing.JButton;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JPasswordField;
 import javax.swing.JTextField;
+import javax.swing.UIManager;
 
 public class LoginView extends JPanel {
 	
@@ -23,7 +25,7 @@ public class LoginView extends JPanel {
 	/**
 	 * Create the panel.
 	 */
-	public LoginView() {
+	public LoginView() { 
 
 		Toolkit kit = Toolkit.getDefaultToolkit();
 		Dimension screenSize = kit.getScreenSize(); // restituisce la dimensione dello schermo come oggetto Dimension
@@ -32,10 +34,7 @@ public class LoginView extends JPanel {
 
 		// centra il frame nello schermo
 		setSize(screenWidth/3, screenHeight/3);
-		setLocation(0, 0); // consente di riposizionare il frame
-		//setResizable(false);
 		setVisible(true);
-		//setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setLayout(null);
 
 		passwordField = new JPasswordField();
@@ -52,7 +51,7 @@ public class LoginView extends JPanel {
 		lblLogin.setBounds(180, 17, 247, 65);
 		add(lblLogin);
 
-		lblUsername = new JLabel("Username\n");
+		lblUsername = new JLabel("Username\n"); 
 		lblUsername.setBounds(46, 121, 88, 16);
 		add(lblUsername);
 
@@ -60,7 +59,7 @@ public class LoginView extends JPanel {
 		lblPassword.setBounds(46, 186, 88, 16);
 		add(lblPassword);
 
-		btnGo = new JButton("New button");
+		btnGo = new JButton("->");
 		btnGo.setBounds(357, 237, 117, 29);
 		add(btnGo);
 

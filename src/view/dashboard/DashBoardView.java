@@ -1,24 +1,21 @@
 package view.dashboard;
 
-import javax.swing.JComboBox;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 
 import view.dashboard.farmaciScadenza.TabellaFarmaciScadenzaView;
-import java.awt.event.ActionListener;
-import java.awt.event.ActionEvent;
-import javax.swing.JMenuBar;
-import javax.swing.JMenuItem;
+import view.dashboard.promemoria.PromemoriaView;
 
 public class DashBoardView extends JPanel {
 
+	private static final long serialVersionUID = 1L;
 	private MenuView menu;
 	private JScrollPane promemoriaScrollPane;
-	private JComboBox comboBox1;
 	private JScrollPane farmaciScadenzaScrollPane;
+	private PromemoriaView promemoria;
 	private TabellaFarmaciScadenzaView f;
 
-	public DashBoardView() {
+	public DashBoardView() { 
 
 		super();
 		setVisible(true);
@@ -26,7 +23,6 @@ public class DashBoardView extends JPanel {
 		setLayout(null);
 
 		menu = new MenuView();
-		menu.setBounds(24, 24, 373, 31);
 		add(menu);
 
 		// creo un pannello con scrollo per promemoria
@@ -34,27 +30,22 @@ public class DashBoardView extends JPanel {
 		promemoriaScrollPane.setBounds(119, 76, 435, 249);
 		add(promemoriaScrollPane);
 
-		comboBox1 = new JComboBox();
-		comboBox1.setBounds(934, 25, 192, 17);
-		add(comboBox1);
-
 		// creo un pannello con scrollo per farmaci in scadenza
 		farmaciScadenzaScrollPane = new JScrollPane();
 		farmaciScadenzaScrollPane.setBounds(684, 83, 412, 254);
 		add(farmaciScadenzaScrollPane);
+
 		f = new TabellaFarmaciScadenzaView(farmaciScadenzaScrollPane);
+
+		promemoria = new PromemoriaView(promemoriaScrollPane);
 	}
- 
+
 	public MenuView getMenu() {
 		return menu;
 	}
 
 	public JScrollPane getPromemoriaScrollPane() {
 		return promemoriaScrollPane;
-	}
-
-	public JComboBox getComboBox1() {
-		return comboBox1;
 	}
 
 	public JScrollPane getFarmaciScadenzaScrollPane() {
@@ -64,4 +55,9 @@ public class DashBoardView extends JPanel {
 	public TabellaFarmaciScadenzaView getTabellaFarmaciView() {
 		return f;
 	}
+
+	public PromemoriaView getPromemoria() {
+		return promemoria;
+	}
+
 }

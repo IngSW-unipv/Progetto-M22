@@ -4,6 +4,7 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
+import java.util.Calendar;
 import java.util.Date;
 
 import javax.swing.table.DefaultTableModel;
@@ -26,8 +27,8 @@ public class AggiungiAppuntamentiActionListener implements ActionListener {
 	@Override
 	public void actionPerformed(ActionEvent e) {
 		// TODO Auto-generated method stub
-
 		int ID_PAZ = (int) view.getAppuntamentiPanel().getIDpazText().getSelectedItem();
+
 		String sala = view.getAppuntamentiPanel().getSalaText().getSelectedItem().toString();
 		String tipo = view.getAppuntamentiPanel().getTipoText().getText();
 		java.sql.Date sqlDate = null;
@@ -44,7 +45,6 @@ public class AggiungiAppuntamentiActionListener implements ActionListener {
 			if (data != null) {
 
 				data = sdf.parse(sdf.format(data));
-				System.out.println(data);
 
 				sqlDate = new java.sql.Date(data.getTime());
 
@@ -84,22 +84,25 @@ public class AggiungiAppuntamentiActionListener implements ActionListener {
 		Veterinari vet = costruisciVeterinario();
 
 		Appuntamenti nuovoApp = new Appuntamenti(0, paz, sala, tipo, sqlDate, timeValue, vet, costo, note);
-		
+
 		boolean flag = dbControl.addNuovoAppuntamento(nuovoApp);
+
 		model.getStoricoArray().add(nuovoApp);
-		model.getSaleOccupateArray().add(nuovoApp);
 
 		if (flag) {
-
-			model.getAppuntamentiArray().add(nuovoApp);
 
 			Object rowData[] = new Object[8];
 
 			DefaultTableModel modello = (DefaultTableModel) view.getAppuntamentiPanel().getTab().getTable().getModel();
 			DefaultTableModel modelloStorico = (DefaultTableModel) view.getStoricoPanel().getTable().getModel();
-			DefaultTableModel modelloSale= (DefaultTableModel) view.getSaleOccupatePanel().getTable().getModel();
+			DefaultTableModel modelloSale = (DefaultTableModel) view.getSaleOccupatePanel().getTable().getModel();
+			DefaultTableModel modelloPromemoria = (DefaultTableModel) view.getDashboard().getPromemoria().getTable()
+					.getModel();
 
-	
+			Calendar calendar = Calendar.getInstance();
+
+			Date dateObj = calendar.getTime();
+
 			rowData[0] = ID_PAZ;
 			rowData[1] = sala;
 			rowData[2] = tipo;
@@ -109,33 +112,52 @@ public class AggiungiAppuntamentiActionListener implements ActionListener {
 			rowData[6] = costo;
 			rowData[7] = note;
 
-			modello.addRow(rowData);
+			if (dateObj.before(data)) {
+
+				modello.addRow(rowData);
+				model.getAppuntamentiArray().add(nuovoApp);
+				model.getSaleOccupateArray().add(nuovoApp);
+			}
+
+			model.getStoricoArray().add(nuovoApp);
 			modelloStorico.addRow(rowData);
-			
+
 			Object rowData2[] = new Object[5];
-			
+
 			rowData2[0] = ID_PAZ;
 			rowData2[1] = sala;
 			rowData2[2] = tipo;
 			rowData2[3] = sqlDate;
 			rowData2[4] = timeValue;
-	
-			
+
 			modelloSale.addRow(rowData2);
+
+			if (sdf.format(dateObj).equals(sdf.format(sqlDate))
+					&& ((model.getCFuser().equals(vet.getCF()) || model.getCFuser().equals("direzione")))) {
+
+				model.getPromemoriaOggiArray().add(nuovoApp);
+				Object rowData3[] = new Object[5];
+
+				rowData3[0] = nuovoApp.getSala();
+				rowData3[1] = nuovoApp.getTipo();
+				rowData3[2] = nuovoApp.getData();
+				rowData3[3] = nuovoApp.getTime();
+				rowData3[4] = nuovoApp.getNote();
+
+				modelloPromemoria.addRow(rowData3);
+			}
 
 			pulisciTextField();
 
-		} else {
-
-			{
-				PopupError err = new PopupError();
-				err.infoBox("Errore", "Impossibile inserire paziente");
-				pulisciTextField();
-
-			}
-
 		}
 
+		else {
+
+			PopupError err = new PopupError();
+			err.infoBox("Errore", "Impossibile inserire paziente");
+			pulisciTextField();
+
+		}
 	}
 
 	public void pulisciTextField() {
@@ -155,9 +177,9 @@ public class AggiungiAppuntamentiActionListener implements ActionListener {
 		view.getAppuntamentiPanel().getSalaText().setSelectedIndex(0);
 		view.getAppuntamentiPanel().getTipoText().setText(null);
 		view.getAppuntamentiPanel().getDataText().setDate(null);
-		
+
 		if (view.getAppuntamentiPanel().getCFvetText() != null) {
-		
+
 			view.getAppuntamentiPanel().getCFvetText().setSelectedIndex(0);
 		}
 		view.getAppuntamentiPanel().getTimeChooserText().setTime(timeValue);
@@ -173,17 +195,16 @@ public class AggiungiAppuntamentiActionListener implements ActionListener {
 	}
 
 	public Veterinari costruisciVeterinario() {
-		
+
 		String CF = null;
-		
-		
+
 		if (model.getCFuser().equals("direzione")) {
-			
+
 			CF = (String) view.getAppuntamentiPanel().getCFvetText().getSelectedItem();
 		}
 
 		else {
-			
+
 			CF = model.getCFuser();
 		}
 

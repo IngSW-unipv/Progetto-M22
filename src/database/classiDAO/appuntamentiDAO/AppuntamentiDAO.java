@@ -14,7 +14,7 @@ import model.appuntamenti.Appuntamenti;
 import model.pazienti.Paziente;
 
 public class AppuntamentiDAO implements IAppuntamentiDAO {
-	
+
 	private DbSingleton db;
 
 	public AppuntamentiDAO() {
@@ -26,7 +26,7 @@ public class AppuntamentiDAO implements IAppuntamentiDAO {
 		ArrayList<Appuntamenti> result = new ArrayList<>();
 
 		ResultSet rs1;
-		db = DbSingleton.getInstance();
+		db = DbSingleton.getInstance(); 
 
 		VeterinariDAO v = new VeterinariDAO();
 		PazienteDAO paz = new PazienteDAO();
@@ -52,7 +52,6 @@ public class AppuntamentiDAO implements IAppuntamentiDAO {
 
 		return result;
 	}
-
 
 	public int selectIDappuntamenti(int rigaSelezionata) {
 
@@ -99,7 +98,7 @@ public class AppuntamentiDAO implements IAppuntamentiDAO {
 		}
 	}
 
-	public ArrayList<Appuntamenti> appuntamentiOggi(String CF_vetReferente) {
+	public ArrayList<Appuntamenti> appuntamentiOggiDueToVet(String CF_vetReferente) {
 		// restituisce gli appuntamenti promemoria del giorno corrente del vet
 		// sopra-elencatp
 
@@ -115,6 +114,40 @@ public class AppuntamentiDAO implements IAppuntamentiDAO {
 
 			String query = "SELECT * FROM APPUNTAMENTI where GIORNO = CURDATE() and VET_REFERENTE =\"" + CF_vetReferente
 					+ "\"";
+			rs1 = db.executeQuery(query);
+
+			while (rs1.next()) {
+
+				Veterinari vet = v.select_Veterinari_from_CF(rs1.getString(7));
+				Paziente p = paz.selectPazientefromID(rs1.getInt(2));
+
+				Appuntamenti app = new Appuntamenti(rs1.getInt(1), p, rs1.getString(3), rs1.getString(4),
+						rs1.getDate(5), rs1.getTime(6), vet, rs1.getDouble(8), rs1.getString(9));
+
+				result.add(app);
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+
+		return result;
+	}
+
+	public ArrayList<Appuntamenti> appuntamentiOggi() {
+		// restituisce gli appuntamenti promemoria del giorno corrente del vet
+		// sopra-elencatp
+
+		ArrayList<Appuntamenti> result = new ArrayList<>();
+
+		ResultSet rs1;
+		db = DbSingleton.getInstance();
+
+		VeterinariDAO v = new VeterinariDAO();
+		PazienteDAO paz = new PazienteDAO();
+
+		try {
+
+			String query = "SELECT * FROM APPUNTAMENTI where GIORNO = CURDATE()";
 			rs1 = db.executeQuery(query);
 
 			while (rs1.next()) {
@@ -174,10 +207,10 @@ public class AppuntamentiDAO implements IAppuntamentiDAO {
 	public void updateAppuntamenti(Appuntamenti p) {
 
 		String query = "UPDATE APPUNTAMENTI SET ID_PAZ = ?,SALA = ? ,TIPO = ? ,GIORNO = ?,"
-				+ " ORA = ? , VET_REFERENTE = ?, COSTO = ?,NOTE = ? " + " where COD_VISITA=\"" + p.getCOD() 
+				+ " ORA = ? , VET_REFERENTE = ?, COSTO = ?,NOTE = ? " + " where COD_VISITA=\"" + p.getCOD()
 				+ "\" ORDER BY GIORNO DESC";
-		
-				PreparedStatement stmt = null;
+
+		PreparedStatement stmt = null;
 
 		try {
 
@@ -193,7 +226,7 @@ public class AppuntamentiDAO implements IAppuntamentiDAO {
 			stmt.setString(8, p.getNote());
 
 			stmt.executeUpdate();
-			
+
 			p.setCOD(p.getCOD());
 		}
 
@@ -235,6 +268,5 @@ public class AppuntamentiDAO implements IAppuntamentiDAO {
 
 		return result;
 	}
-
 
 }
