@@ -51,6 +51,8 @@ public class AggiungiAppuntamentiActionListener implements ActionListener {
 			}
 		} catch (ParseException e1) {
 			// TODO Auto-generated catch block
+			PopupError err = new PopupError();
+			err.infoBox( "Data non valida", "Errore");
 			e1.printStackTrace();
 		}
 
@@ -64,6 +66,8 @@ public class AggiungiAppuntamentiActionListener implements ActionListener {
 
 		} catch (ParseException e1) {
 			// TODO Auto-generated catch block
+			PopupError err = new PopupError();
+			err.infoBox( "Orario non valido", "Errore");
 			e1.printStackTrace();
 		} 
 
@@ -74,7 +78,9 @@ public class AggiungiAppuntamentiActionListener implements ActionListener {
 			costo = Double.parseDouble(view.getAppuntamentiPanel().getCostoText().getText());
 
 		} catch (NumberFormatException nfe) {
-
+			
+			PopupError err = new PopupError();
+			err.infoBox( "il costo deve contenere solo cifre", "Errore");
 			nfe.printStackTrace();
 		}
 

@@ -9,6 +9,7 @@ import database.connectionSQL.DbControllerSingleton;
 import model.SmartVetModel;
 import model.anagrafica.clienti.Clienti;
 import view.MainView;
+import view.PopupError;
 import view.clienti.ClientiPanel;
 
 public class AggiornaClientiActionListener implements ActionListener {
@@ -60,6 +61,11 @@ public class AggiornaClientiActionListener implements ActionListener {
 
 			model.getClientiArray().add(new Clienti(nome, cognome, CF, email, cellulare, citta, indirizzo));
 
+		}
+		
+		else {
+			PopupError err = new PopupError();
+			err.infoBox( "Impossibile aggiornare cliente", "Errore");
 		}
 
 		pulisciTextField();

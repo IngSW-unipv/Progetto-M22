@@ -14,6 +14,7 @@ import model.anagrafica.veterinari.Veterinari;
 import model.appuntamenti.Appuntamenti;
 import model.pazienti.Paziente;
 import view.MainView;
+import view.PopupError;
 
 public class AggiornaAppuntamentiActionListener implements ActionListener {
 
@@ -56,6 +57,8 @@ public class AggiornaAppuntamentiActionListener implements ActionListener {
 
 		} catch (ParseException e1) {
 			// TODO Auto-generated catch block
+			PopupError err = new PopupError();
+			err.infoBox( "Data non valida", "Errore");
 			e1.printStackTrace();
 		}
 
@@ -69,6 +72,8 @@ public class AggiornaAppuntamentiActionListener implements ActionListener {
 
 		} catch (ParseException e1) {
 			// TODO Auto-generated catch block
+			PopupError err = new PopupError();
+			err.infoBox( "Orario non valido", "Errore");
 			e1.printStackTrace();
 		}
 
@@ -80,7 +85,10 @@ public class AggiornaAppuntamentiActionListener implements ActionListener {
 
 		catch (NumberFormatException nfe) {
 
+			PopupError err = new PopupError();
+			err.infoBox( "Il costo deve contenere solo cifre", "Errore");
 			nfe.printStackTrace();
+			
 		}
 
 		String note = view.getAppuntamentiPanel().getNoteText().getText().toString();
