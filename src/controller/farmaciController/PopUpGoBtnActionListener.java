@@ -2,8 +2,8 @@ package controller.farmaciController;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.util.Date;
 import java.text.SimpleDateFormat;
+import java.util.Date;
 
 import javax.swing.table.DefaultTableModel;
 
@@ -14,11 +14,11 @@ import model.anagrafica.fornitori.Fornitori;
 import model.magazzino.farmaci.LottoFarmaci;
 import view.MainView;
 import view.PopupError;
-import view.amministrazione.PopupQuantitàPrezzo;
+import view.amministrazione.PopupQuantitaPrezzo;
 
 /**
- * permette di confermare la fatturazione del farmaco
- * avendone inserito quantità e prezzo 
+ * permette di confermare la fatturazione del farmaco avendone inserito quantità
+ * e prezzo
  * 
  * @author MMA
  * @version 1.0 (current version number of program)
@@ -33,36 +33,36 @@ public class PopUpGoBtnActionListener implements ActionListener {
 	private int qt;
 
 	/**
-	 * memorizza quantità e prezzo da popup del farmaco venduto,
-	 * moltiplica quantità e prezzo per trovare prezzo finale,
-	 * registra nelle entrate il farmaco venduto.
-	 * se quantità = 0 o > di quella presente in magazzino esce popup di errore
+	 * memorizza quantità e prezzo da popup del farmaco venduto, moltiplica quantità
+	 * e prezzo per trovare prezzo finale, registra nelle entrate il farmaco
+	 * venduto. se quantità = 0 o > di quella presente in magazzino esce popup di
+	 * errore
+	 * 
 	 * @param e evento schiaccia bottone OK
 	 * @exception NumberFormatException prezzo non valido ( deve avere solo cifre)
 	 * @return void
 	 */
 	@SuppressWarnings("unused")
 	@Override
-	public void actionPerformed(ActionEvent e) { 
+	public void actionPerformed(ActionEvent e) {
 		// TODO Auto-generated method stu
-		
-		PopupQuantitàPrezzo popup = fatturaFarmaciActionListener.getPopup();
+
+		PopupQuantitaPrezzo popup = fatturaFarmaciActionListener.getPopup();
 		double prezzo = .0;
- 
-		qt = (int) popup.getQuantitàSpinner().getValue();
+
+		qt = (int) popup.getQuantitaSpinner().getValue();
 
 		SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
 
 		Date data = new Date();
 		java.sql.Date dataCorrente = null;
-		
+
 		if (data != null) {
 
 			sdf.format(data);
 
-			 dataCorrente  = new java.sql.Date(data.getTime());
+			dataCorrente = new java.sql.Date(data.getTime());
 		}
-		
 
 		try {
 
@@ -71,30 +71,26 @@ public class PopUpGoBtnActionListener implements ActionListener {
 
 		catch (NumberFormatException e1) {
 
-			PopupError err = new PopupError(); 
+			PopupError err = new PopupError();
 			err.infoBox("il prezzo non è valido", "errore");
 
 		}
 		if (qt > fatturaFarmaciActionListener.getQtVecchia()) {
-			
+
 			PopupError err = new PopupError();
 			err.infoBox("non ci sono abbastanza prodotti in magazzino", "errore");
-			
+
 		}
-		
-	
+
 		else if (qt != 0) {
 
 			prezzo = qt * prezzo;
 			Entrate entrata = new Entrate(0, fatturaFarmaciActionListener.getTipo(), prezzo,
 					fatturaFarmaciActionListener.getCausa(), dataCorrente);
 
-			qt = fatturaFarmaciActionListener.getQtVecchia() - qt ;
+			qt = fatturaFarmaciActionListener.getQtVecchia() - qt;
 
-			
 			dbControl.insertEntrate(entrata);
-			
-			
 
 			model.getEntrateArray().add(entrata);
 
@@ -113,7 +109,6 @@ public class PopUpGoBtnActionListener implements ActionListener {
 			popup.setVisible(false);
 
 		}
-		
 
 		else {
 
@@ -124,13 +119,13 @@ public class PopUpGoBtnActionListener implements ActionListener {
 	}
 
 	/**
-	 * leggendo la quantità del farmaco venduta la sottraggo
-	 * a quella presente nel magazzino
+	 * leggendo la quantità del farmaco venduta la sottraggo a quella presente nel
+	 * magazzino
 	 * 
 	 * @return void
 	 *
 	 */
-	
+
 	public void aggiornaQuantitaFarmaco() {
 
 		int rigaSelezionata = fatturaFarmaciActionListener.getRigaSelezionata();
@@ -175,13 +170,13 @@ public class PopUpGoBtnActionListener implements ActionListener {
 
 	/**
 	 * costruttore
-	 * @param model     modello
-	 * @param dbControl database
-	 * @param view      grafica
-	 * @param FatturaFarmaciActionListener permette di leggere 
-	 * ciò che ho fatturato
+	 * 
+	 * @param model                        modello
+	 * @param dbControl                    database
+	 * @param view                         grafica
+	 * @param FatturaFarmaciActionListener permette di leggere ciò che ho fatturato
 	 */
-	
+
 	public PopUpGoBtnActionListener(SmartVetModel model, MainView view, DbControllerSingleton dbControl,
 			FatturaFarmaciActionListener fatturaFarmaciActionListener) {
 		super();
@@ -190,6 +185,5 @@ public class PopUpGoBtnActionListener implements ActionListener {
 		this.dbControl = dbControl;
 		this.fatturaFarmaciActionListener = fatturaFarmaciActionListener;
 	}
-	
 
 }

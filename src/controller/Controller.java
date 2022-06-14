@@ -70,15 +70,15 @@ public class Controller {
 
 		populateArrays();
 
-		clientiController = new ClientiController(model, view);
+		clientiController = new ClientiController(view, model);
 
 		veterinariController = new VeterinariController(model, view);
 
 		fornitoriController = new FornitoriController(model, view);
 
-		farmaciController = new FarmaciController(model, view);
+		farmaciController = new FarmaciController(view, model);
 
-		pazientiController = new PazientiController(model, view);
+		pazientiController = new PazientiController(view, model);
 
 		prodottiUtiliController = new ProdottiUtiliController(model, view);
 
@@ -90,7 +90,7 @@ public class Controller {
 
 		entrateController = new EntrateController(model, view);
 
-		usciteController = new UsciteController(model, view);
+		usciteController = new UsciteController(view, model);
 	}
 
 	/**

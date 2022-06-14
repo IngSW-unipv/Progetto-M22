@@ -13,10 +13,13 @@ import model.magazzino.prodottiUtili.ProdottiUtili;
 import model.magazzino.prodottiVendita.ProdottiVendita;
 import model.pazienti.Paziente;
 
+/**
+ * riunisce tutti gli array del model
+ * 
+ * @author MMA
+ * @version 1.0 (current version number of program)
+ */
 public class SmartVetModel {
-// ArrayList di tutto
-// metodi di array di tutto sto cazzo
-//popola
 
 	private ArrayList<Clienti> clienti;
 	private ArrayList<Veterinari> vets;
@@ -30,8 +33,8 @@ public class SmartVetModel {
 	private ArrayList<Appuntamenti> promemoria;
 	private ArrayList<Appuntamenti> storico;
 	private ArrayList<Appuntamenti> saleOccupate;
-	private ArrayList <Entrate> entrate;
-	private ArrayList <Uscite> uscite;
+	private ArrayList<Entrate> entrate;
+	private ArrayList<Uscite> uscite;
 	private String CFuser;
 	private static SmartVetModel jSmartVet;
 
@@ -55,6 +58,9 @@ public class SmartVetModel {
 		this.uscite = new ArrayList<Uscite>();
 	}
 
+	/**
+	 * ritorna istanza del modello
+	 */
 	public static SmartVetModel getInstance() {
 
 		if (jSmartVet == null) {
@@ -67,22 +73,34 @@ public class SmartVetModel {
 
 	}
 
+	/**
+	 * popola arrayList dei clienti
+	 */
 	public void populateClienti(ArrayList<Clienti> clienti) {
 
 		this.clienti = clienti;
 	}
 
+	/**
+	 * popola arrayList dei veterinari
+	 */
 	public void populateVeterinari(ArrayList<Veterinari> vets) {
 		this.vets = vets;
 
 	}
 
+	/**
+	 * popola arrayList dei fornitori
+	 */
 	public void populateFornitori(ArrayList<Fornitori> forn) {
 
 		this.forn = forn;
 
 	}
 
+	/**
+	 * popola arrayList dei pazienti
+	 */
 	public void populatePazienti(ArrayList<Paziente> paz) {
 
 		this.paz = paz;
@@ -95,128 +113,186 @@ public class SmartVetModel {
 
 	}
 
+	/**
+	 * popola arrayList del promemoria appunatmenti oggi
+	 */
 	public void populatePromemoriaOggi(ArrayList<Appuntamenti> promemoria) {
 
 		this.promemoria = promemoria;
 	}
 
+	/**
+	 * popola arrayList dei cfaramci
+	 */
 	public void populateLottoFarmaci(ArrayList<LottoFarmaci> farmaci) {
 
 		this.farmaci = farmaci;
 
 	}
 
+	/**
+	 * popola arrayList dei farmaci in scadenza questo mese
+	 */
 	public void populateFarmaciScadenza(ArrayList<LottoFarmaci> scadenza) {
 		this.scadenza = scadenza;
 	}
 
+	/**
+	 * popola arrayList dei prodotti utili
+	 */
 	public void populateProdottiUtili(ArrayList<ProdottiUtili> prods_u) {
 
 		this.prods_u = prods_u;
 
 	}
 
+	/**
+	 * popola arrayList dei prodotti vendibili
+	 */
 	public void populateProdottivendibili(ArrayList<ProdottiVendita> prods_v) {
 
 		this.prods_v = prods_v;
 
 	}
 
+	/**
+	 * popola Stringa CF dell'user loggato
+	 */
 	public void populateCFuser(String CFuser) {
 		this.CFuser = CFuser;
 	}
 
+	/**
+	 * popola arrayList dello storico appuntamenti
+	 */
 	public void populateStorico(ArrayList<Appuntamenti> storico) {
 		this.storico = storico;
 	}
 
+	/**
+	 * popola arrayList delle sale occupate
+	 */
 	public void populateSaleOccupate(ArrayList<Appuntamenti> saleOccupate) {
 		this.saleOccupate = saleOccupate;
 	}
-	
+
+	/**
+	 * popola arrayList delle entrate
+	 */
 	public void populateEntrate(ArrayList<Entrate> entrate) {
 		this.entrate = entrate;
 	}
-	
+
+	/**
+	 * popola arrayList delle uscite
+	 */
 	public void populateUscite(ArrayList<Uscite> uscite) {
 		this.uscite = uscite;
 	}
 
+	/**
+	 * ritorna ArrayList<Clienti>
+	 */
 	public ArrayList<Clienti> getClientiArray() {
 		return clienti;
 	}
 
+	/**
+	 * ritorna ArrayList<Veterinari>
+	 */
 	public ArrayList<Veterinari> getVeterinariArray() {
 		return vets;
 	}
 
+	/**
+	 * ritorna ArrayList<Pazienti>
+	 */
 	public ArrayList<Paziente> getPazientiArray() {
 		return paz;
 	}
 
+	/**
+	 * ritorna ArrayList<Fornitori>
+	 */
 	public ArrayList<Fornitori> getFornitoriArray() {
 		return forn;
 	}
 
+	/**
+	 * ritorna ArrayList<appunatmenti>
+	 */
 	public ArrayList<Appuntamenti> getAppuntamentiArray() {
 		return app;
 	}
 
+	/**
+	 * ritorna ArrayList<Appuntamenti> di oggi
+	 */
 	public ArrayList<Appuntamenti> getPromemoriaOggiArray() {
 		return promemoria;
 	}
 
+	/**
+	 * ritorna ArrayList<LottoFarmaci>
+	 */
 	public ArrayList<LottoFarmaci> getLottoFarmaciArray() {
 		return farmaci;
 	}
 
+	/**
+	 * ritorna ArrayList<LottoFarmaci> in scadenza
+	 */
 	public ArrayList<LottoFarmaci> getFarmaciScadenzaArray() {
 		return scadenza;
 	}
 
+	/**
+	 * ritorna ArrayList<ProdottiUtili>
+	 */
 	public ArrayList<ProdottiUtili> getProdottiUtiliArray() {
 		return prods_u;
 	}
 
+	/**
+	 * ritorna ArrayList<prodottiVendita>
+	 */
 	public ArrayList<ProdottiVendita> getProdottiVenditaArray() {
 		return prods_v;
 	}
 
+	/**
+	 * ritorna String CF user loggato
+	 */
 	public String getCFuser() {
 		return CFuser;
 	}
 
+	/**
+	 * ritorna ArrayList<Appuntamenti> storico
+	 */
 	public ArrayList<Appuntamenti> getStoricoArray() {
 		return storico;
 	}
 
+	/**
+	 * ritorna ArrayList<Appuntamenti> delle sale occupate
+	 */
 	public ArrayList<Appuntamenti> getSaleOccupateArray() {
 		return saleOccupate;
-	} 
-	
+	}
+
+	/**
+	 * ritorna ArrayList<Uscite>
+	 */
 	public ArrayList<Uscite> getUsciteArray() {
 		return uscite;
 	}
-	
+
+	/**
+	 * ritorna ArrayList<Entrate>
+	 */
 	public ArrayList<Entrate> getEntrateArray() {
 		return entrate;
-	}
-
-	public void setNullDueToFornitori(Fornitori forn) {
-
-		for (LottoFarmaci l : farmaci) {
-			if (l.getFornitore() != null && l.getFornitore().equals(forn)) {
-				l.setFornitore(null);
-				System.out.println("ok si sono dentro ma non funz");
-			}
-
-		}
-
-		for (ProdottiUtili p : prods_u) {
-
-			if (p.getFornitore() != null && p.getFornitore().equals(forn))
-				p.setForn(null);
-		}
 	}
 
 }

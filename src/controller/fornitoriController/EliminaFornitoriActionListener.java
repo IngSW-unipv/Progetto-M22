@@ -35,7 +35,6 @@ public class EliminaFornitoriActionListener implements ActionListener {
 		view.getFarmaciPanel().getFornitoriBox().removeItem(forn.getPIVA());
 		view.getProdottiUtiliPanel().getFornitoriBox().removeItem(forn.getPIVA());
 		view.getProdottiVenditaPanel().getFornitoriBox().removeItem(forn.getPIVA());
-		model.setNullDueToFornitori(forn);
 
 		modello.removeRow(elementoSelezionato);
 

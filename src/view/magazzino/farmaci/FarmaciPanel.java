@@ -16,7 +16,12 @@ import javax.swing.SpinnerNumberModel;
 import javax.swing.UIManager;
 
 import com.toedter.calendar.JDateChooser;
-
+/** 
+ * 
+ * @author MMA
+ * version 1.0
+ *
+ */
 public class FarmaciPanel extends JPanel {
 
 	private static final long serialVersionUID = 1L;
@@ -125,10 +130,8 @@ public class FarmaciPanel extends JPanel {
 		btnAggiorna.setBounds(1096, 493, 100, 25);
 		add(btnAggiorna);
 
-		btnHome = new JButton();
+		btnHome = new JButton("HOME");
 		btnHome.setBounds(1057, 556, 52, 43);
-		Icon icon = UIManager.getIcon("FileChooser.homeFolderIcon");
-		btnHome.setIcon(icon);
 		add(btnHome);
 
 		btnFattura = new JButton("Fattura");

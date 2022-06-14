@@ -26,10 +26,9 @@ public class FarmaciController {
 	 * costruttore
 	 * 
 	 * @param model     modello
-	 * @param dbControl database
 	 * @param view      grafica
 	 */
-	public FarmaciController(SmartVetModel model, MainView view) {
+	public FarmaciController(MainView view, SmartVetModel model) {
 		super();
 		this.model = model;
 		this.view = view;

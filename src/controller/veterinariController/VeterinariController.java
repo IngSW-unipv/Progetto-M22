@@ -25,7 +25,6 @@ public class VeterinariController {
 	 * costruttore
 	 * 
 	 * @param model     modello
-	 * @param dbControl database
 	 * @param view      grafica
 	 */
 	public VeterinariController(SmartVetModel model, MainView view) {

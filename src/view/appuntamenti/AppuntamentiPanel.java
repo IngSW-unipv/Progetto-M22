@@ -13,6 +13,12 @@ import com.toedter.calendar.JDateChooser;
 
 import lu.tudor.santec.jtimechooser.JTimeChooser;
 
+/** 
+ * 
+ * @author MMA
+ * version 1.0
+ *
+ */
 public class AppuntamentiPanel extends JPanel {
 
 	private static final long serialVersionUID = 1L;
@@ -129,14 +135,12 @@ public class AppuntamentiPanel extends JPanel {
 		btnAggiorna.setBounds(1096, 560, 100, 25);
 		add(btnAggiorna);
 
-		btnHome = new JButton();
+		btnHome = new JButton("HOME");
 		btnHome.setBounds(1058, 611, 52, 43);
-		Icon icon = UIManager.getIcon("FileChooser.homeFolderIcon");
-		btnHome.setIcon(icon);
 		add(btnHome);
 
 		btnFattura = new JButton("Fattura");
-		btnFattura.setBounds(1024, 387, 117, 29);
+		btnFattura.setBounds(1019, 468, 117, 29);
 		add(btnFattura);
 
 	}

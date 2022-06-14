@@ -12,6 +12,11 @@ import javax.swing.SwingConstants;
 import view.dashboard.farmaciScadenza.TabellaFarmaciScadenzaView;
 import view.dashboard.promemoria.PromemoriaView;
 
+/**
+ * 
+ * @author MMA version 1.0
+ *
+ */
 public class DashBoardView extends JPanel {
 
 	private static final long serialVersionUID = 1L;

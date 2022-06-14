@@ -1,7 +1,12 @@
 package view;
 
 import javax.swing.JOptionPane;
-
+/** 
+ * 
+ * @author MMA
+ * version 1.0
+ *
+ */
 public class PopupError {
 	public static void infoBox(String infoMessage, String titleBar)
     {

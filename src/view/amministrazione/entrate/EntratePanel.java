@@ -1,11 +1,14 @@
 package view.amministrazione.entrate;
 
-import javax.swing.Icon;
 import javax.swing.JButton;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
-import javax.swing.UIManager;
 
+/**
+ * 
+ * @author MMA version 1.0
+ *
+ */
 public class EntratePanel extends JPanel {
 
 	private static final long serialVersionUID = 1L;
@@ -25,15 +28,13 @@ public class EntratePanel extends JPanel {
 		add(scrollPane);
 
 		btnElimina = new JButton("Elimina");
-		btnElimina.setBounds(1096, 444, 100, 25);
+		btnElimina.setBounds(1061, 442, 100, 25);
 		add(btnElimina);
 
 		tab = new TabellaEntratePanel(scrollPane);
 
-		btnHome = new JButton();
-		btnHome.setBounds(1058, 551, 52, 43);
-		Icon icon = UIManager.getIcon("FileChooser.homeFolderIcon");
-		btnHome.setIcon(icon);
+		btnHome = new JButton("HOME");
+		btnHome.setBounds(1085, 528, 52, 43);
 		add(btnHome);
 	}
 

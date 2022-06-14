@@ -29,7 +29,7 @@ public class PazientiController {
 	 * @param dbControl database
 	 * @param view      grafica
 	 */
-	public PazientiController(SmartVetModel model, MainView view) {
+	public PazientiController(MainView view, SmartVetModel model) {
 		super();
 		this.model = model;
 		this.view = view;

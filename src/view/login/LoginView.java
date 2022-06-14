@@ -9,7 +9,12 @@ import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JPasswordField;
 import javax.swing.JTextField;
-
+/** 
+ * 
+ * @author MMA
+ * version 1.0
+ *
+ */
 public class LoginView extends JPanel {
 
 	private static final long serialVersionUID = 1L;

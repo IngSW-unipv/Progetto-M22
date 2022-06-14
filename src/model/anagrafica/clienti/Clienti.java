@@ -1,7 +1,14 @@
 package model.anagrafica.clienti;
 
 import model.anagrafica.Persona;
-
+/**
+ * la classe clienti rappresenta l'entita cliente della clinica 
+ *
+ * @author MMA
+ * @version 1.0 (current version number of program)
+ * @see Persona
+ * 
+ */
 public class Clienti extends Persona {
 
 	public Clienti(String nome, String cognome, String cF, String email, String cellulare, String citta,

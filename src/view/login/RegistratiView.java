@@ -13,7 +13,12 @@ import javax.swing.JPasswordField;
 import javax.swing.JTextField;
 
 import view.MainView;
-
+/** 
+ * 
+ * @author MMA
+ * version 1.0
+ *
+ */
 public class RegistratiView extends JFrame {
 
 	private static final long serialVersionUID = 1L;
@@ -39,13 +44,13 @@ public class RegistratiView extends JFrame {
 		int screenWidth = screenSize.width;
 
 		// centra il frame nello schermo
-		setSize(screenWidth / 3, screenHeight / 3);
+		setSize(800, 500);
 		//setLocationRelativeTo(null); // consente di riposizionare il frame
 		setResizable(false);
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		getContentPane().setLayout(null);
 		
-		setSize(screenWidth / 3, screenHeight / 3);
+		setSize(800, 500);
 		setLocation(0, 0); // consente di riposizionare il frame
 		getContentPane().setLayout(null);
 

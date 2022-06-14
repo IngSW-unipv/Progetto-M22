@@ -26,7 +26,6 @@ public class EntrateController {
 	/**
 	 * costruttore
 	 * @param model     modello
-	 * @param dbControl database
 	 * @param view      grafica
 	 */
 	public EntrateController(SmartVetModel model, MainView view) {

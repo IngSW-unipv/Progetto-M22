@@ -7,10 +7,9 @@ import java.util.ArrayList;
 import database.connectionSQL.DbControllerSingleton;
 import model.SmartVetModel;
 import view.MainView;
+
 /**
- * collega le credenziali nuovo account
- *  col bottone di OK
- * e con il database
+ * collega le credenziali nuovo account col bottone di OK e con il database
  * 
  * @author MMA
  * @version 1.0 (current version number of program)
@@ -22,7 +21,8 @@ public class RegistratiController {
 	private DbControllerSingleton dbControl;
 
 	/**
-	 * costruttore 
+	 * costruttore
+	 * 
 	 * @param model     modello
 	 * @param view      grafica
 	 * @param dbControl database
@@ -39,7 +39,6 @@ public class RegistratiController {
 
 	}
 
-	
 	/**
 	 * Aggiunge action listener al menu per aprire pannello registrazione da login
 	 * 
@@ -55,7 +54,6 @@ public class RegistratiController {
 		});
 	}
 
-	
 	/**
 	 * Aggiunge action listener registrati per registrare nuovo account
 	 * 
@@ -67,8 +65,7 @@ public class RegistratiController {
 	}
 
 	/**
-	 * riempie la combobox con tutti i CF dei veterinari
-	 * presenti nel database
+	 * riempie la combobox con tutti i CF dei veterinari presenti nel database
 	 * 
 	 * @return void
 	 */

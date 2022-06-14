@@ -10,7 +10,12 @@ import javax.swing.JTextField;
 import javax.swing.UIManager;
 
 import model.anagrafica.clienti.Clienti;
-
+/** 
+ * 
+ * @author MMA
+ * version 1.0
+ *
+ */
 public class ClientiPanel extends JPanel {
 
 	private static final long serialVersionUID = 1L;
@@ -131,10 +136,8 @@ public class ClientiPanel extends JPanel {
 		btnAggiorna.setBounds(1096, 493, 100, 25);
 		add(btnAggiorna);
 
-		btnHome = new JButton();
+		btnHome = new JButton("HOME");
 		btnHome.setBounds(1058, 551, 52, 43);
-		Icon icon = UIManager.getIcon("FileChooser.homeFolderIcon");
-		btnHome.setIcon(icon);
 		add(btnHome);
 
 	}

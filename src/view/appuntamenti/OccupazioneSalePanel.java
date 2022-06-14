@@ -9,6 +9,11 @@ import javax.swing.UIManager;
 
 import view.TableModelMio;
 
+/**
+ * 
+ * @author MMA version 1.0
+ *
+ */
 public class OccupazioneSalePanel extends JPanel {
 
 	private static final long serialVersionUID = 1L;
@@ -37,10 +42,8 @@ public class OccupazioneSalePanel extends JPanel {
 		table.getColumnModel().getColumn(0).setPreferredWidth(95);
 		table.getColumnModel().getColumn(0).setMinWidth(95);
 
-		btnHome = new JButton();
+		btnHome = new JButton("HOME");
 		btnHome.setBounds(1058, 611, 52, 43);
-		Icon icon = UIManager.getIcon("FileChooser.homeFolderIcon");
-		btnHome.setIcon(icon);
 		add(btnHome);
 	}
 

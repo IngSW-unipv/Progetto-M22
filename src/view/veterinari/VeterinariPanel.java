@@ -1,6 +1,7 @@
 package view.veterinari;
 
 import javax.swing.Icon;
+
 import javax.swing.JButton;
 import javax.swing.JComboBox;
 import javax.swing.JLabel;
@@ -9,6 +10,13 @@ import javax.swing.JScrollPane;
 import javax.swing.JTextField;
 import javax.swing.UIManager;
 import model.anagrafica.veterinari.Veterinari;
+
+/** 
+ * 
+ * @author MMA
+ * @version 1.0 (current version number of program)
+ * 
+ */
 
 public class VeterinariPanel extends JPanel {
 
@@ -55,142 +63,140 @@ public class VeterinariPanel extends JPanel {
 		setLayout(null);
 
 		scrollPane = new JScrollPane();
-		scrollPane.setBounds(22, 0, 1173, 790);
+		scrollPane.setBounds(22, 0, 930, 644);
 		add(scrollPane);
 
 		nomeText = new JTextField();
-		nomeText.setBounds(1305, 6, 100, 25);
+		nomeText.setBounds(1096, 12, 100, 25);
 		add(nomeText);
 		nomeText.setColumns(10);
 
 		cognomeText = new JTextField();
 		cognomeText.setColumns(10);
-		cognomeText.setBounds(1305, 43, 100, 25);
+		cognomeText.setBounds(1096, 52, 100, 25);
 		add(cognomeText);
 
 		CFText = new JTextField();
 		CFText.setColumns(10);
-		CFText.setBounds(1305, 86, 100, 25);
+		CFText.setBounds(1096, 92, 100, 25);
 		add(CFText);
 
 		emailText = new JTextField();
 		emailText.setColumns(10);
-		emailText.setBounds(1305, 126, 100, 25);
+		emailText.setBounds(1096, 132, 100, 25);
 		add(emailText);
 
 		cellulareText = new JTextField();
 		cellulareText.setColumns(10);
-		cellulareText.setBounds(1305, 163, 100, 25);
+		cellulareText.setBounds(1096, 172, 100, 25);
 		add(cellulareText);
 
 		cittaText = new JTextField();
 		cittaText.setColumns(10);
-		cittaText.setBounds(1305, 206, 100, 25);
+		cittaText.setBounds(1096, 212, 100, 25);
 		add(cittaText);
 
 		indirizzoText = new JTextField();
 		indirizzoText.setColumns(10);
-		indirizzoText.setBounds(1305, 246, 100, 25);
+		indirizzoText.setBounds(1096, 252, 100, 25);
 		add(indirizzoText);
 		
 		pivaText = new JTextField();
 		pivaText.setColumns(10);
-		pivaText.setBounds(1305, 286, 100, 25);
+		pivaText.setBounds(1096, 292, 100, 25);
 		add(pivaText);
 
 		contrattoText = new JTextField();
 		contrattoText.setColumns(10);
-		contrattoText.setBounds(1305, 326, 100, 25);
+		contrattoText.setBounds(1096, 332, 100, 25);
 		add(contrattoText);
 
 		stipendioText = new JTextField();
 		stipendioText.setColumns(10);
-		stipendioText.setBounds(1305, 365, 100, 25);
+		stipendioText.setBounds(1096, 372, 100, 25);
 		add(stipendioText);
 
 		commissioniText = new JTextField();
 		commissioniText.setColumns(10);
-		commissioniText.setBounds(1305, 406, 100, 25);
+		commissioniText.setBounds(1096, 412, 100, 25);
 		add(commissioniText);
 
 		ibanText = new JTextField();
 		ibanText.setColumns(10);
-		ibanText.setBounds(1305, 452, 100, 25);
+		ibanText.setBounds(1096, 452, 100, 25);
 		add(ibanText);
 
 		lblNome = new JLabel("Nome");
-		lblNome.setBounds(1230, 12, 70, 15);
+		lblNome.setBounds(970, 12, 70, 15);
 		add(lblNome);
 
 		lblCognome = new JLabel("Cognome");
-		lblCognome.setBounds(1230, 49, 70, 15);
+		lblCognome.setBounds(970, 52, 70, 15);
 		add(lblCognome);
 
 		lblCF = new JLabel("CF");
-		lblCF.setBounds(1230, 92, 70, 15);
+		lblCF.setBounds(970, 92, 70, 15);
 		add(lblCF);
 
 		lblEmail = new JLabel("Email");
-		lblEmail.setBounds(1230, 132, 70, 15);
+		lblEmail.setBounds(970, 132, 70, 15);
 		add(lblEmail);
 
 		lblCellulare = new JLabel("Cellulare");
-		lblCellulare.setBounds(1230, 169, 70, 15);
+		lblCellulare.setBounds(970, 172, 70, 15);
 		add(lblCellulare);
 
 		lblCitta = new JLabel("Citta'");
-		lblCitta.setBounds(1230, 212, 70, 15);
+		lblCitta.setBounds(970, 212, 70, 15);
 		add(lblCitta);
 
 		lblIndirizzo = new JLabel("Indirizzo");
-		lblIndirizzo.setBounds(1230, 252, 70, 15);
+		lblIndirizzo.setBounds(970, 252, 70, 15);
 		add(lblIndirizzo);
 		
 		lblPiva = new JLabel("Piva");
-		lblPiva.setBounds(1230, 292, 70, 15);
+		lblPiva.setBounds(970, 292, 70, 15);
 		add(lblPiva);
 
 		lblContratto = new JLabel("Contratto");
-		lblContratto.setBounds(1230, 332, 70, 15);
+		lblContratto.setBounds(970, 332, 70, 15);
 		add(lblContratto);
 
 		lblStipendio = new JLabel("Stipendio");
-		lblStipendio.setBounds(1230, 371, 70, 15);
+		lblStipendio.setBounds(970, 372, 70, 15);
 		add(lblStipendio);
 
 		lblCommissioni = new JLabel("Commissioni");
-		lblCommissioni.setBounds(1208, 412, 92, 15);
+		lblCommissioni.setBounds(970, 412, 94, 15);
 		add(lblCommissioni);
 
 		lblIban = new JLabel("Iban");
-		lblIban.setBounds(1230, 458, 70, 15);
+		lblIban.setBounds(970, 452, 70, 15);
 		add(lblIban);
 
 		tab = new TabellaVeterinariPanel(scrollPane);
 
 		btnAggiungi = new JButton("Aggiungi");
-		btnAggiungi.setBounds(1213, 521, 100, 25);
+		btnAggiungi.setBounds(964, 494, 100, 25);
 		add(btnAggiungi);
 
 		btnElimina = new JButton("Elimina");
-		btnElimina.setBounds(1325, 521, 100, 25);
+		btnElimina.setBounds(1096, 494, 100, 25);
 		add(btnElimina);
 
 		// bottone per modificare quel vet: riempie le textField con gli attributi
 		// di quel vet
 		btnModifica = new JButton("Modifica");
-		btnModifica.setBounds(1213, 570, 100, 25);
+		btnModifica.setBounds(964, 543, 100, 25);
 		add(btnModifica);
 
 		// bottone per aggiornare le caratteristiche del vet selezionato
 		btnAggiorna = new JButton("Aggiorna");
-		btnAggiorna.setBounds(1325, 570, 100, 25);
+		btnAggiorna.setBounds(1096, 543, 100, 25);
 		add(btnAggiorna);
 
-		btnHome = new JButton();
-		btnHome.setBounds(1293, 620, 52, 43);
-		Icon icon = UIManager.getIcon("FileChooser.homeFolderIcon");
-		btnHome.setIcon(icon);
+		btnHome = new JButton("HOME");
+		btnHome.setBounds(1058, 590, 52, 43);
 		add(btnHome);
 
 	}

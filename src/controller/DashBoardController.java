@@ -19,7 +19,6 @@ public class DashBoardController {
 	/**
 	 * costruttore
 	 * @param model     modello
-	 * @param dbControl database
 	 * @param view      grafica
 	 */
 	public DashBoardController(SmartVetModel model, MainView view) {

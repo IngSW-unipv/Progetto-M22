@@ -7,7 +7,12 @@ import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.JTextField;
 import javax.swing.UIManager;
-
+/** 
+ * 
+ * @author MMA
+ * version 1.0
+ *
+ */
 public class UscitePanel extends JPanel {
 
 	private static final long serialVersionUID = 1L;
@@ -67,10 +72,8 @@ public class UscitePanel extends JPanel {
 		btnElimina.setBounds(1096, 444, 100, 25);
 		add(btnElimina);
 
-		btnHome = new JButton();
+		btnHome = new JButton("HOME");
 		btnHome.setBounds(1058, 551, 52, 43);
-		Icon icon = UIManager.getIcon("FileChooser.homeFolderIcon");
-		btnHome.setIcon(icon);
 		add(btnHome);
 
 		tab = new TabellaUscitePanel(scrollPane);

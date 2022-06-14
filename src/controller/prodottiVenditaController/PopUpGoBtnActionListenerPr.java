@@ -14,11 +14,11 @@ import model.anagrafica.fornitori.Fornitori;
 import model.magazzino.prodottiVendita.ProdottiVendita;
 import view.MainView;
 import view.PopupError;
-import view.amministrazione.PopupQuantitàPrezzo;
+import view.amministrazione.PopupQuantitaPrezzo;
 
 /**
- * permette di confermare la fatturazione del prodotto
- * avendone inserito quantità e prezzo 
+ * permette di confermare la fatturazione del prodotto avendone inserito
+ * quantità e prezzo
  * 
  * @author MMA
  * @version 1.0 (current version number of program)
@@ -33,10 +33,11 @@ public class PopUpGoBtnActionListenerPr implements ActionListener {
 	private int qt;
 
 	/**
-	 * memorizza quantità e prezzo da popup del prodotto venduto,
-	 * moltiplica quantità e prezzo per trovare prezzo finale,
-	 * registra nelle entrate il prodotto venduto.
-	 * se quantità = 0 o > di quella presente in magazzino esce popup di errore
+	 * memorizza quantità e prezzo da popup del prodotto venduto, moltiplica
+	 * quantità e prezzo per trovare prezzo finale, registra nelle entrate il
+	 * prodotto venduto. se quantità = 0 o > di quella presente in magazzino esce
+	 * popup di errore
+	 * 
 	 * @param e evento schiaccia bottone OK
 	 * @exception NumberFormatException prezzo non valido ( deve avere solo cifre)
 	 * @return void
@@ -45,7 +46,7 @@ public class PopUpGoBtnActionListenerPr implements ActionListener {
 	public void actionPerformed(ActionEvent e) {
 		// TODO Auto-generated method stu
 
-		PopupQuantitàPrezzo popup = fatturaPrActionListener.getPopup();
+		PopupQuantitaPrezzo popup = fatturaPrActionListener.getPopup();
 		double prezzo = .0;
 
 		SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
@@ -60,7 +61,7 @@ public class PopUpGoBtnActionListenerPr implements ActionListener {
 			sqlDate = new java.sql.Date(data.getTime());
 		}
 
-		qt = (int) popup.getQuantitàSpinner().getValue();
+		qt = (int) popup.getQuantitaSpinner().getValue();
 
 		try {
 
@@ -116,15 +117,14 @@ public class PopUpGoBtnActionListenerPr implements ActionListener {
 
 	}
 
-	
 	/**
-	 * leggendo la quantità del prodotto venduta la sottraggo
-	 * a quella presente nel magazzino
+	 * leggendo la quantità del prodotto venduta la sottraggo a quella presente nel
+	 * magazzino
 	 * 
 	 * @return void
 	 *
 	 */
-	
+
 	public void aggiornaQuantitaProdotto() {
 
 		int rigaSelezionata = fatturaPrActionListener.getRigaSelezionata();
@@ -161,13 +161,13 @@ public class PopUpGoBtnActionListenerPr implements ActionListener {
 
 	/**
 	 * costruttore
-	 * @param model     modello
-	 * @param dbControl database
-	 * @param view      grafica
-	 * @param FatturaPrActionListener permette di leggere 
-	 * ciò che ho fatturato
+	 * 
+	 * @param model                   modello
+	 * @param dbControl               database
+	 * @param view                    grafica
+	 * @param FatturaPrActionListener permette di leggere ciò che ho fatturato
 	 */
-	
+
 	public PopUpGoBtnActionListenerPr(SmartVetModel model, MainView view, DbControllerSingleton dbControl,
 			FatturaProdottiVenditaActionListener fatturaPrActionListener) {
 		super();

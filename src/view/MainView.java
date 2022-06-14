@@ -20,7 +20,12 @@ import view.magazzino.prodottiUtili.ProdottiUtiliPanel;
 import view.magazzino.prodottiVendita.ProdottiVenditaPanel;
 import view.pazienti.PazientiPanel;
 import view.veterinari.VeterinariPanel;
-
+/** 
+ * 
+ * @author MMA
+ * version 1.0
+ *
+ */
 public class MainView extends JFrame {
 
 	private static final long serialVersionUID = 1L;
@@ -51,7 +56,7 @@ public class MainView extends JFrame {
 		// centra il frame nello schermo
 		setSize(screenWidth / 3, screenHeight / 3);
 		setLocationRelativeTo(null); // consente di riposizionare il frame
-		//setResizable(false);
+		setResizable(false);
 		setVisible(true);
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setLayout(null);

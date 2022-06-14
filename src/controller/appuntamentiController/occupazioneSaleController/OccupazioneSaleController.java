@@ -30,9 +30,9 @@ public class OccupazioneSaleController {
 	 * @param view      grafica
 	 */
 	public OccupazioneSaleController(SmartVetModel model, MainView view) {
-
-		this.model = model;
+		
 		this.view = view;
+		this.model = model;
 		dbControl = DbControllerSingleton.getInstance();
 
 		fillTable();

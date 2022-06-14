@@ -5,6 +5,11 @@ import javax.swing.JTable;
 
 import view.TableModelMio;
 
+/**
+ * 
+ * @author MMA version 1.0
+ *
+ */
 public class TabellaAppuntamentiPanel {
 
 	private JTable table;

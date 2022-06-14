@@ -24,14 +24,14 @@ public class StoricoController {
 	/**
 	 * costruttore
 	 * 
-	 * @param model     modello
-	 * @param dbControl database
-	 * @param view      grafica
+	 * @param model 
+	 * @param view
 	 */
 	public StoricoController(SmartVetModel model, MainView view) {
 
-		this.model = model;
 		this.view = view;
+		this.model = model;
+		
 
 		if (model.getCFuser().equals("direzione")) {
 

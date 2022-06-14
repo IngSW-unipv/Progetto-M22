@@ -2,10 +2,14 @@ package view.fornitori;
 
 import javax.swing.JScrollPane;
 import javax.swing.JTable;
-import javax.swing.table.DefaultTableModel;
 
 import view.TableModelMio;
 
+/**
+ * 
+ * @author MMA version 1.0
+ *
+ */
 public class TabellaFornitoriPanel {
 
 	private JTable table;

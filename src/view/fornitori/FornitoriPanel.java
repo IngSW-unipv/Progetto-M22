@@ -10,7 +10,12 @@ import javax.swing.UIManager;
 import javax.swing.border.EmptyBorder;
 
 import model.anagrafica.fornitori.Fornitori;
-
+/** 
+ * 
+ * @author MMA
+ * version 1.0
+ *
+ */
 public class FornitoriPanel extends JPanel {
 
 	private static final long serialVersionUID = 1L;
@@ -79,8 +84,8 @@ public class FornitoriPanel extends JPanel {
 		lblPIVA.setBounds(970, 12, 70, 15);
 		add(lblPIVA);
 
-		lblnomeAzienda = new JLabel("NomeAzienda");
-		lblnomeAzienda.setBounds(970, 72, 70, 15);
+		lblnomeAzienda = new JLabel("Nome azienda");
+		lblnomeAzienda.setBounds(970, 72, 114, 15);
 		add(lblnomeAzienda);
 
 		lblnTelefono = new JLabel("Telefono");
@@ -120,10 +125,8 @@ public class FornitoriPanel extends JPanel {
 		btnAggiorna.setBounds(1096, 493, 100, 25);
 		add(btnAggiorna);
 
-		btnHome = new JButton();
+		btnHome = new JButton("HOME");
 		btnHome.setBounds(1058, 551, 52, 43);
-		Icon icon = UIManager.getIcon("FileChooser.homeFolderIcon");
-		btnHome.setIcon(icon);
 		add(btnHome);
 
 	}

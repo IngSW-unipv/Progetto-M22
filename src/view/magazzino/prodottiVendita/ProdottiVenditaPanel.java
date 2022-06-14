@@ -1,6 +1,5 @@
 package view.magazzino.prodottiVendita;
 
-import javax.swing.Icon;
 import javax.swing.JButton;
 import javax.swing.JComboBox;
 import javax.swing.JLabel;
@@ -10,10 +9,14 @@ import javax.swing.JSpinner;
 import javax.swing.JTextField;
 import javax.swing.SpinnerModel;
 import javax.swing.SpinnerNumberModel;
-import javax.swing.UIManager;
 
 import com.toedter.calendar.JDateChooser;
 
+/**
+ * 
+ * @author MMA version 1.0
+ *
+ */
 public class ProdottiVenditaPanel extends JPanel {
 
 	private static final long serialVersionUID = 1L;
@@ -104,10 +107,8 @@ public class ProdottiVenditaPanel extends JPanel {
 		btnAggiorna.setBounds(1096, 493, 100, 25);
 		add(btnAggiorna);
 
-		btnHome = new JButton();
+		btnHome = new JButton("HOME");
 		btnHome.setBounds(1058, 551, 52, 43);
-		Icon icon = UIManager.getIcon("FileChooser.homeFolderIcon");
-		btnHome.setIcon(icon);
 		add(btnHome);
 
 		lblNewLabel = new JLabel("Data scadenza");

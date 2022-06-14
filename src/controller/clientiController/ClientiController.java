@@ -28,7 +28,7 @@ public class ClientiController {
 	 * @param dbControl database
 	 * @param view      grafica
 	 */
-	public ClientiController(SmartVetModel model, MainView view) {
+	public ClientiController(MainView view, SmartVetModel model) {
 		super();
 		this.model = model;
 		this.view = view;

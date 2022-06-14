@@ -3,25 +3,31 @@ package view.amministrazione;
 import java.awt.Dimension;
 import java.awt.Toolkit;
 
+import javax.swing.JButton;
+/** 
+ * 
+ * @author MMA
+ * version 1.0
+ *
+ */
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JSpinner;
 import javax.swing.JTextField;
 import javax.swing.SpinnerModel;
 import javax.swing.SpinnerNumberModel;
-import javax.swing.JButton;
 
-public class PopupQuantitàPrezzo extends JFrame {
-	
+public class PopupQuantitaPrezzo extends JFrame {
+
 	private static final long serialVersionUID = 1L;
 	private JTextField prezzotext;
-	private JSpinner quantitàSpinner;
+	private JSpinner quantitaSpinner;
 	private JLabel lblprezzo1;
 	private JLabel lblPrezzo2;
-	private JLabel lblQuantità;
+	private JLabel lblQuantita;
 	private JButton btnGo;
 
-	public PopupQuantitàPrezzo() {
+	public PopupQuantitaPrezzo() {
 
 		Toolkit kit = Toolkit.getDefaultToolkit();
 		Dimension screenSize = kit.getScreenSize(); // restituisce la dimensione dello schermo come oggetto Dimension
@@ -38,9 +44,9 @@ public class PopupQuantitàPrezzo extends JFrame {
 		getContentPane().setLayout(null);
 
 		SpinnerModel sm = new SpinnerNumberModel(1, 1, 4000, 1);
-		quantitàSpinner = new JSpinner(sm);
-		quantitàSpinner.setBounds(255, 149, 54, 42);
-		getContentPane().add(quantitàSpinner);
+		quantitaSpinner = new JSpinner(sm);
+		quantitaSpinner.setBounds(255, 149, 54, 42);
+		getContentPane().add(quantitaSpinner);
 
 		prezzotext = new JTextField();
 		prezzotext.setBounds(207, 56, 149, 42);
@@ -55,9 +61,9 @@ public class PopupQuantitàPrezzo extends JFrame {
 		lblPrezzo2.setBounds(32, 78, 248, 29);
 		getContentPane().add(lblPrezzo2);
 
-		lblQuantità = new JLabel("Inserisci la quantità");
-		lblQuantità.setBounds(32, 162, 136, 16);
-		getContentPane().add(lblQuantità);
+		lblQuantita = new JLabel("Inserisci la quantità");
+		lblQuantita.setBounds(32, 162, 136, 16);
+		getContentPane().add(lblQuantita);
 
 		btnGo = new JButton("OK");
 		btnGo.setBounds(342, 211, 117, 29);
@@ -68,8 +74,8 @@ public class PopupQuantitàPrezzo extends JFrame {
 		return prezzotext;
 	}
 
-	public JSpinner getQuantitàSpinner() {
-		return quantitàSpinner;
+	public JSpinner getQuantitaSpinner() {
+		return quantitaSpinner;
 	}
 
 	public JLabel getLblprezzo1() {
@@ -80,8 +86,8 @@ public class PopupQuantitàPrezzo extends JFrame {
 		return lblPrezzo2;
 	}
 
-	public JLabel getLblQuantità() {
-		return lblQuantità;
+	public JLabel getLblQuantita() {
+		return lblQuantita;
 	}
 
 	public JButton getBtnGo() {

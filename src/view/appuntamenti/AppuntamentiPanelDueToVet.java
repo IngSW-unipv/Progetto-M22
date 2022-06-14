@@ -12,7 +12,12 @@ import javax.swing.UIManager;
 import com.toedter.calendar.JDateChooser;
 
 import lu.tudor.santec.jtimechooser.JTimeChooser;
-
+/** 
+ * 
+ * @author MMA
+ * version 1.0
+ *
+ */
 public class AppuntamentiPanelDueToVet extends JPanel {
 
 	private static final long serialVersionUID = 1L;

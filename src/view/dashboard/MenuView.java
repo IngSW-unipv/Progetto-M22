@@ -4,7 +4,12 @@ import javax.swing.JMenu;
 import javax.swing.JMenuBar;
 import javax.swing.JMenuItem;
 import javax.swing.JPanel;
-
+/** 
+ * 
+ * @author MMA
+ * version 1.0
+ *
+ */
 public class MenuView extends JMenuBar {
 	private static final long serialVersionUID = 1L;
 

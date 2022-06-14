@@ -25,11 +25,9 @@ public class UsciteController {
 	/**
 	 * costruttore
 	 * 
-	 * @param model     modello
-	 * @param dbControl database
-	 * @param view      grafica
+	 * @param view grafica
 	 */
-	public UsciteController(SmartVetModel model, MainView view) {
+	public UsciteController(MainView view, SmartVetModel model) {
 
 		super();
 		this.model = model;

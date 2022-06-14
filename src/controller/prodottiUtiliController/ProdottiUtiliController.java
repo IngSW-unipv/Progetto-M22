@@ -25,7 +25,6 @@ public class ProdottiUtiliController {
 	 * costruttore
 	 * 
 	 * @param model     modello
-	 * @param dbControl database
 	 * @param view      grafica
 	 */
 	public ProdottiUtiliController(SmartVetModel model, MainView view) {

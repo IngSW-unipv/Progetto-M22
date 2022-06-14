@@ -15,7 +15,12 @@ import javax.swing.JTextField;
 import javax.swing.UIManager;
 
 import com.toedter.calendar.JDateChooser;
-
+/** 
+ * 
+ * @author MMA
+ * version 1.0
+ *
+ */
 public class PazientiPanel extends JPanel {
 	private static final long serialVersionUID = 1L;
 	private JScrollPane scrollPane;
@@ -174,7 +179,7 @@ public class PazientiPanel extends JPanel {
 		add(lblGruppoSanguigno);
 
 		lblDataNascita = new JLabel("Data Nascita");
-		lblDataNascita.setBounds(970, 252, 70, 15);
+		lblDataNascita.setBounds(970, 252, 100, 15);
 		add(lblDataNascita);
 
 		lblDataMorte = new JLabel("Data Morte");
@@ -197,7 +202,7 @@ public class PazientiPanel extends JPanel {
 		add(btnAggiungi);
 
 		btnElimina = new JButton("Elimina");
-		btnElimina.setBounds(1284, 473, 100, 25);
+		btnElimina.setBounds(1284, 472, 100, 25);
 		add(btnElimina);
 
 		btnModifica = new JButton("Modifica");
@@ -208,10 +213,8 @@ public class PazientiPanel extends JPanel {
 		btnAggiorna.setBounds(1284, 422, 100, 25);
 		add(btnAggiorna);
 
-		btnHome = new JButton();
-		btnHome.setBounds(1309, 551, 52, 43);
-		Icon icon = UIManager.getIcon("FileChooser.homeIcon");
-		btnHome.setIcon(icon);
+		btnHome = new JButton("HOME");
+		btnHome.setBounds(1311, 553, 52, 43);
 		add(btnHome); 
 
 		microchip = new JCheckBox("Microchip");

@@ -5,12 +5,13 @@ import java.awt.event.ActionListener;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
+
 import database.connectionSQL.DbControllerSingleton;
 import model.SmartVetModel;
 import model.anagrafica.fornitori.Fornitori;
 import view.MainView;
 import view.PopupError;
-import view.amministrazione.PopupQuantitàPrezzo;
+import view.amministrazione.PopupQuantitaPrezzo;
 
 /**
  * Fattura prodotto vendita selezionato
@@ -23,7 +24,7 @@ public class FatturaProdottiVenditaActionListener implements ActionListener {
 	private SmartVetModel model;
 	private MainView view;
 	private DbControllerSingleton dbControl;
-	private PopupQuantitàPrezzo popup;
+	private PopupQuantitaPrezzo popup;
 
 	private int rigaSelezionata;
 	private String causa;
@@ -35,10 +36,9 @@ public class FatturaProdottiVenditaActionListener implements ActionListener {
 	private Fornitori forn;
 	private int qtVecchia;
 
-	
 	/**
-	 * inserisce prodotto vendita selezionato nelle entrate con prezzo, causa e data al
-	 * momento dell fatturazione
+	 * inserisce prodotto vendita selezionato nelle entrate con prezzo, causa e data
+	 * al momento dell fatturazione
 	 * 
 	 * @param e evento schiaccia bottone fattura
 	 * @exception Parseexception data non valida
@@ -50,9 +50,9 @@ public class FatturaProdottiVenditaActionListener implements ActionListener {
 		// TODO Auto-generated method stub
 
 		rigaSelezionata = view.getProdottiVenditaPanel().getTabellaProdottiVenditaPanel().getTable().getSelectedRow();
-		
+
 		if (rigaSelezionata >= 0) {
-			
+
 			causa = "Prodotto";
 			nome = model.getProdottiVenditaArray().get(rigaSelezionata).getType();
 
@@ -62,11 +62,11 @@ public class FatturaProdottiVenditaActionListener implements ActionListener {
 		}
 	}
 
-	
 	/**
-	 * memorizzo il prodotto selezionato che ho deciso di fatturare
-	 * per così poi aggiornare la sua quantità
-	 * in base a quanta ne ho tolta vendendolo (fatturandolo)
+	 * memorizzo il prodotto selezionato che ho deciso di fatturare per così poi
+	 * aggiornare la sua quantità in base a quanta ne ho tolta vendendolo
+	 * (fatturandolo)
+	 * 
 	 * @exception parseexception data non valida
 	 * @param e evento schiaccia bottone fattura
 	 * @return void
@@ -117,23 +117,25 @@ public class FatturaProdottiVenditaActionListener implements ActionListener {
 
 	/**
 	 * restituisce popup generato
+	 * 
 	 * @return PopupQuantitàprezzo
 	 */
-	public PopupQuantitàPrezzo getPopup() {
+	public PopupQuantitaPrezzo getPopup() {
 		return popup;
 	}
 
 	/**
 	 * restituisce riga tabella prodotti selezionata
+	 * 
 	 * @return int numero riga selezionata
 	 */
 	public int getRigaSelezionata() {
 		return rigaSelezionata;
 	}
 
-
 	/**
 	 * restituisce causa fattura (prodotto)
+	 * 
 	 * @return String causa
 	 */
 	public String getCausa() {
@@ -141,7 +143,8 @@ public class FatturaProdottiVenditaActionListener implements ActionListener {
 	}
 
 	/**
-	 * restituisce nome prodotto fattura 
+	 * restituisce nome prodotto fattura
+	 * 
 	 * @return String nome
 	 */
 	public String getNome() {
@@ -150,6 +153,7 @@ public class FatturaProdottiVenditaActionListener implements ActionListener {
 
 	/**
 	 * restituisce ID prodotto
+	 * 
 	 * @return int cod prodotto
 	 */
 	public int getCOD() {
@@ -158,6 +162,7 @@ public class FatturaProdottiVenditaActionListener implements ActionListener {
 
 	/**
 	 * restituisce data fattura
+	 * 
 	 * @return Date data fattura
 	 */
 	public java.sql.Date getSqlDate() {
@@ -166,6 +171,7 @@ public class FatturaProdottiVenditaActionListener implements ActionListener {
 
 	/**
 	 * restituisce fornitore prodotto
+	 * 
 	 * @return Fornitore fornitore prodotto
 	 */
 	public Fornitori getForn() {
@@ -174,6 +180,7 @@ public class FatturaProdottiVenditaActionListener implements ActionListener {
 
 	/**
 	 * restituisce fquantità vecchia prodotto
+	 * 
 	 * @return int quantità vecchia prodotto
 	 */
 	public int getQtVecchia() {
@@ -182,6 +189,7 @@ public class FatturaProdottiVenditaActionListener implements ActionListener {
 
 	/**
 	 * restituisce tipoprodotto
+	 * 
 	 * @return String tipo prodotto
 	 */
 	public String getTipo() {
@@ -189,9 +197,8 @@ public class FatturaProdottiVenditaActionListener implements ActionListener {
 	}
 
 	/**
-	 * costruttore
-	 * fa uscire popup per selezionare prezzo
-	 * e quantità del prodotto venduto
+	 * costruttore fa uscire popup per selezionare prezzo e quantità del prodotto
+	 * venduto
 	 * 
 	 * @param model     modello
 	 * @param dbControl database
@@ -203,7 +210,7 @@ public class FatturaProdottiVenditaActionListener implements ActionListener {
 		this.view = view;
 		this.dbControl = dbControl;
 
-		popup = new PopupQuantitàPrezzo();
+		popup = new PopupQuantitaPrezzo();
 	}
 
 }
