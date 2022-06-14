@@ -9,12 +9,24 @@ import database.connectionSQL.DbControllerSingleton;
 import model.SmartVetModel;
 import view.MainView;
 
+/**
+ * Elimina veterinario selezionato
+ * 
+ * @author MMA
+ * @version 1.0 (current version number of program)
+ */
 public class EliminaVeterinariActionListener implements ActionListener {
 
 	private SmartVetModel model;
 	private MainView view;
 	private DbControllerSingleton dbControl;
 
+	
+	/**
+	 * elimina veterinario da database, array e tabella grafica
+	 * @param e evento schiaccia bottone elimina veterinario
+	 * @return void
+	 */
 	@Override
 	public void actionPerformed(ActionEvent e) {
 
@@ -41,6 +53,13 @@ public class EliminaVeterinariActionListener implements ActionListener {
 
 	}
 
+	/**
+	 * costruttore
+	 * 
+	 * @param model     modello
+	 * @param dbControl database
+	 * @param view      grafica
+	 */
 	public EliminaVeterinariActionListener(SmartVetModel model, MainView view, DbControllerSingleton dbControl) {
 		super();
 		this.model = model;

@@ -8,11 +8,23 @@ import javax.swing.table.DefaultTableModel;
 import database.connectionSQL.DbControllerSingleton;
 import model.SmartVetModel;
 import view.MainView;
+/**
+ * elimina le uscite registrate
+ * @author      MMA
+ * @version     1.0                 (current version number of program)
+ * @see 		UsciteController
+ */
 
 public class EliminaUsciteActionListener implements ActionListener {
 	private SmartVetModel model;
 	private MainView view;
 	private DbControllerSingleton dbControl;
+	
+	/**
+	* elimina uscita da database, array e tabella grafica
+	* @param e 	evento schiaccia bottone elimina uscita
+	* @return void
+	*/
 
 	@Override
 	public void actionPerformed(ActionEvent e) {
@@ -30,6 +42,12 @@ public class EliminaUsciteActionListener implements ActionListener {
 		model.getUsciteArray().remove(elementoSelezionato);
 	}
 
+	/**
+	 * costruttore
+	 * @param model     modello
+	 * @param dbControl database
+	 * @param view      grafica
+	 */
 	public EliminaUsciteActionListener(SmartVetModel model, MainView view, DbControllerSingleton dbControl) {
 		super();
 		this.model = model;

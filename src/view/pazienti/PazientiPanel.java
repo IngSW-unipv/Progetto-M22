@@ -48,8 +48,6 @@ public class PazientiPanel extends JPanel {
 	private JLabel lblDataMorte;
 	private JLabel lblPeso;
 	private JLabel lblNote;
-	// private JLabel lblQt;
-
 	private JButton btnAggiungi;
 	private JButton btnElimina;
 	private TabellaPazientiPanel tabellaPazienti;
@@ -57,30 +55,6 @@ public class PazientiPanel extends JPanel {
 	private JButton btnAggiorna;
 	private JButton btnHome;
 
-	/**
-	 * Create the panel.
-	 */
-
-	public static void main(String[] args) {
-		EventQueue.invokeLater(new Runnable() {
-			public void run() {
-				try {
-					JFrame principale1 = new JFrame();
-					principale1.setVisible(true);
-					principale1.setBounds(500, 500, 2700, 2200);
-					principale1.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-					principale1.getContentPane().setLayout(null);
-
-					PazientiPanel frame = new PazientiPanel();
-					frame.setVisible(true);
-					principale1.getContentPane().add(frame);
-
-				} catch (Exception e) {
-					e.printStackTrace();
-				}
-			}
-		});
-	}
 
 	public PazientiPanel() {
 

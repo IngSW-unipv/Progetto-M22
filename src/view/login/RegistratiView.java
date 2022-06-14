@@ -43,57 +43,57 @@ public class RegistratiView extends JFrame {
 		//setLocationRelativeTo(null); // consente di riposizionare il frame
 		setResizable(false);
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		setLayout(null);
+		getContentPane().setLayout(null);
 		
 		setSize(screenWidth / 3, screenHeight / 3);
 		setLocation(0, 0); // consente di riposizionare il frame
-		setLayout(null);
+		getContentPane().setLayout(null);
 
 		passwordField = new JPasswordField();
 		passwordField.setBounds(90, 122, 206, 39);
-		add(passwordField);
+		getContentPane().add(passwordField);
 
 		usernameText = new JTextField();
 		usernameText.setBounds(90, 71, 206, 39);
-		add(usernameText);
+		getContentPane().add(usernameText);
 		usernameText.setColumns(10);
 
 		lblNuovoAccount = new JLabel("Registrati");
 		lblNuovoAccount.setFont(new Font("Lucida Grande", Font.BOLD, 29));
 		lblNuovoAccount.setBounds(28, 19, 178, 39);
-		add(lblNuovoAccount);
+		getContentPane().add(lblNuovoAccount);
 
 		lblUsername = new JLabel("Username\n");
 		lblUsername.setBounds(17, 82, 88, 16);
-		add(lblUsername);
+		getContentPane().add(lblUsername);
 
 		lblPassword = new JLabel("Password\n");
 		lblPassword.setBounds(17, 133, 88, 16);
-		add(lblPassword);
+		getContentPane().add(lblPassword);
 
-		btnGo = new JButton("Crea nuovo account");
-		btnGo.setBounds(357, 237, 117, 29);
-		add(btnGo);
+		btnGo = new JButton("Crea account");
+		btnGo.setBounds(324, 237, 117, 29);
+		getContentPane().add(btnGo);
 
 		passwordField_1 = new JPasswordField();
 		passwordField_1.setBounds(90, 173, 206, 39);
-		add(passwordField_1);
+		getContentPane().add(passwordField_1);
 
 		lblConfermaPassword = new JLabel("Conferma \n\n");
 		lblConfermaPassword.setBounds(17, 173, 129, 16);
-		add(lblConfermaPassword);
+		getContentPane().add(lblConfermaPassword);
 
 		lblPassword_2 = new JLabel("password\n");
 		lblPassword_2.setBounds(17, 193, 88, 16);
-		add(lblPassword_2);
+		getContentPane().add(lblPassword_2);
 
 		comboBox = new JComboBox();
-		comboBox.setBounds(99, 237, 197, 29);
-		add(comboBox);
+		comboBox.setBounds(99, 224, 197, 29);
+		getContentPane().add(comboBox);
 
 		lblDipendente = new JLabel("Dipendente");
-		lblDipendente.setBounds(17, 242, 88, 16);
-		add(lblDipendente);
+		lblDipendente.setBounds(17, 226, 88, 16);
+		getContentPane().add(lblDipendente);
 	}
 
 	public static long getSerialversionuid() {

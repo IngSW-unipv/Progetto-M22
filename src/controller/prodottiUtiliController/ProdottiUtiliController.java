@@ -9,12 +9,25 @@ import database.connectionSQL.DbControllerSingleton;
 import model.SmartVetModel;
 import view.MainView;
 
+/**
+ * Collega i prodotti utili del model con il database e la view
+ * 
+ * @author MMA
+ * @version 1.0 (current version number of program)
+ */
 public class ProdottiUtiliController {
 
 	private SmartVetModel model;
 	private MainView view;
 	private DbControllerSingleton dbControl;
-
+	
+	/**
+	 * costruttore
+	 * 
+	 * @param model     modello
+	 * @param dbControl database
+	 * @param view      grafica
+	 */
 	public ProdottiUtiliController(SmartVetModel model, MainView view) {
 		super();
 		this.model = model;
@@ -28,6 +41,12 @@ public class ProdottiUtiliController {
 		addActionListenerHome();
 	}
 	
+	/**
+	 * Visualizza prodotti utili su tabella prodotti utili
+	 * 
+	 * @return void
+	 */
+
 	public void fillTable() {
 		Object rowData[][] = new Object[model.getProdottiUtiliArray().size()][4];
 
@@ -55,6 +74,11 @@ public class ProdottiUtiliController {
 		}
 	}
 
+	/**
+	 * riempie la comboBox con tutti i fornitori presenti nel db
+	 * 
+	 * @return void
+	 */
 	@SuppressWarnings("unchecked")
 	public void fillComboBox() {
 
@@ -70,6 +94,12 @@ public class ProdottiUtiliController {
 		}
 	}
 
+	
+	/**
+	 * Aggiunge action listener al menu per aprire pannello parodotti utili da dashboard
+	 * 
+	 * @return void
+	 */
 	public void addActionListenersMenu() {
 		
 
@@ -83,7 +113,12 @@ public class ProdottiUtiliController {
 		});
 
 	}
-
+	/**
+	 * Aggiunge action listener per aggiungere, eliminare,
+	 * modificare, aggiornare prodotti utili
+	 * 
+	 * @return void
+	 */
 	public void addActionListenerButtons() {
 		
 		AggiungiProdottiUtiliActionListener addProdottiUtili = new AggiungiProdottiUtiliActionListener(model, view, dbControl);
@@ -100,6 +135,11 @@ public class ProdottiUtiliController {
 
 	}
 
+	/**
+	 * aggiunge action listener per tornare alla dashboard
+	 * 
+	 * @return void
+	 */
 	public void addActionListenerHome() {
 		
 		view.getProdottiUtiliPanel().getBtnHome().addActionListener(new ActionListener() {

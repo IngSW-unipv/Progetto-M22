@@ -11,6 +11,8 @@ import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.JSpinner;
 import javax.swing.JTextField;
+import javax.swing.SpinnerModel;
+import javax.swing.SpinnerNumberModel;
 import javax.swing.UIManager;
 
 import com.toedter.calendar.JDateChooser;
@@ -39,30 +41,7 @@ public class FarmaciPanel extends JPanel {
 	private JButton btnHome;
 	private JButton btnFattura;
 
-	/**
-	 * Create the panel.
-	 */
 
-	public static void main(String[] args) {
-		EventQueue.invokeLater(new Runnable() {
-			public void run() {
-				try {
-					JFrame principale1 = new JFrame();
-					principale1.setVisible(true);
-					principale1.setBounds(500, 500, 2700, 2200);
-					principale1.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-					principale1.getContentPane().setLayout(null);
-
-					FarmaciPanel frame = new FarmaciPanel();
-					frame.setVisible(true);
-					principale1.getContentPane().add(frame);
-
-				} catch (Exception e) {
-					e.printStackTrace();
-				}
-			}
-		});
-	}
 
 	public FarmaciPanel() {
 
@@ -98,7 +77,8 @@ public class FarmaciPanel extends JPanel {
 		dataScadenza.setBounds(1096, 252, 100, 25);
 		add(dataScadenza);
 
-		spinner = new JSpinner();
+		SpinnerModel sm = new SpinnerNumberModel(1, 1, 4000, 1);
+		spinner = new JSpinner(sm);
 		spinner.setBounds(1118, 312, 48, 39);
 		add(spinner);
 

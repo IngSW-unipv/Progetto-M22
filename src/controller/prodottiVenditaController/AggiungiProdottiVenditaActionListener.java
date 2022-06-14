@@ -15,12 +15,26 @@ import model.magazzino.prodottiVendita.ProdottiVendita;
 import view.MainView;
 import view.PopupError;
 
+/**
+ * Aggiungi nuovo prodotto vendita
+ * 
+ * @author MMA
+ * @version 1.0 (current version number of program)
+ */
 public class AggiungiProdottiVenditaActionListener implements ActionListener {
 	
 	private SmartVetModel model;
 	private MainView view;
 	private DbControllerSingleton dbControl;
 
+	
+	/**
+	 * aggiunge prodotto nuovo in database, array e grafica
+	 * 
+	 * @param e evento schiaccia bottone aggiungi
+	 * @exception ParseException data/ora non valida/e
+	 * @return void
+	 */
 	@Override
 	public void actionPerformed(ActionEvent e) {
 		// TODO Auto-generated method stub
@@ -39,7 +53,11 @@ public class AggiungiProdottiVenditaActionListener implements ActionListener {
 
 		} catch (ParseException e1) {
 			// TODO Auto-generated catch block
+			
+			PopupError err = new PopupError();
+			err.infoBox("Data non valida", "Errore");
 			e1.printStackTrace();
+		
 		}
 
 		java.sql.Date sqlDate = new java.sql.Date(dataScadenza.getTime());
@@ -83,6 +101,11 @@ public class AggiungiProdottiVenditaActionListener implements ActionListener {
 
 	}
 
+	/**
+	 * pulisce i campi testo una volta aggiunta il nuovo prodotto
+	 * 
+	 * @return void
+	 */
 	public void pulisciTextField() {
 
 		view.getProdottiVenditaPanel().getNomeText().setText(null);
@@ -92,6 +115,12 @@ public class AggiungiProdottiVenditaActionListener implements ActionListener {
 
 	}
 
+	/**
+	 * legge tutti i dati del fornitore tramite ID letto per poter passare al prodotto utilr
+	 * aggiunto il fornitore esatto
+	 * 
+	 * @return Fornitore fornitore letto
+	 */
 	public Fornitori costruisciFornitore() {
 		String PIVA = view.getProdottiVenditaPanel().getFornitoriBox().getSelectedItem().toString();
 		Fornitori forn = dbControl.selectFornitoreFromPiva(PIVA);
@@ -99,6 +128,13 @@ public class AggiungiProdottiVenditaActionListener implements ActionListener {
 
 	}
 
+	/**
+	 * costruttore
+	 * 
+	 * @param model     modello
+	 * @param dbControl database
+	 * @param view      grafica
+	 */
 	public AggiungiProdottiVenditaActionListener(SmartVetModel model, MainView view, DbControllerSingleton dbControl) {
 		super();
 		this.model = model;

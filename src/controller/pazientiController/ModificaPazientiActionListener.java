@@ -6,12 +6,24 @@ import java.util.Date;
 
 import model.SmartVetModel;
 import view.MainView;
-
+/**
+ * Riempie i campi testo con il record selezionato per poi eventualmente
+ * modificarli e aggiornare record
+ * 
+ * @author MMA
+ * @version 1.0 (current version number of program)
+ */
 public class ModificaPazientiActionListener implements ActionListener {
 
 	private SmartVetModel model;
 	private MainView view;
 
+	/**
+	 * riempie i campi testo della riga selezionata della tabella
+	 * 
+	 * @param e evento schiaccia bottone modifica
+	 * @return void
+	 */
 	@Override
 	public void actionPerformed(ActionEvent e) {
 		// TODO Auto-generated method stub
@@ -33,8 +45,7 @@ public class ModificaPazientiActionListener implements ActionListener {
 			Date dataMorte = model.getPazientiArray().get(rigaSelezionata).getDataMorte();
 			String CFvet = null;
 			String CFcliente = null;
-			// int quantita =
-			// model.getLottoFarmaciArray().get(rigaSelezionata).getQuantita();
+		
 
 			if (model.getPazientiArray().get(rigaSelezionata).getVeterinario() != null)
 				CFvet = model.getPazientiArray().get(rigaSelezionata).getVeterinario().getCF();
@@ -49,7 +60,6 @@ public class ModificaPazientiActionListener implements ActionListener {
 			view.getPazientiPanel().getRazzaText().setText(razza);
 			view.getPazientiPanel().getSessoBox().setSelectedItem(sesso);
 			view.getPazientiPanel().getGruppoSanguignoBox().setSelectedItem(gruppoSanguigno);
-			;
 			view.getPazientiPanel().getMicrochip().setSelected(microchip);
 			view.getPazientiPanel().getSteril().setSelected(sterilizzato);
 			view.getPazientiPanel().getPesoText().setText(Double.toString(peso));
@@ -62,6 +72,13 @@ public class ModificaPazientiActionListener implements ActionListener {
 
 	}
 
+	/**
+	 * costruttore
+	 * 
+	 * @param model     modello
+	 * @param dbControl database
+	 * @param view      grafica
+	 */
 	public ModificaPazientiActionListener(SmartVetModel model, MainView view) {
 		super();
 		this.model = model;

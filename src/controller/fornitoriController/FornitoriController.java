@@ -8,7 +8,12 @@ import javax.swing.table.DefaultTableModel;
 import database.connectionSQL.DbControllerSingleton;
 import model.SmartVetModel;
 import view.MainView;
-
+/**
+ * Collega i fornitori del model con il database e la view
+ * 
+ * @author MMA
+ * @version 1.0 (current version number of program)
+ */
 public class FornitoriController {
 
 	private SmartVetModel model;
@@ -27,7 +32,11 @@ public class FornitoriController {
 		addActionListenerButtons();
 		addActionListenerHome();
 	}
-
+	/**
+	 * Visualizza fornitori su tabella fornitori
+	 * 
+	 * @return void
+	 */
 	public void fillTable() {
 		String rowData[][] = new String[model.getFornitoriArray().size()][6];
 		DefaultTableModel modello = (DefaultTableModel) view.getFornitoriPanel().getTab().getTable().getModel();
@@ -43,7 +52,11 @@ public class FornitoriController {
 			modello.addRow(rowData[i]);
 		}
 	}
-
+	/**
+	 * Aggiunge action listener al menu per aprire pannello fornitori da dashboard
+	 * 
+	 * @return void
+	 */
 	public void addActionListenersMenu() {
 		System.out.println("7777");
 		view.getDashboard().getMenu().getMntmFornitori().addActionListener(new ActionListener() {
@@ -56,7 +69,12 @@ public class FornitoriController {
 		});
 
 	}
-
+	/**
+	 * Aggiunge action listener per aggiungere, eliminare,
+	 * modificare, aggiornare fornitori
+	 * 
+	 * @return void
+	 */
 	public void addActionListenerButtons() {
 		AggiungiFornitoriActionListener addFornitore = new AggiungiFornitoriActionListener(model, view, dbControl);
 
@@ -73,6 +91,11 @@ public class FornitoriController {
 
 	}
 
+	/**
+	 * aggiunge action listener per tornare alla dashboard
+	 * 
+	 * @return void
+	 */
 	public void addActionListenerHome() {
 		view.getFornitoriPanel().getBtnHome().addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {

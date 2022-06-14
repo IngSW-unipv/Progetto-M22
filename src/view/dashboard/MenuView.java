@@ -24,7 +24,6 @@ public class MenuView extends JMenuBar {
 	private JMenuItem menuItemStorico;
 	private JMenuItem mntmSaleOccupate;
 	private JMenu mnAccount;
-	private JMenuItem mntmNuovoAccount;
 	private JMenuItem mntmEsciAccount;
 	private JMenu mnAmministrazione;
 	private JMenuItem mntmEntrate;
@@ -81,9 +80,6 @@ public class MenuView extends JMenuBar {
 
 		mntmEsciAccount = new JMenuItem("Esci");
 		mnAccount.add(mntmEsciAccount);
-
-		mntmNuovoAccount = new JMenuItem("Nuovo account");
-		mnAccount.add(mntmNuovoAccount);
 
 		mnAmministrazione = new JMenu("Amministrazione");
 		add(mnAmministrazione);
@@ -158,10 +154,6 @@ public class MenuView extends JMenuBar {
 
 	public JMenuItem getMntmSaleOccupate() {
 		return mntmSaleOccupate;
-	}
-
-	public JMenuItem getMntmNuovoAccount() {
-		return mntmNuovoAccount;
 	}
 
 	public JMenuItem getMntmEsciAccount() {

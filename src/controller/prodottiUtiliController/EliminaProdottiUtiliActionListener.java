@@ -8,13 +8,24 @@ import javax.swing.table.DefaultTableModel;
 import database.connectionSQL.DbControllerSingleton;
 import model.SmartVetModel;
 import view.MainView;
-
+/**
+ * Elimina prodotto utile selezionato
+ * 
+ * @author MMA
+ * @version 1.0 (current version number of program)
+ */
 public class EliminaProdottiUtiliActionListener implements ActionListener {
 
 	private SmartVetModel model;
 	private MainView view;
 	private DbControllerSingleton dbControl;
 
+	
+	/**
+	 * elimina prodotto selezionato da database, array e tabella grafica
+	 * @param e evento schiaccia bottone elimina prodotto
+	 * @return void
+	 */
 	public void actionPerformed(ActionEvent e) {
 		// TODO Auto-generated method stub
 
@@ -32,6 +43,13 @@ public class EliminaProdottiUtiliActionListener implements ActionListener {
 		model.getProdottiUtiliArray().remove(elementoSelezionato);
 	}
 
+	/**
+	 * costruttore
+	 * 
+	 * @param model     modello
+	 * @param dbControl database
+	 * @param view      grafica
+	 */
 	public EliminaProdottiUtiliActionListener(SmartVetModel model, MainView view, DbControllerSingleton dbControl) {
 		super();
 		this.model = model;

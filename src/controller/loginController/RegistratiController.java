@@ -7,13 +7,26 @@ import java.util.ArrayList;
 import database.connectionSQL.DbControllerSingleton;
 import model.SmartVetModel;
 import view.MainView;
-
+/**
+ * collega le credenziali nuovo account
+ *  col bottone di OK
+ * e con il database
+ * 
+ * @author MMA
+ * @version 1.0 (current version number of program)
+ */
 public class RegistratiController {
 
 	private MainView view;
 	private SmartVetModel model;
 	private DbControllerSingleton dbControl;
 
+	/**
+	 * costruttore 
+	 * @param model     modello
+	 * @param view      grafica
+	 * @param dbControl database
+	 */
 	public RegistratiController(MainView view, SmartVetModel model) {
 
 		this.view = view;
@@ -22,12 +35,18 @@ public class RegistratiController {
 
 		fillComboBoxVet();
 		addActionListenerRegistrati();
-		addMenuActionListener();
+		addActionListener();
 
 	}
 
-	public void addMenuActionListener() {
-		view.getDashboard().getMenu().getMntmNuovoAccount().addActionListener(new ActionListener() {
+	
+	/**
+	 * Aggiunge action listener al menu per aprire pannello registrazione da login
+	 * 
+	 * @return void
+	 */
+	public void addActionListener() {
+		view.getLoginView().getBtnRegistrati().addActionListener(new ActionListener() {
 
 			public void actionPerformed(ActionEvent e) {
 				view.getRegistratiView().setVisible(true);
@@ -36,11 +55,23 @@ public class RegistratiController {
 		});
 	}
 
+	
+	/**
+	 * Aggiunge action listener registrati per registrare nuovo account
+	 * 
+	 * @return void
+	 */
 	public void addActionListenerRegistrati() {
 		RegistratiActionListener registrati = new RegistratiActionListener(view, dbControl);
 		view.getRegistratiView().getBtnGo().addActionListener(registrati);
 	}
 
+	/**
+	 * riempie la combobox con tutti i CF dei veterinari
+	 * presenti nel database
+	 * 
+	 * @return void
+	 */
 	public void fillComboBoxVet() {
 
 		ArrayList<String> listaCFvet = new ArrayList<String>();

@@ -9,12 +9,25 @@ import database.connectionSQL.DbControllerSingleton;
 import model.SmartVetModel;
 import view.MainView;
 
+/**
+ * Elimina prodotto vendita selezionato
+ * 
+ * @author MMA
+ * @version 1.0 (current version number of program)
+ */
 public class EliminaProdottiVenditaActionListener implements ActionListener {
 
 	private SmartVetModel model;
 	private MainView view;
 	private DbControllerSingleton dbControl;
 
+	
+
+	/**
+	 * elimina prodotto selezionato da database, array e tabella grafica
+	 * @param e evento schiaccia bottone elimina prodotto
+	 * @return void
+	 */
 	public void actionPerformed(ActionEvent e) {
 		// TODO Auto-generated method stub
 
@@ -32,6 +45,13 @@ public class EliminaProdottiVenditaActionListener implements ActionListener {
 		model.getProdottiVenditaArray().remove(elementoSelezionato);
 	}
 
+	/**
+	 * costruttore
+	 * 
+	 * @param model     modello
+	 * @param dbControl database
+	 * @param view      grafica
+	 */
 	public EliminaProdottiVenditaActionListener(SmartVetModel model, MainView view, DbControllerSingleton dbControl) {
 		super();
 		this.model = model;

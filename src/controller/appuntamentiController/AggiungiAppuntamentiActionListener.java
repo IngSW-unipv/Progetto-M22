@@ -17,12 +17,32 @@ import model.pazienti.Paziente;
 import view.MainView;
 import view.PopupError;
 
+/**
+ * Aggiunge nuovo Appuntamento
+ * @author      MMA
+ * @version     1.0                 (current version number of program)
+ */
 public class AggiungiAppuntamentiActionListener implements ActionListener {
 
 	private SmartVetModel model;
 	private MainView view;
 	private DbControllerSingleton dbControl;
 
+	
+	/**
+	* aggiunge appuntamento nuovo in database, array e grafica
+	* di appuntamenti, storico e sale
+	* prendendo i parametri dai campi testo/data.
+	* un veterinario loggato  può aggiungere solo suoi appuntamenti, invece
+	* se si logga l' account direzione potrà scegliere per quale
+	* veterinario aggiungere l'appuntamento tramite una combobox
+	* @param  e  evento schiaccia bottone aggiungi
+	* @exception ParseException se data inserita non valida
+	* @exception ParseException se ora inserita non valida
+	* @exception NumberFormatException se costo inserito non valid
+	* @return void 
+	*/
+	
 	@SuppressWarnings("static-access")
 	@Override
 	public void actionPerformed(ActionEvent e) {
@@ -167,6 +187,11 @@ public class AggiungiAppuntamentiActionListener implements ActionListener {
 		}
 	}
 
+	/**
+	* pulisce i campi testo una volta aggiunta il nuovo appuntamento
+	* @return void 
+	*/
+	
 	public void pulisciTextField() {
 
 		java.sql.Time timeValue = null;
@@ -194,6 +219,11 @@ public class AggiungiAppuntamentiActionListener implements ActionListener {
 		view.getAppuntamentiPanel().getNoteText().setText(null);
 	}
 
+	/**
+	* legge tutti i dati del paziente tramite ID letto per poter passare
+	* all'appuntamento aggiunto il paziente esatto
+	* @return Paziente paziente letto
+	*/
 	public Paziente costruisciPaziente() {
 
 		int ID = (int) view.getAppuntamentiPanel().getIDpazText().getSelectedItem();
@@ -201,6 +231,11 @@ public class AggiungiAppuntamentiActionListener implements ActionListener {
 		return paz;
 	}
 
+	/**
+	* legge tutti i dati del veterinario tramite ID letto per poter passare
+	* all'appuntamento aggiunti il veterinario esatto
+	* @return Veterinari veterinario letto
+	*/
 	public Veterinari costruisciVeterinario() {
 
 		String CF = null;
@@ -218,7 +253,14 @@ public class AggiungiAppuntamentiActionListener implements ActionListener {
 		Veterinari vet = dbControl.selectVeterinarioFromCF(CF);
 		return vet;
 	}
-
+	
+	
+	/**
+	 * costruttore
+	 * @param model     modello
+	 * @param dbControl database
+	 * @param view      grafica
+	 */
 	public AggiungiAppuntamentiActionListener(SmartVetModel model, MainView view, DbControllerSingleton dbControl) {
 		super();
 		this.model = model;

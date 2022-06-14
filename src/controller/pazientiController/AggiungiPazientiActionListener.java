@@ -17,12 +17,27 @@ import model.anagrafica.veterinari.Veterinari;
 import model.pazienti.Paziente;
 import view.MainView;
 import view.PopupError;
-
+/**
+ * Aggiungi nuovo paziente
+ * 
+ * @author MMA
+ * @version 1.0 (current version number of program)
+ */
 public class AggiungiPazientiActionListener implements ActionListener {
 
 	private SmartVetModel model;
 	private MainView view;
 	private DbControllerSingleton dbControl;
+
+	
+	/**
+	 * aggiunge paziente nuovo in database, array e grafica
+	 * 
+	 * @param e evento schiaccia bottone aggiungi
+	 * @exception NumberFormatException peso non valido
+	 * @exception ParseException data/e noncvalida/e
+	 * @return void
+	 */
 
 	@SuppressWarnings("static-access")
 	@Override
@@ -48,6 +63,8 @@ public class AggiungiPazientiActionListener implements ActionListener {
 		catch (NumberFormatException nfe) {
 
 			nfe.printStackTrace();
+			PopupError err = new PopupError();
+			err.infoBox( "Il peso deve contenere solo cifre", "Errore");
 
 		}
 
@@ -87,20 +104,19 @@ public class AggiungiPazientiActionListener implements ActionListener {
 
 		} catch (ParseException e1) {
 			// TODO Auto-generated catch block
+			PopupError err = new PopupError();
+			err.infoBox( "Data/e non valida/e", "Errore");
 			e1.printStackTrace();
 		}
 
 		Paziente paz = new Paziente(0, nome, specie, razza, sqlDate, sesso, vet, GruppoSanguigno, microchip, sterilizzato,
 				peso, sqlDate2, cl, note);
 
-		// aggiungo pazient nelle combobox delle altre finestre
+	
 
 		boolean flag = dbControl.addNuovoPaziente(paz);
 		
-
-		/*int rigaUltima = dbControl.selectAllIDPazInApp().length;
-		int IDpaz = dbControl.selectID_PAZ(rigaUltima);
-		view.getAppuntamentiPanel().getIDpazText().addItem(IDpaz);*/
+		
 		int IDpaz = paz.getIDpaz();
 
 		if (flag) {
@@ -128,6 +144,9 @@ public class AggiungiPazientiActionListener implements ActionListener {
 			rowData[13] = note;
 
 			modello.addRow(rowData);
+			
+			// aggiungo pazient nelle combobox delle altre finestre
+			view.getAppuntamentiPanel().getIDpazText().addItem(IDpaz);
 
 			pulisciTextField();
 
@@ -135,7 +154,7 @@ public class AggiungiPazientiActionListener implements ActionListener {
 
 			{
 				PopupError err = new PopupError();
-				err.infoBox("Esiste già un paziente con questo ID", "Impossibile inserire paziente");
+				err.infoBox("Impossibile inserire paziente", "Errore");
 				pulisciTextField();
 
 			}
@@ -143,6 +162,12 @@ public class AggiungiPazientiActionListener implements ActionListener {
 		}
 
 	}
+
+	/**
+	 * pulisce i campi testo una volta aggiunta il nuovo paziente
+	 * 
+	 * @return void
+	 */
 
 	public void pulisciTextField() {
 
@@ -162,19 +187,37 @@ public class AggiungiPazientiActionListener implements ActionListener {
 		view.getPazientiPanel().getVeterinariBox().setSelectedIndex(0);
 	}
 
+	/**
+	 * legge tutti i dati del veterinario tramite CF letto per poter passare al paziente
+	 * aggiunto il veterinario di base esatto
+	 * 
+	 * @return Veterinario vet letto
+	 */
 	public Veterinari costruisciVeterinario() {
 		String CF = (String) view.getPazientiPanel().getVeterinariBox().getSelectedItem();
 		Veterinari vet = dbControl.selectVeterinarioFromCF(CF);
 		return vet;
 	}
 
+	/**
+	 * legge tutti i dati del cliente tramite CF letto per poter passare al paziente
+	 * aggiunto il cliente proprietario
+	 * 
+	 * @return Cliente cliente proprietario
+	 */
 	public Clienti costruisciCliente() {
 		String CF = (String) view.getPazientiPanel().getClientiBox().getSelectedItem();
 		System.out.println(CF);
 		Clienti cl = dbControl.selectClienteFromCF(CF);
 		return cl;
 	}
-
+	/**
+	 * costruttore
+	 * 
+	 * @param model     modello
+	 * @param dbControl database
+	 * @param view      grafica
+	 */
 	public AggiungiPazientiActionListener(SmartVetModel model, MainView view, DbControllerSingleton dbControl) {
 		super();
 		this.model = model;

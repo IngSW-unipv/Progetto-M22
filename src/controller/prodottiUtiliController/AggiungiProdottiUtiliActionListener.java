@@ -2,6 +2,7 @@ package controller.prodottiUtiliController;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.text.ParseException;
 
 import javax.swing.table.DefaultTableModel;
 
@@ -12,10 +13,24 @@ import model.magazzino.prodottiUtili.ProdottiUtili;
 import view.MainView;
 import view.PopupError;
 
+/**
+ * Aggiungi nuovo prodotto utile
+ * 
+ * @author MMA
+ * @version 1.0 (current version number of program)
+ */
 public class AggiungiProdottiUtiliActionListener implements ActionListener {
 	private SmartVetModel model;
 	private MainView view;
 	private DbControllerSingleton dbControl;
+
+	
+	/**
+	 * aggiunge prodotto nuovo in database, array e grafica
+	 * 
+	 * @param e evento schiaccia bottone aggiungi
+	 * @return void
+	 */
 
 	@SuppressWarnings("static-access")
 	@Override
@@ -53,13 +68,19 @@ public class AggiungiProdottiUtiliActionListener implements ActionListener {
 
 			{
 				PopupError err = new PopupError();
-				err.infoBox("Errore", "Impossibile inserire prodotto");
+				err.infoBox("Impossibile inserire prodotto", "Errore");
 				pulisciTextField();
 
 			}
 		}
 
 	}
+
+	/**
+	 * pulisce i campi testo una volta aggiunta il nuovo prodotto
+	 * 
+	 * @return void
+	 */
 
 	public void pulisciTextField() {
 
@@ -69,6 +90,12 @@ public class AggiungiProdottiUtiliActionListener implements ActionListener {
 
 	}
 
+	/**
+	 * legge tutti i dati del fornitore tramite ID letto per poter passare al prodotto utilr
+	 * aggiunto il fornitore esatto
+	 * 
+	 * @return Fornitore fornitore letto
+	 */
 	public Fornitori costruisciFornitore() {
 		String PIVA = view.getProdottiUtiliPanel().getFornitoriBox().getSelectedItem().toString();
 		Fornitori forn = dbControl.selectFornitoreFromPiva(PIVA);
@@ -76,6 +103,13 @@ public class AggiungiProdottiUtiliActionListener implements ActionListener {
 
 	}
 
+	/**
+	 * costruttore
+	 * 
+	 * @param model     modello
+	 * @param dbControl database
+	 * @param view      grafica
+	 */
 	public AggiungiProdottiUtiliActionListener(SmartVetModel model, MainView view, DbControllerSingleton dbControl) {
 		super();
 		this.model = model;

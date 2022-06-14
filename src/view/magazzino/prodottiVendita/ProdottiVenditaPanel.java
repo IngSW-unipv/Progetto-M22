@@ -1,22 +1,21 @@
 package view.magazzino.prodottiVendita;
 
-import java.awt.EventQueue;
-
 import javax.swing.Icon;
 import javax.swing.JButton;
 import javax.swing.JComboBox;
-import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.JSpinner;
 import javax.swing.JTextField;
+import javax.swing.SpinnerModel;
+import javax.swing.SpinnerNumberModel;
 import javax.swing.UIManager;
 
 import com.toedter.calendar.JDateChooser;
 
 public class ProdottiVenditaPanel extends JPanel {
-	
+
 	private static final long serialVersionUID = 1L;
 	private JScrollPane scrollPane;
 	private JTextField tipoText;
@@ -37,31 +36,6 @@ public class ProdottiVenditaPanel extends JPanel {
 	private JButton btnHome;
 	private JLabel lblNewLabel;
 	private JButton btnFattura;
-
-	/**
-	 * Create the panel.
-	 */
-
-	public static void main(String[] args) {
-		EventQueue.invokeLater(new Runnable() {
-			public void run() {
-				try {
-					JFrame principale1 = new JFrame();
-					principale1.setVisible(true);
-					principale1.setBounds(500, 500, 2700, 2200);
-					principale1.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-					principale1.getContentPane().setLayout(null);
-
-					ProdottiVenditaPanel frame = new ProdottiVenditaPanel();
-					frame.setVisible(true);
-					principale1.getContentPane().add(frame);
-
-				} catch (Exception e) {
-					e.printStackTrace();
-				}
-			}
-		});
-	}
 
 	public ProdottiVenditaPanel() {
 
@@ -91,7 +65,8 @@ public class ProdottiVenditaPanel extends JPanel {
 		dataScadenza.setBounds(1096, 267, 100, 25);
 		add(dataScadenza);
 
-		spinner = new JSpinner();
+		SpinnerModel sm = new SpinnerNumberModel(1, 1, 4000, 1);
+		spinner = new JSpinner(sm);
 		spinner.setBounds(1118, 132, 48, 39);
 		add(spinner);
 
@@ -107,7 +82,7 @@ public class ProdottiVenditaPanel extends JPanel {
 		lblFornitore.setBounds(964, 205, 70, 15);
 		add(lblFornitore);
 
-		lblQt = new JLabel("Qt."); 
+		lblQt = new JLabel("Qt.");
 		lblQt.setBounds(970, 132, 70, 15);
 		add(lblQt);
 
@@ -134,7 +109,7 @@ public class ProdottiVenditaPanel extends JPanel {
 		Icon icon = UIManager.getIcon("FileChooser.homeFolderIcon");
 		btnHome.setIcon(icon);
 		add(btnHome);
-		
+
 		lblNewLabel = new JLabel("Data scadenza");
 		lblNewLabel.setBounds(964, 276, 100, 16);
 		add(lblNewLabel);
@@ -216,7 +191,7 @@ public class ProdottiVenditaPanel extends JPanel {
 	public JLabel getLblDataScadenza() {
 		return lblDataScadenza;
 	}
-	
+
 	public JButton getBtnFattura() {
 		return btnFattura;
 	}

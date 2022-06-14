@@ -6,13 +6,25 @@ import java.awt.event.ActionListener;
 import database.connectionSQL.DbControllerSingleton;
 import view.MainView;
 import view.PopupError;
-
+/**
+ * permette di registrare un nuovo account
+ * riferito a un dipendente già presente nel database
+ * 
+ * @author MMA
+ * @version 1.0 (current version number of program)
+ */
 public class RegistratiActionListener implements ActionListener {
 	private MainView view;
 	private DbControllerSingleton dbControl;
 
+	
+	/**
+	 * verifica che password e conferma password coincidano,
+	 * se si registra account nel database collegato al
+	 * dipendente selezionato
+	 * @return void
+	 */
 	@Override
-
 	public void actionPerformed(ActionEvent e) {
 		// TODO Auto-generated method stub
 		String username = view.getRegistratiView().getUsernameText().getText();
@@ -24,6 +36,7 @@ public class RegistratiActionListener implements ActionListener {
 
 			dbControl.insertNuovoUtente(username, verificaPw, CFvet);
 			pulisciTextField();
+			view.getRegistratiView().setVisible(false);
 		}
 
 		else {
@@ -36,14 +49,23 @@ public class RegistratiActionListener implements ActionListener {
 		}
 
 	}
-
+	
+	/**
+	 * pulisce campi testo una volta registrato account nuovo
+	 * @return void
+	 */
 	public void pulisciTextField() {
 		view.getRegistratiView().getUsernameText().setText(null);
 		view.getRegistratiView().getPasswordField().setText(null);
 		view.getRegistratiView().getPasswordField_1().setText(null);
 		view.getRegistratiView().getComboBox().setSelectedItem(0);
 	}
-
+	
+	/**
+	 * costruttore
+	 * @param model     modello
+	 * @param view      grafica
+	 */
 	public RegistratiActionListener(MainView view, DbControllerSingleton dbControl) {
 		super();
 		this.view = view;

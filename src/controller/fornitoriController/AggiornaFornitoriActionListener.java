@@ -9,15 +9,29 @@ import database.connectionSQL.DbControllerSingleton;
 import model.SmartVetModel;
 import model.anagrafica.fornitori.Fornitori;
 import view.MainView;
+import view.PopupError;
 import view.fornitori.FornitoriPanel;
-
+/**
+ * Aggiorna fornitore selezionato. Tramite tasto modifica riempio ogni campo
+ * di testo con i parametri che voglio modificare e modifico. Leggendo quello
+ * che c'è nei textfield aggiorno il fornitore con questo action listener.
+ * 
+ * @author MMA
+ * @version 1.0 (current version number of program)
+ */
 public class AggiornaFornitoriActionListener implements ActionListener {
 
 	private SmartVetModel model;
 	private MainView view;
 	private DbControllerSingleton dbControl;
 	private FornitoriPanel fornitoriPanel;
-
+	
+	/**
+	 * Leggo i campi testo modificati e aggiorno il record selezionato in database,
+	 * array e grafica
+	 * @param e evento schiaccia bottone aggiorna
+	 * @return void
+	 */
 	@Override
 	public void actionPerformed(ActionEvent e) {
 		// TODO Auto-generated method stub
@@ -59,18 +73,35 @@ public class AggiornaFornitoriActionListener implements ActionListener {
 			model.getFornitoriArray().add(new Fornitori(PIVA, nomeAzienda, nTelefono, email, sede, IBAN));
 
 		}
+		
+		else {
+			
+			PopupError err = new PopupError();
+			err.infoBox( "impossibile aggiornare fornitore", "Errore");
+		}
 
 		pulisciTextField();
 
 	}
-
+	/**
+	 * costruttore
+	 * 
+	 * @param model     modello
+	 * @param dbControl database
+	 * @param view      grafica
+	 */
 	public AggiornaFornitoriActionListener(SmartVetModel model, DbControllerSingleton dbControl, MainView view) {
 		super();
 		this.model = model;
 		this.dbControl = dbControl;
 		this.view = view;
 	}
-
+	
+	/**
+	 * pulisce i campi testo una volta aggiornato fornitore
+	 * 
+	 * @return void
+	 */
 	public void pulisciTextField() {
 		fornitoriPanel.getPIVAText().setText(null);
 		fornitoriPanel.getNomeAziendaText().setText(null);

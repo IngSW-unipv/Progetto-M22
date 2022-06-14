@@ -9,6 +9,12 @@ import database.connectionSQL.DbControllerSingleton;
 import model.SmartVetModel;
 import model.anagrafica.fornitori.Fornitori;
 import view.MainView;
+/**
+ * Elimina fornitore selezionato
+ * 
+ * @author MMA
+ * @version 1.0 (current version number of program)
+ */
 
 public class EliminaFornitoriActionListener implements ActionListener {
 
@@ -39,7 +45,14 @@ public class EliminaFornitoriActionListener implements ActionListener {
 		// setto a null ogni tabella che ha fornitore come foreign key
 
 	}
-
+	
+	/**
+	 * costruttore
+	 * 
+	 * @param model     modello
+	 * @param dbControl database
+	 * @param view      grafica
+	 */
 	public EliminaFornitoriActionListener(SmartVetModel model, MainView view, DbControllerSingleton dbControl) {
 		super();
 		this.model = model;

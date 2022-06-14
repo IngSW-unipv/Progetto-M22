@@ -16,6 +16,13 @@ import view.MainView;
 import view.PopupError;
 import view.amministrazione.PopupQuantitàPrezzo;
 
+/**
+ * permette di confermare la fatturazione del farmaco
+ * avendone inserito quantità e prezzo 
+ * 
+ * @author MMA
+ * @version 1.0 (current version number of program)
+ */
 public class PopUpGoBtnActionListener implements ActionListener {
 
 	private SmartVetModel model;
@@ -25,6 +32,15 @@ public class PopUpGoBtnActionListener implements ActionListener {
 
 	private int qt;
 
+	/**
+	 * memorizza quantità e prezzo da popup del farmaco venduto,
+	 * moltiplica quantità e prezzo per trovare prezzo finale,
+	 * registra nelle entrate il farmaco venduto.
+	 * se quantità = 0 o > di quella presente in magazzino esce popup di errore
+	 * @param e evento schiaccia bottone OK
+	 * @exception NumberFormatException prezzo non valido ( deve avere solo cifre)
+	 * @return void
+	 */
 	@SuppressWarnings("unused")
 	@Override
 	public void actionPerformed(ActionEvent e) { 
@@ -107,6 +123,14 @@ public class PopUpGoBtnActionListener implements ActionListener {
 
 	}
 
+	/**
+	 * leggendo la quantità del farmaco venduta la sottraggo
+	 * a quella presente nel magazzino
+	 * 
+	 * @return void
+	 *
+	 */
+	
 	public void aggiornaQuantitaFarmaco() {
 
 		int rigaSelezionata = fatturaFarmaciActionListener.getRigaSelezionata();
@@ -149,6 +173,15 @@ public class PopUpGoBtnActionListener implements ActionListener {
 
 	}
 
+	/**
+	 * costruttore
+	 * @param model     modello
+	 * @param dbControl database
+	 * @param view      grafica
+	 * @param FatturaFarmaciActionListener permette di leggere 
+	 * ciò che ho fatturato
+	 */
+	
 	public PopUpGoBtnActionListener(SmartVetModel model, MainView view, DbControllerSingleton dbControl,
 			FatturaFarmaciActionListener fatturaFarmaciActionListener) {
 		super();

@@ -8,13 +8,24 @@ import java.awt.event.ActionListener;
 import database.connectionSQL.DbControllerSingleton;
 import model.SmartVetModel;
 import view.MainView;
-
+/**
+ * permette di uscire dall'account corrente loggato
+ * e riporta alla pagina di login
+ * 
+ * @author MMA
+ * @version 1.0 (current version number of program)
+ */
 public class EsciAccountActionListener implements ActionListener {
 
 	private MainView view;
 	private SmartVetModel model;
 	private DbControllerSingleton dbControl;
-
+	
+	/**
+	 * rende non visibile pannello dashboard e 
+	 * rende visibile pannello login
+	 * @return void
+	 */
 	@Override
 	public void actionPerformed(ActionEvent e) {
 		// TODO Auto-generated method stub
@@ -35,11 +46,15 @@ public class EsciAccountActionListener implements ActionListener {
 		view.getLoginView().setVisible(true);
 	}
 
+	/**
+	 * costruttore
+	 * @param model     modello
+	 * @param view      grafica
+	 */
 	public EsciAccountActionListener(MainView view, SmartVetModel model) {
 		super();
 		this.view = view;
 		this.model = model;
-		dbControl = DbControllerSingleton.getInstance();
 	}
 
 }

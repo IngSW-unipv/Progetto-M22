@@ -1,5 +1,12 @@
 package controller.appuntamentiController.StoricoController;
 
+/**
+ * Collega tutti gli appuntamenti effettuati
+ * (storico appuntamenti) del model 
+ * con la view e il database
+ * @author      MMA
+ * @version     1.0                 (current version number of program)
+ */
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
@@ -14,6 +21,13 @@ public class StoricoController {
 	private SmartVetModel model;
 	private MainView view;
 
+	/**
+	 * costruttore
+	 * 
+	 * @param model     modello
+	 * @param dbControl database
+	 * @param view      grafica
+	 */
 	public StoricoController(SmartVetModel model, MainView view) {
 
 		this.model = model;
@@ -24,7 +38,7 @@ public class StoricoController {
 			fillTable();
 		}
 
-		else { 
+		else {
 
 			fillTableDueToVeterinario();
 		}
@@ -34,6 +48,13 @@ public class StoricoController {
 
 	}
 
+	/**
+	 * Visualizza tutte gli appuntamenti (anche vecchi) in ordine di data
+	 * decrescente di tutti i veterinari. si attiva solo se si logga l'account
+	 * "direzione"
+	 * 
+	 * @return void
+	 */
 	public void fillTable() {
 
 		Object rowData[][] = new Object[model.getStoricoArray().size()][8];
@@ -53,6 +74,14 @@ public class StoricoController {
 			modello.addRow(rowData[i]);
 		}
 	}
+
+	/**
+	 * si attiva solo se si logga un account diverso da "direzione" Riempie la
+	 * tabella storico con gli appuntamenti anche già effettuati del veterinario che
+	 * si è loggato
+	 * 
+	 * @return void
+	 */
 
 	public void fillTableDueToVeterinario() {
 
@@ -74,6 +103,12 @@ public class StoricoController {
 		}
 	}
 
+	/**
+	 * Aggiunge action listener al menu per aprire pannello storico da dashboard
+	 * 
+	 * @return void
+	 */
+
 	public void addActionListenersMenu() {
 		view.getDashboard().getMenu().getMenuItemStorico().addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
@@ -84,6 +119,12 @@ public class StoricoController {
 		});
 
 	}
+
+	/**
+	 * Aggiunge action listener bottone per ritornare alla dashboard
+	 * 
+	 * @return void
+	 */
 
 	public void addActionListenerHome() {
 		view.getStoricoPanel().getBtnHome().addActionListener(new ActionListener() {

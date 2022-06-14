@@ -9,12 +9,25 @@ import database.connectionSQL.DbControllerSingleton;
 import model.SmartVetModel;
 import view.MainView;
 
+/**
+ * Collega i clienti del model con il database e la view
+ * 
+ * @author MMA
+ * @version 1.0 (current version number of program)
+ */
 public class ClientiController {
 
 	private SmartVetModel model;
 	private MainView view;
 	private DbControllerSingleton dbControl;
- 
+
+	/**
+	 * costruttore
+	 * 
+	 * @param model     modello
+	 * @param dbControl database
+	 * @param view      grafica
+	 */
 	public ClientiController(SmartVetModel model, MainView view) {
 		super();
 		this.model = model;
@@ -27,6 +40,11 @@ public class ClientiController {
 		addActionListenerHome();
 	}
 
+	/**
+	 * Visualizza clienti su tabella clienti
+	 * 
+	 * @return void
+	 */
 	public void fillTable() {
 		int righe = model.getClientiArray().size();
 		String rowData[][] = new String[righe][7];
@@ -47,6 +65,11 @@ public class ClientiController {
 		}
 	}
 
+	/**
+	 * Aggiunge action listener al menu per aprire pannello clienti da dashboard
+	 * 
+	 * @return void
+	 */
 	public void addActionListenersMenu() {
 		view.getDashboard().getMenu().getMntmClienti().addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
@@ -58,6 +81,12 @@ public class ClientiController {
 
 	}
 
+	/**
+	 * Aggiunge action listener ai bottoni per aggiungere eliminare, modificare,
+	 * aggiornare clienti in clientipanel selezionata
+	 * 
+	 * @return void
+	 */
 	public void addActionListenerButtons() {
 		AggiungiClienteActionListener addCliente = new AggiungiClienteActionListener(model, view, dbControl);
 
@@ -74,6 +103,11 @@ public class ClientiController {
 
 	}
 
+	/**
+	 * Aggiunge action listener bottone per ritornare alla dashboard
+	 * 
+	 * @return void
+	 */
 	public void addActionListenerHome() {
 		view.getClientiPanel().getBtnHome().addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {

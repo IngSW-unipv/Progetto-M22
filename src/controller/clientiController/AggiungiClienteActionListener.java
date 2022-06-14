@@ -2,6 +2,7 @@ package controller.clientiController;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.text.ParseException;
 
 import javax.swing.table.DefaultTableModel;
 
@@ -11,6 +12,12 @@ import view.MainView;
 import view.PopupError;
 import view.clienti.ClientiPanel;
 
+/**
+ * Aggiunge nuovo Appuntamento
+ * 
+ * @author MMA
+ * @version 1.0 (current version number of program)
+ */
 public class AggiungiClienteActionListener implements ActionListener {
 
 	private SmartVetModel model;
@@ -18,13 +25,20 @@ public class AggiungiClienteActionListener implements ActionListener {
 	private DbControllerSingleton dbControl;
 	private ClientiPanel clientiPanel;
 
+	/**
+	 * aggiunge cliente nuovo in database, array e grafica aggiorno anche combobox
+	 * nel pannello pazienti che potrà usufruire di un nuovo cliente proprietario
+	 * 
+	 * @param e evento schiaccia bottone aggiungi
+	 * @return void
+	 */
 	@SuppressWarnings("static-access")
 	@Override
 	public void actionPerformed(ActionEvent e) {
 		// TODO Auto-generated method stub
 
 		clientiPanel = view.getClientiPanel();
-		
+
 		boolean flag = dbControl.addNuovoCliente(clientiPanel.getNuovoClienteTextField());
 
 		// aggiorno combobox delle altre finestre
@@ -64,12 +78,25 @@ public class AggiungiClienteActionListener implements ActionListener {
 
 	}
 
+	/**
+	 * costruttore
+	 * 
+	 * @param model     modello
+	 * @param dbControl database
+	 * @param view      grafica
+	 */
 	public AggiungiClienteActionListener(SmartVetModel model, MainView view, DbControllerSingleton dbControl) {
 		super();
 		this.model = model;
 		this.view = view;
 		this.dbControl = dbControl;
 	}
+
+	/**
+	 * pulisce i campi testo una volta aggiunta il nuovo appuntamento
+	 * 
+	 * @return void
+	 */
 
 	public void pulisciTextField() {
 

@@ -13,11 +13,25 @@ import model.amministrazione.Uscite;
 import view.MainView;
 import view.PopupError;
 
+/**
+ * aggiunge nuove uscite 
+ * @author      MMA
+ * @version     1.0                 (current version number of program)
+ * @see 		UsciteController
+ */
 public class AggiungiUsciteActionListener implements ActionListener {
+	
 	private SmartVetModel model;
 	private MainView view;
 	private DbControllerSingleton dbControl;
 
+	/**
+	* aggiunge uscita in database, array e tabella grafica
+	* leggendo i suoi attributi dai campi testo
+	* @param 	e evento schiaccia bottoneaggiungi
+	* @return void 
+	*/
+	
 	@Override
 	public void actionPerformed(ActionEvent e) {
 		// TODO Auto-generated method stub
@@ -86,14 +100,24 @@ public class AggiungiUsciteActionListener implements ActionListener {
 		}
 
 	}
-
+	/**
+	* pulisce i campi testo una volta aggiunta la nuova uscita
+	* @return void 
+	*/
+	
 	public void pulisciTextField() {
 
 		view.getUscitePanel().getCausaText().setText(null);
 		view.getUscitePanel().getTipoText().setText(null);
 		view.getUscitePanel().getPrezzoText().setText(null);
 	}
-
+	
+	/**
+	 * costruttore
+	 * @param model     modello
+	 * @param dbControl database
+	 * @param view      grafica
+	 */
 	public AggiungiUsciteActionListener(SmartVetModel model, MainView view, DbControllerSingleton dbControl) {
 		super();
 		this.model = model;

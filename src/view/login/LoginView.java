@@ -4,16 +4,14 @@ import java.awt.Dimension;
 import java.awt.Font;
 import java.awt.Toolkit;
 
-import javax.swing.Icon;
 import javax.swing.JButton;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JPasswordField;
 import javax.swing.JTextField;
-import javax.swing.UIManager;
 
 public class LoginView extends JPanel {
-	
+
 	private static final long serialVersionUID = 1L;
 	private JPasswordField passwordField;
 	private JTextField usernameText;
@@ -21,28 +19,30 @@ public class LoginView extends JPanel {
 	private JLabel lblUsername;
 	private JLabel lblPassword;
 	private JButton btnGo;
+	private JLabel lblRegistrati;
+	private JButton btnRegistrati;
 
 	/**
 	 * Create the panel.
 	 */
-	public LoginView() { 
+	public LoginView() {
 
 		Toolkit kit = Toolkit.getDefaultToolkit();
 		Dimension screenSize = kit.getScreenSize(); // restituisce la dimensione dello schermo come oggetto Dimension
 		int screenHeight = screenSize.height;
-		int screenWidth = screenSize.width; 
+		int screenWidth = screenSize.width;
 
 		// centra il frame nello schermo
-		setSize(screenWidth/3, screenHeight/3);
+		setSize(screenWidth / 3, screenHeight / 3);
 		setVisible(true);
 		setLayout(null);
 
 		passwordField = new JPasswordField();
-		passwordField.setBounds(139, 175, 206, 39);
+		passwordField.setBounds(139, 145, 206, 39);
 		add(passwordField);
 
 		usernameText = new JTextField();
-		usernameText.setBounds(139, 110, 206, 39);
+		usernameText.setBounds(139, 94, 206, 39);
 		add(usernameText);
 		usernameText.setColumns(10);
 
@@ -51,17 +51,25 @@ public class LoginView extends JPanel {
 		lblLogin.setBounds(180, 17, 247, 65);
 		add(lblLogin);
 
-		lblUsername = new JLabel("Username\n"); 
-		lblUsername.setBounds(46, 121, 88, 16);
+		lblUsername = new JLabel("Username\n");
+		lblUsername.setBounds(46, 105, 88, 16);
 		add(lblUsername);
 
 		lblPassword = new JLabel("Password\n");
-		lblPassword.setBounds(46, 186, 88, 16);
+		lblPassword.setBounds(46, 156, 88, 16);
 		add(lblPassword);
 
 		btnGo = new JButton("OK");
-		btnGo.setBounds(357, 237, 117, 29);
+		btnGo.setBounds(338, 218, 117, 29);
 		add(btnGo);
+
+		lblRegistrati = new JLabel("Non hai un account?");
+		lblRegistrati.setBounds(17, 196, 196, 21);
+		add(lblRegistrati);
+
+		btnRegistrati = new JButton("REGISTRATI");
+		btnRegistrati.setBounds(27, 218, 117, 29);
+		add(btnRegistrati);
 
 	}
 
@@ -111,6 +119,22 @@ public class LoginView extends JPanel {
 
 	public void setBtnGo(JButton btnGo) {
 		this.btnGo = btnGo;
+	}
+
+	public JLabel getLblRegistrati() {
+		return lblRegistrati;
+	}
+
+	public void setLblRegistrati(JLabel lblRegistrati) {
+		this.lblRegistrati = lblRegistrati;
+	}
+
+	public JButton getBtnRegistrati() {
+		return btnRegistrati;
+	}
+
+	public void setBtnRegistrati(JButton btnRegistrati) {
+		this.btnRegistrati = btnRegistrati;
 	}
 
 }

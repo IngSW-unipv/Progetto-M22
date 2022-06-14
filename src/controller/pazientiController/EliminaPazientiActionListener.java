@@ -10,11 +10,22 @@ import model.SmartVetModel;
 import view.MainView;
 
 public class EliminaPazientiActionListener implements ActionListener {
-
+	/**
+	 * Elimina paziente selezionato
+	 * 
+	 * @author MMA
+	 * @version 1.0 (current version number of program)
+	 */
 	private SmartVetModel model;
 	private MainView view;
 	private DbControllerSingleton dbControl;
 
+	/**
+	 * elimina paziente selezionato da database, array e tabella grafica
+	 * anche dalle combobox di altri pannelli
+	 * @param e evento schiaccia bottone elimina paziente
+	 * @return void
+	 */
 	@Override
 	public void actionPerformed(ActionEvent e) {
 		// TODO Auto-generated method stub
@@ -35,7 +46,14 @@ public class EliminaPazientiActionListener implements ActionListener {
 
 		model.getPazientiArray().remove(elementoSelezionato);
 	}
-
+	
+	/**
+	 * costruttore
+	 * 
+	 * @param model     modello
+	 * @param dbControl database
+	 * @param view      grafica
+	 */
 	public EliminaPazientiActionListener(SmartVetModel model, MainView view, DbControllerSingleton dbControl) {
 		super();
 		this.model = model;

@@ -15,13 +15,29 @@ import model.appuntamenti.Appuntamenti;
 import model.pazienti.Paziente;
 import view.MainView;
 import view.PopupError;
-
+/**
+ * Aggiorna Appuntamento selezionato.
+ * Tramite tasto modifica riempio ogni campo di testo con 
+ * i parametri che voglio modificare e modifico.
+ * Leggendo quello che c'è nei textfield aggiorno l'appuntamento con questo action listener.
+ * @author      MMA
+ * @version     1.0                 (current version number of program)
+ */
 public class AggiornaAppuntamentiActionListener implements ActionListener {
 
 	private SmartVetModel model;
 	private DbControllerSingleton dbControl;
 	private MainView view;
-
+	
+	/**
+	* Leggo i campi testo modificati e aggiorno il record di appuntamento selezionato
+	*  in database, array e grafica di appuntamenti, storico, sale
+	* @param  e  evento schiaccia bottone aggiorna
+	* @exception ParseException se data inserita non valida
+	* @exception ParseException se ora inserita non valida
+	* @exception NumberFormatException se costo inserito non valido
+	* @return void
+	*/
 	@Override
 	public void actionPerformed(ActionEvent e) {
 		// TODO Auto-generated method stub
@@ -134,6 +150,13 @@ public class AggiornaAppuntamentiActionListener implements ActionListener {
 
 		pulisciTextField();
 	}
+	
+	/**
+	* legge tutti i dati del paziente tramite ID letto per poter passare
+	* all'appuntamento aggiornato il paziente esatto
+	* @return Paziente paziente letto
+	*/
+
 
 	public Paziente costruisciPaziente() {
 
@@ -141,7 +164,12 @@ public class AggiornaAppuntamentiActionListener implements ActionListener {
 		Paziente paz = dbControl.selectPazienteFromID(ID);
 		return paz;
 	}
-
+	
+	/**
+	* legge tutti i dati del veterinario tramite ID letto per poter passare
+	* all'appuntamento aggiornato il veterinario esatto
+	* @return Veterinari veterinario letto
+	*/
 	public Veterinari costruisciVeterinario() {
 
 		String CF = null;
@@ -159,6 +187,11 @@ public class AggiornaAppuntamentiActionListener implements ActionListener {
 		Veterinari vet = dbControl.selectVeterinarioFromCF(CF);
 		return vet;
 	}
+	
+	/**
+	* pulisce i campi testo una volta aggiornato appuntamento
+	* @return void 
+	*/
 
 	public void pulisciTextField() {
 
@@ -188,6 +221,12 @@ public class AggiornaAppuntamentiActionListener implements ActionListener {
 		view.getAppuntamentiPanel().getNoteText().setText(null);
 	}
 
+	/**
+	 * costruttore
+	 * @param model     modello
+	 * @param dbControl database
+	 * @param view      grafica
+	 */
 	public AggiornaAppuntamentiActionListener(SmartVetModel model, DbControllerSingleton dbControl, MainView view) {
 		super();
 		this.model = model;

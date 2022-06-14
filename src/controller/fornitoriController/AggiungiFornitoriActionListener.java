@@ -10,12 +10,24 @@ import model.SmartVetModel;
 import view.MainView;
 import view.PopupError;
 
+/**
+ * Aggiunge nuovo fornitore
+ * 
+ * @author MMA
+ * @version 1.0 (current version number of program)
+ */
 public class AggiungiFornitoriActionListener implements ActionListener {
 
 	private SmartVetModel model;
 	private MainView view;
 	private DbControllerSingleton dbControl;
 
+	/**
+	 * aggiunge fornitore nuovo in database, array e grafica
+	 * 
+	 * @param e evento schiaccia bottone aggiungi
+	 * @return void
+	 */
 	@SuppressWarnings("static-access")
 	@Override
 	public void actionPerformed(ActionEvent e) {
@@ -26,11 +38,13 @@ public class AggiungiFornitoriActionListener implements ActionListener {
 		if (flag) {
 
 			model.getFornitoriArray().add(view.getFornitoriPanel().getNuovoFornitoreTextField());
-			
-			//aggiorno combobox delle altre finestre
-			view.getFarmaciPanel().getFornitoriBox().addItem(view.getFornitoriPanel().getNuovoFornitoreTextField().getPIVA());	
-			view.getProdottiUtiliPanel().getFornitoriBox().addItem(view.getFornitoriPanel().getNuovoFornitoreTextField().getPIVA());
-			
+
+			// aggiorno combobox delle altre finestre
+			view.getFarmaciPanel().getFornitoriBox()
+					.addItem(view.getFornitoriPanel().getNuovoFornitoreTextField().getPIVA());
+			view.getProdottiUtiliPanel().getFornitoriBox()
+					.addItem(view.getFornitoriPanel().getNuovoFornitoreTextField().getPIVA());
+
 			String rowData[] = new String[6];
 
 			DefaultTableModel modello = (DefaultTableModel) view.getFornitoriPanel().getTab().getTable().getModel();
@@ -45,8 +59,7 @@ public class AggiungiFornitoriActionListener implements ActionListener {
 			modello.addRow(rowData);
 
 			pulisciTextField();
-			
-			
+
 		}
 
 		else {
@@ -61,6 +74,13 @@ public class AggiungiFornitoriActionListener implements ActionListener {
 
 	}
 
+	/**
+	 * costruttore
+	 * 
+	 * @param model     modello
+	 * @param dbControl database
+	 * @param view      grafica
+	 */
 	public AggiungiFornitoriActionListener(SmartVetModel model, MainView view, DbControllerSingleton dbControl) {
 		super();
 		this.model = model;
@@ -68,6 +88,11 @@ public class AggiungiFornitoriActionListener implements ActionListener {
 		this.dbControl = dbControl;
 	}
 
+	/**
+	 * pulisce i campi testo una volta aggiunta il nuovo fornitore
+	 * 
+	 * @return void
+	 */
 	public void pulisciTextField() {
 
 		view.getFornitoriPanel().getPIVAText().setText(null);

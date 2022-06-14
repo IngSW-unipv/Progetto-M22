@@ -10,27 +10,40 @@ import database.connectionSQL.DbControllerSingleton;
 import model.SmartVetModel;
 import view.MainView;
 
+/**
+ * Collega gli appuntamenti del model con il database e la view
+ * 
+ * @author MMA
+ * @version 1.0 (current version number of program)
+ */
 public class AppuntamentiController {
 
 	private SmartVetModel model;
 	private MainView view;
 	private DbControllerSingleton dbControl;
 
+	/**
+	 * costruttore
+	 * 
+	 * @param model     modello
+	 * @param dbControl database
+	 * @param view      grafica
+	 */
 	public AppuntamentiController(SmartVetModel model, MainView view) {
 
-		this.model = model; 
+		this.model = model;
 		this.view = view;
 		dbControl = DbControllerSingleton.getInstance();
-		
-		if (model.getCFuser().equals("direzione") ) {
-			
+
+		if (model.getCFuser().equals("direzione")) {
+
 			fillTable();
 			view.getAppuntamentiPanel().addComboBoxVets();
 			fillComboBoxVets();
 		}
 
 		else {
-	
+
 			fillTableDueToVeterinario();
 		}
 
@@ -39,6 +52,14 @@ public class AppuntamentiController {
 		addActionListenerButtons();
 		addActionListenerHome();
 	}
+
+	/**
+	 * si attiva solo se entra l'account direzione. visualizza la tabella
+	 * appuntamenti di tutti gli appuntamenti di ogni veterinario dal giorno
+	 * corrente in poi
+	 * 
+	 * @return void
+	 */
 
 	public void fillTable() {
 
@@ -60,7 +81,13 @@ public class AppuntamentiController {
 		}
 	}
 
-	public void fillTableDueToVeterinario() {
+	/**
+	 * visualizza la tabella appuntamenti solo degli appuntamenti dal giorno
+	 * corrente in poi del veterinario che si è loggato
+	 * 
+	 * @return void
+	 */
+	void fillTableDueToVeterinario() {
 
 		Object rowData[][] = new Object[model.getAppuntamentiArray().size()][8];
 		DefaultTableModel modello = (DefaultTableModel) view.getAppuntamentiPanel().getTab().getTable().getModel();
@@ -80,6 +107,12 @@ public class AppuntamentiController {
 		}
 	}
 
+	/**
+	 * Aggiunge action listener al menu per aprire pannello appuntamenti da
+	 * dashboard
+	 * 
+	 * @return void
+	 */
 	public void addActionListenersMenu() {
 		view.getDashboard().getMenu().getMenuItemAppuntamenti().addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
@@ -92,6 +125,12 @@ public class AppuntamentiController {
 
 	}
 
+	/**
+	 * Aggiunge action listenerper aggiungere, eliminare modificare, aggiornare,
+	 * fatturare appuntamenti
+	 * 
+	 * @return void
+	 */
 	public void addActionListenerButtons() {
 		AggiungiAppuntamentiActionListener addAppuntamenti = new AggiungiAppuntamentiActionListener(model, view,
 				dbControl);
@@ -108,12 +147,17 @@ public class AppuntamentiController {
 		AggiornaAppuntamentiActionListener aggiornaAppuntamenti = new AggiornaAppuntamentiActionListener(model,
 				dbControl, view);
 		view.getAppuntamentiPanel().getBtnAggiorna().addActionListener(aggiornaAppuntamenti);
-		
+
 		FatturaAppuntamentiActionListener fattura = new FatturaAppuntamentiActionListener(model, view, dbControl);
 		view.getAppuntamentiPanel().getBtnFattura().addActionListener(fattura);
 
 	}
 
+	/**
+	 * riempie la comboBox con tutti i pazienti presenti nel db
+	 * 
+	 * @return void
+	 */
 	@SuppressWarnings("unchecked")
 	public void fillComboBoxPaz() {
 
@@ -128,6 +172,11 @@ public class AppuntamentiController {
 		}
 	}
 
+	/**
+	 * riempie la comboBox con tutti i veterinari presenti nel db
+	 * 
+	 * @return void
+	 */
 	public void fillComboBoxVets() {
 		ArrayList<String> listaCFvet = new ArrayList<String>();
 
@@ -135,13 +184,18 @@ public class AppuntamentiController {
 
 			listaCFvet.add(model.getVeterinariArray().get(i).getCF());
 
-			if (listaCFvet.get(i) != null && !(listaCFvet.get(i).equals("direzione")) ) {
+			if (listaCFvet.get(i) != null && !(listaCFvet.get(i).equals("direzione"))) {
 
 				view.getAppuntamentiPanel().getCFvetText().addItem(listaCFvet.get(i));
 			}
 		}
 	}
 
+	/**
+	 * aggiunge action listener per tornare alla dashboard
+	 * 
+	 * @return void
+	 */
 	public void addActionListenerHome() {
 		view.getAppuntamentiPanel().getBtnHome().addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {

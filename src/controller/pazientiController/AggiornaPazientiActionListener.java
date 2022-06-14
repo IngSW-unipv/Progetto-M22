@@ -14,15 +14,31 @@ import model.anagrafica.clienti.Clienti;
 import model.anagrafica.veterinari.Veterinari;
 import model.pazienti.Paziente;
 import view.MainView;
+import view.PopupError;
 import view.pazienti.PazientiPanel;
-
+/**
+ * Aggiorna paziente selezionato. Tramite tasto modifica riempio ogni campo
+ * di testo con i parametri che voglio modificare e modifico. Leggendo quello
+ * che c'è nei textfield aggiorno il paziente con questo action listener.
+ * 
+ * @author MMA
+ * @version 1.0 (current version number of program)
+ */
 public class AggiornaPazientiActionListener implements ActionListener {
 
 	private SmartVetModel model;
 	private DbControllerSingleton dbControl;
 	private MainView view;
 	private PazientiPanel pazientiPanel;
-
+	
+	/**
+	 * Leggo i campi testo modificati e aggiorno il record selezionato in database,
+	 * array e grafica
+	 * 
+	 * @param e evento schiaccia bottone aggiorna
+	 * @exception ParseException data/e non valida/e
+	 * @return void
+	 */
 	@Override
 	public void actionPerformed(ActionEvent e) {
 		// TODO Auto-generated method stub
@@ -55,6 +71,8 @@ public class AggiornaPazientiActionListener implements ActionListener {
 
 		catch (NumberFormatException nfe) {
 
+			PopupError err = new PopupError();
+			err.infoBox("il peso deve contenere solo cifre", "Errore");
 			nfe.printStackTrace();
 
 		}
@@ -93,16 +111,17 @@ public class AggiornaPazientiActionListener implements ActionListener {
 
 		} catch (ParseException e1) {
 			// TODO Auto-generated catch block
+			PopupError err = new PopupError();
+			err.infoBox( "Data/e non valida/e", "Errore");
 			e1.printStackTrace();
 		}
 
 		DefaultTableModel modello = (DefaultTableModel) pazientiPanel.getTabellaPazienti().getTable().getModel();
 
-		Paziente paz = new Paziente(ID_PAZ, nome, specie, razza, sqlDate, sesso, vet, GruppoSanguigno, microchip, sterilizzato,
-				peso, sqlDate2, cl, note);
+		Paziente paz = new Paziente(ID_PAZ, nome, specie, razza, sqlDate, sesso, vet, GruppoSanguigno, microchip,
+				sterilizzato, peso, sqlDate2, cl, note);
 
 		dbControl.updatePaziente(paz);
-
 
 		Object rowData[] = new Object[14];
 
@@ -127,6 +146,13 @@ public class AggiornaPazientiActionListener implements ActionListener {
 		pulisciTextField();
 	}
 
+	/**
+	 * costruttore
+	 * 
+	 * @param model     modello
+	 * @param dbControl database
+	 * @param view      grafica
+	 */
 	public AggiornaPazientiActionListener(SmartVetModel model, DbControllerSingleton dbControl, MainView view) {
 		super();
 		this.model = model;
@@ -134,12 +160,24 @@ public class AggiornaPazientiActionListener implements ActionListener {
 		this.view = view;
 	}
 
+	/**
+	 * legge tutti i dati del veterinario tramite CF letto per poter passare al paziente
+	 * aggiornato il veterinario di base esatto
+	 * 
+	 * @return Veterinario vet letto
+	 */
 	public Veterinari costruisciVeterinario() {
 		String CF = (String) pazientiPanel.getVeterinariBox().getSelectedItem();
 		Veterinari vet = dbControl.selectVeterinarioFromCF(CF);
 		return vet;
 	}
 
+	/**
+	 * legge tutti i dati del cliente tramite CF letto per poter passare al paziente
+	 * aggiornato il cliente proprietario
+	 * 
+	 * @return Cliente cliente proprietario
+	 */
 	public Clienti costruisciCliente() {
 		String CF = (String) pazientiPanel.getClientiBox().getSelectedItem();
 		Clienti cl = dbControl.selectClienteFromCF(CF);
@@ -147,8 +185,13 @@ public class AggiornaPazientiActionListener implements ActionListener {
 
 	}
 
+	/**
+	 * pulisce i campi testo una volta aggiornato paziente
+	 * 
+	 * @return void
+	 */
 	public void pulisciTextField() {
-		
+
 		pazientiPanel.getNomeText().setText(null);
 		view.getPazientiPanel().getDataMorte().setDate(null);
 		view.getPazientiPanel().getDataNascita().setDate(null);

@@ -14,7 +14,11 @@ import database.connectionSQL.DbControllerSingleton;
 import model.SmartVetModel;
 import view.MainView;
 import view.PopupError;
-
+/**
+ * per confermare le credenziali inserite nel login
+ * @author MMA
+ * @version 1.0 (current version number of program)
+ */
 public class GoBtnActionListener implements ActionListener {
 
 	private MainView view;
@@ -25,6 +29,14 @@ public class GoBtnActionListener implements ActionListener {
 	private StoricoController storicoController;
 	private DashBoardController dashControl;
 
+	/**
+	 * legge le credeniziali inserite nel login
+	 * e le confronta vedendo se esistono nel database,
+	 * se matchano a seconda che si sia loggato un dipendente
+	 * o account direzione avrò popolato in modo
+	 * diverso gli array di appuntamenti e storico
+	 * @return void
+	 */
 	@Override
 	public void actionPerformed(ActionEvent e) {
 		// TODO Auto-generated method stub
@@ -93,15 +105,30 @@ public class GoBtnActionListener implements ActionListener {
 
 	}
 
+	/**
+	 * restituisce il CF user che si è loggato
+	 * @return String CF user entrato
+	 */
 	public String getUserEntrato() {
 		return CF;
 	}
-
+	
+	/**
+	 * pulisce campi testo quando user loggato oppure
+	 * quando non matcha
+	 * @return void
+	 */
 	public void pulisciTextField() {
 		view.getLoginView().getUsernameText().setText(null);
 		view.getLoginView().getPasswordField().setText(null);
 	}
 
+	/**
+	 * costruttore
+	 * @param model     modello
+	 * @param view      grafica
+	 * @param dvcontrol database
+	 */
 	public GoBtnActionListener(MainView view, SmartVetModel model) {
 		super();
 		this.view = view;

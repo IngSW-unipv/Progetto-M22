@@ -10,12 +10,25 @@ import database.connectionSQL.DbControllerSingleton;
 import model.SmartVetModel;
 import view.MainView;
 
+/**
+ * Collega i farmaci del model con il database e la view
+ * 
+ * @author MMA
+ * @version 1.0 (current version number of program)
+ */
 public class FarmaciController {
 
 	private SmartVetModel model;
 	private MainView view;
 	private DbControllerSingleton dbControl;
 
+	/**
+	 * costruttore
+	 * 
+	 * @param model     modello
+	 * @param dbControl database
+	 * @param view      grafica
+	 */
 	public FarmaciController(SmartVetModel model, MainView view) {
 		super();
 		this.model = model;
@@ -28,6 +41,12 @@ public class FarmaciController {
 		addActionListenerButtons();
 		addActionListenerHome();
 	}
+
+	/**
+	 * Visualizza farmaci su tabella farmaci
+	 * 
+	 * @return void
+	 */
 
 	public void fillTable() {
 		Object rowData[][] = new Object[model.getLottoFarmaciArray().size()][6];
@@ -55,6 +74,11 @@ public class FarmaciController {
 		}
 	}
 
+	/**
+	 * riempie la comboBox con tutti i fornitori presenti nel db
+	 * 
+	 * @return void
+	 */
 	@SuppressWarnings("unchecked")
 	public void fillComboBox() {
 
@@ -70,6 +94,11 @@ public class FarmaciController {
 		}
 	}
 
+	/**
+	 * Aggiunge action listener al menu per aprire pannello farmaci da dashboard
+	 * 
+	 * @return void
+	 */
 	public void addActionListenersMenu() {
 
 		view.getDashboard().getMenu().getMntmFarmaci().addActionListener(new ActionListener() {
@@ -77,12 +106,18 @@ public class FarmaciController {
 
 				view.getDashboard().setVisible(false);
 				view.add(view.getFarmaciPanel());
-				view.getFarmaciPanel().setVisible(true); 
+				view.getFarmaciPanel().setVisible(true);
 			}
 		});
 
 	}
 
+	/**
+	 * Aggiunge action listener per aggiungere, eliminare modificare, aggiornare,
+	 * fatturare farmaci
+	 * 
+	 * @return void
+	 */
 	public void addActionListenerButtons() {
 
 		AggiungiFarmaciActionListener addFarmaci = new AggiungiFarmaciActionListener(model, view, dbControl);
@@ -105,6 +140,11 @@ public class FarmaciController {
 
 	}
 
+	/**
+	 * aggiunge action listener per tornare alla dashboard
+	 * 
+	 * @return void
+	 */
 	public void addActionListenerHome() {
 
 		view.getFarmaciPanel().getBtnHome().addActionListener(new ActionListener() {

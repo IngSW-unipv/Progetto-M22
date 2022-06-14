@@ -1,7 +1,14 @@
 package controller.veterinariController;
 
+/**
+ * Aggiungi nuovo veterinario
+ * 
+ * @author MMA
+ * @version 1.0 (current version number of program)
+ */
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.text.ParseException;
 
 import javax.swing.table.DefaultTableModel;
 
@@ -18,6 +25,12 @@ public class AggiungiVeterinarioActionListener implements ActionListener {
 	private DbControllerSingleton dbControl;
 	private VeterinariPanel veterinariPanel;
 
+	/**
+	 * aggiunge veterinario nuovo in database, array e grafica
+	 * 
+	 * @param e evento schiaccia bottone aggiungi
+	 * @return void
+	 */
 	@SuppressWarnings("static-access")
 	@Override
 	public void actionPerformed(ActionEvent e) {
@@ -68,7 +81,7 @@ public class AggiungiVeterinarioActionListener implements ActionListener {
 
 			{
 				PopupError err = new PopupError();
-				err.infoBox("Esiste gi� un veterinario con questo CF", "Impossibile inserire veterinario");
+				err.infoBox("Esiste gia un veterinario con questo CF", "Impossibile inserire veterinario");
 				pulisciTextField();
 
 			}
@@ -76,6 +89,13 @@ public class AggiungiVeterinarioActionListener implements ActionListener {
 
 	}
 
+	/**
+	 * costruttore
+	 * 
+	 * @param model     modello
+	 * @param dbControl database
+	 * @param view      grafica
+	 */
 	public AggiungiVeterinarioActionListener(SmartVetModel model, MainView view, DbControllerSingleton dbControl) {
 		super();
 		this.model = model;
@@ -83,6 +103,11 @@ public class AggiungiVeterinarioActionListener implements ActionListener {
 		this.dbControl = dbControl;
 	}
 
+	/**
+	 * pulisce i campi testo una volta aggiunta il nuovo veterinario
+	 * 
+	 * @return void
+	 */
 	public void pulisciTextField() {
 
 		veterinariPanel.getNomeText().setText(null);

@@ -9,13 +9,28 @@ import database.connectionSQL.DbControllerSingleton;
 import model.SmartVetModel;
 import view.MainView;
 
+/** 
+ * Collega le entrate del model con il database e la view
+ * @author      MMA
+ * @version     1.0                 (current version number of program)
+ */
+
+
+
 public class EntrateController {
 	
 	private SmartVetModel model;
 	private MainView view;
 	private DbControllerSingleton dbControl;
 
+	/**
+	 * costruttore
+	 * @param model     modello
+	 * @param dbControl database
+	 * @param view      grafica
+	 */
 	public EntrateController(SmartVetModel model, MainView view) {
+		
 		super();
 		this.model = model;
 		this.view = view;
@@ -27,6 +42,12 @@ public class EntrateController {
 		addActionListenerHome();
 	}
 
+	/**
+	* Visualizza le entrate su tabella entrate
+	* in termini di prezzo, causa, tipo e data
+	* @return void
+	*/
+	
 	public void fillTable() {
 
 		Object rowData[][] = new Object[model.getEntrateArray().size()][4];
@@ -44,6 +65,10 @@ public class EntrateController {
 		}
 	}
 
+	/**
+	* Aggiunge action listener al menu per aprire pannello entrate da dashboard
+	* @return void
+	*/
 	public void addActionListenersMenu() {
 
 		view.getDashboard().getMenu().getMntmEntrate().addActionListener(new ActionListener() {
@@ -57,12 +82,20 @@ public class EntrateController {
 
 	}
 
+	/**
+	* Aggiunge action listener al bottone per eliminare entrata selezionata
+	* @return void
+	*/
 	public void addActionListenerButtons() {
 
 		EliminaEntrateActionListener deleteEntrate = new EliminaEntrateActionListener(model, view, dbControl);
 		view.getEntratePanel().getBtnElimina().addActionListener(deleteEntrate);
 
 	}
+	/**
+	* Aggiunge bottone per ritornare alla dashboard
+	* @return void
+	*/
 
 	public void addActionListenerHome() {
 

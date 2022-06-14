@@ -5,12 +5,23 @@ import javax.swing.table.DefaultTableModel;
 import database.connectionSQL.DbControllerSingleton;
 import model.SmartVetModel;
 import view.MainView;
-
+/**
+ * Collega la parte di dashboard con il database e la view
+ * 
+ * @author MMA
+ * @version 1.0 (current version number of program)
+ */
 public class DashBoardController {
 	private SmartVetModel model;
 	private MainView view;
 	private DbControllerSingleton dbControl;
 
+	/**
+	 * costruttore
+	 * @param model     modello
+	 * @param dbControl database
+	 * @param view      grafica
+	 */
 	public DashBoardController(SmartVetModel model, MainView view) {
 		this.model = model;
 		this.view = view;
@@ -20,6 +31,14 @@ public class DashBoardController {
 		fillTableAppuntamentiOggi();
 	}
 
+	/**
+	 * riempie la tabella farmaci scadenza
+	 *  della dashboard con
+	 * i farmaci in scadenza questo mese
+	 * presenti in magazzino
+	 * 
+	 * @return void
+	 */
 	public void fillTableFarmaciScadenza() {
 
 		DefaultTableModel modello = (DefaultTableModel) view.getDashboard().getTabellaFarmaciView().getTable()
@@ -37,6 +56,14 @@ public class DashBoardController {
 		}
 	}
 
+	/**
+	 * riempie la tabella promemoria
+	 * della dashboard con gli appunatamenti di
+	 * oggi del cliente loggato o tutti nel
+	 * caso sia loggato l'account direzione
+	 * 
+	 * @return void
+	 */
 	public void fillTableAppuntamentiOggi() {
 
 		// personalizzo tabella

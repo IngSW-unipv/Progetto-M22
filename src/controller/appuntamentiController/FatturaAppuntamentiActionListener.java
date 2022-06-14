@@ -12,19 +12,31 @@ import model.SmartVetModel;
 import model.amministrazione.Entrate;
 import view.MainView;
 
+/**
+ * Fattura Appuntamento selezionato
+ * 
+ * @author MMA
+ * @version 1.0 (current version number of program)
+ */
 public class FatturaAppuntamentiActionListener implements ActionListener {
 
 	private SmartVetModel model;
 	private MainView view;
 	private DbControllerSingleton dbControl;
 
+	/**
+	 * inserisce appuntamento selezionato nelle entrate con prezzo, causa e data al
+	 * momento dell fatturazione
+	 * 
+	 * @param e evento schiaccia bottone fattura
+	 * @return void
+	 */
 	@Override
 	public void actionPerformed(ActionEvent e) {
 		// TODO Auto-generated method stub
 
 		int rigaSelezionata = view.getAppuntamentiPanel().getTab().getTable().getSelectedRow();
 
-		
 		java.sql.Date sqlDate = null;
 
 		SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
@@ -63,6 +75,13 @@ public class FatturaAppuntamentiActionListener implements ActionListener {
 		}
 	}
 
+	/**
+	 * costruttore
+	 * 
+	 * @param model     modello
+	 * @param dbControl database
+	 * @param view      grafica
+	 */
 	public FatturaAppuntamentiActionListener(SmartVetModel model, MainView view, DbControllerSingleton dbControl) {
 		super();
 		this.model = model;

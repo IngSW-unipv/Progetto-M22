@@ -11,6 +11,8 @@ import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.JSpinner;
 import javax.swing.JTextField;
+import javax.swing.SpinnerModel;
+import javax.swing.SpinnerNumberModel;
 import javax.swing.UIManager;
 
 import com.toedter.calendar.JDateChooser;
@@ -33,30 +35,6 @@ public class ProdottiUtiliPanel extends JPanel {
 	private JButton btnAggiorna;
 	private JButton btnHome;
 
-	/**
-	 * Create the panel.
-	 */
-
-	public static void main(String[] args) {
-		EventQueue.invokeLater(new Runnable() {
-			public void run() {
-				try {
-					JFrame principale1 = new JFrame();
-					principale1.setVisible(true);
-					principale1.setBounds(500, 500, 2700, 2200);
-					principale1.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-					principale1.getContentPane().setLayout(null);
-
-					ProdottiUtiliPanel frame = new ProdottiUtiliPanel();
-					frame.setVisible(true);
-					principale1.getContentPane().add(frame);
-
-				} catch (Exception e) {
-					e.printStackTrace();
-				}
-			}
-		});
-	}
 
 	public ProdottiUtiliPanel() {
 
@@ -81,8 +59,9 @@ public class ProdottiUtiliPanel extends JPanel {
 		fornitoriBox = new JComboBox();
 		fornitoriBox.setBounds(1096, 132, 100, 17);
 		add(fornitoriBox);
-
-		spinner = new JSpinner();
+		
+		SpinnerModel sm = new SpinnerNumberModel(1, 1, 4000, 1);
+		spinner = new JSpinner(sm);
 		spinner.setBounds(1118, 312, 48, 39);
 		add(spinner);
 

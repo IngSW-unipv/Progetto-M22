@@ -9,12 +9,26 @@ import database.connectionSQL.DbControllerSingleton;
 import model.SmartVetModel;
 import view.MainView;
 
+/**
+ * elimina le entrate scelte dalla tabella entrate selezionandole
+ * 
+ * @author MMA
+ * @version 1.0 (current version number of program)
+ * @see EntrateController
+ */
+
 public class EliminaEntrateActionListener implements ActionListener {
-	
+
 	private SmartVetModel model;
 	private MainView view;
 	private DbControllerSingleton dbControl;
 
+	/**
+	 * elimina entrata da database, array e tabella grafica
+	 * 
+	 * @param e evento schiaccia bottone elimina
+	 * @return void
+	 */
 	@Override
 	public void actionPerformed(ActionEvent e) {
 		// TODO Auto-generated method stub
@@ -31,6 +45,13 @@ public class EliminaEntrateActionListener implements ActionListener {
 		model.getEntrateArray().remove(elementoSelezionato);
 	}
 
+	/**
+	 * costruttore
+	 * 
+	 * @param model     modello
+	 * @param dbControl database
+	 * @param view      grafica
+	 */
 	public EliminaEntrateActionListener(SmartVetModel model, MainView view, DbControllerSingleton dbControl) {
 		super();
 		this.model = model;

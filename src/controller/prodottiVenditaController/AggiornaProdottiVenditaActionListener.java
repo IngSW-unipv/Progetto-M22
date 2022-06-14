@@ -15,6 +15,14 @@ import model.magazzino.prodottiVendita.ProdottiVendita;
 import view.MainView;
 import view.magazzino.prodottiVendita.ProdottiVenditaPanel;
 
+/**
+ * Aggiorna prodotto vendita selezionato. Tramite tasto modifica riempio ogni campo
+ * di testo con i parametri che voglio modificare e modifico. Leggendo quello
+ * che c'è nei textfield aggiorno il prodotto vendita con questo action listener.
+ * 
+ * @author MMA
+ * @version 1.0 (current version number of program)
+ */
 public class AggiornaProdottiVenditaActionListener implements ActionListener {
 
 	private SmartVetModel model;
@@ -22,6 +30,14 @@ public class AggiornaProdottiVenditaActionListener implements ActionListener {
 	private MainView view;
 	private ProdottiVenditaPanel prodottivenditaPanel;
 
+	
+	/**
+	 * Leggo i campi testo modificati e aggiorno il record selezionato in database,
+	 * array e grafica
+	 * 
+	 * @param e evento schiaccia bottone aggiorna
+	 * @return void
+	 */
 	@Override
 	public void actionPerformed(ActionEvent e) {
 		// TODO Auto-generated method stub
@@ -75,6 +91,14 @@ public class AggiornaProdottiVenditaActionListener implements ActionListener {
 		pulisciTextField();
 	}
 
+	
+	/**
+	 * costruttore
+	 * 
+	 * @param model     modello
+	 * @param dbControl database
+	 * @param view      grafica
+	 */
 	public AggiornaProdottiVenditaActionListener(SmartVetModel model, DbControllerSingleton dbControl, MainView view) {
 
 		super();
@@ -83,6 +107,12 @@ public class AggiornaProdottiVenditaActionListener implements ActionListener {
 		this.view = view;
 	}
 
+	/**
+	 * legge tutti i dati del fornitoretramite ID letto per poter passare al prodotto utilr
+	 * aggiornato il fornitore esatto
+	 * 
+	 * @return Fornitore fornitore letto
+	 */
 	public Fornitori costruisciFornitore() {
 
 		String PIVA = (String) prodottivenditaPanel.getFornitoriBox().getSelectedItem();
@@ -91,6 +121,11 @@ public class AggiornaProdottiVenditaActionListener implements ActionListener {
 
 	}
 
+	/**
+	 * pulisce i campi testo una volta aggiornato prodotto
+	 * 
+	 * @return void
+	 */
 	public void pulisciTextField() {
 
 		view.getProdottiVenditaPanel().getNomeText().setText(null);

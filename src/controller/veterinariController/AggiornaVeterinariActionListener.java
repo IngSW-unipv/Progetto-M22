@@ -9,8 +9,17 @@ import database.connectionSQL.DbControllerSingleton;
 import model.SmartVetModel;
 import model.anagrafica.veterinari.Veterinari;
 import view.MainView;
+import view.PopupError;
 import view.veterinari.VeterinariPanel;
 
+/**
+ * Aggiorna veterinario selezionato. Tramite tasto modifica riempio ogni campo
+ * di testo con i parametri che voglio modificare e modifico. Leggendo quello
+ * che c'è nei textfield aggiorno il veterinario con questo action listener.
+ * 
+ * @author MMA
+ * @version 1.0 (current version number of program)
+ */
 public class AggiornaVeterinariActionListener implements ActionListener {
 
 	private SmartVetModel model;
@@ -18,9 +27,17 @@ public class AggiornaVeterinariActionListener implements ActionListener {
 	private DbControllerSingleton dbControl;
 	private VeterinariPanel veterinariPanel;
 
+	/**
+	 * Leggo i campi testo modificati e aggiorno il record selezionato in database,
+	 * array e grafica
+	 * 
+	 * @param e evento schiaccia bottone aggiorna
+	 * @return void
+	 */
 	@Override
 	public void actionPerformed(ActionEvent e) {
 		// TODO Auto-generated method stub
+		
 		veterinariPanel = view.getVeterinariPanel();
 
 		veterinariPanel.getCFText().setEditable(true);
@@ -73,11 +90,23 @@ public class AggiornaVeterinariActionListener implements ActionListener {
 			model.getVeterinariArray().add(vet);
 
 		}
+		
+		else {
+			PopupError err = new PopupError();
+			err.infoBox("Impossibile aggiornare veterinario", "Errore");
+		}
 
 		pulisciTextField();
 
 	}
 
+	/**
+	 * costruttore
+	 * 
+	 * @param model     modello
+	 * @param dbControl database
+	 * @param view      grafica
+	 */
 	public AggiornaVeterinariActionListener(SmartVetModel model, DbControllerSingleton dbControl, MainView view) {
 		super();
 		this.model = model;
@@ -85,6 +114,11 @@ public class AggiornaVeterinariActionListener implements ActionListener {
 		this.view = view;
 	}
 
+	/**
+	 * pulisce i campi testo una volta aggiornato prodotto
+	 * 
+	 * @return void
+	 */
 	public void pulisciTextField() {
 		veterinariPanel.getNomeText().setText(null);
 		veterinariPanel.getCognomeText().setText(null);
@@ -98,11 +132,6 @@ public class AggiornaVeterinariActionListener implements ActionListener {
 		veterinariPanel.getStipendioText().setText(null);
 		veterinariPanel.getCommissioniText().setText(null);
 		veterinariPanel.getIbanText().setText(null);
-
-	}
-
-	public void actionPerformed1(ActionEvent e) {
-		// TODO Auto-generated method stub
 
 	}
 

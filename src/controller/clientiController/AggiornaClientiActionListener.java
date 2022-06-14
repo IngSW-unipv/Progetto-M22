@@ -2,6 +2,7 @@ package controller.clientiController;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.text.ParseException;
 
 import javax.swing.table.DefaultTableModel;
 
@@ -11,7 +12,14 @@ import model.anagrafica.clienti.Clienti;
 import view.MainView;
 import view.PopupError;
 import view.clienti.ClientiPanel;
-
+/**
+ * Aggiorna cliente selezionato.
+ * Tramite tasto modifica riempio ogni campo di testo con 
+ * i parametri che voglio modificare e modifico.
+ * Leggendo quello che c'è nei textfield aggiorno il cliente con questo action listener.
+ * @author      MMA
+ * @version     1.0                 (current version number of program)
+ */
 public class AggiornaClientiActionListener implements ActionListener {
 
 	private MainView view;
@@ -19,6 +27,13 @@ public class AggiornaClientiActionListener implements ActionListener {
 	private SmartVetModel model;
 	private ClientiPanel clientiPanel;
 
+	
+	/**
+	* Leggo i campi testo modificati e aggiorno il record  selezionato
+	*  in database, array e grafica di clienti
+	* @param  e  evento schiaccia bottone aggiorna
+	* @return void
+	*/
 	@Override
 	public void actionPerformed(ActionEvent e) {
 		// TODO Auto-generated method stub
@@ -32,7 +47,7 @@ public class AggiornaClientiActionListener implements ActionListener {
 
 		dbControl.deleteCliente(model.getClientiArray().get(elementoSelezionato));
 		model.getClientiArray().remove(elementoSelezionato);
-
+		
 		boolean flag = dbControl.addNuovoCliente(clientiPanel.getNuovoClienteTextField());
 
 		String nome = clientiPanel.getNuovoClienteTextField().getNome();
@@ -72,12 +87,23 @@ public class AggiornaClientiActionListener implements ActionListener {
 
 	}
 
+	/**
+	 * costruttore
+	 * @param model     modello
+	 * @param dbControl database
+	 * @param view      grafica
+	 */
 	public AggiornaClientiActionListener(MainView view, DbControllerSingleton dbControl, SmartVetModel model) {
 		super();
 		this.view = view;
 		this.dbControl = dbControl;
 		this.model = model;
 	}
+
+	/**
+	* pulisce i campi testo una volta aggiornato cliente
+	* @return void 
+	*/
 
 	public void pulisciTextField() {
 		clientiPanel.getNomeText().setText(null);

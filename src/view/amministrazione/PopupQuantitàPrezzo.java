@@ -7,6 +7,8 @@ import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JSpinner;
 import javax.swing.JTextField;
+import javax.swing.SpinnerModel;
+import javax.swing.SpinnerNumberModel;
 import javax.swing.JButton;
 
 public class PopupQuantitàPrezzo extends JFrame {
@@ -35,7 +37,8 @@ public class PopupQuantitàPrezzo extends JFrame {
 		getContentPane().setLayout(null);
 		getContentPane().setLayout(null);
 
-		quantitàSpinner = new JSpinner();
+		SpinnerModel sm = new SpinnerNumberModel(1, 1, 4000, 1);
+		quantitàSpinner = new JSpinner(sm);
 		quantitàSpinner.setBounds(255, 149, 54, 42);
 		getContentPane().add(quantitàSpinner);
 

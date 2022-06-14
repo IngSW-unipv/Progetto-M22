@@ -9,25 +9,45 @@ import database.connectionSQL.DbControllerSingleton;
 import model.SmartVetModel;
 import view.MainView;
 
+/**
+ * Collega le uscite del model con il database e la view
+ * 
+ * @author MMA
+ * @version 1.0 (current version number of program)
+ */
+
 public class UsciteController {
 
 	private SmartVetModel model;
 	private MainView view;
 	private DbControllerSingleton dbControl;
 
+	/**
+	 * costruttore
+	 * 
+	 * @param model     modello
+	 * @param dbControl database
+	 * @param view      grafica
+	 */
 	public UsciteController(SmartVetModel model, MainView view) {
-		
+
 		super();
 		this.model = model;
 		this.view = view;
 		dbControl = DbControllerSingleton.getInstance();
-		
+
 		fillTable();
 		addActionListenersMenu();
 		addActionListenerButtons();
 		addActionListenerHome();
 	}
 
+	/**
+	 * Visualizza le uscite su tabella uscite in termini di prezzo, causa, tipo e
+	 * data
+	 * 
+	 * @return void
+	 */
 	public void fillTable() {
 		Object rowData[][] = new Object[model.getUsciteArray().size()][3];
 
@@ -42,6 +62,12 @@ public class UsciteController {
 		}
 	}
 
+	/**
+	 * Aggiunge action listener al menu per aprire pannello entrate da dashboard
+	 * 
+	 * @return void
+	 */
+
 	public void addActionListenersMenu() {
 
 		view.getDashboard().getMenu().getMntmUscite().addActionListener(new ActionListener() {
@@ -55,6 +81,13 @@ public class UsciteController {
 
 	}
 
+	/**
+	 * Aggiunge action listener al bottone per eliminare e aggiungere uscita
+	 * selezionata
+	 * 
+	 * @return void
+	 */
+
 	public void addActionListenerButtons() {
 
 		AggiungiUsciteActionListener addUscite = new AggiungiUsciteActionListener(model, view, dbControl);
@@ -64,6 +97,12 @@ public class UsciteController {
 		view.getUscitePanel().getBtnElimina().addActionListener(deleteUscite);
 
 	}
+
+	/**
+	 * Aggiunge action listener bottone per ritornare alla dashboard
+	 * 
+	 * @return void
+	 */
 
 	public void addActionListenerHome() {
 

@@ -9,10 +9,24 @@ import database.connectionSQL.DbControllerSingleton;
 import model.SmartVetModel;
 import view.MainView;
 
+/**
+ * Riempie i campi testo con il record selezionato per poi eventualmente
+ * modificarli e aggiornare record
+ * 
+ * @author MMA
+ * @version 1.0 (current version number of program)
+ */
 public class ModificaAppuntamentiActionListener implements ActionListener {
+
 	private SmartVetModel model;
 	private MainView view;
 
+	/**
+	 * riempie i campi testo/data della riga selezionata della tabella
+	 * 
+	 * @param e evento schiaccia bottone modifica
+	 * @return void
+	 */
 	@Override
 	public void actionPerformed(ActionEvent e) {
 		// TODO Auto-generated method stub
@@ -44,6 +58,13 @@ public class ModificaAppuntamentiActionListener implements ActionListener {
 		}
 	}
 
+	/**
+	 * costruttore
+	 * 
+	 * @param model     modello
+	 * @param dbControl database
+	 * @param view      grafica
+	 */
 	public ModificaAppuntamentiActionListener(SmartVetModel model, MainView view) {
 		super();
 		this.model = model;
