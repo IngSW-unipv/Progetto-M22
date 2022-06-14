@@ -10,18 +10,31 @@ import database.classiDAO.anagraficaDAO.fornitoriDAO.FornitoriDAO;
 import database.connectionSQL.DbSingleton;
 import model.anagrafica.fornitori.Fornitori;
 import model.magazzino.prodottiVendita.ProdottiVendita;
-
+/**
+ * permette di fare query sulla tabella prodotti_vendita  del database
+ * 
+ * @author MMA
+ * @version 1.0 (current version number of program)
+ */
 public class ProdottiVenditaDAO implements IProdottiVenditaDAO {
 
 	private DbSingleton db;
 
+	// costruttore
 	public ProdottiVenditaDAO() {
 		super(); 
 		db = DbSingleton.getInstance();
 
 	}
 	
-	
+	/**
+	 * seleziona tutti i prodotti vendita presenti nel db
+	 * 
+	 * @return ArrayList<ProdottiVendita> tutti i prodotti 
+	 * vendita presenti nel db
+	 * 
+	 * @exception SQLException  qualcosa è andato storto nel db
+	 */
 	@Override
 	public ArrayList<ProdottiVendita> selectAll() {
 		ArrayList<ProdottiVendita> result = new ArrayList<>();
@@ -50,7 +63,14 @@ public class ProdottiVenditaDAO implements IProdottiVenditaDAO {
 
 		return result;
 	}
-
+	
+	/**
+	 * inserisce nuovo prodotto vendita nel db
+	 * 
+	 * @param  p prodotto nuovo da inserire
+	 * @return boolean = true se ha avuto successo insert
+	 * @exception SQLException qualcosa andato storto inserimento
+	 */
 	@Override
 	public boolean insertProdottiVendita(ProdottiVendita p) {
 
@@ -85,7 +105,14 @@ public class ProdottiVenditaDAO implements IProdottiVenditaDAO {
 		return true;
 	}
 
-	
+	/**
+	 * seleziona prodotto a seconda della riga
+	 * della tabella grafica che corrisponde
+	 * alla riga del db 
+	 * @param  rigaselezionata riga selezionata da tabella
+	 * @return int COD dell'appuntamento selezionato
+	 * @exception SQLException  qualcosa è andato storto nel db
+	 */
 	@Override
 	public int selectCODprodotto(int rigaSelezionata) {
 
@@ -111,9 +138,15 @@ public class ProdottiVenditaDAO implements IProdottiVenditaDAO {
 		return -1;
 	}
 
-	
+	/**
+	 * elimina  nel db prodotto selezionato tramite cod
+	 * 
+	 * @param  cod	 del prodotto da eliminare
+	 * @return void
+	 * @exception SQLException  qualcosa è andato storto nel delete
+	 */
 	@Override
-	public void deleteProdottiVenditai(int cod) {
+	public void deleteProdottiVendita(int cod) {
 
 		String query = "delete from PRODOTTI_VENDITA where COD_PROD=\"" + cod + "\"";
 		PreparedStatement stmt = null;
@@ -131,7 +164,13 @@ public class ProdottiVenditaDAO implements IProdottiVenditaDAO {
 		}
 	}
 
-	
+	/**
+	 * aggiorna nel db prodotto vendita selezionato
+	 * 
+	 * @param  p prodotto da aggiornare
+	 * @return void
+	 * @exception SQLException qualcosa andato storto inserimento
+	 */
 	@Override
 	public void updateProdottiVendita(ProdottiVendita p) {
 
@@ -160,5 +199,9 @@ public class ProdottiVenditaDAO implements IProdottiVenditaDAO {
 		}
 
 	}
+
+
+
+	
 
 }

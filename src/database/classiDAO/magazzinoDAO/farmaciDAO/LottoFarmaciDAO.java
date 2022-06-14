@@ -9,16 +9,30 @@ import database.classiDAO.anagraficaDAO.fornitoriDAO.FornitoriDAO;
 import database.connectionSQL.DbSingleton;
 import model.anagrafica.fornitori.Fornitori;
 import model.magazzino.farmaci.LottoFarmaci;
-
+/**
+ * permette di fare query sulla tabella farmaci del database
+ * 
+ * @author MMA
+ * @version 1.0 (current version number of program)
+ */
 public class LottoFarmaciDAO implements ILottoFarmaciDAO {
 
 	private DbSingleton db;
 
+	
+	// costruttore
 	public LottoFarmaciDAO() {
 		super();
 		db = DbSingleton.getInstance();
 	} 
 
+	/**
+	 * seleziona tutti i lotti presenti nel db
+	 * 
+	 * @return ArrayList<LottoFarmaci> tutti i lotti presenti nel db
+	 * 
+	 * @exception SQLException  qualcosa è andato storto nel db
+	 */
 	@Override
 	public ArrayList<LottoFarmaci> selectAll() {
 		ArrayList<LottoFarmaci> result = new ArrayList<>();
@@ -47,7 +61,14 @@ public class LottoFarmaciDAO implements ILottoFarmaciDAO {
 		return result;
 	}
 
-	
+	/**
+	 * seleziona i lotti in scadenza il
+	 * mese corrente presenti nel db
+	 * 
+	 * @return ArrayList<LottoFarmaci> i lotti in scadenza presenti nel db
+	 * 
+	 * @exception SQLException  qualcosa è andato storto nel db
+	 */
 	@Override
 	public ArrayList<LottoFarmaci> getFarmaciScadenza() {
 
@@ -79,6 +100,14 @@ public class LottoFarmaciDAO implements ILottoFarmaciDAO {
 		return farmaciScadenza;
 	}
 
+	
+	/**
+	 * inserisce nuovo lotto nel db
+	 * 
+	 * @param  f lotto nuovo da inserire
+	 * @return boolean = true se ha avuto successo insert
+	 * @exception SQLException qualcosa andato storto inserimento
+	 */
 	@Override
 	public boolean insertFarmaci(LottoFarmaci f) {
 
@@ -107,7 +136,13 @@ public class LottoFarmaciDAO implements ILottoFarmaciDAO {
 		return true;
 	}
 
-	
+	/**
+	 * elimina  nel db farmaco passato come parametro
+	 * 
+	 * @param  f lotto da eliminare
+	 * @return void
+	 * @exception SQLException  qualcosa è andato storto nel delete
+	 */
 	@Override
 	public void deleteFarmaci(LottoFarmaci f) {
 		String IDLotto = f.getIDLotto();

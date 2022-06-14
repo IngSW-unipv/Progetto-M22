@@ -1,18 +1,6 @@
 package model.amministrazione;
 
 
-/**
- * la classe entrate serve per visualizzare le entrate in termini di prezzo e
- * per poterle eliminare, per registrare nuove entrate bisogna schiacciare il
- * bottone fattura su appuntamenti, prodotti vendita o farmaci (uniche cose che
- * possono provocare incassi)
- * 
- * @author MMA
- * @version 1.0 (current version number of program)
- * @see FatturaAppuntamentiActionListener
- * @see FatturaProdottiVenditaActionListener
- * @see FatturafarmaciActionListener
- */
 
 public class Entrate {
 

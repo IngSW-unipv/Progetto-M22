@@ -1,76 +1,97 @@
 package view.dashboard;
 
-import java.awt.EventQueue;
+import java.awt.Dimension;
 import java.awt.Font;
+import java.awt.Toolkit;
 
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
-
+import javax.swing.SwingConstants;
 
 import view.dashboard.farmaciScadenza.TabellaFarmaciScadenzaView;
 import view.dashboard.promemoria.PromemoriaView;
 
 public class DashBoardView extends JPanel {
 
-private static final long serialVersionUID = 1L;
-private MenuView menu;
-private JScrollPane promemoriaScrollPane;
-private JScrollPane farmaciScadenzaScrollPane;
-private PromemoriaView promemoria;
-private TabellaFarmaciScadenzaView f;
+	private static final long serialVersionUID = 1L;
+	private MenuView menu;
+	private JScrollPane promemoriaScrollPane;
+	private JScrollPane farmaciScadenzaScrollPane;
+	private PromemoriaView promemoria;
+	private TabellaFarmaciScadenzaView f;
+	private JLabel lblPromemoria;
+	private JLabel lblFarmaciScadenzaQuesto;
+	private JLabel smartVetLbl;
 
+	public DashBoardView() {
 
-public DashBoardView() {
+		super();
 
-super();
-setVisible(true);
-setBounds(0, 0, 2700, 2200);
-setLayout(null);
+		menu = new MenuView();
+		add(menu);
 
-menu = new MenuView();
-add(menu);
+		Toolkit kit = Toolkit.getDefaultToolkit();
+		Dimension screenSize = kit.getScreenSize(); // restituisce la dimensione dello schermo come oggetto Dimension
+		int screenHeight = screenSize.height;
+		int screenWidth = screenSize.width;
 
-// creo un pannello con scrollo per promemoria
-promemoriaScrollPane = new JScrollPane();
-promemoriaScrollPane.setBounds(174, 163, 435, 249);
-add(promemoriaScrollPane);
+		setVisible(true);
+		setBounds(0, 0, screenWidth, screenHeight);
+		setLayout(null);
 
-// creo un pannello con scrollo per farmaci in scadenza
-farmaciScadenzaScrollPane = new JScrollPane();
-farmaciScadenzaScrollPane.setBounds(686, 163, 412, 254);
-add(farmaciScadenzaScrollPane);
+		// creo un pannello con scrollo per promemoria
+		promemoriaScrollPane = new JScrollPane();
+		promemoriaScrollPane.setBounds(screenHeight / 9, screenHeight / 3, (screenWidth / 5) * 2, screenHeight / 2);
+		add(promemoriaScrollPane);
 
-f = new TabellaFarmaciScadenzaView(farmaciScadenzaScrollPane);
+		// creo un pannello con scrollo per farmaci in scadenza
+		farmaciScadenzaScrollPane = new JScrollPane();
+		farmaciScadenzaScrollPane.setBounds((5 * screenWidth) / 9, screenHeight / 3, (screenWidth / 5) * 2,
+				screenHeight / 2);
+		add(farmaciScadenzaScrollPane);
 
-promemoria = new PromemoriaView(promemoriaScrollPane);
+		f = new TabellaFarmaciScadenzaView(farmaciScadenzaScrollPane);
 
-JLabel lblSmartvet = new JLabel("SmartVet");
-lblSmartvet.setFont(new Font("Dialog", Font.BOLD, 41));
-lblSmartvet.setBounds(518, 30, 333, 121);
-add(lblSmartvet);
-}
+		promemoria = new PromemoriaView(promemoriaScrollPane);
 
+		smartVetLbl = new JLabel("SmartVet");
+		smartVetLbl.setFont(new Font("Dialog", Font.BOLD, screenHeight / 15));
+		smartVetLbl.setBounds(0, screenHeight / 20, screenWidth, screenHeight / 5);
+		smartVetLbl.setHorizontalAlignment(SwingConstants.CENTER);
+		add(smartVetLbl);
 
+		lblPromemoria = new JLabel("Promemoria appuntamenti oggi");
+		lblPromemoria.setFont(new Font("Dialog", Font.BOLD, screenHeight / 35));
+		lblPromemoria.setBounds(screenHeight / 9, screenHeight / 25, (screenWidth / 5) * 2, screenHeight / 2);
+		lblPromemoria.setHorizontalAlignment(SwingConstants.CENTER);
+		add(lblPromemoria);
 
-public MenuView getMenu() {
-return menu;
-}
+		lblFarmaciScadenzaQuesto = new JLabel("Farmaci scadenza questo mese");
+		lblFarmaciScadenzaQuesto.setFont(new Font("Dialog", Font.BOLD, screenHeight / 35));
+		lblFarmaciScadenzaQuesto.setBounds((5 * screenWidth) / 9, screenHeight / 25, (screenWidth / 5) * 2,
+				screenHeight / 2);
+		lblFarmaciScadenzaQuesto.setHorizontalAlignment(SwingConstants.CENTER);
+		add(lblFarmaciScadenzaQuesto);
+	}
 
-public JScrollPane getPromemoriaScrollPane() {
-return promemoriaScrollPane;
-}
+	public MenuView getMenu() {
+		return menu;
+	}
 
-public JScrollPane getFarmaciScadenzaScrollPane() {
-return farmaciScadenzaScrollPane;
-}
+	public JScrollPane getPromemoriaScrollPane() {
+		return promemoriaScrollPane;
+	}
 
-public TabellaFarmaciScadenzaView getTabellaFarmaciView() {
-return f;
-}
+	public JScrollPane getFarmaciScadenzaScrollPane() {
+		return farmaciScadenzaScrollPane;
+	}
 
-public PromemoriaView getPromemoria() {
-return promemoria;
-}
+	public TabellaFarmaciScadenzaView getTabellaFarmaciView() {
+		return f;
+	}
 
+	public PromemoriaView getPromemoria() {
+		return promemoria;
+	}
 }

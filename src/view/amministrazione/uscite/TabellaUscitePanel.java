@@ -2,19 +2,19 @@ package view.amministrazione.uscite;
 
 import javax.swing.JScrollPane;
 import javax.swing.JTable;
-import javax.swing.table.DefaultTableModel;
+
+import view.TableModelMio;
 
 public class TabellaUscitePanel {
-	
+
 	private JTable table;
 
 	public TabellaUscitePanel(JScrollPane scrollPane) {
 
 		table = new JTable();
 		scrollPane.setViewportView(table);
-		
-		DefaultTableModel modello1 = new DefaultTableModel(new Object[][] {},
-				new String[] { "Causa", "Tipo", "Prezzoa"});
+
+		TableModelMio modello1 = new TableModelMio(new Object[][] {}, new String[] { "Causa", "Tipo", "Prezzoa" });
 
 		table.setModel(modello1);
 		table.getColumnModel().getColumn(0).setPreferredWidth(95);

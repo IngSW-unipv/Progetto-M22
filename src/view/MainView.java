@@ -51,7 +51,7 @@ public class MainView extends JFrame {
 		// centra il frame nello schermo
 		setSize(screenWidth / 3, screenHeight / 3);
 		setLocationRelativeTo(null); // consente di riposizionare il frame
-		setResizable(false);
+		//setResizable(false);
 		setVisible(true);
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setLayout(null);

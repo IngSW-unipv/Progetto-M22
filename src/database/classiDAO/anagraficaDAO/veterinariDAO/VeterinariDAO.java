@@ -1,26 +1,37 @@
 package database.classiDAO.anagraficaDAO.veterinariDAO;
 
-import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 
-import database.connectionSQL.ConnectionSQL;
 import database.connectionSQL.DbSingleton;
-import model.anagrafica.fornitori.Fornitori;
 import model.anagrafica.veterinari.Veterinari;
 
+/**
+ * permette di fare query sulla tabella dipendenti del database
+ * 
+ * @author MMA
+ * @version 1.0 (current version number of program)
+ */
 public class VeterinariDAO implements IVeterinariDAO {
 
 	private DbSingleton db;
 
+	// costruttore
 	public VeterinariDAO() {
-		
+
 		super();
 		db = DbSingleton.getInstance();
 	}
 
+	/**
+	 * seleziona veterinario in base al CF passato
+	 * 
+	 * @param CF veterinario da selezionare
+	 * @return Veterinari veterinario selezionato
+	 * @exception SQLException qualcosa è andato storto nel db
+	 */
 	@Override
 	public Veterinari select_Veterinari_from_CF(String CF) {
 
@@ -44,9 +55,15 @@ public class VeterinariDAO implements IVeterinariDAO {
 		return null;
 	}
 
+	/**
+	 * seleziona tutti i veterinari presenti nel db
+	 * 
+	 * @return ArrayList<Veterinari> tutti i veterinari presenti nel db
+	 * @exception SQLException qualcosa è andato storto nel db
+	 */
 	@Override
 	public ArrayList<Veterinari> selectAll() {
-		
+
 		ArrayList<Veterinari> result = new ArrayList<>();
 
 		ResultSet rs1;
@@ -68,32 +85,13 @@ public class VeterinariDAO implements IVeterinariDAO {
 		return result;
 	}
 
-	
-	@Override
-	public ArrayList<String> getCFDAO() {
-		
-		ResultSet rs1;
-
-		ArrayList<String> listeCF = new ArrayList<>();
-		
-		try {
-			String query = "SELECT CF_DIP FROM DIPENDENTI";
-			rs1 = db.executeQuery(query);
-
-			while (rs1.next()) {
-				String CF = new String(rs1.getString(1));
-
-				listeCF.add(CF);
-
-				// System.out.println(CF);
-			}
-		} catch (Exception e) {
-			e.printStackTrace();
-		}
-
-		return listeCF;
-	}
-
+	/**
+	 * inserisce nuovo veterinario nel db
+	 * 
+	 * @param vet veetrinario da inserire
+	 * @return boolean = true se ha avuto successo insert
+	 * @exception SQLException qualcosa andato storto inserimento
+	 */
 	@Override
 	public boolean insertVeterinari(Veterinari vet) {
 
@@ -132,12 +130,19 @@ public class VeterinariDAO implements IVeterinariDAO {
 
 	}
 
+	/**
+	 * elimina nel db veterinario selezionato
+	 * 
+	 * @param vet veterinario da eliminare
+	 * @return void
+	 * @exception SQLException qualcosa è andato storto nel delete
+	 */
 	@Override
 	public void deleteVeterinari(Veterinari vet) {
-		
+
 		String CF = vet.getCF();
 		String query = "delete from DIPENDENTI where CF_DIP=\"" + CF + "\"";
-		
+
 		PreparedStatement stmt = null;
 		try {
 			stmt = db.getConnection().prepareStatement(query);
@@ -152,6 +157,5 @@ public class VeterinariDAO implements IVeterinariDAO {
 			e.printStackTrace();
 		}
 	}
-
 
 }

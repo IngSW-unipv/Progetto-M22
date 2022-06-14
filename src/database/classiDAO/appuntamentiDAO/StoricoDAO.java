@@ -1,6 +1,7 @@
 package database.classiDAO.appuntamentiDAO;
 
 import java.sql.ResultSet;
+import java.sql.SQLException;
 import java.util.ArrayList;
 
 import database.classiDAO.anagraficaDAO.veterinariDAO.VeterinariDAO;
@@ -9,16 +10,30 @@ import database.connectionSQL.DbSingleton;
 import model.anagrafica.veterinari.Veterinari;
 import model.appuntamenti.Appuntamenti;
 import model.pazienti.Paziente;
-
+/**
+ * permette di fare query sulla tabella appuntamenti del database
+ * ma si riferisce a tutti gli appuntamenti non solo
+ * a quelli dal giorno corrente in poi
+ * 
+ * @author MMA
+ * @version 1.0 (current version number of program)
+ */
 public class StoricoDAO implements IStoricoDAO {
 	private DbSingleton db;
 
+	//costruttore
 	public StoricoDAO() {
 		super();
 		db = DbSingleton.getInstance();
 	}
 
-	
+	/**
+	 * seleziona tutti gli appuntamenti presenti nel db
+	 * 
+	 * @return ArrayList<Appuntamenti> tutti gli appuntamenti presenti nel db
+	 * 
+	 * @exception SQLException  qualcosa è andato storto nel db
+	 */
 	@Override
 	public ArrayList<Appuntamenti> selectAll() {
 		ArrayList<Appuntamenti> result = new ArrayList<>();
@@ -51,7 +66,16 @@ public class StoricoDAO implements IStoricoDAO {
 		return result;
 	}
 
-	
+	/**
+	 * seleziona tutti gli appuntamenti presenti nel db
+	 * in base al CF del veterinario passato come parametro
+	 * 
+	 * @param CFvet CF del veterinario da cui selezionare appuntamenti
+	 * @return ArrayList<Appuntamenti> tutti gli appuntamenti presenti nel db
+	 *  del veterinario passato come parametro
+	 * 
+	 * @exception SQLException  qualcosa è andato storto nel db
+	 */
 	@Override
 	public ArrayList<Appuntamenti> selectAllDueToVeterinario(String CFvet) {
 		ArrayList<Appuntamenti> result = new ArrayList<>();

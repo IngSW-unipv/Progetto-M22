@@ -14,7 +14,6 @@ import view.MainView;
  * 
  * @author MMA
  * @version 1.0 (current version number of program)
- * @see EntrateController
  */
 
 public class EliminaEntrateActionListener implements ActionListener {

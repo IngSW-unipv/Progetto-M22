@@ -1,5 +1,12 @@
 package database.classiDAO.amministrazione;
-
+/**
+ * interfaccia con metodi da implementare
+ * in entrateDAO
+ * 
+ * @author MMA
+ * @version 1.0 (current version number of program)
+ * @see UsciteDAO
+ */
 import java.util.ArrayList;
 
 import model.amministrazione.Uscite;

@@ -2,7 +2,8 @@ package view.magazzino.farmaci;
 
 import javax.swing.JScrollPane;
 import javax.swing.JTable;
-import javax.swing.table.DefaultTableModel;
+
+import view.TableModelMio;
 
 public class TabellaFarmaciPanel {
 
@@ -11,9 +12,9 @@ public class TabellaFarmaciPanel {
 	public TabellaFarmaciPanel(JScrollPane scrollPane) {
 
 		table = new JTable();
-		scrollPane.setViewportView(table); 
-		
-		DefaultTableModel modello1 = new DefaultTableModel(new Object[][] {},
+		scrollPane.setViewportView(table);
+
+		TableModelMio modello1 = new TableModelMio(new Object[][] {},
 				new String[] { "Lotto", "Assunzione", "Tipo", "Fornitore", "Data scadenza", "Qt." });
 
 		table.setModel(modello1);

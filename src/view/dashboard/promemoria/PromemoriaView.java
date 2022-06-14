@@ -2,7 +2,8 @@ package view.dashboard.promemoria;
 
 import javax.swing.JScrollPane;
 import javax.swing.JTable;
-import javax.swing.table.DefaultTableModel;
+
+import view.TableModelMio;
 
 public class PromemoriaView {
 
@@ -10,12 +11,11 @@ public class PromemoriaView {
 
 	public PromemoriaView(JScrollPane scrollPane) {
 
-	    table = new JTable();
+		table = new JTable();
 
 		scrollPane.setViewportView(table);
 
-		table.setModel( 
-				new DefaultTableModel(new Object[][] {}, new String[] { "Sala", "Tipo", "Data", "Ora", "Note" }));
+		table.setModel(new TableModelMio(new Object[][] {}, new String[] { "Sala", "Tipo", "Data", "Ora", "Note" }));
 		table.getColumnModel().getColumn(0).setPreferredWidth(95);
 		table.getColumnModel().getColumn(0).setMinWidth(95);
 		table.getColumnModel().getColumn(4).setMinWidth(120);

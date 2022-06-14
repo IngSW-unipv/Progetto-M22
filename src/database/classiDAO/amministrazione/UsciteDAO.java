@@ -6,13 +6,27 @@ import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
 
+import controller.amministrazioneController.entrateController.EntrateController;
 import database.connectionSQL.DbSingleton;
 import model.amministrazione.Uscite;
 
+/**
+ * permette di fare query sulla tabella uscite del database
+ * 
+ * @author MMA
+ * @version 1.0 (current version number of program)
+ * @see EntrateController
+ */
 public class UsciteDAO implements IUsciteDAO {
 
 	private DbSingleton db;
 
+	/**
+	 * seleziona tutte le uscite presenti nel db
+	 * 
+	 * @return ArrayList<Uscite> tutte le uscite presenti nel db
+	 * @exception SQLException qualcosa è andato storto nel db
+	 */
 	@Override
 	public ArrayList<Uscite> selectAll() {
 
@@ -32,15 +46,21 @@ public class UsciteDAO implements IUsciteDAO {
 				result.add(uscite);
 
 			}
-		} catch (Exception e) {
+		} catch (SQLException e) {
 			e.printStackTrace();
 		}
 
 		return result;
 	}
-	
-	
-	
+
+	/**
+	 * inserisce nuova uscita nel db
+	 * 
+	 * @param uscita da inserire
+	 * @return boolean = true se ha avuto successo insert
+	 * @exception SQLException qualcosa andato storto inserimento
+	 */
+
 	@Override
 	public boolean insertUscite(Uscite uscite) {
 
@@ -76,7 +96,13 @@ public class UsciteDAO implements IUsciteDAO {
 		return true;
 	}
 
-	
+	/**
+	 * elimina uscita nel db selezionata tramite ID
+	 * 
+	 * @param ID dell'uscita da eliminare
+	 * @return void
+	 * @exception SQLException qualcosa è andato storto nel delete
+	 */
 	@Override
 	public void deleteUscite(int ID) {
 
@@ -96,8 +122,15 @@ public class UsciteDAO implements IUsciteDAO {
 			e.printStackTrace();
 		}
 	}
-	
-	
+
+	/**
+	 * seleziona id uscita a seconda della riga della tabella grafica che
+	 * corrisponde alla riga del db
+	 * 
+	 * @param rigaSelezionata riga selezionata da tabella
+	 * @return int Id uscita selezionata
+	 * @exception SQLException qualcosa è andato storto nel db
+	 */
 	@Override
 	public int selectIDuscita(int rigaSelezionata) {
 
@@ -122,6 +155,7 @@ public class UsciteDAO implements IUsciteDAO {
 		return -1;
 	}
 
+	// costruttore
 	public UsciteDAO() {
 		super();
 		DbSingleton.getInstance();

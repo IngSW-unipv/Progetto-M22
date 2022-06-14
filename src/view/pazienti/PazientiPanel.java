@@ -193,23 +193,23 @@ public class PazientiPanel extends JPanel {
 		tabellaPazienti = new TabellaPazientiPanel(scrollPane);
 
 		btnAggiungi = new JButton("Aggiungi");
-		btnAggiungi.setBounds(1273, 364, 100, 25);
+		btnAggiungi.setBounds(1284, 312, 100, 25);
 		add(btnAggiungi);
 
 		btnElimina = new JButton("Elimina");
-		btnElimina.setBounds(1284, 422, 100, 25);
+		btnElimina.setBounds(1284, 473, 100, 25);
 		add(btnElimina);
 
 		btnModifica = new JButton("Modifica");
-		btnModifica.setBounds(1284, 472, 100, 25);
+		btnModifica.setBounds(1284, 368, 100, 25);
 		add(btnModifica);
 
 		btnAggiorna = new JButton("Aggiorna");
-		btnAggiorna.setBounds(1294, 262, 100, 25);
+		btnAggiorna.setBounds(1284, 422, 100, 25);
 		add(btnAggiorna);
 
 		btnHome = new JButton();
-		btnHome.setBounds(1300, 552, 52, 43);
+		btnHome.setBounds(1309, 551, 52, 43);
 		Icon icon = UIManager.getIcon("FileChooser.homeIcon");
 		btnHome.setIcon(icon);
 		add(btnHome); 

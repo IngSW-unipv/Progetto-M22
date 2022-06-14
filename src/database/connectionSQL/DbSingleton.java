@@ -7,16 +7,28 @@ import java.sql.Statement;
 
 public class DbSingleton {
 
+	/**
+	 * permette di collegarsi col db con un unica istanza
+	 * 
+	 * @author MMA
+	 * @version 1.0 (current version number of program)
+	 */
+
 	private Connection connection;
 	private static DbSingleton db;
 	private Statement statement;
 
-	private DbSingleton() { 
+	//costruttore inizializza in automatico la connessione col db
+	private DbSingleton() {
 
 		startConnection();
 
 	}
 
+	/**
+	 * restituisce istanza connessione db
+	 * 
+	 */
 	public static DbSingleton getInstance() {
 
 		if (db == null) {
@@ -29,6 +41,11 @@ public class DbSingleton {
 
 	}
 
+	/**
+	 * restituisce il risultato della query effettuata passata come parametro
+	 * 
+	 * @param query da effettuare
+	 */
 	public ResultSet executeQuery(String query) {
 
 		try {
@@ -45,18 +62,32 @@ public class DbSingleton {
 
 	}
 
+	/**
+	 * inizializza connessione col db
+	 * 
+	 * @return void
+	 */
 	public void startConnection() {
 
 		connection = ConnectionSQL.startConnection(connection, "clinica");
 
+	/**
+	 * restituisce connessione col db
+	 * 
+	 * @return void
+	*/
 	}
 
 	public Connection getConnection() {
 		return connection;
 	}
 
+	/**
+	 * chiudeconnessione col db
+	 * @return void
+	 */
 	public void closeConnection() {
-
+		connection = ConnectionSQL.closeConnection(connection);
 	}
 
 }

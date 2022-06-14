@@ -8,15 +8,33 @@ import java.util.ArrayList;
 import database.connectionSQL.DbSingleton;
 import model.anagrafica.clienti.Clienti;
 
+/**
+ * permette di fare query sulla tabella clienti del database
+ * 
+ * @author MMA
+ * @version 1.0 (current version number of program)
+ */
 public class ClientiDAO implements IClientiDAO {
 
 	private DbSingleton db;
 
+	/**
+	 * costruttore
+	 * 
+	 */
 	public ClientiDAO() {
 		super();
 		db = DbSingleton.getInstance();
 
 	}
+
+	/**
+	 * seleziona cliente in base al CF passato
+	 * 
+	 * @param CF del cliente da selezionare
+	 * @return int ID dell' entrata selezionata
+	 * @exception SQLException qualcosa è andato storto nel db
+	 */
 	@Override
 	public Clienti select_cliente_from_CF(String CF) {
 
@@ -40,6 +58,12 @@ public class ClientiDAO implements IClientiDAO {
 		return null;
 	}
 
+	/**
+	 * seleziona tutti i clienti presenti nel db
+	 * 
+	 * @return ArrayList<Clienti> tutti i clienti presenti nel db
+	 * @exception SQLException qualcosa è andato storto nel db
+	 */
 	@Override
 	public ArrayList<Clienti> selectAll() {
 		ArrayList<Clienti> result = new ArrayList<>();
@@ -64,6 +88,13 @@ public class ClientiDAO implements IClientiDAO {
 		return result;
 	}
 
+	/**
+	 * inserisce nuovo cliente nel db
+	 * 
+	 * @param cl cliente da inserire
+	 * @return boolean = true se ha avuto successo insert
+	 * @exception SQLException qualcosa andato storto inserimento
+	 */
 	@Override
 	public boolean insertClienti(Clienti cl) {
 
@@ -92,8 +123,14 @@ public class ClientiDAO implements IClientiDAO {
 		}
 		return true;
 	}
-	
-	
+
+	/**
+	 * elimina nel db cliente selezionato
+	 * 
+	 * @param cl cliente da eliminare
+	 * @return void
+	 * @exception SQLException qualcosa è andato storto nel delete
+	 */
 	@Override
 	public void deleteClienti(Clienti cl) {
 		String CF_CL = cl.getCF();

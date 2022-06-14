@@ -12,17 +12,32 @@ import database.connectionSQL.DbSingleton;
 import model.anagrafica.clienti.Clienti;
 import model.anagrafica.veterinari.Veterinari;
 import model.pazienti.Paziente;
+/**
+ * permette di fare query sulla tabella pazienti del database
+ * 
+ * @author MMA
+ * @version 1.0 (current version number of program)
+ */
 
 public class PazienteDAO implements IPazienteDAO {
 
 	private DbSingleton db;
 
+	//costruttore
 	public PazienteDAO() {
 		super();
 		db = DbSingleton.getInstance();
 
 	}
 
+	/**
+	 * seleziona tutto il paziente tramite ID passato
+	 * 
+	 * @param ID del paziente da selezionare
+	 * @return Paziente selezionato 
+	 * 
+	 * @exception SQLException  qualcosa è andato storto nel db
+	 */
 	@Override
 	public Paziente selectPazientefromID(int ID) {
 
@@ -54,6 +69,13 @@ public class PazienteDAO implements IPazienteDAO {
 		return null;
 	}
 
+	/**
+	 * seleziona tutti i pazienti presenti nel db
+	 * 
+	 * @return ArrayList<Paziente> tutti i pazienti del db
+	 * 
+	 * @exception SQLException  qualcosa è andato storto nel db
+	 */
 	@Override
 	public ArrayList<Paziente> selectAll() {
 		ArrayList<Paziente> result = new ArrayList<>();
@@ -86,6 +108,13 @@ public class PazienteDAO implements IPazienteDAO {
 		return result;
 	}
 
+	/**
+	 * inserisce nuovo paziente nel db
+	 * 
+	 * @param  p paziente nuovo da inserire
+	 * @return boolean = true se ha avuto successo insert
+	 * @exception SQLException qualcosa andato storto inserimento
+	 */
 	@Override
 	public boolean insertPaziente(Paziente p) {
 		String query = "INSERT INTO PAZIENTI (NOME,TIPO,RAZZA,DATA_NASC,SESSO, VET_REFERENTE, GRUP_SANG, MICROCHIP,"
@@ -131,7 +160,14 @@ public class PazienteDAO implements IPazienteDAO {
 		return true;
 	}
 
-
+	/**
+	 * seleziona pazientea seconda della riga
+	 * della tabella grafica che corrisponde
+	 * alla riga del db 
+	 * @param  rigaselezionata riga selezionata da tabella
+	 * @return int ID del paziente selezionato
+	 * @exception SQLException  qualcosa è andato storto nel db
+	 */
 	@Override
 	public int selectID_PAZ(int rigaSelezionata) {
 
@@ -156,7 +192,14 @@ public class PazienteDAO implements IPazienteDAO {
 		}
 		return -1;
 	}
-
+	
+	/**
+	 * elimina  nel db paziente selezionata tramite cod
+	 * 
+	 * @param  id	 del paziente da eliminare
+	 * @return void
+	 * @exception SQLException  qualcosa è andato storto nel delete
+	 */
 	@Override
 	public void deletePazienti(int id) {
 
@@ -178,6 +221,13 @@ public class PazienteDAO implements IPazienteDAO {
 		}
 	}
 
+	/**
+	 * aggiorna nel db paziente selezionato
+	 * 
+	 * @param  p paziente da aggiornare
+	 * @return void
+	 * @exception SQLException qualcosa andato storto inserimento
+	 */
 	@Override
 	public void updatePaziente(Paziente p) {
 

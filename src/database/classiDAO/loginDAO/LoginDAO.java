@@ -5,6 +5,12 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 
 import database.connectionSQL.DbSingleton;
+/**
+ * permette di fare query sulla tabella login  del database
+ * 
+ * @author MMA
+ * @version 1.0 (current version number of program)
+ */
 
 public class LoginDAO implements ILoginDAO {
 	
@@ -12,6 +18,18 @@ public class LoginDAO implements ILoginDAO {
 
 	
 	
+	
+	/**
+	 * conta quante volte nel db è presente un record
+	 * con la password e il username passati, se il conto
+	 * è >0 allora vuol dire che le credenziali
+	 * sono effettivamente nel database
+	 * 
+	 * @param user username di chi si logga
+	 * @param password di chi si logga
+	 * @return boolean = true se conto > 0
+	 * @exception SQLException  qualcosa è andato storto nel db
+	 */
 	@Override
 	public boolean isMatching(String user, String password) {
 
@@ -29,7 +47,7 @@ public class LoginDAO implements ILoginDAO {
 				number = rs1.getInt(1);
 				System.out.println(number);
 			}
-		} catch (Exception e) {
+		} catch (SQLException e) {
 			e.printStackTrace();
 
 		}
@@ -41,6 +59,14 @@ public class LoginDAO implements ILoginDAO {
 	}
 
 	
+	/**
+	 * seleziona il CF del veterinario loggato
+	 * 
+	 * @param user username di chi si logga
+	 * @param password di chi si logga
+	 * @return String CF
+	 * @exception SQLException  qualcosa è andato storto nel db
+	 */
 	
 	@Override
 	public String getCFuserLoggedIn(String user, String password) {
@@ -66,6 +92,14 @@ public class LoginDAO implements ILoginDAO {
 		return null;
 	}
 	
+	/**
+	 * inserisce nuovo utente nel db
+	 * 
+	 * @param user username nuovo inserito
+	 * @param password nuovo inserita
+	 * @return void
+	 * @exception SQLException  qualcosa è andato storto nel db
+	 */
 	
 	@Override
 	public void insertNuovoUtente(String user, String password, String CFdip) {
@@ -93,6 +127,7 @@ public class LoginDAO implements ILoginDAO {
 
 	}
 
+	//costruttore
 	public LoginDAO() {
 		super();
 		db = DbSingleton.getInstance();

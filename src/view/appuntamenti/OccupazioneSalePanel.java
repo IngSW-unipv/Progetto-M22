@@ -6,7 +6,8 @@ import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.JTable;
 import javax.swing.UIManager;
-import javax.swing.table.DefaultTableModel;
+
+import view.TableModelMio;
 
 public class OccupazioneSalePanel extends JPanel {
 
@@ -16,11 +17,11 @@ public class OccupazioneSalePanel extends JPanel {
 	private JButton btnHome;
 
 	public OccupazioneSalePanel() {
-		
+
 		setBounds(0, 0, 2700, 2200);
 
 		setLayout(null);
-		
+
 		table = new JTable();
 
 		scrollPane = new JScrollPane();
@@ -29,7 +30,7 @@ public class OccupazioneSalePanel extends JPanel {
 
 		scrollPane.setViewportView(table);
 
-		DefaultTableModel modello1 = new DefaultTableModel(new Object[][] {},
+		TableModelMio modello1 = new TableModelMio(new Object[][] {},
 				new String[] { "Paziente", "Sala", "Tipo", "Data", "Ora" });
 
 		table.setModel(modello1);

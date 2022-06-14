@@ -4,6 +4,8 @@ import javax.swing.JScrollPane;
 import javax.swing.JTable;
 import javax.swing.table.DefaultTableModel;
 
+import view.TableModelMio;
+
 public class TabellaFornitoriPanel {
 
 	private JTable table;
@@ -14,8 +16,8 @@ public class TabellaFornitoriPanel {
 
 		scrollPane.setViewportView(table);
 
-		DefaultTableModel modello1 = new DefaultTableModel(new Object[][] {},
-				new String[] { "PIVA", "NomeAzienda", "NumeroDiTelefono", "Email", "Sede", "IBAN�" });
+		TableModelMio modello1 = new TableModelMio(new Object[][] {},
+				new String[] { "PIVA", "NomeAzienda", "NumeroDiTelefono", "Email", "Sede", "IBAN" });
 
 		table.setModel(modello1);
 		table.getColumnModel().getColumn(0).setPreferredWidth(95);

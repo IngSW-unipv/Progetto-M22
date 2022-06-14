@@ -10,16 +10,30 @@ import database.classiDAO.anagraficaDAO.fornitoriDAO.FornitoriDAO;
 import database.connectionSQL.DbSingleton;
 import model.anagrafica.fornitori.Fornitori;
 import model.magazzino.prodottiUtili.ProdottiUtili;
-
+/**
+ * permette di fare query sulla tabella prodotti_utili  del database
+ * 
+ * @author MMA
+ * @version 1.0 (current version number of program)
+ */
 public class ProdottiUtiliDAO implements IProdottiUtiliDAO {
 	private DbSingleton db;
 
+	// costruttore
 	public ProdottiUtiliDAO() {
 		
 		super(); 
 		db = DbSingleton.getInstance();
 	}
 
+	/**
+	 * seleziona tutti i prodotti utili presenti nel db
+	 * 
+	 * @return ArrayList<ProdottiUtili> tutti i prodotti 
+	 * utili presenti nel db
+	 * 
+	 * @exception SQLException  qualcosa è andato storto nel db
+	 */
 	@Override
 	public ArrayList<ProdottiUtili> selectAll() {
 		ArrayList<ProdottiUtili> result = new ArrayList<>(); 
@@ -48,6 +62,14 @@ public class ProdottiUtiliDAO implements IProdottiUtiliDAO {
 		return result;
 	}
 
+
+	/**
+	 * inserisce nuovo prodotto utile nel db
+	 * 
+	 * @param  p prodotto nuovo da inserire
+	 * @return boolean = true se ha avuto successo insert
+	 * @exception SQLException qualcosa andato storto inserimento
+	 */
 	@Override
 	public boolean insertProdottiUtili(ProdottiUtili p) {
 
@@ -83,6 +105,14 @@ public class ProdottiUtiliDAO implements IProdottiUtiliDAO {
 	}
 	
 	
+	/**
+	 * seleziona prodotto a seconda della riga
+	 * della tabella grafica che corrisponde
+	 * alla riga del db 
+	 * @param  rigaselezionata riga selezionata da tabella
+	 * @return int COD dell'appuntamento selezionato
+	 * @exception SQLException  qualcosa è andato storto nel db
+	 */
 	@Override
 	public int selectCODprodotto(int rigaSelezionata) {
 
@@ -108,7 +138,13 @@ public class ProdottiUtiliDAO implements IProdottiUtiliDAO {
 		return -1;
 	}
 
-	
+	/**
+	 * elimina  nel db prodotto selezionata tramite cod
+	 * 
+	 * @param  cod	 del prodotto da eliminare
+	 * @return void
+	 * @exception SQLException  qualcosa è andato storto nel delete
+	 */
 	@Override
 	public void deleteProdottiUtili(int cod) {
 
@@ -128,7 +164,14 @@ public class ProdottiUtiliDAO implements IProdottiUtiliDAO {
 		}
 	}
 
-	
+
+	/**
+	 * aggiorna nel db prodotto utile selezionato
+	 * 
+	 * @param  p prodotto da aggiornare
+	 * @return void
+	 * @exception SQLException qualcosa andato storto inserimento
+	 */
 	@Override
 	public void updateProdottiUtili(ProdottiUtili p) {
 

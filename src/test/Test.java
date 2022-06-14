@@ -1,12 +1,22 @@
 package test;
 
+/**
+ * permette di testare il programma
+ * 
+ * @author MMA
+ * @version 1.0 (current version number of program)
+ */
 import java.awt.EventQueue;
 
 import controller.Controller;
 import model.SmartVetModel;
 import view.MainView;
-import view.login.LoginView;
 
+/**
+ * fa partire il programma istanziando model view e controller
+ * 
+ * @param Strings[] args passati da riga di comando
+ */
 public class Test {
 	public static void main(String[] args) {
 		EventQueue.invokeLater(new Runnable() {
@@ -14,7 +24,7 @@ public class Test {
 				try {
 					SmartVetModel model = new SmartVetModel();
 
-					//LoginView log = new LoginView();
+					// LoginView log = new LoginView();
 					MainView view = new MainView();
 
 					@SuppressWarnings("unused")
@@ -26,6 +36,7 @@ public class Test {
 		});
 	}
 
+	//costruttore
 	public Test() {
 
 	}

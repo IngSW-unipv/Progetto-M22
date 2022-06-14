@@ -1,7 +1,16 @@
 package database.classiDAO.amministrazione;
+/**
+ * interfaccia con metodi da implementare
+ * in EntrateDAO
+ * 
+ * @author MMA
+ * @version 1.0 (current version number of program)
+ * @see EntrateDAO
+ */
 
 import java.util.ArrayList;
 
+import controller.amministrazioneController.entrateController.EntrateController;
 import model.amministrazione.Entrate;
 
 public interface IEntrateDAO {

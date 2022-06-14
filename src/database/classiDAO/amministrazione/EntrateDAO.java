@@ -9,10 +9,23 @@ import java.util.ArrayList;
 import database.connectionSQL.DbSingleton;
 import model.amministrazione.Entrate;
 
+/**
+ * permette di fare query sulla tabella entrate del database
+ * 
+ * @author MMA
+ * @version 1.0 (current version number of program)
+ */
+
 public class EntrateDAO implements IEntrateDAO {
 
 	private DbSingleton db;
 
+	/**
+	 * seleziona tutte le entrate presenti nel db
+	 * 
+	 * @return ArrayList<Entrate> tutte le entrate presenti nel db
+	 * @exception SQLException qualcosa è andato storto nel db
+	 */
 	@Override
 	public ArrayList<Entrate> selectAll() {
 
@@ -32,13 +45,20 @@ public class EntrateDAO implements IEntrateDAO {
 				result.add(ent);
 
 			}
-		} catch (Exception e) {
+		} catch (SQLException e) {
 			e.printStackTrace();
 		}
 
 		return result;
 	}
 
+	/**
+	 * inserisce nuova entrata nel db
+	 * 
+	 * @param entrate da inserire
+	 * @return boolean = true se ha avuto successo insert
+	 * @exception SQLException qualcosa andato storto inserimento
+	 */
 	@Override
 	public boolean insertEntrate(Entrate entrate) {
 
@@ -73,6 +93,14 @@ public class EntrateDAO implements IEntrateDAO {
 		return true;
 	}
 
+	/**
+	 * seleziona id entrata a seconda della riga della tabella grafica che
+	 * corrisponde alla riga del db
+	 * 
+	 * @param rigaselezionata riga selezionata da tabella
+	 * @return int Id dell'entrata selezionata
+	 * @exception SQLException qualcosa è andato storto nel db
+	 */
 	@Override
 	public int selectIDentrata(int rigaSelezionata) {
 
@@ -97,6 +125,13 @@ public class EntrateDAO implements IEntrateDAO {
 		return -1;
 	}
 
+	/**
+	 * elimina nel db entrata selezionata tramite ID
+	 * 
+	 * @param ID dell'entrata da eliminare
+	 * @return void
+	 * @exception SQLException qualcosa è andato storto nel delete
+	 */
 	@Override
 	public void deleteEntrate(int ID) {
 
@@ -117,7 +152,11 @@ public class EntrateDAO implements IEntrateDAO {
 		}
 	}
 
-	public EntrateDAO() { 
+	/**
+	 * costruttore
+	 * 
+	 */
+	public EntrateDAO() {
 
 		super();
 		db = DbSingleton.getInstance();

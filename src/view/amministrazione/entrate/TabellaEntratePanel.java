@@ -2,7 +2,8 @@ package view.amministrazione.entrate;
 
 import javax.swing.JScrollPane;
 import javax.swing.JTable;
-import javax.swing.table.DefaultTableModel;
+
+import view.TableModelMio;
 
 public class TabellaEntratePanel {
 	// private JScrollPane scrollPane;
@@ -14,8 +15,9 @@ public class TabellaEntratePanel {
 		// this.scrollPane = scrollPane;
 		scrollPane.setViewportView(table);
 
-		DefaultTableModel modello1 = new DefaultTableModel(new Object[][] {}, new String[] {  "Causa", "Tipo","Prezzo", "Data"});
- 
+		TableModelMio modello1 = new TableModelMio(new Object[][] {},
+				new String[] { "Causa", "Tipo", "Prezzo", "Data" });
+
 		table.setModel(modello1);
 		table.getColumnModel().getColumn(0).setPreferredWidth(95);
 		table.getColumnModel().getColumn(0).setMinWidth(95);

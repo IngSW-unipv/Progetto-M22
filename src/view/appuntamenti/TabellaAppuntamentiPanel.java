@@ -2,7 +2,8 @@ package view.appuntamenti;
 
 import javax.swing.JScrollPane;
 import javax.swing.JTable;
-import javax.swing.table.DefaultTableModel;
+
+import view.TableModelMio;
 
 public class TabellaAppuntamentiPanel {
 
@@ -14,7 +15,7 @@ public class TabellaAppuntamentiPanel {
 
 		scrollPane.setViewportView(table);
 
-		DefaultTableModel modello1 = new DefaultTableModel(new Object[][] {},
+		TableModelMio modello1 = new TableModelMio(new Object[][] {},
 				new String[] { "Paziente", "Sala", "Tipo", "Data", "Ora", "Veterinario", "Costo", "Note" });
 
 		table.setModel(modello1);

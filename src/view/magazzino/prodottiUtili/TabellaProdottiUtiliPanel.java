@@ -2,7 +2,8 @@ package view.magazzino.prodottiUtili;
 
 import javax.swing.JScrollPane;
 import javax.swing.JTable;
-import javax.swing.table.DefaultTableModel;
+
+import view.TableModelMio;
 
 public class TabellaProdottiUtiliPanel {
 
@@ -13,7 +14,7 @@ public class TabellaProdottiUtiliPanel {
 		table = new JTable();
 		scrollPane.setViewportView(table);
 
-		DefaultTableModel modello1 = new DefaultTableModel(new Object[][] {},
+		TableModelMio modello1 = new TableModelMio(new Object[][] {},
 				new String[] { "Nome", "Tipo", "Quantita", "Fornitore" });
 
 		table.setModel(modello1);

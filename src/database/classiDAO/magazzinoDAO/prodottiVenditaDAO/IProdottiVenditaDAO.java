@@ -1,5 +1,12 @@
 package database.classiDAO.magazzinoDAO.prodottiVenditaDAO;
-
+/**
+ * interfaccia con metodi da implementare
+ * in ProdottiVenditaDAO
+ * 
+ * @author MMA
+ * @version 1.0 (current version number of program)
+ * @see ProdottiVenditaDAO
+ */
 import java.util.ArrayList;
 
 import model.magazzino.prodottiVendita.ProdottiVendita;
@@ -12,7 +19,7 @@ public interface IProdottiVenditaDAO {
 
 	public int selectCODprodotto(int rigaSelezionata);
 	
-	public void deleteProdottiVenditai(int cod);
+	public void deleteProdottiVendita(int cod);
 	
 	public void updateProdottiVendita(ProdottiVendita p);
 }

@@ -3,7 +3,14 @@ package database.classiDAO.appuntamentiDAO;
 import java.util.ArrayList;
 
 import model.appuntamenti.Appuntamenti;
-
+/**
+ * interfaccia con metodi da implementare
+ * in AppuntamentiDAO
+ * 
+ * @author MMA
+ * @version 1.0 (current version number of program)
+ * @see AppuntamentiDAO
+ */
 public interface IAppuntamentiDAO {
 	
 	public ArrayList<Appuntamenti> selectAll();

@@ -2,19 +2,20 @@ package view.magazzino.prodottiVendita;
 
 import javax.swing.JScrollPane;
 import javax.swing.JTable;
-import javax.swing.table.DefaultTableModel;
+
+import view.TableModelMio;
 
 public class TabellaProdottiVenditaPanel {
-	
+
 	private JTable table;
 
 	public TabellaProdottiVenditaPanel(JScrollPane scrollPane) {
 
 		table = new JTable();
 		scrollPane.setViewportView(table);
-		
-		DefaultTableModel modello1 = new DefaultTableModel(new Object[][] {},
-				new String[] { "Nome", "Tipo", "Quantita", "Fornitore", "Data Scadenza"});
+
+		TableModelMio modello1 = new TableModelMio(new Object[][] {},
+				new String[] { "Nome", "Tipo", "Quantita", "Fornitore", "Data Scadenza" });
 
 		table.setModel(modello1);
 		table.getColumnModel().getColumn(0).setPreferredWidth(95);

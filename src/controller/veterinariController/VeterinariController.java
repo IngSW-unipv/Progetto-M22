@@ -9,12 +9,25 @@ import database.connectionSQL.DbControllerSingleton;
 import model.SmartVetModel;
 import view.MainView;
 
+/**
+ * Collega i veterinari del model con il database e la view
+ * 
+ * @author MMA
+ * @version 1.0 (current version number of program)
+ */
 public class VeterinariController {
 
 	private SmartVetModel model;
 	private MainView view;
 	private DbControllerSingleton dbControl;
 
+	/**
+	 * costruttore
+	 * 
+	 * @param model     modello
+	 * @param dbControl database
+	 * @param view      grafica
+	 */
 	public VeterinariController(SmartVetModel model, MainView view) {
 		this.model = model;
 		this.view = view;
@@ -26,11 +39,19 @@ public class VeterinariController {
 		addActionListenerHome();
 	}
 
+	/**
+	 * Visualizza veterinari su tabella veterinari
+	 * 
+	 * @return void
+	 */
+
 	public void fillTable() {
 		Object rowData[][] = new Object[model.getVeterinariArray().size()][12];
 		DefaultTableModel modello = (DefaultTableModel) view.getVeterinariPanel().getTab().getTable().getModel();
 		for (int i = 0; i < model.getVeterinariArray().size(); i++) {
 
+			view.getVeterinariPanel().getTab().getTable().isCellEditable(i, i);
+			
 			rowData[i][0] = model.getVeterinariArray().get(i).getNome();
 			rowData[i][1] = model.getVeterinariArray().get(i).getCognome();
 			rowData[i][2] = model.getVeterinariArray().get(i).getCF();
@@ -48,6 +69,11 @@ public class VeterinariController {
 		}
 	}
 
+	/**
+	 * Aggiunge action listener al menu per aprire pannello veterinari da dashboard
+	 * 
+	 * @return void
+	 */
 	public void addActionListenersMenu() {
 		view.getDashboard().getMenu().getMntmDipendenti().addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
@@ -58,7 +84,13 @@ public class VeterinariController {
 		});
 
 	}
-
+	
+	/**
+	 * Aggiunge action listener per aggiungere, eliminare,
+	 * modificare,aggiornare veterinari
+	 * 
+	 * @return void
+	 */
 	public void addActionListenerButtons() {
 		AggiungiVeterinarioActionListener addVeterinario = new AggiungiVeterinarioActionListener(model, view,
 				dbControl);
@@ -76,6 +108,11 @@ public class VeterinariController {
 
 	}
 
+	/**
+	 * aggiunge action listener per tornare alla dashboard
+	 * 
+	 * @return void
+	 */
 	public void addActionListenerHome() {
 		view.getVeterinariPanel().getBtnHome().addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {

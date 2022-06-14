@@ -16,6 +16,12 @@ import database.connectionSQL.DbControllerSingleton;
 import model.SmartVetModel;
 import view.MainView;
 
+/**
+ * Collega il model con il database e la view
+ * 
+ * @author MMA
+ * @version 1.0 (current version number of program)
+ */
 public class Controller {
 
 	private SmartVetModel model;
@@ -34,6 +40,13 @@ public class Controller {
 	private EntrateController entrateController;
 	private UsciteController usciteController;
 
+	/**
+	 * costruttore
+	 * inizializza tutti i componenti
+	 * @param model     modello
+	 * @param dbControl database
+	 * @param view      grafica
+	 */
 	public Controller(SmartVetModel m, MainView v) {
 
 		model = m;
@@ -42,6 +55,12 @@ public class Controller {
 		initComponents();
 
 	}
+
+	/**
+	 * istanzia tutti i controller più piccoli
+	 * 
+	 * @return void
+	 */
 
 	private void initComponents() {
 
@@ -74,6 +93,12 @@ public class Controller {
 		usciteController = new UsciteController(model, view);
 	}
 
+	/**
+	 * popola tutti gli array del model
+	 * con i record del database presenti
+	 * 
+	 * @return void
+	 */
 	private void populateArrays() {
 
 		model.populateClienti(dbControl.selectAllClienti());
