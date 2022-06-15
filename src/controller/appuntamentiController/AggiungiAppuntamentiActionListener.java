@@ -69,11 +69,16 @@ public class AggiungiAppuntamentiActionListener implements ActionListener {
 				sqlDate = new java.sql.Date(data.getTime());
 
 			}
+			else {
+				PopupError err = new PopupError();
+				err.infoBox( "Data non valida", "Errore");
+			}
+			
 		} catch (ParseException e1) {
 			// TODO Auto-generated catch block
 			PopupError err = new PopupError();
 			err.infoBox( "Data non valida", "Errore");
-			e1.printStackTrace();
+			//e1.printStackTrace();
 		}
 
 		String ora = view.getAppuntamentiPanel().getTimeChooserText().getFormatedTime();
@@ -88,7 +93,7 @@ public class AggiungiAppuntamentiActionListener implements ActionListener {
 			// TODO Auto-generated catch block
 			PopupError err = new PopupError();
 			err.infoBox( "Orario non valido", "Errore");
-			e1.printStackTrace();
+			//e1.printStackTrace();
 		} 
 
 		double costo = 0.0;
@@ -101,7 +106,7 @@ public class AggiungiAppuntamentiActionListener implements ActionListener {
 			
 			PopupError err = new PopupError();
 			err.infoBox( "il costo deve contenere solo cifre", "Errore");
-			nfe.printStackTrace();
+			//nfe.printStackTrace();
 		}
 
 		String note = view.getAppuntamentiPanel().getNoteText().getText();
@@ -135,7 +140,7 @@ public class AggiungiAppuntamentiActionListener implements ActionListener {
 			rowData[3] = sqlDate;
 			rowData[4] = timeValue;
 			rowData[5] = vet.getCF();
-			rowData[6] = costo;
+			rowData[6] = costo; 
 			rowData[7] = note;
 
 			if (dateObj.before(data)) {

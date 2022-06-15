@@ -42,26 +42,31 @@ public class AggiungiProdottiVenditaActionListener implements ActionListener {
 		String nome = view.getProdottiVenditaPanel().getNomeText().getText();
 		String tipo = view.getProdottiVenditaPanel().getTipoText().getText();
 		Fornitori forn = costruisciFornitore();
-		Date dataScadenza = view.getProdottiVenditaPanel().getDataScadenza().getDate();
- 
+		Date dataScadenza = null;
+		java.sql.Date sqlDate = null;
+
+		// formatto data per togliere time
 		SimpleDateFormat sdf = new SimpleDateFormat("MM-dd-yyyy");
 
 		try {
 
-			dataScadenza = sdf.parse(sdf.format(dataScadenza));
-			System.out.println(dataScadenza);
+			dataScadenza = view.getFarmaciPanel().getDataScadenza().getDate();
 
-		} catch (ParseException e1) {
-			// TODO Auto-generated catch block
-			
-			PopupError err = new PopupError();
-			err.infoBox("Data non valida", "Errore");
-			e1.printStackTrace();
-		
+			if (dataScadenza != null) {
+
+				dataScadenza = sdf.parse(sdf.format(dataScadenza));
+ 
+				sqlDate = new java.sql.Date(dataScadenza.getTime());
+			}
 		}
 
-		java.sql.Date sqlDate = new java.sql.Date(dataScadenza.getTime());
-		//
+		catch (ParseException e1) {
+			// TODO Auto-generated catch block
+			PopupError err = new PopupError();
+			err.infoBox("Data non valida", "Errore");
+			//e1.printStackTrace();
+		}
+
 
 		int qt = (int) view.getProdottiVenditaPanel().getSpinner().getValue();
 

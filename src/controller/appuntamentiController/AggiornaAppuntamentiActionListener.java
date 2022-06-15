@@ -77,7 +77,7 @@ public class AggiornaAppuntamentiActionListener implements ActionListener {
 			// TODO Auto-generated catch block
 			PopupError err = new PopupError();
 			err.infoBox("Data non valida", "Errore");
-			e1.printStackTrace();
+			//e1.printStackTrace();
 		}
 
 		String ora = view.getAppuntamentiPanel().getTimeChooserText().getFormatedTime();
@@ -92,7 +92,7 @@ public class AggiornaAppuntamentiActionListener implements ActionListener {
 			// TODO Auto-generated catch block
 			PopupError err = new PopupError();
 			err.infoBox("Orario non valido", "Errore");
-			e1.printStackTrace();
+			//e1.printStackTrace();
 		}
 
 		double costo = 0.0;
@@ -105,7 +105,7 @@ public class AggiornaAppuntamentiActionListener implements ActionListener {
 
 			PopupError err = new PopupError();
 			err.infoBox("Il costo deve contenere solo cifre", "Errore");
-			nfe.printStackTrace();
+			//nfe.printStackTrace();
 
 		}
 

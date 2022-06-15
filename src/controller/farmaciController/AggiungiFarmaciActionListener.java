@@ -58,7 +58,7 @@ public class AggiungiFarmaciActionListener implements ActionListener {
 			if (dataScadenza != null) {
 
 				dataScadenza = sdf.parse(sdf.format(dataScadenza));
-
+ 
 				sqlDate = new java.sql.Date(dataScadenza.getTime());
 			}
 		}
@@ -67,7 +67,7 @@ public class AggiungiFarmaciActionListener implements ActionListener {
 			// TODO Auto-generated catch block
 			PopupError err = new PopupError();
 			err.infoBox("Data non valida", "Errore");
-			e1.printStackTrace();
+			//e1.printStackTrace();
 		}
 
 		//

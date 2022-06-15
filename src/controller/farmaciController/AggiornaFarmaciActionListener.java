@@ -74,7 +74,7 @@ public class AggiornaFarmaciActionListener implements ActionListener {
 
 		catch (ParseException e1) {
 			// TODO Auto-generated catch block
-			e1.printStackTrace();
+			//e1.printStackTrace();
 			PopupError err = new PopupError();
 			err.infoBox("Data non valida", "Errore");
 		}

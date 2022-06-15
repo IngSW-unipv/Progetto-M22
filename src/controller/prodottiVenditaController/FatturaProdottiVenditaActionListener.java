@@ -107,7 +107,7 @@ public class FatturaProdottiVenditaActionListener implements ActionListener {
 
 			catch (ParseException e1) {
 				// TODO Auto-generated catch block
-				e1.printStackTrace();
+				//e1.printStackTrace();
 				PopupError err = new PopupError();
 				err.infoBox("data non valida", "Errore");
 			}

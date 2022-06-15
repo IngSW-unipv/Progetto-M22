@@ -72,7 +72,7 @@ public class AggiungiFornitoriActionListener implements ActionListener {
 			}
 		}
 
-	}
+	} 
 
 	/**
 	 * costruttore

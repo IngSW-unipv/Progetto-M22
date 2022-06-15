@@ -73,7 +73,7 @@ public class AggiornaPazientiActionListener implements ActionListener {
 
 			PopupError err = new PopupError();
 			err.infoBox("il peso deve contenere solo cifre", "Errore");
-			nfe.printStackTrace();
+			//nfe.printStackTrace();
 
 		}
 		// String proprietario = pazientiPanel.getProprietarioText().getText();
@@ -103,7 +103,6 @@ public class AggiornaPazientiActionListener implements ActionListener {
 			if (dataMorte != null) {
 
 				dataMorte = sdf.parse(sdf.format(dataMorte));
-				System.out.println(dataMorte);
 
 				sqlDate2 = new java.sql.Date(dataMorte.getTime());
 
@@ -113,7 +112,7 @@ public class AggiornaPazientiActionListener implements ActionListener {
 			// TODO Auto-generated catch block
 			PopupError err = new PopupError();
 			err.infoBox( "Data/e non valida/e", "Errore");
-			e1.printStackTrace();
+			//e1.printStackTrace();
 		}
 
 		DefaultTableModel modello = (DefaultTableModel) pazientiPanel.getTabellaPazienti().getTable().getModel();

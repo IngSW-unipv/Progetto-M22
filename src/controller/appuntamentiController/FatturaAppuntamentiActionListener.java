@@ -67,7 +67,7 @@ public class FatturaAppuntamentiActionListener implements ActionListener {
 
 			rowData[0] = causa;
 			rowData[1] = tipo;
-			rowData[2] = prezzo;
+			rowData[2] = prezzo; 
 			rowData[3] = sqlDate;
 
 			modello.addRow(rowData);

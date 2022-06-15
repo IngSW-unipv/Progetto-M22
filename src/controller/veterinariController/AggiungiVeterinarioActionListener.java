@@ -8,12 +8,12 @@ package controller.veterinariController;
  */
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.text.ParseException;
 
 import javax.swing.table.DefaultTableModel;
 
 import database.connectionSQL.DbControllerSingleton;
 import model.SmartVetModel;
+import model.anagrafica.veterinari.Veterinari;
 import view.MainView;
 import view.PopupError;
 import view.veterinari.VeterinariPanel;
@@ -38,39 +38,40 @@ public class AggiungiVeterinarioActionListener implements ActionListener {
 
 		veterinariPanel = view.getVeterinariPanel();
 
-		boolean flag = dbControl.addNuovoVeterinario(veterinariPanel.getNuovoVeterinarioTextField());
+		Veterinari vet = veterinariPanel.getNuovoVeterinarioTextField();
+
+		boolean flag = dbControl.addNuovoVeterinario(vet);
 
 		if (flag) {
 
-			model.getVeterinariArray().add(veterinariPanel.getNuovoVeterinarioTextField());
+			model.getVeterinariArray().add(vet);
 
 			// aggiungo vet nelle comboBox di altre finestre
 
-			if (!(model.getCFuser().equals("direzione"))) { 
-
-				view.getAppuntamentiPanel().getCFvetText()
-						.addItem(veterinariPanel.getNuovoVeterinarioTextField().getCF());
+			if (model.getCFuser().equals("direzione")) {
+				System.out.println(view.getAppuntamentiPanel().getCFvetText() + "errore");
+				view.getAppuntamentiPanel().getCFvetText().addItem(vet.getCF());
 			}
 
-			view.getPazientiPanel().getVeterinariBox().addItem(veterinariPanel.getNuovoVeterinarioTextField().getCF());
-			view.getRegistratiView().getComboBox().addItem(veterinariPanel.getNuovoVeterinarioTextField().getCF());
+			view.getPazientiPanel().getVeterinariBox().addItem(vet.getCF());
+			view.getRegistratiView().getComboBox().addItem(vet.getCF());
 
 			Object rowData[] = new Object[12];
 
 			DefaultTableModel modello = (DefaultTableModel) veterinariPanel.getTab().getTable().getModel();
 
-			rowData[0] = veterinariPanel.getNuovoVeterinarioTextField().getNome();
-			rowData[1] = veterinariPanel.getNuovoVeterinarioTextField().getCognome();
-			rowData[2] = veterinariPanel.getNuovoVeterinarioTextField().getCF();
-			rowData[3] = veterinariPanel.getNuovoVeterinarioTextField().getEmail();
-			rowData[4] = veterinariPanel.getNuovoVeterinarioTextField().getCellulare();
-			rowData[5] = veterinariPanel.getNuovoVeterinarioTextField().getCitta();
-			rowData[6] = veterinariPanel.getNuovoVeterinarioTextField().getIndirizzo();
-			rowData[7] = veterinariPanel.getNuovoVeterinarioTextField().getPIVA();
-			rowData[8] = veterinariPanel.getNuovoVeterinarioTextField().getContratto();
-			rowData[9] = veterinariPanel.getNuovoVeterinarioTextField().getStipendio();
-			rowData[10] = veterinariPanel.getNuovoVeterinarioTextField().getCommissioni();
-			rowData[11] = veterinariPanel.getNuovoVeterinarioTextField().getIBAN();
+			rowData[0] = vet.getNome();
+			rowData[1] = vet.getCognome();
+			rowData[2] = vet.getCF();
+			rowData[3] = vet.getEmail();
+			rowData[4] = vet.getCellulare();
+			rowData[5] = vet.getCitta();
+			rowData[6] = vet.getIndirizzo();
+			rowData[7] = vet.getPIVA();
+			rowData[8] = vet.getContratto();
+			rowData[9] = vet.getStipendio();
+			rowData[10] = vet.getCommissioni();
+			rowData[11] = vet.getIBAN();
 
 			modello.addRow(rowData);
 

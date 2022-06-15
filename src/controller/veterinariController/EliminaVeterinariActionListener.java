@@ -8,6 +8,7 @@ import javax.swing.table.DefaultTableModel;
 import database.connectionSQL.DbControllerSingleton;
 import model.SmartVetModel;
 import view.MainView;
+import view.PopupError;
 
 /**
  * Elimina veterinario selezionato
@@ -21,19 +22,26 @@ public class EliminaVeterinariActionListener implements ActionListener {
 	private MainView view;
 	private DbControllerSingleton dbControl;
 
-	
 	/**
 	 * elimina veterinario da database, array e tabella grafica
+	 * 
 	 * @param e evento schiaccia bottone elimina veterinario
 	 * @return void
 	 */
 	@Override
 	public void actionPerformed(ActionEvent e) {
-
 		DefaultTableModel modello = (DefaultTableModel) view.getVeterinariPanel().getTab().getTable().getModel();
 
 		int elementoSelezionato = view.getVeterinariPanel().getTab().getTable().getSelectedRow();
 
+		String CF = model.getVeterinariArray().get(elementoSelezionato).getCF();
+
+		if (model.getCFuser().equals(CF)) {
+			PopupError err = new PopupError();
+			err.infoBox("Non puoi eliminare veterinario con cui sei loggato", "Errore");
+		}
+
+		else {
 		///// elimino anche da comboBox delle altre finestre
 		view.getPazientiPanel().getVeterinariBox()
 				.removeItem(model.getVeterinariArray().get(elementoSelezionato).getCF());
@@ -43,14 +51,14 @@ public class EliminaVeterinariActionListener implements ActionListener {
 			view.getAppuntamentiPanel().getCFvetText()
 					.removeItem(model.getVeterinariArray().get(elementoSelezionato).getCF());
 		}
-
 		///
 
 		modello.removeRow(elementoSelezionato);
 
 		dbControl.deleteVeterinario(model.getVeterinariArray().remove(elementoSelezionato));
 		model.getVeterinariArray().remove(elementoSelezionato);
-
+		
+		}
 	}
 
 	/**

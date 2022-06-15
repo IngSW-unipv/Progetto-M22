@@ -37,7 +37,7 @@ public class ModificaVeterinariActionListener implements ActionListener {
 		int rigaSelezionata = veterinariPanel.getTab().getTable().getSelectedRow();
 		
 		if (rigaSelezionata >= 0) {
-
+ 
 			String nome = model.getVeterinariArray().get(rigaSelezionata).getNome();
 			String cognome = model.getVeterinariArray().get(rigaSelezionata).getCognome();
 			String CF = model.getVeterinariArray().get(rigaSelezionata).getCF();
@@ -50,7 +50,6 @@ public class ModificaVeterinariActionListener implements ActionListener {
 			double stip = model.getVeterinariArray().get(rigaSelezionata).getStipendio();
 			double comm = model.getVeterinariArray().get(rigaSelezionata).getCommissioni();
 			String iban = model.getVeterinariArray().get(rigaSelezionata).getIBAN();
-			System.out.println(nome + cognome);
 			
 			veterinariPanel.getNomeText().setText(nome);
 			veterinariPanel.getCognomeText().setText(cognome);

@@ -122,7 +122,7 @@ public class FatturaFarmaciActionListener implements ActionListener {
 				// TODO Auto-generated catch block
 				PopupError err = new PopupError();
 				err.infoBox("Data non valida", "Errore");
-				e1.printStackTrace();
+				//e1.printStackTrace();
 			}
 
 		}

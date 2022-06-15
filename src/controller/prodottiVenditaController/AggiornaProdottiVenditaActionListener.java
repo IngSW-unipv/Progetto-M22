@@ -13,6 +13,7 @@ import model.SmartVetModel;
 import model.anagrafica.fornitori.Fornitori;
 import model.magazzino.prodottiVendita.ProdottiVendita;
 import view.MainView;
+import view.PopupError;
 import view.magazzino.prodottiVendita.ProdottiVenditaPanel;
 
 /**
@@ -56,17 +57,31 @@ public class AggiornaProdottiVenditaActionListener implements ActionListener {
 		String nome = prodottivenditaPanel.getNomeText().getText();
 		String tipo = prodottivenditaPanel.getTipoText().getText();
 		Fornitori forn = costruisciFornitore();
-		Date dataScadenza = prodottivenditaPanel.getDataScadenza().getDate();
+		Date dataScadenza = null;
+		java.sql.Date sqlDate = null;
+
+		// formatto data per togliere time
 		SimpleDateFormat sdf = new SimpleDateFormat("MM-dd-yyyy");
 
 		try {
-			dataScadenza = sdf.parse(sdf.format(dataScadenza));
-		} catch (ParseException e1) {
-			// TODO Auto-generated catch block
-			e1.printStackTrace();
+
+			dataScadenza = view.getFarmaciPanel().getDataScadenza().getDate();
+
+			if (dataScadenza != null) {
+
+				dataScadenza = sdf.parse(sdf.format(dataScadenza));
+ 
+				sqlDate = new java.sql.Date(dataScadenza.getTime());
+			}
 		}
 
-		java.sql.Date sqlDate = new java.sql.Date(dataScadenza.getTime());
+		catch (ParseException e1) {
+			// TODO Auto-generated catch block
+			PopupError err = new PopupError();
+			err.infoBox("Data non valida", "Errore");
+			//e1.printStackTrace();
+		}
+
 		
 		int qt = (int) prodottivenditaPanel.getSpinner().getValue();
 		

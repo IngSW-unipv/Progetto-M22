@@ -10,6 +10,7 @@ import javax.swing.JScrollPane;
 import javax.swing.JTextField;
 import javax.swing.UIManager;
 import model.anagrafica.veterinari.Veterinari;
+import view.PopupError;
 
 /** 
  * 
@@ -343,15 +344,19 @@ public class VeterinariPanel extends JPanel {
 		
 		catch(NumberFormatException nfe) {
 			
-			nfe.printStackTrace();
+			PopupError err = new PopupError();
+			err.infoBox("Stipendio e commissione non validi", "Errore");
+			//nfe.printStackTrace();
 			
-		}
+		} 
 		
 		Veterinari vet = new Veterinari(nomeText.getText(), cognomeText.getText(), CFText.getText(), emailText.getText(),
 				cellulareText.getText(), cittaText.getText(), indirizzoText.getText(), pivaText.getText(), contrattoText.getText(),
 				stipendio, commiss, ibanText.getText());
 		return vet;
 	}
+	
+
 
 	public JComboBox getVeterinariBox() {
 		return veterinariBox;

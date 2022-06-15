@@ -62,7 +62,7 @@ public class AggiungiPazientiActionListener implements ActionListener {
 
 		catch (NumberFormatException nfe) {
 
-			nfe.printStackTrace();
+			//nfe.printStackTrace();
 			PopupError err = new PopupError();
 			err.infoBox( "Il peso deve contenere solo cifre", "Errore");
 
@@ -96,7 +96,6 @@ public class AggiungiPazientiActionListener implements ActionListener {
 			if (dataMorte != null) {
 
 				dataMorte = sdf.parse(sdf.format(dataMorte));
-				System.out.println(dataMorte);
 
 				sqlDate2 = new java.sql.Date(dataMorte.getTime());
 
@@ -106,7 +105,7 @@ public class AggiungiPazientiActionListener implements ActionListener {
 			// TODO Auto-generated catch block
 			PopupError err = new PopupError();
 			err.infoBox( "Data/e non valida/e", "Errore");
-			e1.printStackTrace();
+			//e1.printStackTrace();
 		}
 
 		Paziente paz = new Paziente(0, nome, specie, razza, sqlDate, sesso, vet, GruppoSanguigno, microchip, sterilizzato,
@@ -207,7 +206,6 @@ public class AggiungiPazientiActionListener implements ActionListener {
 	 */
 	public Clienti costruisciCliente() {
 		String CF = (String) view.getPazientiPanel().getClientiBox().getSelectedItem();
-		System.out.println(CF);
 		Clienti cl = dbControl.selectClienteFromCF(CF);
 		return cl;
 	}

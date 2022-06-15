@@ -5,37 +5,33 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 
 import database.connectionSQL.DbSingleton;
+
 /**
- * permette di fare query sulla tabella login  del database
+ * permette di fare query sulla tabella login del database
  * 
  * @author MMA
  * @version 1.0 (current version number of program)
  */
 
 public class LoginDAO implements ILoginDAO {
-	
-	private DbSingleton db; 
 
-	
-	
-	
+	private DbSingleton db;
+
 	/**
-	 * conta quante volte nel db è presente un record
-	 * con la password e il username passati, se il conto
-	 * è >0 allora vuol dire che le credenziali
-	 * sono effettivamente nel database
+	 * conta quante volte nel db è presente un record con la password e il username
+	 * passati, se il conto è >0 allora vuol dire che le credenziali sono
+	 * effettivamente nel database
 	 * 
-	 * @param user username di chi si logga
+	 * @param user     username di chi si logga
 	 * @param password di chi si logga
 	 * @return boolean = true se conto > 0
-	 * @exception SQLException  qualcosa è andato storto nel db
+	 * @exception SQLException qualcosa è andato storto nel db
 	 */
 	@Override
 	public boolean isMatching(String user, String password) {
 
 		int number = 0;
 		ResultSet rs1;
-		
 
 		try {
 			String query = "SELECT count(USERNAME), USERNAME, PASSWORD FROM" + " LOGIN WHERE USERNAME = \"" + user
@@ -58,21 +54,20 @@ public class LoginDAO implements ILoginDAO {
 			return false;
 	}
 
-	
 	/**
 	 * seleziona il CF del veterinario loggato
 	 * 
-	 * @param user username di chi si logga
+	 * @param user     username di chi si logga
 	 * @param password di chi si logga
 	 * @return String CF
-	 * @exception SQLException  qualcosa è andato storto nel db
+	 * @exception SQLException qualcosa è andato storto nel db
 	 */
-	
+
 	@Override
 	public String getCFuserLoggedIn(String user, String password) {
 
 		ResultSet rs1;
-		
+
 		String CF = null;
 		try {
 			String query = "SELECT CF FROM LOGIN WHERE USERNAME = \"" + user + "\"  AND PASSWORD = \"" + password
@@ -91,16 +86,16 @@ public class LoginDAO implements ILoginDAO {
 		}
 		return null;
 	}
-	
+
 	/**
 	 * inserisce nuovo utente nel db
 	 * 
-	 * @param user username nuovo inserito
+	 * @param user     username nuovo inserito
 	 * @param password nuovo inserita
 	 * @return void
-	 * @exception SQLException  qualcosa è andato storto nel db
+	 * @exception SQLException qualcosa è andato storto nel db
 	 */
-	
+
 	@Override
 	public void insertNuovoUtente(String user, String password, String CFdip) {
 
@@ -127,12 +122,12 @@ public class LoginDAO implements ILoginDAO {
 
 	}
 
-	//costruttore
+
+
+	// costruttore
 	public LoginDAO() {
 		super();
 		db = DbSingleton.getInstance();
 	}
-	
-	
 
 }

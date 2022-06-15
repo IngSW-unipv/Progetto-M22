@@ -516,6 +516,8 @@ public class DbControllerSingleton {
 		log.insertNuovoUtente(user, pw, CFvet);
 	}
 	
+
+	
 	
 	
 	// ENTRATE
