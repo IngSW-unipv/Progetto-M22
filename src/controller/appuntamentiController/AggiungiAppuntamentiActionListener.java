@@ -43,7 +43,7 @@ public class AggiungiAppuntamentiActionListener implements ActionListener {
 	* @return void 
 	*/
 	
-	@SuppressWarnings("static-access")
+	@SuppressWarnings({ "static-access", "deprecation" })
 	@Override
 	public void actionPerformed(ActionEvent e) {
 		// TODO Auto-generated method stub
@@ -142,9 +142,13 @@ public class AggiungiAppuntamentiActionListener implements ActionListener {
 			rowData[5] = vet.getCF();
 			rowData[6] = costo; 
 			rowData[7] = note;
+			
+			
+			System.out.println( dateObj.getDay()+ "" + data.getDay());
+			
+			if (dateObj.before(data) || dateObj.getDay() == data.getDay() ) {
 
-			if (dateObj.before(data)) {
-
+				
 				modello.addRow(rowData);
 				model.getAppuntamentiArray().add(nuovoApp);
 				model.getSaleOccupateArray().add(nuovoApp);

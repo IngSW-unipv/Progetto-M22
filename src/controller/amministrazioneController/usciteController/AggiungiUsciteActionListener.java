@@ -46,7 +46,7 @@ public class AggiungiUsciteActionListener implements ActionListener {
 
 		catch (NumberFormatException nfe) {
 
-			nfe.printStackTrace();
+			//nfe.printStackTrace();
 			PopupError err = new PopupError();
 			err.infoBox("il prezzo deve contenere solo cifre", "Errore");
 
