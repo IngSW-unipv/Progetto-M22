@@ -1,5 +1,8 @@
 package controller;
 
+import java.awt.event.WindowAdapter;
+import java.awt.event.WindowEvent;
+
 import controller.amministrazioneController.entrateController.EntrateController;
 import controller.amministrazioneController.usciteController.UsciteController;
 import controller.appuntamentiController.occupazioneSaleController.OccupazioneSaleController;
@@ -13,6 +16,7 @@ import controller.prodottiUtiliController.ProdottiUtiliController;
 import controller.prodottiVenditaController.ProdottiVenditaController;
 import controller.veterinariController.VeterinariController;
 import database.connectionSQL.DbControllerSingleton;
+import database.connectionSQL.DbSingleton;
 import model.SmartVetModel;
 import view.MainView;
 
@@ -24,6 +28,7 @@ import view.MainView;
  */
 public class Controller {
 
+	private DbSingleton db;
 	private SmartVetModel model;
 	private MainView view;
 	private DbControllerSingleton dbControl;
@@ -64,6 +69,8 @@ public class Controller {
 
 	private void initComponents() {
 
+		chiudiConnessioneDB();
+		
 		dbControl = DbControllerSingleton.getInstance();
 
 		loginController = new LoginController(view, model);
@@ -113,5 +120,16 @@ public class Controller {
 		model.populateEntrate(dbControl.selectAllEntrate());
 		model.populateUscite(dbControl.selectAllUscite());
 	}
+	
+	private void chiudiConnessioneDB() {
 
+		view.addWindowListener(new WindowAdapter() {
+			public void windowClosing(WindowEvent evt) {
+			db = DbSingleton.getInstance();
+			System.out.println("ho chiuso db connection");
+			db.closeConnection();
+			System.exit(0);
+			}
+		});
+	}
 }

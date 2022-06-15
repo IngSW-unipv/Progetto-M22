@@ -48,6 +48,8 @@ public class MainView extends JFrame {
 
 	public MainView() {
 
+		setDefaultCloseOperation(JFrame.DO_NOTHING_ON_CLOSE);
+		
 		Toolkit kit = Toolkit.getDefaultToolkit();
 		Dimension screenSize = kit.getScreenSize(); // restituisce la dimensione dello schermo come oggetto Dimension
 		int screenHeight = screenSize.height;
@@ -58,7 +60,7 @@ public class MainView extends JFrame {
 		setLocationRelativeTo(null); // consente di riposizionare il frame
 		setResizable(false);
 		setVisible(true);
-		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		//setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setLayout(null);
 
 		loginView = new LoginView();

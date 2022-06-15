@@ -36,7 +36,7 @@ public class MenuView extends JMenuBar {
 
 	public MenuView() {
 
-		setBounds(24, 24, 600, 31);
+		setBounds(0, 0, 590, 31);
 
 		mnAnagrafica = new JMenu("Anagrafica");
 		add(mnAnagrafica);
