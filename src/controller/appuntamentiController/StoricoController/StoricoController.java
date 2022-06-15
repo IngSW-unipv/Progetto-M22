@@ -24,14 +24,13 @@ public class StoricoController {
 	/**
 	 * costruttore
 	 * 
-	 * @param model 
+	 * @param model
 	 * @param view
 	 */
 	public StoricoController(SmartVetModel model, MainView view) {
 
 		this.view = view;
 		this.model = model;
-		
 
 		if (model.getCFuser().equals("direzione")) {
 
@@ -67,10 +66,17 @@ public class StoricoController {
 			rowData[i][2] = model.getStoricoArray().get(i).getTipo();
 			rowData[i][3] = model.getStoricoArray().get(i).getData();
 			rowData[i][4] = model.getStoricoArray().get(i).getTime();
-			rowData[i][5] = model.getStoricoArray().get(i).getVeterinario().getCF();
+			// rowData[i][5] = model.getStoricoArray().get(i).getVeterinario().getCF();
 			rowData[i][6] = model.getStoricoArray().get(i).getCosto();
 			rowData[i][7] = model.getStoricoArray().get(i).getNote();
 
+			if (model.getStoricoArray().get(i).getVeterinario() == null) {
+				rowData[i][5] = null;
+			}
+
+			else {
+				rowData[i][5] = model.getStoricoArray().get(i).getVeterinario().getCF();
+			}
 			modello.addRow(rowData[i]);
 		}
 	}
@@ -95,12 +101,20 @@ public class StoricoController {
 			rowData[i][2] = model.getStoricoArray().get(i).getTipo();
 			rowData[i][3] = model.getStoricoArray().get(i).getData();
 			rowData[i][4] = model.getStoricoArray().get(i).getTime();
-			rowData[i][5] = model.getStoricoArray().get(i).getVeterinario().getCF();
+			//rowData[i][5] = model.getStoricoArray().get(i).getVeterinario().getCF();
 			rowData[i][6] = model.getStoricoArray().get(i).getCosto();
 			rowData[i][7] = model.getStoricoArray().get(i).getNote();
+			
+			if (model.getStoricoArray().get(i).getVeterinario() == null) {
+				rowData[i][5] = null;
+			}
 
+			else {
+				rowData[i][5] = model.getStoricoArray().get(i).getVeterinario().getCF();
+			}
 			modello.addRow(rowData[i]);
 		}
+			
 	}
 
 	/**
