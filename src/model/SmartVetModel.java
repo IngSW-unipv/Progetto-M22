@@ -38,9 +38,9 @@ public class SmartVetModel {
 	private String CFuser;
 	private static SmartVetModel jSmartVet;
 
+	//costruttore
 	public SmartVetModel() {
 
-//expert pattern
 
 		this.clienti = new ArrayList<Clienti>();
 		this.vets = new ArrayList<Veterinari>();

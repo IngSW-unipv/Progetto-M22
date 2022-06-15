@@ -69,7 +69,7 @@ public class Controller {
 
 	private void initComponents() {
 
-		chiudiConnessioneDB();
+		chiudiConnessioneDBInChisuraFrame();
 		
 		dbControl = DbControllerSingleton.getInstance();
 
@@ -107,7 +107,7 @@ public class Controller {
 	 * @return void
 	 */
 	private void populateArrays() {
-
+ 
 		model.populateClienti(dbControl.selectAllClienti());
 		model.populateFornitori(dbControl.selectAllFornitori());
 		model.populatePazienti(dbControl.selectAllPazienti());
@@ -121,7 +121,7 @@ public class Controller {
 		model.populateUscite(dbControl.selectAllUscite());
 	}
 	
-	private void chiudiConnessioneDB() {
+	private void chiudiConnessioneDBInChisuraFrame() {
 
 		view.addWindowListener(new WindowAdapter() {
 			public void windowClosing(WindowEvent evt) {
