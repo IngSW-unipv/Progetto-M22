@@ -144,8 +144,6 @@ public class AggiungiAppuntamentiActionListener implements ActionListener {
 			rowData[7] = note;
 			
 			
-			System.out.println( dateObj.getDay()+ "" + data.getDay());
-			
 			if (dateObj.before(data) || dateObj.getDay() == data.getDay() ) {
 
 				
