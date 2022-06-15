@@ -40,8 +40,6 @@ public class PazientiPanel extends JPanel {
 	private JCheckBox steril;
 	private JDateChooser dataNascita;
 	private JDateChooser dataMorte;
-
-	private JLabel lblID_PAZ;
 	private JLabel lblNome;
 	private JLabel lblSpecie;
 	private JLabel lblVeterinario;
@@ -146,9 +144,6 @@ public class PazientiPanel extends JPanel {
 		dataMorte.setBounds(1096, 672, 100, 25);
 		add(dataMorte);
 
-		lblID_PAZ = new JLabel("ID_PAZ");
-		lblID_PAZ.setBounds(970, 12, 70, 15);
-		add(lblID_PAZ);
 
 		lblNome = new JLabel("Nome");
 		lblNome.setBounds(970, 72, 108, 15);
@@ -279,9 +274,6 @@ public class PazientiPanel extends JPanel {
 		return dataMorte;
 	}
 
-	public JLabel getlblID_PAZ() {
-		return lblID_PAZ;
-	}
 
 	public JLabel getlblNome() {
 		return lblNome;

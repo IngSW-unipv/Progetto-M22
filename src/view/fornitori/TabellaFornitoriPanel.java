@@ -21,7 +21,7 @@ public class TabellaFornitoriPanel {
 		scrollPane.setViewportView(table);
 
 		TableModelMio modello1 = new TableModelMio(new Object[][] {},
-				new String[] { "PIVA", "NomeAzienda", "NumeroDiTelefono", "Email", "Sede", "IBAN" });
+				new String[] { "PIVA", "Nome azienda", "Telefono", "Email", "Sede", "IBAN" });
 
 		table.setModel(modello1);
 		table.getColumnModel().getColumn(0).setPreferredWidth(95);
