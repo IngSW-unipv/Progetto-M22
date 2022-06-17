@@ -39,7 +39,7 @@ public class SmartVetModel {
 	private static SmartVetModel jSmartVet;
 
 	//costruttore
-	public SmartVetModel() {
+	private SmartVetModel() {
 
 
 		this.clienti = new ArrayList<Clienti>();

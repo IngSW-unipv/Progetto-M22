@@ -22,7 +22,7 @@ public class Test {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {
-					SmartVetModel model = new SmartVetModel();
+					SmartVetModel model = SmartVetModel.getInstance();
 
 					// LoginView log = new LoginView();
 					MainView view = new MainView();
