@@ -275,8 +275,8 @@ public class DbControllerSingleton {
 	 * ritorna int ID appunatmento tramite riga selezionata da tabella
 	 * passata come paraemtro
 	 */
-	public int selectIDappuntamenti(int rigaSelezionata) {
-		return app.selectIDappuntamenti(rigaSelezionata);
+	public int selectIDappuntamenti(int rigaSelezionata, String CF) {
+		return app.selectIDappuntamenti(rigaSelezionata, CF);
 	} 
 
 	/**
@@ -309,6 +309,14 @@ public class DbControllerSingleton {
 	 */
 	public boolean addNuovoAppuntamento(Appuntamenti p) {
 		return app.insertAppuntamenti(p);
+	}
+	
+	public int selectRigaGiusta(String CF, int COD) {
+		return app.selectRigaGiusta(CF, COD);
+	}
+	
+	public int selectRigaGiustaSala(int COD) {
+		return app.selectRigaSala(schema, COD);
 	}
 
 	

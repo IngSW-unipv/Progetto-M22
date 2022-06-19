@@ -2,11 +2,13 @@ package controller.appuntamentiController;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.util.ArrayList;
 
 import javax.swing.table.DefaultTableModel;
 
 import database.connectionSQL.DbControllerSingleton;
 import model.SmartVetModel;
+import model.appuntamenti.Appuntamenti;
 import view.MainView;
 /**
  * Elimina appuntamento selezionato
@@ -38,17 +40,27 @@ public class EliminaAppuntamentiActionListener implements ActionListener {
 
 		int elementoSelezionato = view.getAppuntamentiPanel().getTab().getTable().getSelectedRow();
 
-		int cod = dbControl.selectIDappuntamenti(elementoSelezionato);
+		int cod = dbControl.selectIDappuntamenti(elementoSelezionato, model.getCFuser());
 
 		modello.removeRow(elementoSelezionato);
 		modelloStorico.removeRow(elementoSelezionato);
-		modelloSale.removeRow(elementoSelezionato);
-
+		
+		
 		dbControl.deleteAppuntamenti(cod);
-
-		model.getAppuntamentiArray().remove(elementoSelezionato);
-		model.getStoricoArray().remove(elementoSelezionato);
-		model.getSaleOccupateArray().remove(elementoSelezionato);
+		
+	
+		
+		int index = ricercaLineare(cod, model.getAppuntamentiArray());
+		model.getAppuntamentiArray().remove(index);
+		model.getStoricoArray().remove(index);
+		
+		int rigaGiustaSala = dbControl.selectRigaGiustaSala(cod);
+		modelloSale.removeRow(rigaGiustaSala - 1);
+		
+		int indexPromemoria = ricercaLineare(cod, model.getPromemoriaOggiArray());
+		modelloPromemoria.removeRow(indexPromemoria);
+		model.getPromemoriaOggiArray().remove(indexPromemoria);
+		
 	}
 
 	/**
@@ -64,4 +76,18 @@ public class EliminaAppuntamentiActionListener implements ActionListener {
 		this.view = view;
 		this.dbControl = dbControl;
 	}
+	
+	public int ricercaLineare(int COD, ArrayList<Appuntamenti> array) {
+
+		int index = -1;
+		for (int i = 0; i < array.size(); i++) {
+
+			if (array.get(i).getCOD() == COD) {
+				index = i;
+			}
+
+		}
+		return index;
+	}
+	
 }

@@ -52,7 +52,6 @@ public class AggiornaProdottiVenditaActionListener implements ActionListener {
 		((DefaultTableModel) prodottivenditaPanel.getTabellaProdottiVenditaPanel().getTable().getModel())
 				.removeRow(elementoSelezionato);
 
-		model.getProdottiVenditaArray().remove(elementoSelezionato);
 
 		String nome = prodottivenditaPanel.getNomeText().getText();
 		String tipo = prodottivenditaPanel.getTipoText().getText();
@@ -90,6 +89,12 @@ public class AggiornaProdottiVenditaActionListener implements ActionListener {
 
 		ProdottiVendita pu = new ProdottiVendita(COD, nome, tipo, qt, forn, sqlDate);
 
+		model.getProdottiVenditaArray().get(elementoSelezionato).setNome(nome);
+		model.getProdottiVenditaArray().get(elementoSelezionato).setType(tipo);
+		model.getProdottiVenditaArray().get(elementoSelezionato).setQuantita(qt);
+		model.getProdottiVenditaArray().get(elementoSelezionato).setForn(forn);
+		model.getProdottiVenditaArray().get(elementoSelezionato).setDataScadenza(sqlDate);
+		
 		dbControl.updateProdottiVendita(pu);
 
 		Object rowData[] = new Object[5];
@@ -100,8 +105,7 @@ public class AggiornaProdottiVenditaActionListener implements ActionListener {
 		rowData[3] = forn.getPIVA();
 		rowData[4] = sqlDate;
 
-		modello.addRow(rowData);
-		model.getProdottiVenditaArray().add(pu);
+		modello.insertRow(elementoSelezionato, rowData);;
 
 		pulisciTextField();
 	}

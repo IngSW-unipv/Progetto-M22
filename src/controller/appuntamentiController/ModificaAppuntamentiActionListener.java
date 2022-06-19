@@ -3,11 +3,14 @@ package controller.appuntamentiController;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.sql.Time;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.Date;
 
 import database.connectionSQL.DbControllerSingleton;
 import model.SmartVetModel;
 import view.MainView;
+import view.PopupError;
 
 /**
  * Riempie i campi testo con il record selezionato per poi eventualmente
@@ -34,20 +37,33 @@ public class ModificaAppuntamentiActionListener implements ActionListener {
 
 		if (rigaSelezionata >= 0) {
 
-			int IDpaz = model.getAppuntamentiArray().get(rigaSelezionata).getPaziente().getIDpaz();
-			String sala = model.getAppuntamentiArray().get(rigaSelezionata).getSala();
-			String tipo = model.getAppuntamentiArray().get(rigaSelezionata).getTipo();
-			Date data = model.getAppuntamentiArray().get(rigaSelezionata).getData();
-			Time ora = model.getAppuntamentiArray().get(rigaSelezionata).getTime();
-			String CFvet = model.getAppuntamentiArray().get(rigaSelezionata).getVeterinario().getCF();
-			double costo = model.getAppuntamentiArray().get(rigaSelezionata).getCosto();
-			String note = model.getAppuntamentiArray().get(rigaSelezionata).getNote();
 
+			int IDpaz = (int) view.getAppuntamentiPanel().getTab().getTable().getModel().getValueAt(rigaSelezionata,0);
+			String sala =view.getAppuntamentiPanel().getTab().getTable().getModel().getValueAt(rigaSelezionata,1).toString();
+			String tipo = view.getAppuntamentiPanel().getTab().getTable().getModel().getValueAt(rigaSelezionata,2).toString();
+			Date data =(Date) view.getAppuntamentiPanel().getTab().getTable().getModel().getValueAt(rigaSelezionata,3);
+			String ora = view.getAppuntamentiPanel().getTab().getTable().getModel().getValueAt(rigaSelezionata,4).toString();
+			
+			SimpleDateFormat stf = new SimpleDateFormat("HH:mm:ss");
+			Time timeValue = null;
+			
+			
+			try {
+				timeValue = new java.sql.Time(stf.parse(ora).getTime());
+			} catch (ParseException e1) {
+				// TODO Auto-generated catch block
+				e1.printStackTrace();
+			}
+
+			String CFvet = view.getAppuntamentiPanel().getTab().getTable().getModel().getValueAt(rigaSelezionata,5).toString();
+			double costo = (double) view.getAppuntamentiPanel().getTab().getTable().getModel().getValueAt(rigaSelezionata,6);
+			String note = view.getAppuntamentiPanel().getTab().getTable().getModel().getValueAt(rigaSelezionata,7).toString();
+ 
 			view.getAppuntamentiPanel().getIDpazText().setSelectedItem(IDpaz);
 			view.getAppuntamentiPanel().getSalaText().setSelectedItem(sala);
 			view.getAppuntamentiPanel().getTipoText().setText(tipo);
 			view.getAppuntamentiPanel().getDataText().setDate(data);
-			view.getAppuntamentiPanel().getTimeChooserText().setTime(ora);
+			view.getAppuntamentiPanel().getTimeChooserText().setTime(timeValue);
 
 			if (view.getAppuntamentiPanel().getCFvetText() != null) {
 				view.getAppuntamentiPanel().getCFvetText().setSelectedItem(CFvet);

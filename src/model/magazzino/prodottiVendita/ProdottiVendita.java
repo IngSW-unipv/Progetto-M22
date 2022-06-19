@@ -25,7 +25,7 @@ public class ProdottiVendita extends ProdottoBase {
 	 * @param COD codice
 	 * @param nome nome
 	 * @param type tipo
-	 * @param quantita quantità
+	 * @param quantita quantitï¿½
 	 * @param fornitore fornitore
 	 * @param dataScadenza dataScadenza
 	 */
@@ -41,6 +41,10 @@ public class ProdottiVendita extends ProdottoBase {
 	@Override
 	public String toString() {
 		return "ProdottiVendita [" + super.toString() + "dataScadenza=" + dataScadenza + "]"; 
+	}
+
+	public void setDataScadenza(java.sql.Date dataScadenza) {
+		this.dataScadenza = dataScadenza;
 	}
 
 }

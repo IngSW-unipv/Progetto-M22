@@ -23,8 +23,7 @@ public class Test {
 			public void run() {
 				try {
 					SmartVetModel model = SmartVetModel.getInstance();
-
-					// LoginView log = new LoginView();
+				
 					MainView view = new MainView();
 
 					@SuppressWarnings("unused")

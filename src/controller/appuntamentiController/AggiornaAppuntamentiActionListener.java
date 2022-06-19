@@ -4,6 +4,7 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Date;
 
 import javax.swing.table.DefaultTableModel;
@@ -29,6 +30,7 @@ public class AggiornaAppuntamentiActionListener implements ActionListener {
 	private SmartVetModel model;
 	private DbControllerSingleton dbControl;
 	private MainView view;
+	private int elementoSelezionato;
 
 	/**
 	 * Leggo i campi testo modificati e aggiorno il record di appuntamento
@@ -44,14 +46,11 @@ public class AggiornaAppuntamentiActionListener implements ActionListener {
 	public void actionPerformed(ActionEvent e) {
 		// TODO Auto-generated method stub
 
-		int elementoSelezionato = view.getAppuntamentiPanel().getTab().getTable().getSelectedRow();
+		DefaultTableModel modello = (DefaultTableModel) view.getAppuntamentiPanel().getTab().getTable().getModel();
+		elementoSelezionato = view.getAppuntamentiPanel().getTab().getTable().getSelectedRow();
 		((DefaultTableModel) view.getAppuntamentiPanel().getTab().getTable().getModel()).removeRow(elementoSelezionato);
 
-		int COD = dbControl.selectIDappuntamenti(elementoSelezionato);
-
-		model.getAppuntamentiArray().remove(elementoSelezionato);
-		model.getStoricoArray().remove(elementoSelezionato);
-		model.getSaleOccupateArray().remove(elementoSelezionato);
+		int COD = dbControl.selectIDappuntamenti(elementoSelezionato, model.getCFuser());
 
 		int IDpaz = (int) view.getAppuntamentiPanel().getIDpazText().getSelectedItem();
 		String sala = view.getAppuntamentiPanel().getSalaText().getSelectedItem().toString();
@@ -111,16 +110,29 @@ public class AggiornaAppuntamentiActionListener implements ActionListener {
 
 		String note = view.getAppuntamentiPanel().getNoteText().getText().toString();
 
-		DefaultTableModel modello = (DefaultTableModel) view.getAppuntamentiPanel().getTab().getTable().getModel();
 		DefaultTableModel modelloStorico = (DefaultTableModel) view.getStoricoPanel().getTable().getModel();
 		DefaultTableModel modelloSale = (DefaultTableModel) view.getSaleOccupatePanel().getTable().getModel();
+		DefaultTableModel modelloPromemoria = (DefaultTableModel) view.getDashboard().getPromemoria().getTable().getModel();
 
 		Paziente paz = costruisciPaziente();
 		Veterinari vet = costruisciVeterinario();
 
 		Appuntamenti app = new Appuntamenti(COD, paz, sala, tipo, sqlDate, timeValue, vet, costo, note);
 
+		int index = ricercaLineare(COD, model.getAppuntamentiArray());
+
 		dbControl.updateAppuntamenti(app);
+
+		int rigaGiusta = dbControl.selectRigaGiusta(model.getCFuser(), COD);
+
+		model.getAppuntamentiArray().get(index).setPaziente(paz);
+		model.getAppuntamentiArray().get(index).setSala(sala);
+		model.getAppuntamentiArray().get(index).setTipo(tipo);
+		model.getAppuntamentiArray().get(index).setData(sqlDate);
+		model.getAppuntamentiArray().get(index).setTime(timeValue);
+		model.getAppuntamentiArray().get(index).setVeterinario(vet);
+		model.getAppuntamentiArray().get(index).setCosto(costo);
+		model.getAppuntamentiArray().get(index).setNote(note);
 
 		Object rowData[] = new Object[8];
 
@@ -133,13 +145,14 @@ public class AggiornaAppuntamentiActionListener implements ActionListener {
 		rowData[6] = costo;
 		rowData[7] = note;
 
-		model.getAppuntamentiArray().add(app);
+		modello.insertRow(rigaGiusta - 1, rowData);
+
+		// storico
 		model.getStoricoArray().add(app);
-		model.getSaleOccupateArray().add(app);
+		modelloStorico.removeRow(elementoSelezionato);
+		modelloStorico.insertRow(rigaGiusta - 1, rowData);
 
-		modello.addRow(rowData);
-		modelloStorico.addRow(rowData);
-
+		// Sale occupate
 		Object rowData2[] = new Object[5];
 
 		rowData2[0] = IDpaz;
@@ -148,8 +161,30 @@ public class AggiornaAppuntamentiActionListener implements ActionListener {
 		rowData2[3] = sqlDate;
 		rowData2[4] = timeValue;
 
-		modelloSale.addRow(rowData2);
+		int rigaGiustaSala = dbControl.selectRigaGiustaSala(COD);
 
+		modelloSale.removeRow(rigaGiustaSala - 1);
+		modelloSale.insertRow(rigaGiustaSala - 1, rowData2);
+
+		
+		//promemoria
+		
+		int indexProm = ricercaLineare(COD, model.getPromemoriaOggiArray());
+		modelloPromemoria.removeRow(indexProm);
+		Object rowData3[] = new Object[5];
+		
+		rowData3[0] = app.getSala();
+		rowData3[1] = app.getTipo();
+		rowData3[2] = app.getData();
+		rowData3[3] = app.getTime();
+		rowData3[4] = app.getNote();
+		
+		modelloPromemoria.addRow(rowData3);
+		model.getPromemoriaOggiArray().remove(indexProm);
+		model.getPromemoriaOggiArray().add(app);
+		
+		
+		
 		pulisciTextField();
 	}
 
@@ -239,4 +274,16 @@ public class AggiornaAppuntamentiActionListener implements ActionListener {
 		this.view = view;
 	}
 
+	public int ricercaLineare(int COD, ArrayList<Appuntamenti> array) {
+
+		int index = -1;
+		for (int i = 0; i < array.size(); i++) {
+
+			if (array.get(i).getCOD() == COD) {
+				index = i;
+			}
+
+		}
+		return index;
+	}
 }

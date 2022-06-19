@@ -185,7 +185,11 @@ public class ProdottiVenditaDAO implements IProdottiVenditaDAO {
 			stmt.setString(1, p.getNome());
 			stmt.setString(2, p.getType());
 			stmt.setInt(3, p.getQuantita());
+			if(p.getFornitore() != null) {
 			stmt.setString(4, p.getFornitore().getPIVA());
+			}
+			else
+				stmt.setString(4, null);
 			stmt.setDate(5, p.getDataScadenza());
 			stmt.executeUpdate();
 

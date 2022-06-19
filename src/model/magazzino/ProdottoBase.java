@@ -48,8 +48,8 @@ public class ProdottoBase {
 	}
 
 	/**
-	 * restituisce la quantità
-	 * @return int quantità quantità
+	 * restituisce la quantitï¿½
+	 * @return int quantitï¿½ quantitï¿½
 	 */
 	public int getQuantita() {
 		return quantita;
@@ -70,13 +70,26 @@ public class ProdottoBase {
 	public void setForn(Fornitori forn) {
 		this.forn = forn;
 	}
+	
+
+	public void setNome(String nome) {
+		this.nome = nome;
+	}
+
+	public void setType(String type) {
+		this.type = type;
+	}
+
+	public void setQuantita(int quantita) {
+		this.quantita = quantita;
+	}
 
 	/**
 	 * costruttore
 	 * @param COD codice
 	 * @param nome nome
 	 * @param type tipo
-	 * @param quantita quantità
+	 * @param quantita quantitï¿½
 	 * @param forn fornitore
 	 */
 	public ProdottoBase(int COD, String nome, String type, int quantita, Fornitori forn) {

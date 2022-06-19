@@ -129,10 +129,8 @@ public class PopUpGoBtnActionListenerPr implements ActionListener {
 
 		int rigaSelezionata = fatturaPrActionListener.getRigaSelezionata();
 
-		((DefaultTableModel) view.getProdottiVenditaPanel().getTabellaProdottiVenditaPanel().getTable().getModel())
-				.removeRow(rigaSelezionata);
+		model.getProdottiVenditaArray().get(rigaSelezionata).setQuantita(qt);
 
-		model.getProdottiVenditaArray().remove(rigaSelezionata);
 
 		int COD = fatturaPrActionListener.getCOD();
 		String nome = fatturaPrActionListener.getNome();
@@ -151,11 +149,19 @@ public class PopUpGoBtnActionListenerPr implements ActionListener {
 		rowData[0] = nome;
 		rowData[1] = tipo;
 		rowData[2] = qt;
-		rowData[3] = forn.getPIVA();
+
+		if (forn != null) {
+
+			rowData[3] = forn.getPIVA();
+		}
+
+		else {
+			rowData[3] = null;
+		}
+
 		rowData[4] = sqlDate;
 
-		modello.addRow(rowData);
-		model.getProdottiVenditaArray().add(pr);
+		modello.setValueAt(qt, rigaSelezionata, 2);
 
 	}
 

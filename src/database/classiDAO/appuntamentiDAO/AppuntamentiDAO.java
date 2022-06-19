@@ -50,7 +50,7 @@ public class AppuntamentiDAO implements IAppuntamentiDAO {
 
 		try {
 
-			String query = "SELECT * FROM APPUNTAMENTI WHERE GIORNO >= CURDATE() ORDER BY GIORNO DESC";
+			String query = "SELECT * FROM APPUNTAMENTI WHERE GIORNO >= CURDATE() ORDER BY GIORNO";
 			rs1 = db.executeQuery(query);
 
 			while (rs1.next()) {
@@ -80,15 +80,14 @@ public class AppuntamentiDAO implements IAppuntamentiDAO {
 	 * @exception SQLException qualcosa è andato storto nel db
 	 */
 	@Override
-	public int selectIDappuntamenti(int rigaSelezionata) {
+	public int selectIDappuntamenti(int rigaSelezionata, String CF) {
 
 		ResultSet rs1;
 
 		rigaSelezionata = rigaSelezionata + 1;
-		String query = "SELECT COD_VISITA FROM\n" + "(\n"
-				+ "SELECT COD_VISITA,GIORNO, ROW_NUMBER() OVER (ORDER BY GIORNO DESC) AS RowNumber\n"
-				+ "FROM APPUNTAMENTI\n" + ") A\n" + "WHERE RowNumber = \"" + rigaSelezionata
-				+ "\" AND GIORNO >= CURDATE() ";
+		String query = "SELECT COD_VISITA, RowNumber FROM\n"
+				+ "				(SELECT COD_VISITA,GIORNO, ROW_NUMBER() OVER (ORDER BY GIORNO) AS RowNumber\n"
+				+ "				FROM APPUNTAMENTI WHERE GIORNO >= CURDATE() AND VET_REFERENTE = \"" + CF + "\")B WHERE B.RowNumber = \"" + rigaSelezionata + "\"";
 		rs1 = db.executeQuery(query);
 
 		try {
@@ -158,7 +157,7 @@ public class AppuntamentiDAO implements IAppuntamentiDAO {
 		try {
 
 			String query = "SELECT * FROM APPUNTAMENTI where GIORNO = CURDATE() and VET_REFERENTE =\"" + CF_vetReferente
-					+ "\"";
+					+ "\" ORDER BY GIORNO";
 			rs1 = db.executeQuery(query);
 
 			while (rs1.next()) {
@@ -278,7 +277,7 @@ public class AppuntamentiDAO implements IAppuntamentiDAO {
 
 		String query = "UPDATE APPUNTAMENTI SET ID_PAZ = ?,SALA = ? ,TIPO = ? ,GIORNO = ?,"
 				+ " ORA = ? , VET_REFERENTE = ?, COSTO = ?,NOTE = ? " + " where COD_VISITA=\"" + p.getCOD()
-				+ "\" ORDER BY GIORNO DESC";
+				+ "\" ORDER BY GIORNO";
 
 		PreparedStatement stmt = null;
 
@@ -329,7 +328,7 @@ public class AppuntamentiDAO implements IAppuntamentiDAO {
 		try {
 
 			String query = "SELECT * FROM APPUNTAMENTI WHERE VET_REFERENTE = \"" + CFvet
-					+ "\"  AND GIORNO >= CURDATE() ORDER BY GIORNO DESC ";
+					+ "\"  AND GIORNO >= CURDATE() ORDER BY GIORNO";
 			rs1 = db.executeQuery(query);
 
 			while (rs1.next()) {
@@ -347,6 +346,53 @@ public class AppuntamentiDAO implements IAppuntamentiDAO {
 		}
 
 		return result;
+	}
+	
+	
+	public int selectRigaGiusta(String CF, int COD) {
+
+		ResultSet rs1;
+
+		String query = "SELECT  RowNumber FROM\n"
+				+ "				(SELECT COD_VISITA, ROW_NUMBER()OVER (ORDER BY GIORNO) AS RowNumber\n"
+				+ "				FROM APPUNTAMENTI WHERE GIORNO >= CURDATE() AND VET_REFERENTE = \"" + CF + "\")B WHERE B.COD_VISITA = \"" + COD + "\"";
+		rs1 = db.executeQuery(query);
+
+		try {
+			if (rs1.next()) {
+
+				return rs1.getInt(1);
+			}
+
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+
+		}
+		return -1;
+	}
+	
+	public int selectRigaSala(String CF, int COD) {
+
+		ResultSet rs1;
+
+		String query = "SELECT  RowNumber FROM\n"
+				+ "				(SELECT COD_VISITA, ROW_NUMBER()OVER (ORDER BY GIORNO) AS RowNumber\n"
+				+ "				FROM APPUNTAMENTI WHERE GIORNO >= CURDATE())B WHERE B.COD_VISITA = \"" + COD + "\"";
+		rs1 = db.executeQuery(query);
+
+		try {
+			if (rs1.next()) {
+
+				return rs1.getInt(1);
+			}
+
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+
+		}
+		return -1;
 	}
 
 }

@@ -4,8 +4,9 @@ import java.sql.Date;
 
 import model.anagrafica.clienti.Clienti;
 import model.anagrafica.veterinari.Veterinari;
+
 /**
- * la classe pazienti rappresenta l'entita pazienti della clinica 
+ * la classe pazienti rappresenta l'entita pazienti della clinica
  * 
  * @author MMA
  * @version 1.0 (current version number of program)
@@ -30,6 +31,7 @@ public class Paziente {
 
 	/**
 	 * restituisce il nome del paziente
+	 * 
 	 * @return String nome
 	 */
 	public String getNome() {
@@ -38,6 +40,7 @@ public class Paziente {
 
 	/**
 	 * restituisce l'iDpaz del paziente
+	 * 
 	 * @return int l'iDpaz
 	 */
 	public int getIDpaz() {
@@ -46,6 +49,7 @@ public class Paziente {
 
 	/**
 	 * assegnal'iDpaz al paziente
+	 * 
 	 * @param iDpaz
 	 */
 	public void setIDpaz(int iDpaz) {
@@ -54,6 +58,7 @@ public class Paziente {
 
 	/**
 	 * restituisce la specie del paziente
+	 * 
 	 * @return String specie
 	 */
 	public String getSpecie() {
@@ -62,6 +67,7 @@ public class Paziente {
 
 	/**
 	 * restituisce la razza del paziente
+	 * 
 	 * @return String razza
 	 */
 	public String getRazza() {
@@ -70,6 +76,7 @@ public class Paziente {
 
 	/**
 	 * restituisce la data di nascita del paziente
+	 * 
 	 * @return String dataNascita
 	 */
 	public Date getDataNascita() {
@@ -78,6 +85,7 @@ public class Paziente {
 
 	/**
 	 * restituisce il sesso del paziente
+	 * 
 	 * @return String sesso
 	 */
 	public String getSesso() {
@@ -86,6 +94,7 @@ public class Paziente {
 
 	/**
 	 * restituisce il veterinario che ha in cura il paziente
+	 * 
 	 * @return String veterinario
 	 */
 	public Veterinari getVeterinario() {
@@ -94,6 +103,7 @@ public class Paziente {
 
 	/**
 	 * restituisce il gruppo sanguinio del paziente
+	 * 
 	 * @return String gruppoSanguinio
 	 */
 	public String getGruppoSanguigno() {
@@ -101,8 +111,9 @@ public class Paziente {
 	}
 
 	/**
-	 * restituisce 0 o 1 a seconda dell'assenza o presenza dell'impianto
-	 * contenente il microchip nel paziente
+	 * restituisce 0 o 1 a seconda dell'assenza o presenza dell'impianto contenente
+	 * il microchip nel paziente
+	 * 
 	 * @return Boolean microchip
 	 */
 	public Boolean getMicrochip() {
@@ -110,8 +121,8 @@ public class Paziente {
 	}
 
 	/**
-	 * restituisce 0 o 1 a seconda della sterilizzazione o
-	 * non del paziente
+	 * restituisce 0 o 1 a seconda della sterilizzazione o non del paziente
+	 * 
 	 * @return Boolean sterilizzato
 	 */
 	public Boolean getSterilizzato() {
@@ -120,6 +131,7 @@ public class Paziente {
 
 	/**
 	 * restituisce il peso del paziente
+	 * 
 	 * @return double peso
 	 */
 	public double getPeso() {
@@ -128,6 +140,7 @@ public class Paziente {
 
 	/**
 	 * restituisce la data di morte del paziente
+	 * 
 	 * @return Date DataMorte
 	 */
 	public Date getDataMorte() {
@@ -136,6 +149,7 @@ public class Paziente {
 
 	/**
 	 * restituisce il CF del propietario del paziente
+	 * 
 	 * @return Clienti Cliente
 	 */
 	public Clienti getCliente() {
@@ -144,14 +158,68 @@ public class Paziente {
 
 	/**
 	 * restituisce le note relative al paziente
+	 * 
 	 * @return String note
 	 */
 	public String getNote() {
 		return note;
 	}
 
+	public void setNome(String nome) {
+		this.nome = nome;
+	}
+
+	public void setSpecie(String specie) {
+		this.specie = specie;
+	}
+
+	public void setRazza(String razza) {
+		this.razza = razza;
+	}
+
+	public void setDataNascita(Date dataNascita) {
+		DataNascita = dataNascita;
+	}
+
+	public void setSesso(String sesso) {
+		this.sesso = sesso;
+	}
+
+	public void setVeterinario(Veterinari veterinario) {
+		Veterinario = veterinario;
+	}
+
+	public void setGruppoSanguigno(String gruppoSanguigno) {
+		GruppoSanguigno = gruppoSanguigno;
+	}
+
+	public void setMicrochip(Boolean microchip) {
+		this.microchip = microchip;
+	}
+
+	public void setSterilizzato(Boolean sterilizzato) {
+		this.sterilizzato = sterilizzato;
+	}
+
+	public void setPeso(double peso) {
+		this.peso = peso;
+	}
+
+	public void setDataMorte(Date dataMorte) {
+		DataMorte = dataMorte;
+	}
+
+	public void setCliente(Clienti cliente) {
+		Cliente = cliente;
+	}
+
+	public void setNote(String note) {
+		this.note = note;
+	}
+
 	/**
 	 * costruttore
+	 * 
 	 * @param IDpaz
 	 * @param nome
 	 * @param specie
@@ -167,9 +235,9 @@ public class Paziente {
 	 * @param cliente
 	 * @param note
 	 */
-	public Paziente(int IDpaz, String nome, String specie, String razza, Date dataNascita, String sesso, Veterinari veterinario,
-			String gruppoSanguigno, Boolean microchip, Boolean sterilizzato, double peso, Date dataMorte,
-			Clienti cliente, String note) {
+	public Paziente(int IDpaz, String nome, String specie, String razza, Date dataNascita, String sesso,
+			Veterinari veterinario, String gruppoSanguigno, Boolean microchip, Boolean sterilizzato, double peso,
+			Date dataMorte, Clienti cliente, String note) {
 		super();
 		this.IDpaz = IDpaz;
 		this.nome = nome;
@@ -194,6 +262,5 @@ public class Paziente {
 				+ ", microchip=" + microchip + ", sterilizzato=" + sterilizzato + ", peso=" + peso + ", DataMorte="
 				+ DataMorte + ", Cliente=" + Cliente + ", note=" + note + "]";
 	}
-
 
 }

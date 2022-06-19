@@ -174,6 +174,7 @@ public class PazienteDAO implements IPazienteDAO {
 		ResultSet rs1;
 		db = DbSingleton.getInstance();
 		rigaSelezionata = rigaSelezionata + 1;
+		System.out.println(rigaSelezionata + "riga n");
 		String query = "SELECT ID_PAZ FROM\n" + "(\n"
 				+ "SELECT  ID_PAZ, ROW_NUMBER() OVER (ORDER BY ID_PAZ) AS RowNumber\n" + "FROM PAZIENTI\n" + ") A\n"
 				+ "WHERE RowNumber = \"" + rigaSelezionata + "\"";
@@ -246,7 +247,12 @@ public class PazienteDAO implements IPazienteDAO {
 			stmt.setString(3, p.getRazza());
 			stmt.setDate(4, p.getDataNascita());
 			stmt.setString(5, p.getSesso());
+			if (p.getVeterinario() != null) {
 			stmt.setString(6, p.getVeterinario().getCF());
+			}
+			else {
+				stmt.setString(6, null);
+			}
 			stmt.setString(7, p.getGruppoSanguigno());
 			stmt.setBoolean(8, p.getMicrochip());
 			stmt.setBoolean(9, p.getSterilizzato());

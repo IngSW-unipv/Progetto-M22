@@ -8,7 +8,7 @@ import model.pazienti.Paziente;
 /** 
  * La classe appuntamenti definisce la prenotazione di una visita ad un paziente ad una data e ora.
  * Ne specifica il tipo, la sala, il costo e il veterinario che ka effettua.
- * Sarà presente una stringa per le eventuali note
+ * Sarï¿½ presente una stringa per le eventuali note
  * 
  * @author MMA
  * version 1.0
@@ -104,6 +104,40 @@ public class Appuntamenti {
 	 */
 	public Time getTime() {
 		return time;
+	}
+	
+	
+
+	public void setPaziente(Paziente paziente) {
+		this.paziente = paziente;
+	}
+
+	public void setSala(String sala) {
+		this.sala = sala;
+	}
+
+	public void setTipo(String tipo) {
+		this.tipo = tipo;
+	}
+
+	public void setData(Date data) {
+		this.data = data;
+	}
+
+	public void setTime(Time time) {
+		this.time = time;
+	}
+
+	public void setVeterinario(Veterinari veterinario) {
+		this.veterinario = veterinario;
+	}
+
+	public void setCosto(double costo) {
+		this.costo = costo;
+	}
+
+	public void setNote(String note) {
+		this.note = note;
 	}
 
 	/**

@@ -14,7 +14,7 @@ public class ProdottiUtili extends ProdottoBase {
 	 * @param COD codice
 	 * @param nome nome
 	 * @param type tipo
-	 * @param quantita quantità
+	 * @param quantita quantitï¿½
 	 * @param forn fornitore
 	 */
 	public ProdottiUtili(int COD, String nome, String type, int quantita, Fornitori forn) {
@@ -30,5 +30,7 @@ public class ProdottiUtili extends ProdottoBase {
 	public String toString() {
 		return "ProdottiUtili [" + super.toString() + "]";
 	}
+	
+	
 
 }

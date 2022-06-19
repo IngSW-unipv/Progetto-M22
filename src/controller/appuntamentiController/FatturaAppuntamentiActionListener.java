@@ -53,8 +53,8 @@ public class FatturaAppuntamentiActionListener implements ActionListener {
 		if (rigaSelezionata >= 0) {
 
 			String causa = "Appuntamento";
-			String tipo = model.getAppuntamentiArray().get(rigaSelezionata).getTipo();
-			double prezzo = model.getAppuntamentiArray().get(rigaSelezionata).getCosto();
+			String tipo = view.getAppuntamentiPanel().getTab().getTable().getModel().getValueAt(rigaSelezionata, 2).toString();
+			double prezzo = (double) view.getAppuntamentiPanel().getTab().getTable().getModel().getValueAt(rigaSelezionata, 6);
 
 			Entrate entrata = new Entrate(0, tipo, prezzo, causa, sqlDate);
 
