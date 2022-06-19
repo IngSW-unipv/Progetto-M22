@@ -44,6 +44,7 @@ public class EsciAccountActionListener implements ActionListener {
 
 		view.getDashboard().setVisible(false);
 		view.getLoginView().setVisible(true);
+
 	}
 
 	/**

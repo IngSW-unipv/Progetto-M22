@@ -62,6 +62,7 @@ public class GoBtnActionListener implements ActionListener {
 			view.setLocationRelativeTo(null); // consente di riposizionare il frame
 
 			view.setVisible(true);
+			view.getDashboard().setVisible(true);
 			view.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 			view.getContentPane().setLayout(null);
 

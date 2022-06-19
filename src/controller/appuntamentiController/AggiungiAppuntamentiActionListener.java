@@ -187,8 +187,7 @@ public class AggiungiAppuntamentiActionListener implements ActionListener {
 			model.getStoricoArray().add(nuovoApp);
 			modelloStorico.insertRow(rigaGiusta - 1, rowData);
 
-			if (sdf.format(dateObj).equals(sdf.format(sqlDate))
-					&& ((model.getCFuser().equals(vet.getCF()) || model.getCFuser().equals("direzione")))) {
+			if (sdf.format(dateObj).equals(sdf.format(sqlDate))) {
 				
 				model.getPromemoriaOggiArray().add(nuovoApp);
 				Object rowData3[] = new Object[5];

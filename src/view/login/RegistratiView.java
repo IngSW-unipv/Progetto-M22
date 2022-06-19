@@ -13,10 +13,10 @@ import javax.swing.JPasswordField;
 import javax.swing.JTextField;
 
 import view.MainView;
-/** 
+
+/**
  * 
- * @author MMA
- * version 1.0
+ * @author MMA version 1.0
  *
  */
 public class RegistratiView extends JFrame {
@@ -33,26 +33,19 @@ public class RegistratiView extends JFrame {
 	private JLabel lblPassword_2;
 	private JComboBox comboBox;
 	private JLabel lblDipendente;
-	
 
 	public RegistratiView() {
 
-		
 		Toolkit kit = Toolkit.getDefaultToolkit();
 		Dimension screenSize = kit.getScreenSize(); // restituisce la dimensione dello schermo come oggetto Dimension
 		int screenHeight = screenSize.height;
 		int screenWidth = screenSize.width;
 
 		// centra il frame nello schermo
-		setSize(800, 500);
-		//setLocationRelativeTo(null); // consente di riposizionare il frame
-		setResizable(false);
-		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		getContentPane().setLayout(null);
-		
-		setSize(800, 500);
-		setLocation(0, 0); // consente di riposizionare il frame
-		getContentPane().setLayout(null);
+		setSize(screenWidth / 3, screenHeight / 3);
+		setVisible(false);
+		setLayout(null);
+		;
 
 		passwordField = new JPasswordField();
 		passwordField.setBounds(90, 122, 206, 39);

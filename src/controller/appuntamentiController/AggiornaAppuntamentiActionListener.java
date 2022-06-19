@@ -132,7 +132,7 @@ public class AggiornaAppuntamentiActionListener implements ActionListener {
 		}
 
 		if (!((dateObj.before(data) || (dateObj.getDay() == data.getDay() && dateObj.getMonth() == data.getMonth()
-				&& dateObj.getYear() == data.getYear() && oraAdesso.before(timeValue))) && data != null)) {
+				&& dateObj.getYear() == data.getYear())) && data != null)) {
 
 			PopupError err = new PopupError();
 			err.infoBox("non puoi inserire un appuntamento vecchio", "Errore");
@@ -152,9 +152,6 @@ public class AggiornaAppuntamentiActionListener implements ActionListener {
 
 		dbControl.updateAppuntamenti(app);
 
-		System.out.println(COD + "cod");
-
-		System.out.println(rigaGiusta + "rigagiusta");
 
 		model.getAppuntamentiArray().get(index).setPaziente(paz);
 		model.getAppuntamentiArray().get(index).setSala(sala);
@@ -180,7 +177,7 @@ public class AggiornaAppuntamentiActionListener implements ActionListener {
 		modello.insertRow(rigaGiusta - 1, rowData);
 
 		if ((dateObj.before(data) || (dateObj.getDay() == data.getDay() && dateObj.getMonth() == data.getMonth()
-				&& dateObj.getYear() == data.getYear() && oraAdesso.before(timeValue))) && data != null) {
+				&& dateObj.getYear() == data.getYear())) && data != null) {
 			// storico
 			model.getStoricoArray().add(app);
 			modelloStorico.removeRow(elementoSelezionato);
@@ -318,10 +315,14 @@ public class AggiornaAppuntamentiActionListener implements ActionListener {
 	public int ricercaLineare(int COD, ArrayList<Appuntamenti> array) {
 
 		int index = -1;
+		System.out.println(COD + "coddd");
 		for (int i = 0; i < array.size(); i++) {
 
 			if (array.get(i).getCOD() == COD) {
+			
 				index = i;
+				System.out.println(index + "INDEX");
+				
 			}
 
 		}
