@@ -49,7 +49,7 @@ public class AggiungiVeterinarioActionListener implements ActionListener {
 			// aggiungo vet nelle comboBox di altre finestre
 
 			if (model.getCFuser().equals("direzione")) {
-				System.out.println(view.getAppuntamentiPanel().getCFvetText() + "errore");
+				
 				view.getAppuntamentiPanel().getCFvetText().addItem(vet.getCF());
 			}
 

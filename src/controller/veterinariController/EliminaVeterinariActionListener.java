@@ -55,7 +55,7 @@ public class EliminaVeterinariActionListener implements ActionListener {
 
 		modello.removeRow(elementoSelezionato);
 
-		dbControl.deleteVeterinario(model.getVeterinariArray().remove(elementoSelezionato));
+		dbControl.deleteVeterinario(model.getVeterinariArray().get(elementoSelezionato));
 		model.getVeterinariArray().remove(elementoSelezionato);
 		
 		}
