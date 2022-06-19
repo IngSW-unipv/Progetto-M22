@@ -4,6 +4,7 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
+import java.util.Calendar;
 //import java.sql.Date;
 import java.util.Date;
 
@@ -72,10 +73,15 @@ public class AggiungiFarmaciActionListener implements ActionListener {
 
 		//
 
-		int Quantita = (int) view.getFarmaciPanel().getSpinner().getValue();
+		int quantita = (int) view.getFarmaciPanel().getSpinner().getValue();
 
-		LottoFarmaci nuovoLotto = new LottoFarmaci(IDLotto, mode, type, forn, sqlDate, Quantita);
+		//data di oggi
+		Calendar calendar = Calendar.getInstance();
+		Date dateObj = calendar.getTime();
+		
+		LottoFarmaci nuovoLotto = new LottoFarmaci(IDLotto, mode, type, forn, sqlDate, quantita);
 		boolean flag = dbControl.addLottoFarmaci(nuovoLotto);
+		
 
 		if (flag) {
 
@@ -83,7 +89,9 @@ public class AggiungiFarmaciActionListener implements ActionListener {
 
 			Object rowData[] = new Object[6];
 
-			DefaultTableModel model = (DefaultTableModel) view.getFarmaciPanel().getTabellaFarmaci().getTable()
+			DefaultTableModel modello = (DefaultTableModel) view.getFarmaciPanel().getTabellaFarmaci().getTable()
+					.getModel();
+			DefaultTableModel modelloProm = (DefaultTableModel) view.getDashboard().getTabellaFarmaciView().getTable()
 					.getModel();
 
 			rowData[0] = IDLotto;
@@ -91,10 +99,24 @@ public class AggiungiFarmaciActionListener implements ActionListener {
 			rowData[2] = type;
 			rowData[3] = forn.getPIVA();
 			rowData[4] = sqlDate;
-			rowData[5] = Quantita;
+			rowData[5] = quantita;
 
-			model.addRow(rowData);
-
+			modello.addRow(rowData);
+		
+			//promemoria
+			if (dateObj.getMonth() == sqlDate.getMonth()  && dateObj.getYear() == sqlDate.getYear()) {
+				Object rowData1[] = new Object[5];
+				
+				rowData1[0] = IDLotto;
+				rowData1[4] = type;
+				rowData1[2] = sqlDate;
+				rowData1[3] = quantita;
+				rowData1[1] = mode;
+				
+				modelloProm.addRow(rowData1);
+				model.getFarmaciScadenzaArray().add(nuovoLotto);
+				
+			}
 			pulisciTextField();
 
 		} else {

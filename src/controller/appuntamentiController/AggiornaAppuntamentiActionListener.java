@@ -2,9 +2,11 @@ package controller.appuntamentiController;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.sql.Time;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.Date;
 
 import javax.swing.table.DefaultTableModel;
@@ -48,10 +50,8 @@ public class AggiornaAppuntamentiActionListener implements ActionListener {
 
 		DefaultTableModel modello = (DefaultTableModel) view.getAppuntamentiPanel().getTab().getTable().getModel();
 		elementoSelezionato = view.getAppuntamentiPanel().getTab().getTable().getSelectedRow();
-		((DefaultTableModel) view.getAppuntamentiPanel().getTab().getTable().getModel()).removeRow(elementoSelezionato);
 
 		int COD = dbControl.selectIDappuntamenti(elementoSelezionato, model.getCFuser());
-
 		int IDpaz = (int) view.getAppuntamentiPanel().getIDpazText().getSelectedItem();
 		String sala = view.getAppuntamentiPanel().getSalaText().getSelectedItem().toString();
 		String tipo = view.getAppuntamentiPanel().getTipoText().getText().toString();
@@ -80,7 +80,6 @@ public class AggiornaAppuntamentiActionListener implements ActionListener {
 		}
 
 		String ora = view.getAppuntamentiPanel().getTimeChooserText().getFormatedTime();
-
 		SimpleDateFormat stf = new SimpleDateFormat("HH:mm:ss");
 
 		try {
@@ -109,21 +108,53 @@ public class AggiornaAppuntamentiActionListener implements ActionListener {
 		}
 
 		String note = view.getAppuntamentiPanel().getNoteText().getText().toString();
-
 		DefaultTableModel modelloStorico = (DefaultTableModel) view.getStoricoPanel().getTable().getModel();
 		DefaultTableModel modelloSale = (DefaultTableModel) view.getSaleOccupatePanel().getTable().getModel();
-		DefaultTableModel modelloPromemoria = (DefaultTableModel) view.getDashboard().getPromemoria().getTable().getModel();
+		DefaultTableModel modelloPromemoria = (DefaultTableModel) view.getDashboard().getPromemoria().getTable()
+				.getModel();
 
 		Paziente paz = costruisciPaziente();
 		Veterinari vet = costruisciVeterinario();
 
 		Appuntamenti app = new Appuntamenti(COD, paz, sala, tipo, sqlDate, timeValue, vet, costo, note);
 
+		// data di oggi
+		Calendar calendar = Calendar.getInstance();
+		Date dateObj = calendar.getTime();
+		Date oraAdesso = null;
+		String orario = stf.format(Calendar.getInstance().getTime());
+
+		try {
+			oraAdesso = stf.parse(orario);
+		} catch (ParseException e1) {
+			// TODO Auto-generated catch block
+			e1.printStackTrace();
+		}
+
+		if (!((dateObj.before(data) || (dateObj.getDay() == data.getDay() && dateObj.getMonth() == data.getMonth()
+				&& dateObj.getYear() == data.getYear() && oraAdesso.before(timeValue))) && data != null)) {
+
+			PopupError err = new PopupError();
+			err.infoBox("non puoi inserire un appuntamento vecchio", "Errore");
+
+			sqlDate = (java.sql.Date) view.getAppuntamentiPanel().getTab().getTable().getValueAt(elementoSelezionato,
+					3);
+
+			timeValue = (Time) view.getAppuntamentiPanel().getTab().getTable().getValueAt(elementoSelezionato, 4);
+
+		}
+
+		((DefaultTableModel) view.getAppuntamentiPanel().getTab().getTable().getModel()).removeRow(elementoSelezionato);
+
 		int index = ricercaLineare(COD, model.getAppuntamentiArray());
+
+		int rigaGiusta = dbControl.selectRigaGiusta(model.getCFuser(), COD);
 
 		dbControl.updateAppuntamenti(app);
 
-		int rigaGiusta = dbControl.selectRigaGiusta(model.getCFuser(), COD);
+		System.out.println(COD + "cod");
+
+		System.out.println(rigaGiusta + "rigagiusta");
 
 		model.getAppuntamentiArray().get(index).setPaziente(paz);
 		model.getAppuntamentiArray().get(index).setSala(sala);
@@ -145,46 +176,56 @@ public class AggiornaAppuntamentiActionListener implements ActionListener {
 		rowData[6] = costo;
 		rowData[7] = note;
 
+		System.out.println(rigaGiusta + "RIGA");
 		modello.insertRow(rigaGiusta - 1, rowData);
 
-		// storico
-		model.getStoricoArray().add(app);
-		modelloStorico.removeRow(elementoSelezionato);
-		modelloStorico.insertRow(rigaGiusta - 1, rowData);
+		if ((dateObj.before(data) || (dateObj.getDay() == data.getDay() && dateObj.getMonth() == data.getMonth()
+				&& dateObj.getYear() == data.getYear() && oraAdesso.before(timeValue))) && data != null) {
+			// storico
+			model.getStoricoArray().add(app);
+			modelloStorico.removeRow(elementoSelezionato);
+			modelloStorico.insertRow(rigaGiusta - 1, rowData);
 
-		// Sale occupate
-		Object rowData2[] = new Object[5];
+			// Sale occupate
+			Object rowData2[] = new Object[5];
 
-		rowData2[0] = IDpaz;
-		rowData2[1] = sala;
-		rowData2[2] = tipo;
-		rowData2[3] = sqlDate;
-		rowData2[4] = timeValue;
+			rowData2[0] = IDpaz;
+			rowData2[1] = sala;
+			rowData2[2] = tipo;
+			rowData2[3] = sqlDate;
+			rowData2[4] = timeValue;
 
-		int rigaGiustaSala = dbControl.selectRigaGiustaSala(COD);
+			int rigaGiustaSala = dbControl.selectRigaGiustaSala(COD);
 
-		modelloSale.removeRow(rigaGiustaSala - 1);
-		modelloSale.insertRow(rigaGiustaSala - 1, rowData2);
+			modelloSale.removeRow(rigaGiustaSala - 1);
+			modelloSale.insertRow(rigaGiustaSala - 1, rowData2);
 
-		
-		//promemoria
-		
-		int indexProm = ricercaLineare(COD, model.getPromemoriaOggiArray());
-		modelloPromemoria.removeRow(indexProm);
-		Object rowData3[] = new Object[5];
-		
-		rowData3[0] = app.getSala();
-		rowData3[1] = app.getTipo();
-		rowData3[2] = app.getData();
-		rowData3[3] = app.getTime();
-		rowData3[4] = app.getNote();
-		
-		modelloPromemoria.addRow(rowData3);
-		model.getPromemoriaOggiArray().remove(indexProm);
-		model.getPromemoriaOggiArray().add(app);
-		
-		
-		
+		}
+
+		// promemoria
+		if (sdf.format(dateObj).equals(sdf.format(sqlDate))
+				&& ((model.getCFuser().equals(vet.getCF()) || model.getCFuser().equals("direzione")))) {
+
+			int indexProm = ricercaLineare(COD, model.getPromemoriaOggiArray());
+
+			if (indexProm != -1) {
+
+				modelloPromemoria.removeRow(indexProm);
+				model.getPromemoriaOggiArray().remove(indexProm);
+			}
+
+			Object rowData3[] = new Object[5];
+
+			rowData3[0] = app.getSala();
+			rowData3[1] = app.getTipo();
+			rowData3[2] = app.getData();
+			rowData3[3] = app.getTime();
+			rowData3[4] = app.getNote();
+
+			modelloPromemoria.addRow(rowData3);
+			model.getPromemoriaOggiArray().add(app);
+		}
+
 		pulisciTextField();
 	}
 

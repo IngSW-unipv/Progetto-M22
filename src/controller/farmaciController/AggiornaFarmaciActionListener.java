@@ -4,6 +4,7 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
+import java.util.Calendar;
 import java.util.Date;
 
 import javax.swing.table.DefaultTableModel;
@@ -74,14 +75,21 @@ public class AggiornaFarmaciActionListener implements ActionListener {
 
 		catch (ParseException e1) {
 			// TODO Auto-generated catch block
-			//e1.printStackTrace();
+			// e1.printStackTrace();
 			PopupError err = new PopupError();
 			err.infoBox("Data non valida", "Errore");
 		}
 
 		int qt = (int) farmaciPanel.getSpinner().getValue();
 
+		// data di oggi
+		Calendar calendar = Calendar.getInstance();
+		Date dateObj = calendar.getTime();
+
 		DefaultTableModel modello = (DefaultTableModel) farmaciPanel.getTabellaFarmaci().getTable().getModel();
+		DefaultTableModel modelloProm = (DefaultTableModel) view.getDashboard().getTabellaFarmaciView().getTable()
+				.getModel();
+
 		LottoFarmaci lo = new LottoFarmaci(IDLotto, mode, type, forn, sqlDate, qt);
 
 		boolean flag = dbControl.addLottoFarmaci(lo);
@@ -99,6 +107,31 @@ public class AggiornaFarmaciActionListener implements ActionListener {
 
 			modello.addRow(rowData);
 			model.getLottoFarmaciArray().add(lo);
+
+			// promemoria
+			if (dateObj.getMonth() == sqlDate.getMonth() && dateObj.getYear() == sqlDate.getYear()) {
+
+				int index = ricercaLineare(IDLotto);
+
+				if (index != -1) {
+
+					modelloProm.removeRow(index);
+					model.getFarmaciScadenzaArray().remove(index);
+				}
+				
+				Object rowData1[] = new Object[5];
+
+				rowData1[0] = IDLotto;
+				rowData1[4] = type;
+				rowData1[2] = sqlDate;
+				rowData1[3] = qt;
+				rowData1[1] = mode;
+
+				modelloProm.addRow(rowData1);
+				model.getFarmaciScadenzaArray().add(lo);
+
+			}
+
 		}
 
 		else {
@@ -125,22 +158,24 @@ public class AggiornaFarmaciActionListener implements ActionListener {
 	}
 
 	/**
-	 * legge tutti i dati del fornitore tramite ID letto per poter passare al farmaco
-	 * aggiornato il fornitore esatto
+	 * legge tutti i dati del fornitore tramite ID letto per poter passare al
+	 * farmaco aggiornato il fornitore esatto
 	 * 
 	 * @return Fornitore fornitore letto
 	 */
 	public Fornitori costruisciFornitore() {
+
 		String PIVA = (String) farmaciPanel.getFornitoriBox().getSelectedItem();
 		Fornitori forn = dbControl.selectFornitoreFromPiva(PIVA);
 		return forn;
 
-		/**
-		 * pulisce i campi testo una volta aggiornato farmaco
-		 * 
-		 * @return void
-		 */
 	}
+
+	/**
+	 * pulisce i campi testo una volta aggiornato farmaco
+	 * 
+	 * @return void
+	 */
 
 	public void pulisciTextField() {
 		farmaciPanel.getIDLottoText().setText(null);
@@ -149,6 +184,21 @@ public class AggiornaFarmaciActionListener implements ActionListener {
 		farmaciPanel.getTipoText().setText(null);
 		farmaciPanel.getFornitoriBox().setSelectedIndex(0);
 		farmaciPanel.getSpinner().setValue(0);
+	}
+
+	public int ricercaLineare(String IDLotto) {
+		
+	
+		int index = -1;
+		
+		for (int i = 0; i < model.getFarmaciScadenzaArray().size(); i++) {
+
+			if (model.getFarmaciScadenzaArray().get(i).getIDLotto().equals(IDLotto)) {
+				index = i;
+			}
+
+		}
+		return index;
 	}
 
 }

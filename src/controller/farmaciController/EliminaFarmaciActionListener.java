@@ -41,6 +41,17 @@ public class EliminaFarmaciActionListener implements ActionListener {
 		dbControl.deleteLotto(model.getLottoFarmaciArray().get(elementoSelezionato));
 
 		model.getLottoFarmaciArray().remove(elementoSelezionato);
+
+		// promemoria
+		DefaultTableModel modelloProm = (DefaultTableModel) view.getDashboard().getTabellaFarmaciView().getTable()
+				.getModel();
+		int indexDaEliminare = ricercaLineare(model.getLottoFarmaciArray().get(elementoSelezionato).getIDLotto());
+		
+		if (indexDaEliminare != 1) {
+		modelloProm.removeRow(indexDaEliminare);
+		model.getFarmaciScadenzaArray().remove(indexDaEliminare);
+		}
+
 	}
 
 	/**
@@ -55,6 +66,19 @@ public class EliminaFarmaciActionListener implements ActionListener {
 		this.model = model;
 		this.view = view;
 		this.dbControl = dbControl;
+	}
+
+	public int ricercaLineare(String IDLotto) {
+
+		int index = -1;
+		for (int i = 0; i < model.getFarmaciScadenzaArray().size(); i++) {
+
+			if (model.getFarmaciScadenzaArray().get(i).getIDLotto() == IDLotto) {
+				index = i;
+			}
+
+		}
+		return index;
 	}
 
 }

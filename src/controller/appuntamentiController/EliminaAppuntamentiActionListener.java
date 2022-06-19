@@ -10,10 +10,12 @@ import database.connectionSQL.DbControllerSingleton;
 import model.SmartVetModel;
 import model.appuntamenti.Appuntamenti;
 import view.MainView;
+
 /**
  * Elimina appuntamento selezionato
- * @author      MMA
- * @version     1.0                 (current version number of program)
+ * 
+ * @author MMA
+ * @version 1.0 (current version number of program)
  */
 public class EliminaAppuntamentiActionListener implements ActionListener {
 
@@ -22,8 +24,8 @@ public class EliminaAppuntamentiActionListener implements ActionListener {
 	private DbControllerSingleton dbControl;
 
 	/**
-	 * elimina appuntamento selezionato da database, array e tabella grafica di appuntamenti,
-	 * storico e sale
+	 * elimina appuntamento selezionato da database, array e tabella grafica di
+	 * appuntamenti, storico e sale
 	 * 
 	 * @param e evento schiaccia bottone elimina uscita
 	 * @return void
@@ -44,23 +46,23 @@ public class EliminaAppuntamentiActionListener implements ActionListener {
 
 		modello.removeRow(elementoSelezionato);
 		modelloStorico.removeRow(elementoSelezionato);
-		
-		
+
 		dbControl.deleteAppuntamenti(cod);
-		
-	
-		
+
 		int index = ricercaLineare(cod, model.getAppuntamentiArray());
 		model.getAppuntamentiArray().remove(index);
 		model.getStoricoArray().remove(index);
-		
+
 		int rigaGiustaSala = dbControl.selectRigaGiustaSala(cod);
 		modelloSale.removeRow(rigaGiustaSala - 1);
-		
+
+		// promemoria
 		int indexPromemoria = ricercaLineare(cod, model.getPromemoriaOggiArray());
-		modelloPromemoria.removeRow(indexPromemoria);
-		model.getPromemoriaOggiArray().remove(indexPromemoria);
-		
+		if (indexPromemoria != -1) {
+			modelloPromemoria.removeRow(indexPromemoria);
+			model.getPromemoriaOggiArray().remove(indexPromemoria);
+		}
+
 	}
 
 	/**
@@ -76,7 +78,7 @@ public class EliminaAppuntamentiActionListener implements ActionListener {
 		this.view = view;
 		this.dbControl = dbControl;
 	}
-	
+
 	public int ricercaLineare(int COD, ArrayList<Appuntamenti> array) {
 
 		int index = -1;
@@ -89,5 +91,5 @@ public class EliminaAppuntamentiActionListener implements ActionListener {
 		}
 		return index;
 	}
-	
+
 }

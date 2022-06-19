@@ -2,7 +2,6 @@ package controller.appuntamentiController;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.sql.Time;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
@@ -121,33 +120,19 @@ public class AggiungiAppuntamentiActionListener implements ActionListener {
 		boolean flag = false;
 		int codApp = -1;
 
-	
-		
 		Date oraAdesso = null;
-			
-			
 
-	
-				String orario  = stf.format(Calendar.getInstance().getTime());
-				try {
-					oraAdesso = stf.parse(orario);
-				} catch (ParseException e1) {
-					// TODO Auto-generated catch block
-					e1.printStackTrace();
-				}
-				
-				
+		String orario = stf.format(Calendar.getInstance().getTime());
+		try {
+			oraAdesso = stf.parse(orario);
+		} catch (ParseException e1) {
+			// TODO Auto-generated catch block
+			e1.printStackTrace();
+		}
 
-		
-		
-	
-		
-		if ((dateObj.before(data) || (dateObj.getDay() == data.getDay() && dateObj.getMonth() == data.getMonth() && dateObj.getYear() ==
-				data.getYear() && oraAdesso.before(timeValue) )) && data != null) {
+		if ((dateObj.before(data) || (dateObj.getDay() == data.getDay() && dateObj.getMonth() == data.getMonth()
+				&& dateObj.getYear() == data.getYear() && oraAdesso.before(timeValue))) && data != null) {
 
-			System.out.println(data + "data app" + timeValue);
-			System.out.println(dateObj + "data oggi" + oraAdesso);
-			
 			flag = dbControl.addNuovoAppuntamento(nuovoApp);
 			codApp = nuovoApp.getCOD();
 
@@ -177,16 +162,15 @@ public class AggiungiAppuntamentiActionListener implements ActionListener {
 			rowData[6] = costo;
 			rowData[7] = note;
 
-			
 			int rigaGiusta = dbControl.selectRigaGiusta(model.getCFuser(), codApp);
-			
+
 			if (dateObj.before(data) || dateObj.getDay() == data.getDay()) {
 
 				// così è in ordine come nel db
-				modello.insertRow(rigaGiusta -1, rowData);
+				modello.insertRow(rigaGiusta - 1, rowData);
 
 				model.getAppuntamentiArray().add(nuovoApp);
-			
+
 				// sale occupate
 				Object rowData2[] = new Object[5];
 
@@ -203,10 +187,9 @@ public class AggiungiAppuntamentiActionListener implements ActionListener {
 			model.getStoricoArray().add(nuovoApp);
 			modelloStorico.insertRow(rigaGiusta - 1, rowData);
 
-
 			if (sdf.format(dateObj).equals(sdf.format(sqlDate))
 					&& ((model.getCFuser().equals(vet.getCF()) || model.getCFuser().equals("direzione")))) {
-
+				
 				model.getPromemoriaOggiArray().add(nuovoApp);
 				Object rowData3[] = new Object[5];
 
@@ -222,7 +205,6 @@ public class AggiungiAppuntamentiActionListener implements ActionListener {
 			pulisciTextField();
 
 		}
-		
 
 		else {
 
@@ -231,9 +213,8 @@ public class AggiungiAppuntamentiActionListener implements ActionListener {
 			pulisciTextField();
 
 		}
-		
+
 	}
-	
 
 	/**
 	 * pulisce i campi testo una volta aggiunta il nuovo appuntamento
