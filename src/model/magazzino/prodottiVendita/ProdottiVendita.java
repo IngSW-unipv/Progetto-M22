@@ -43,6 +43,10 @@ public class ProdottiVendita extends ProdottoBase {
 		return "ProdottiVendita [" + super.toString() + "dataScadenza=" + dataScadenza + "]"; 
 	}
 
+	/**
+	 * assegna data scadenza
+	 * @param dataScadenza
+	 */
 	public void setDataScadenza(java.sql.Date dataScadenza) {
 		this.dataScadenza = dataScadenza;
 	}

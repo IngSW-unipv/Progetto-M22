@@ -311,12 +311,20 @@ public class DbControllerSingleton {
 		return app.insertAppuntamenti(p);
 	}
 	
+	/**
+	 * seleziona la riga dell'appuntamento che ha codice passato come parametro
+	 * @return int numero riga
+	 */
 	public int selectRigaGiusta(String CF, int COD) {
 		return app.selectRigaGiusta(CF, COD);
 	}
 	
+	/**
+	 * seleziona la riga dell'appuntamento (per Array Sale) che ha codice passato come parametro
+	 * @return int numero riga
+	 */
 	public int selectRigaGiustaSala(int COD) {
-		return app.selectRigaSala(schema, COD);
+		return app.selectRigaSala(COD);
 	}
 
 	

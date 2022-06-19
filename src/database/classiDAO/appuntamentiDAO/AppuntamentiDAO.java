@@ -373,6 +373,16 @@ public class AppuntamentiDAO implements IAppuntamentiDAO {
 		return result;
 	}
 
+	/**
+	 * seleziona la riga dell'appuntamento (nonchè index array) in base al codice dell'appuntamento
+	 * (l'array è registrato solo in base all'user loggato quindi la quey tiene conto di questo)
+	 * 
+	 * @param CFvet CF del veterinario da cui selezionare appuntamenti, se direzione seleziono tutto
+	 * @param COD appuntamento da selezionare
+	 * @return int numero riga selezionata
+	 * 
+	 * @exception SQLException qualcosa è andato storto nel db
+	 */
 	public int selectRigaGiusta(String CF, int COD) {
 
 		ResultSet rs1;
@@ -417,8 +427,16 @@ public class AppuntamentiDAO implements IAppuntamentiDAO {
 			return -1;
 		}
 	}
-
-	public int selectRigaSala(String CF, int COD) {
+	
+	/**
+	 * seleziona la riga della sala (nonchè index array) in base al codice dell'appuntamento
+	 * 
+	 * @param COD appuntamento da selezionare
+	 * @return int numero riga selezionata
+	 * 
+	 * @exception SQLException qualcosa è andato storto nel db
+	 */
+	public int selectRigaSala(int COD) {
 
 		ResultSet rs1;
 

@@ -66,20 +66,35 @@ public class ProdottoBase {
 	/**
 	 * assegna il fornitore
 	 * @param forn fornitore
+	 * @return void
 	 */
 	public void setForn(Fornitori forn) {
 		this.forn = forn;
 	}
 	
-
+	/**
+	 * assegna il nome
+	 * @param nome 
+	 * @return void
+	 */
 	public void setNome(String nome) {
 		this.nome = nome;
 	}
 
+	/**
+	 * assegna il tipo
+	 * @param type tipo 
+	 * @return void
+	 */
 	public void setType(String type) {
 		this.type = type;
 	}
 
+	/**
+	 * assegna la quantita
+	 * @param quantita
+	 * @return void
+	 */
 	public void setQuantita(int quantita) {
 		this.quantita = quantita;
 	}
@@ -89,7 +104,7 @@ public class ProdottoBase {
 	 * @param COD codice
 	 * @param nome nome
 	 * @param type tipo
-	 * @param quantita quantit�
+	 * @param quantita quantita
 	 * @param forn fornitore
 	 */
 	public ProdottoBase(int COD, String nome, String type, int quantita, Fornitori forn) {

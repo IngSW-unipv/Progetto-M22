@@ -312,6 +312,13 @@ public class AggiornaAppuntamentiActionListener implements ActionListener {
 		this.view = view;
 	}
 
+	/**
+	 * cerca all'interno dell'array passato come parametro l'appuntamento con quel codice che
+	 * può essere soltanto uno solo (primary key) e ne restituisce il numero della riga
+	 * @param COD dell'appuntamento da cercare
+	 * @param array dove effettuare la ricerca
+	 * @return int numero di riga trovata
+	 */
 	public int ricercaLineare(int COD, ArrayList<Appuntamenti> array) {
 
 		int index = -1;
