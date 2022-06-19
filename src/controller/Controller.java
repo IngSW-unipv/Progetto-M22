@@ -125,7 +125,6 @@ public class Controller {
 
 		view.addWindowListener(new WindowAdapter() {
 			public void windowClosing(WindowEvent evt) {
-			db = DbSingleton.getInstance();
 			System.out.println("ho chiuso db connection");
 			db.closeConnection();
 			System.exit(0);

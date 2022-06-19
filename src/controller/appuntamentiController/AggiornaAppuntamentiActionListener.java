@@ -152,7 +152,6 @@ public class AggiornaAppuntamentiActionListener implements ActionListener {
 
 		dbControl.updateAppuntamenti(app);
 
-
 		model.getAppuntamentiArray().get(index).setPaziente(paz);
 		model.getAppuntamentiArray().get(index).setSala(sala);
 		model.getAppuntamentiArray().get(index).setTipo(tipo);
@@ -173,7 +172,6 @@ public class AggiornaAppuntamentiActionListener implements ActionListener {
 		rowData[6] = costo;
 		rowData[7] = note;
 
-		System.out.println(rigaGiusta + "RIGA");
 		modello.insertRow(rigaGiusta - 1, rowData);
 
 		if ((dateObj.before(data) || (dateObj.getDay() == data.getDay() && dateObj.getMonth() == data.getMonth()
@@ -313,23 +311,24 @@ public class AggiornaAppuntamentiActionListener implements ActionListener {
 	}
 
 	/**
-	 * cerca all'interno dell'array passato come parametro l'appuntamento con quel codice che
-	 * può essere soltanto uno solo (primary key) e ne restituisce il numero della riga
-	 * @param COD dell'appuntamento da cercare
+	 * cerca all'interno dell'array passato come parametro l'appuntamento con quel
+	 * codice che può essere soltanto uno solo (primary key) e ne restituisce il
+	 * numero della riga
+	 * 
+	 * @param COD   dell'appuntamento da cercare
 	 * @param array dove effettuare la ricerca
 	 * @return int numero di riga trovata
 	 */
 	public int ricercaLineare(int COD, ArrayList<Appuntamenti> array) {
 
 		int index = -1;
-		System.out.println(COD + "coddd");
+
 		for (int i = 0; i < array.size(); i++) {
 
 			if (array.get(i).getCOD() == COD) {
-			
+
 				index = i;
-				System.out.println(index + "INDEX");
-				
+
 			}
 
 		}

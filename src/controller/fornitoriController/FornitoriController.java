@@ -58,7 +58,7 @@ public class FornitoriController {
 	 * @return void
 	 */
 	public void addActionListenersMenu() {
-		System.out.println("7777");
+
 		view.getDashboard().getMenu().getMntmFornitori().addActionListener(new ActionListener() {
 
 			public void actionPerformed(ActionEvent e) {
