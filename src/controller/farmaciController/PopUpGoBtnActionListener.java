@@ -103,7 +103,6 @@ public class PopUpGoBtnActionListener implements ActionListener {
 			rowData[3] = dataCorrente;
 
 			modello.addRow(rowData);
-
 			aggiornaQuantitaFarmaco();
 
 			popup.setVisible(false);
@@ -133,9 +132,9 @@ public class PopUpGoBtnActionListener implements ActionListener {
 		((DefaultTableModel) view.getFarmaciPanel().getTabellaFarmaci().getTable().getModel())
 				.removeRow(rigaSelezionata);
 
-		dbControl.deleteLotto(model.getLottoFarmaciArray().get(rigaSelezionata));
+		dbControl.updateLottoFarmaci(model.getLottoFarmaciArray().get(rigaSelezionata));
 
-		model.getLottoFarmaciArray().remove(rigaSelezionata);
+		model.getLottoFarmaciArray().get(rigaSelezionata);
 
 		DefaultTableModel modello = (DefaultTableModel) view.getFarmaciPanel().getTabellaFarmaci().getTable()
 				.getModel();
@@ -148,11 +147,13 @@ public class PopUpGoBtnActionListener implements ActionListener {
 
 		LottoFarmaci lo = new LottoFarmaci(fatturaFarmaciActionListener.getIDLotto(), mode, type, forn, sqlDate, qt);
 
-		boolean flag = dbControl.addLottoFarmaci(lo);
+
+		dbControl.updateLottoFarmaci(lo);
+
+		model.getLottoFarmaciArray().get(rigaSelezionata).setQuantita(qt);;
+		
 
 		Object rowData[] = new Object[6];
-
-		if (flag) {
 
 			rowData[0] = IDLotto;
 			rowData[1] = mode;
@@ -161,10 +162,7 @@ public class PopUpGoBtnActionListener implements ActionListener {
 			rowData[4] = sqlDate;
 			rowData[5] = qt;
 
-			modello.addRow(rowData);
-			model.getLottoFarmaciArray().add(lo);
-			model.getLottoFarmaciArray().add(lo);
-		}
+			modello.insertRow(rigaSelezionata, rowData);
 
 	}
 

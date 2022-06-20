@@ -141,6 +141,8 @@ public class PopUpGoBtnActionListenerPr implements ActionListener {
 		ProdottiVendita pr = new ProdottiVendita(COD, nome, tipo, qt, forn, sqlDate);
 
 		dbControl.updateProdottiVendita(pr);
+		
+		model.getProdottiVenditaArray().get(rigaSelezionata).setQuantita(COD);
 
 		DefaultTableModel modello = (DefaultTableModel) view.getProdottiVenditaPanel().getTabellaProdottiVenditaPanel()
 				.getTable().getModel();

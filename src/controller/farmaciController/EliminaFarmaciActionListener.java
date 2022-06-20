@@ -37,7 +37,9 @@ public class EliminaFarmaciActionListener implements ActionListener {
 
 		int elementoSelezionato = view.getFarmaciPanel().getTabellaFarmaci().getTable().getSelectedRow();
 		modello.removeRow(elementoSelezionato);
-
+		
+		int indexDaEliminare = ricercaLineare(model.getLottoFarmaciArray().get(elementoSelezionato).getIDLotto());
+		
 		dbControl.deleteLotto(model.getLottoFarmaciArray().get(elementoSelezionato));
 
 		model.getLottoFarmaciArray().remove(elementoSelezionato);
@@ -45,11 +47,12 @@ public class EliminaFarmaciActionListener implements ActionListener {
 		// promemoria
 		DefaultTableModel modelloProm = (DefaultTableModel) view.getDashboard().getTabellaFarmaciView().getTable()
 				.getModel();
-		int indexDaEliminare = ricercaLineare(model.getLottoFarmaciArray().get(elementoSelezionato).getIDLotto());
-		
+	
+
 		if (indexDaEliminare != 1) {
-		modelloProm.removeRow(indexDaEliminare);
-		model.getFarmaciScadenzaArray().remove(indexDaEliminare);
+			model.getFarmaciScadenzaArray().remove(indexDaEliminare);
+			modelloProm.removeRow(indexDaEliminare);
+
 		}
 
 	}
@@ -72,8 +75,8 @@ public class EliminaFarmaciActionListener implements ActionListener {
 
 		int index = -1;
 		for (int i = 0; i < model.getFarmaciScadenzaArray().size(); i++) {
-
-			if (model.getFarmaciScadenzaArray().get(i).getIDLotto() == IDLotto) {
+			
+			if (model.getFarmaciScadenzaArray().get(i).getIDLotto().equals(IDLotto)) {
 				index = i;
 			}
 
