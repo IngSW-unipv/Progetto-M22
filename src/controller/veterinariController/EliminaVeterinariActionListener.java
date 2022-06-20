@@ -36,9 +36,10 @@ public class EliminaVeterinariActionListener implements ActionListener {
 
 		String CF = model.getVeterinariArray().get(elementoSelezionato).getCF();
 
-		if (model.getCFuser().equals(CF)) {
+		if (model.getCFuser().equals(CF) || CF.equals("direzione")) {
 			PopupError err = new PopupError();
-			err.infoBox("Non puoi eliminare veterinario con cui sei loggato", "Errore");
+			err.infoBox("Non puoi eliminare veterinario con cui sei loggato o quello"
+					+ "della direzione", "Errore");
 		}
 
 		else {

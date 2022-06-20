@@ -51,7 +51,7 @@ public class AggiornaClientiActionListener implements ActionListener {
 		String citta = clientiPanel.getNuovoClienteTextField().getCitta();
 		String indirizzo = clientiPanel.getNuovoClienteTextField().getIndirizzo();
 
-		model.getClientiArray().get(elementoSelezionato).setCF(CF);
+		//model.getClientiArray().get(elementoSelezionato).setCF(CF);
 		model.getClientiArray().get(elementoSelezionato).setCellulare(cellulare);
 		model.getClientiArray().get(elementoSelezionato).setCitta(citta);
 		model.getClientiArray().get(elementoSelezionato).setCognome(cognome);
