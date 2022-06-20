@@ -5,12 +5,11 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 
-import controller.amministrazioneController.entrateController.EntrateController;
 import database.connectionSQL.DbSingleton;
 import model.anagrafica.fornitori.Fornitori;
 
 /**
- * permette di fare query sulla tabella fornitori  del database
+ * permette di fare query sulla tabella fornitori del database
  * 
  * @author MMA
  * @version 1.0 (current version number of program)
@@ -19,19 +18,18 @@ public class FornitoriDAO implements IFornitoriDAO {
 
 	private DbSingleton db;
 
-	//costruttore
+	// costruttore
 	public FornitoriDAO() {
 		super();
 		db = DbSingleton.getInstance();
 	}
 
-	
 	/**
-	 * seleziona fornitore
-	 * in base alla PIVA passata
+	 * seleziona fornitore in base alla PIVA passata
+	 * 
 	 * @param PIVA fornitore da selezionare
 	 * @return Fornitore fornitore selezionato
-	 * @exception SQLException  qualcosa è andato storto nel db
+	 * @exception SQLException qualcosa è andato storto nel db
 	 */
 	@Override
 	public Fornitori select_Forn(String PIVA) {
@@ -60,7 +58,7 @@ public class FornitoriDAO implements IFornitoriDAO {
 	 * seleziona tutti i fornitori presenti nel db
 	 * 
 	 * @return ArrayList<Fornitori> tutti i fornitori presenti nel db
-	 * @exception SQLException  qualcosa è andato storto nel db
+	 * @exception SQLException qualcosa è andato storto nel db
 	 */
 	@Override
 	public ArrayList<Fornitori> selectAll() {
@@ -87,7 +85,7 @@ public class FornitoriDAO implements IFornitoriDAO {
 	/**
 	 * inserisce nuovo fornitore nel db
 	 * 
-	 * @param  fo fornitore da inserire
+	 * @param fo fornitore da inserire
 	 * @return boolean = true se ha avuto successo insert
 	 * @exception SQLException qualcosa andato storto inserimento
 	 */
@@ -120,11 +118,11 @@ public class FornitoriDAO implements IFornitoriDAO {
 	}
 
 	/**
-	 * elimina nel db fornitore selezionato 
+	 * elimina nel db fornitore selezionato
 	 * 
-	 * @param  fo	fornitore da eliminare
+	 * @param fo fornitore da eliminare
 	 * @return void
-	 * @exception SQLException  qualcosa è andato storto nel delete
+	 * @exception SQLException qualcosa è andato storto nel delete
 	 */
 	@Override
 	public void deleteFornitori(Fornitori fo) {
@@ -149,6 +147,40 @@ public class FornitoriDAO implements IFornitoriDAO {
 				e.printStackTrace();
 			}
 		}
+	}
+
+	/**
+	 * update nel db fornitore selezionato tramite 
+	 * 
+	 * @param fo fornitore da aggiornare tramite piva passata estratta da fornitore nel parametro
+	 * @return void
+	 * @exception SQLException qualcosa è andato storto nel delete
+	 */
+	@Override
+	public void updateFornitori(Fornitori fo) {
+		String query = "UPDATE FORNITORI SET AZIENDA = ?,TELEFONO = ?,EMAIL = ?,CITTA = ?,IBAN = ? " + "WHERE PIVA = \""
+				+ fo.getPIVA() + "\"";
+
+		PreparedStatement stmt = null;
+
+		try {
+
+			stmt = db.getConnection().prepareStatement(query);
+
+			stmt.setString(1, fo.getNomeAzienda());
+			stmt.setString(2, fo.getnTelefono());
+			stmt.setString(3, fo.getEmail());
+			stmt.setString(4, fo.getSede());
+			stmt.setString(5, fo.getIBAN());
+			stmt.executeUpdate();
+
+		}
+
+		catch (SQLException e) {
+			e.printStackTrace();
+
+		}
+
 	}
 
 }

@@ -157,5 +157,47 @@ public class VeterinariDAO implements IVeterinariDAO {
 			e.printStackTrace();
 		}
 	}
+	
+	/**
+	 * update nel db vet selezionato
+	 * 
+	 * @param vet vet da aggiornare
+	 * @return void
+	 * @exception SQLException qualcosa è andato storto nel delete
+	 */
+	@Override
+	public void updateVeterinari(Veterinari vet) {
+
+		String query = "UPDATE DIPENDENTI SET NOME = ?,COGNOME = ?, EMAIL = ?,TELEFONO = ?,"
+				+ "CITTA = ?,INDIRIZZO = ?,PIVA = ?,TIPO_DI_CONTRATTO = ?,STIPENDIO = ?,COMMISS = ?,IBAN = ? WHERE CF_DIP = \"" + vet.getCF() + "\"";
+
+		PreparedStatement stmt = null;
+
+		try {
+
+			stmt = db.getConnection().prepareStatement(query);
+
+			stmt.setString(1, vet.getNome());
+			stmt.setString(2, vet.getCognome());
+			stmt.setString(3, vet.getEmail());
+			stmt.setString(4, vet.getCellulare());
+			stmt.setString(5, vet.getCitta());
+			stmt.setString(6, vet.getIndirizzo());
+			stmt.setString(7, vet.getPIVA());
+			stmt.setString(8, vet.getContratto());
+			stmt.setDouble(9, vet.getStipendio());
+			stmt.setDouble(10, vet.getCommissioni());
+			stmt.setString(11, vet.getIBAN());
+			stmt.executeUpdate();
+
+			stmt.executeUpdate();
+		}
+
+		catch (SQLException e) {
+			e.printStackTrace();
+
+		}
+
+	}
 
 }

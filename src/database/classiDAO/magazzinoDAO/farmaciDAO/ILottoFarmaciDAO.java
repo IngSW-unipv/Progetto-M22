@@ -21,4 +21,6 @@ public interface ILottoFarmaciDAO {
 	public ArrayList<LottoFarmaci> getFarmaciScadenza();
 	
 	public void deleteFarmaci(LottoFarmaci f);
+
+	void updateLottoFarmaci(LottoFarmaci f);
 }

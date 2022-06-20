@@ -161,5 +161,39 @@ public class LottoFarmaciDAO implements ILottoFarmaciDAO {
 			e.printStackTrace();
 		}
 	}
+	
+	/**
+	 * update nel db farmaco selezionato
+	 * 
+	 * @param f farmaco da aggiornare
+	 * @return void
+	 * @exception SQLException qualcosa è andato storto nel delete
+	 */
+	@Override
+	public void updateLottoFarmaci(LottoFarmaci f) {
+		String query = "UPDATE FARMACI SET MODASSUNZ = ?"
+				+ ",TIPOFARMACI = ?,PIVA = ?,SCADENZA = ?,QTA = ? WHERE LOTTO = \"" + f.getIDLotto() + "\"";
+
+		PreparedStatement stmt = null;
+
+		try {
+			
+
+			stmt = db.getConnection().prepareStatement(query); 
+
+			stmt.setString(1, f.getMode());
+			stmt.setString(2, f.getType());
+			stmt.setString(3, f.getFornitore().getPIVA());
+			stmt.setDate(4, f.getDataScadenza());
+			stmt.setInt(5, f.getQuantita());
+			stmt.executeUpdate();
+		}
+
+		catch (SQLException e) {
+			e.printStackTrace();
+	
+		}
+	
+	}
 
 }

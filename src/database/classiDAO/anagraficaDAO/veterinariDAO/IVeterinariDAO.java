@@ -20,4 +20,13 @@ public interface IVeterinariDAO {
 	public Veterinari select_Veterinari_from_CF(String CF);
 	
 	public void deleteVeterinari(Veterinari vet);
+
+	/**
+	 * update nel db vet selezionato
+	 * 
+	 * @param vet vet da aggiornare
+	 * @return void
+	 * @exception SQLException qualcosa è andato storto nel delete
+	 */
+	void updateVeterinari(Veterinari vet);
 }

@@ -20,4 +20,6 @@ public interface IClientiDAO {
 	public Clienti select_cliente_from_CF(String CF);
 	
 	public void deleteClienti(Clienti cl);
+
+	void updateClienti(Clienti cl);
 }

@@ -1,4 +1,5 @@
 package database.classiDAO.anagraficaDAO.fornitoriDAO;
+
 /**
  * interfaccia con metodi da implementare
  * in FornitoriDAO
@@ -18,6 +19,8 @@ public interface IFornitoriDAO {
 	public boolean insertFornitore(Fornitori f);
 
 	public Fornitori select_Forn(String PIVA);
-	
+
 	public void deleteFornitori(Fornitori fo);
+
+	void updateFornitori(Fornitori fo);
 }

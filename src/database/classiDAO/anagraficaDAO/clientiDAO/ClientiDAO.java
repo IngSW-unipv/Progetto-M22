@@ -151,4 +151,40 @@ public class ClientiDAO implements IClientiDAO {
 		}
 	}
 
+	/**
+	 * update nel db cliente selezionato
+	 * 
+	 * @param cl cliente da aggiornare
+	 * @return void
+	 * @exception SQLException qualcosa è andato storto nel delete
+	 */
+	@Override
+	public void updateClienti(Clienti cl) {
+
+		String query = "UPDATE CLIENTI SET NOME = ?,COGNOME = ?, EMAIL = ?,TELEFONO = ?,CITTA = ?, INDIRIZZO = ?  where CF_CL =\""
+				+ cl.getCF() + "\"";
+
+		PreparedStatement stmt = null;
+
+		try {
+
+			stmt = db.getConnection().prepareStatement(query);
+
+			stmt.setString(1, cl.getNome());
+			stmt.setString(2, cl.getCognome());
+			stmt.setString(3, cl.getEmail());
+			stmt.setString(4, cl.getCellulare());
+			stmt.setString(5, cl.getCitta());
+			stmt.setString(6, cl.getIndirizzo());
+
+			stmt.executeUpdate();
+		}
+
+		catch (SQLException e) {
+			e.printStackTrace();
+
+		}
+
+	}
+
 }

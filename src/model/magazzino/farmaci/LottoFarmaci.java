@@ -79,6 +79,52 @@ public class LottoFarmaci {
 	public int getQuantita() {
 		return quantita;
 	}
+	
+	
+	/**
+	 * setta id lotto come  parametro passato
+	 * 
+	 * @param idLotto
+	 */
+	public void setIDLotto(String iDLotto) {
+		IDLotto = iDLotto;
+	}
+
+	/**
+	 * setta modalita assunzione come  parametro passato
+	 * 
+	 * @param mode
+	 */
+	public void setMode(String mode) {
+		this.mode = mode;
+	}
+
+	/**
+	 * setta tipo come parametro passato
+	 * 
+	 * @param type
+	 */
+	public void setType(String type) {
+		this.type = type;
+	}
+
+	/**
+	 * setta data scadenza come parametro passato
+	 * 
+	 * @param dataScadenza
+	 */
+	public void setDataScadenza(java.sql.Date dataScadenza) {
+		this.dataScadenza = dataScadenza;
+	}
+
+	/**
+	 * setta quantita come  parametro passato
+	 * 
+	 * @param idLotto
+	 */
+	public void setQuantita(int quantita) {
+		this.quantita = quantita;
+	}
 
 	/**
 	 * costruttore

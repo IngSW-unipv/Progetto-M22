@@ -49,10 +49,6 @@ public class AggiornaFarmaciActionListener implements ActionListener {
 		int elementoSelezionato = farmaciPanel.getTabellaFarmaci().getTable().getSelectedRow();
 		((DefaultTableModel) farmaciPanel.getTabellaFarmaci().getTable().getModel()).removeRow(elementoSelezionato);
 
-		dbControl.deleteLotto(model.getLottoFarmaciArray().get(elementoSelezionato));
-
-		model.getLottoFarmaciArray().remove(elementoSelezionato);
-
 		String IDLotto = farmaciPanel.getIDLottoText().getText();
 		String mode = farmaciPanel.getModeText().getText();
 		String type = farmaciPanel.getTipoText().getText();
@@ -92,51 +88,48 @@ public class AggiornaFarmaciActionListener implements ActionListener {
 
 		LottoFarmaci lo = new LottoFarmaci(IDLotto, mode, type, forn, sqlDate, qt);
 
-		boolean flag = dbControl.addLottoFarmaci(lo);
+		model.getLottoFarmaciArray().get(elementoSelezionato).setDataScadenza(sqlDate);
+		model.getLottoFarmaciArray().get(elementoSelezionato).setFornitore(forn);
+		model.getLottoFarmaciArray().get(elementoSelezionato).setMode(mode);
+		model.getLottoFarmaciArray().get(elementoSelezionato).setQuantita(qt);
+		model.getLottoFarmaciArray().get(elementoSelezionato).setType(type);
+
+		dbControl.updateLottoFarmaci(lo);
 
 		Object rowData[] = new Object[6];
 
-		if (flag) {
+		rowData[0] = IDLotto;
+		rowData[1] = mode;
+		rowData[2] = type;
+		rowData[3] = forn.getPIVA();
+		rowData[4] = sqlDate;
+		rowData[5] = qt;
 
-			rowData[0] = IDLotto;
-			rowData[1] = mode;
-			rowData[2] = type;
-			rowData[3] = forn.getPIVA();
-			rowData[4] = sqlDate;
-			rowData[5] = qt;
+		modello.insertRow(elementoSelezionato, rowData);
+		;
 
-			modello.addRow(rowData);
-			model.getLottoFarmaciArray().add(lo);
+		// promemoria
+		if (dateObj.getMonth() == sqlDate.getMonth() && dateObj.getYear() == sqlDate.getYear()) {
 
-			// promemoria
-			if (dateObj.getMonth() == sqlDate.getMonth() && dateObj.getYear() == sqlDate.getYear()) {
+			int index = ricercaLineare(IDLotto);
 
-				int index = ricercaLineare(IDLotto);
+			if (index != -1) {
 
-				if (index != -1) {
-
-					modelloProm.removeRow(index);
-					model.getFarmaciScadenzaArray().remove(index);
-				}
-				
-				Object rowData1[] = new Object[5];
-
-				rowData1[0] = IDLotto;
-				rowData1[4] = type;
-				rowData1[2] = sqlDate;
-				rowData1[3] = qt;
-				rowData1[1] = mode;
-
-				modelloProm.addRow(rowData1);
-				model.getFarmaciScadenzaArray().add(lo);
-
+				modelloProm.removeRow(index);
+				model.getFarmaciScadenzaArray().remove(index);
 			}
 
-		}
+			Object rowData1[] = new Object[5];
 
-		else {
-			PopupError err = new PopupError();
-			err.infoBox("Impossibile aggiornare Lotto", "Errore");
+			rowData1[0] = IDLotto;
+			rowData1[4] = type;
+			rowData1[2] = sqlDate;
+			rowData1[3] = qt;
+			rowData1[1] = mode;
+
+			modelloProm.addRow(rowData1);
+			model.getFarmaciScadenzaArray().add(lo);
+
 		}
 
 		pulisciTextField();
@@ -187,10 +180,9 @@ public class AggiornaFarmaciActionListener implements ActionListener {
 	}
 
 	private int ricercaLineare(String IDLotto) {
-		
-	
+
 		int index = -1;
-		
+
 		for (int i = 0; i < model.getFarmaciScadenzaArray().size(); i++) {
 
 			if (model.getFarmaciScadenzaArray().get(i).getIDLotto().equals(IDLotto)) {

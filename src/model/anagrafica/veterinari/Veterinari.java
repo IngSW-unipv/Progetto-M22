@@ -1,8 +1,9 @@
 package model.anagrafica.veterinari;
 
 import model.anagrafica.Persona;
+
 /**
- * la classe veterinari rappresenta l'entita veterinari del veterinario 
+ * la classe veterinari rappresenta l'entita veterinari del veterinario
  * 
  * @author MMA
  * @version 1.0 (current version number of program)
@@ -18,6 +19,7 @@ public class Veterinari extends Persona {
 
 	/**
 	 * ritona la PIVA del veterinario
+	 * 
 	 * @return String PIVA
 	 */
 	public String getPIVA() {
@@ -26,6 +28,7 @@ public class Veterinari extends Persona {
 
 	/**
 	 * ritona il comtratto del veterinario
+	 * 
 	 * @return String contratto
 	 */
 	public String getContratto() {
@@ -34,6 +37,7 @@ public class Veterinari extends Persona {
 
 	/**
 	 * ritona lo stipendio del veterinario
+	 * 
 	 * @return String stipendio
 	 */
 	public double getStipendio() {
@@ -42,6 +46,7 @@ public class Veterinari extends Persona {
 
 	/**
 	 * ritona le commissioni del veterinario
+	 * 
 	 * @return String commissioni
 	 */
 	public double getCommissioni() {
@@ -50,6 +55,7 @@ public class Veterinari extends Persona {
 
 	/**
 	 * ritona l'IBAN del veterinario
+	 * 
 	 * @return String IBAN
 	 */
 	public String getIBAN() {
@@ -57,7 +63,53 @@ public class Veterinari extends Persona {
 	}
 
 	/**
+	 * setta piva veterinario
+	 * 
+	 * @param piva
+	 */
+	public void setPIVA(String pIVA) {
+		PIVA = pIVA;
+	}
+
+	/**
+	 * setta tipo contratto veterinario
+	 * 
+	 * @param contratto (tipo)
+	 */
+	public void setContratto(String contratto) {
+		this.contratto = contratto;
+	}
+
+	/**
+	 * setta stipendio veterinario
+	 * 
+	 * @param stipendio
+	 */
+	public void setStipendio(double stipendio) {
+		this.stipendio = stipendio;
+	}
+
+	/**
+	 * setta commissioni veterinario
+	 * 
+	 * @param commissioni
+	 */
+	public void setCommissioni(double commissioni) {
+		this.commissioni = commissioni;
+	}
+
+	/**
+	 * setta iban veterinario
+	 * 
+	 * @param iban
+	 */
+	public void setIBAN(String iBAN) {
+		IBAN = iBAN;
+	}
+
+	/**
 	 * costruttore
+	 * 
 	 * @param nome
 	 * @param cognome
 	 * @param cF

@@ -1,7 +1,7 @@
 package model.anagrafica;
 
 /**
- * la classe persona rappresenta l'entita persona della clinica 
+ * la classe persona rappresenta l'entita persona della clinica
  * 
  * @author MMA
  * @version 1.0 (current version number of program)
@@ -18,6 +18,7 @@ public abstract class Persona {
 
 	/**
 	 * restituisce il nome della persona
+	 * 
 	 * @return String Nome
 	 */
 	public String getNome() {
@@ -26,6 +27,7 @@ public abstract class Persona {
 
 	/**
 	 * restituisce il cognome della persona
+	 * 
 	 * @return String Cognome
 	 */
 	public String getCognome() {
@@ -34,6 +36,7 @@ public abstract class Persona {
 
 	/**
 	 * restituisce il CF della persona
+	 * 
 	 * @return String CF
 	 */
 	public String getCF() {
@@ -42,6 +45,7 @@ public abstract class Persona {
 
 	/**
 	 * restituisce l'email della persona
+	 * 
 	 * @return String Email
 	 */
 	public String getEmail() {
@@ -50,6 +54,7 @@ public abstract class Persona {
 
 	/**
 	 * restituisce il cellulare della persona
+	 * 
 	 * @return String Cellulare
 	 */
 	public String getCellulare() {
@@ -58,6 +63,7 @@ public abstract class Persona {
 
 	/**
 	 * restituisce la citta della persona
+	 * 
 	 * @return String Citta
 	 */
 	public String getCitta() {
@@ -66,6 +72,7 @@ public abstract class Persona {
 
 	/**
 	 * restituisce l'indirizzo della persona
+	 * 
 	 * @return String Indirizzo
 	 */
 	public String getIndirizzo() {
@@ -74,6 +81,7 @@ public abstract class Persona {
 
 	/**
 	 * costrutto
+	 * 
 	 * @param nome
 	 * @param cognome
 	 * @param CF
@@ -98,6 +106,69 @@ public abstract class Persona {
 	public String toString() {
 		return "Persona [nome=" + nome + ", cognome=" + cognome + ", CF=" + CF + ", email=" + email + ", cellulare="
 				+ cellulare + ", citta=" + citta + ", indirizzo=" + indirizzo + "]";
+	}
+
+	/**
+	 * setta nome persona
+	 * 
+	 * @param nome
+	 */
+	public void setNome(String nome) {
+		this.nome = nome;
+	}
+
+	/**
+	 * setta cognome persona
+	 * 
+	 * @param cognome
+	 */
+	public void setCognome(String cognome) {
+		this.cognome = cognome;
+	}
+
+	/**
+	 * setta CF persona
+	 * 
+	 * @param CF
+	 */
+	public void setCF(String cF) {
+		CF = cF;
+	}
+
+	/**
+	 * setta emailpersona
+	 * 
+	 * @param email
+	 */
+	public void setEmail(String email) {
+		this.email = email;
+	}
+
+	/**
+	 * setta numero cellulare persona
+	 * 
+	 * @param cellulare
+	 */
+	public void setCellulare(String cellulare) {
+		this.cellulare = cellulare;
+	}
+
+	/**
+	 * setta citta persona
+	 * 
+	 * @param citta
+	 */
+	public void setCitta(String citta) {
+		this.citta = citta;
+	}
+
+	/**
+	 * setta indirizzo persona
+	 * 
+	 * @param nindirizzo
+	 */
+	public void setIndirizzo(String indirizzo) {
+		this.indirizzo = indirizzo;
 	}
 
 }

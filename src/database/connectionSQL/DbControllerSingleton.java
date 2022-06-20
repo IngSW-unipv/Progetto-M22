@@ -109,6 +109,9 @@ public class DbControllerSingleton {
 		clienti.deleteClienti(cl);
 	}
 	
+	public void updateCliente(Clienti cl) {
+		clienti.updateClienti(cl);
+	}
 	
 	
 	
@@ -146,6 +149,14 @@ public class DbControllerSingleton {
 		return fornitori.insertFornitore(fo);
 	}
 	
+	/**
+	**
+	 * aggiorna fornitore con piva estratta da parametro fo
+	 */
+	public void updateFornitore(Fornitori fo) {
+		fornitori.updateFornitori(fo);
+	}
+	
 	
 	
 	
@@ -181,6 +192,14 @@ public class DbControllerSingleton {
 	 */
 	public void deleteVeterinario(Veterinari vet) {
 		vets.deleteVeterinari(vet);
+	}
+	
+	/**
+	**
+	 * aggiorna  veterinario con CF passato come parametro del cf vet
+	 */
+	public void updateVeterinario(Veterinari vet) {
+		vets.updateVeterinari(vet);
 	}
 	
 	
@@ -389,6 +408,13 @@ public class DbControllerSingleton {
 		return farm.insertFarmaci(f);
 	}
 	
+	/**
+	 * aggiorna lotto con id passato come parametro
+	 * @return void
+	 */
+	public void updateLottoFarmaci(LottoFarmaci f) {
+		farm.updateLottoFarmaci(f);
+	}
 	
 	
 	

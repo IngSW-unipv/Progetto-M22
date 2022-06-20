@@ -9,7 +9,6 @@ import database.connectionSQL.DbControllerSingleton;
 import model.SmartVetModel;
 import model.anagrafica.veterinari.Veterinari;
 import view.MainView;
-import view.PopupError;
 import view.veterinari.VeterinariPanel;
 
 /**
@@ -45,9 +44,6 @@ public class AggiornaVeterinariActionListener implements ActionListener {
 		int elementoSelezionato = veterinariPanel.getTab().getTable().getSelectedRow();
 		((DefaultTableModel) veterinariPanel.getTab().getTable().getModel()).removeRow(elementoSelezionato);
 
-		dbControl.deleteVeterinario(model.getVeterinariArray().get(elementoSelezionato));
-		model.getVeterinariArray().remove(elementoSelezionato);
-
 		String nome = veterinariPanel.getNuovoVeterinarioTextField().getNome();
 		String cognome = veterinariPanel.getNuovoVeterinarioTextField().getCognome();
 		String CF = veterinariPanel.getNuovoVeterinarioTextField().getCF();
@@ -61,40 +57,44 @@ public class AggiornaVeterinariActionListener implements ActionListener {
 		double commissioni = veterinariPanel.getNuovoVeterinarioTextField().getCommissioni();
 		String iban = veterinariPanel.getNuovoVeterinarioTextField().getIBAN();
 
+		model.getVeterinariArray().get(elementoSelezionato).setNome(nome);
+		model.getVeterinariArray().get(elementoSelezionato).setCognome(cognome);
+		// model.getVeterinariArray().get(elementoSelezionato).setCF(CF);
+		model.getVeterinariArray().get(elementoSelezionato).setEmail(email);
+		model.getVeterinariArray().get(elementoSelezionato).setCellulare(cellulare);
+		model.getVeterinariArray().get(elementoSelezionato).setCitta(citta);
+		model.getVeterinariArray().get(elementoSelezionato).setIndirizzo(indirizzo);
+		model.getVeterinariArray().get(elementoSelezionato).setPIVA(piva);
+		model.getVeterinariArray().get(elementoSelezionato).setContratto(contratto);
+		model.getVeterinariArray().get(elementoSelezionato).setStipendio(stipendio);
+		model.getVeterinariArray().get(elementoSelezionato).setCommissioni(commissioni);
+		model.getVeterinariArray().get(elementoSelezionato).setIBAN(iban);
+
 		Veterinari vet = new Veterinari(nome, cognome, CF, email, cellulare, citta, indirizzo, piva, contratto,
 				stipendio, commissioni, iban);
 
-		boolean flag = dbControl.addNuovoVeterinario(vet);
+		dbControl.updateVeterinario(vet);
 
 		Object rowData[] = new Object[12];
 
 		DefaultTableModel modello = (DefaultTableModel) veterinariPanel.getTab().getTable().getModel();
 
-		if (flag) {
+		rowData[0] = nome;
+		rowData[1] = cognome;
+		rowData[2] = CF;
+		rowData[3] = email;
+		rowData[4] = cellulare;
+		rowData[5] = citta;
+		rowData[6] = indirizzo;
+		rowData[7] = piva;
+		rowData[8] = contratto;
+		rowData[9] = stipendio;
+		rowData[10] = commissioni;
+		rowData[11] = iban;
 
-			rowData[0] = nome;
-			rowData[1] = cognome;
-			rowData[2] = CF;
-			rowData[3] = email;
-			rowData[4] = cellulare;
-			rowData[5] = citta;
-			rowData[6] = indirizzo;
-			rowData[7] = piva;
-			rowData[8] = contratto;
-			rowData[9] = stipendio;
-			rowData[10] = commissioni;
-			rowData[11] = iban;
+		modello.insertRow(elementoSelezionato, rowData);
 
-			modello.addRow(rowData);
-
-			model.getVeterinariArray().add(vet);
-
-		}
-
-		else {
-			PopupError err = new PopupError();
-			err.infoBox("Impossibile aggiornare veterinario", "Errore");
-		}
+		model.getVeterinariArray().add(vet);
 
 		pulisciTextField();
 
