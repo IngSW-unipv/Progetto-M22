@@ -445,7 +445,7 @@ public class AppuntamentiDAO implements IAppuntamentiDAO {
 				+ "				FROM APPUNTAMENTI WHERE GIORNO >= CURDATE())B WHERE B.COD_VISITA = \"" + COD + "\"";
 		rs1 = db.executeQuery(query);
 
-		try {
+		try { 
 			if (rs1.next()) {
 
 				return rs1.getInt(1);

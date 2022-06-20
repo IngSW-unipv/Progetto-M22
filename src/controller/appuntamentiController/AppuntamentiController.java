@@ -73,7 +73,12 @@ public class AppuntamentiController {
 			rowData[i][2] = model.getAppuntamentiArray().get(i).getTipo();
 			rowData[i][3] = model.getAppuntamentiArray().get(i).getData();
 			rowData[i][4] = model.getAppuntamentiArray().get(i).getTime();
+			if (model.getAppuntamentiArray().get(i).getVeterinario() != null) {
 			rowData[i][5] = model.getAppuntamentiArray().get(i).getVeterinario().getCF();
+			}
+			else {
+				rowData[i][5] = null;
+			}
 			rowData[i][6] = model.getAppuntamentiArray().get(i).getCosto();
 			rowData[i][7] = model.getAppuntamentiArray().get(i).getNote();
 
@@ -99,7 +104,12 @@ public class AppuntamentiController {
 			rowData[i][2] = model.getAppuntamentiArray().get(i).getTipo();
 			rowData[i][3] = model.getAppuntamentiArray().get(i).getData();
 			rowData[i][4] = model.getAppuntamentiArray().get(i).getTime();
-			rowData[i][5] = model.getAppuntamentiArray().get(i).getVeterinario().getCF();
+			if (model.getAppuntamentiArray().get(i).getVeterinario() != null) {
+				rowData[i][5] = model.getAppuntamentiArray().get(i).getVeterinario().getCF();
+				}
+				else {
+					rowData[i][5] = null;
+				}
 			rowData[i][6] = model.getAppuntamentiArray().get(i).getCosto();
 			rowData[i][7] = model.getAppuntamentiArray().get(i).getNote();
 

@@ -202,7 +202,7 @@ public class AggiornaAppuntamentiActionListener implements ActionListener {
 				&& ((model.getCFuser().equals(vet.getCF()) || model.getCFuser().equals("direzione")))) {
 
 			int indexProm = ricercaLineare(COD, model.getPromemoriaOggiArray());
-
+ 
 			if (indexProm != -1) {
 
 				modelloPromemoria.removeRow(indexProm);

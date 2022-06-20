@@ -58,7 +58,7 @@ public class FarmaciController {
 			rowData[i][0] = model.getLottoFarmaciArray().get(i).getIDLotto();
 			rowData[i][1] = model.getLottoFarmaciArray().get(i).getMode();
 			rowData[i][2] = model.getLottoFarmaciArray().get(i).getType();
-			// rowData[i][3] = res.get(i).getFornitore().getPIVA();
+		
 			rowData[i][4] = model.getLottoFarmaciArray().get(i).getDataScadenza();
 			rowData[i][5] = model.getLottoFarmaciArray().get(i).getQuantita();
 

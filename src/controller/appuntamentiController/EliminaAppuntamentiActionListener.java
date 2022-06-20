@@ -43,16 +43,8 @@ public class EliminaAppuntamentiActionListener implements ActionListener {
 		int elementoSelezionato = view.getAppuntamentiPanel().getTab().getTable().getSelectedRow();
 
 		int cod = dbControl.selectIDappuntamenti(elementoSelezionato, model.getCFuser());
-
-		modello.removeRow(elementoSelezionato);
-		modelloStorico.removeRow(elementoSelezionato);
-
-		dbControl.deleteAppuntamenti(cod);
-
-		int index = ricercaLineare(cod, model.getAppuntamentiArray());
-		model.getAppuntamentiArray().remove(index);
-		model.getStoricoArray().remove(index);
-
+		
+		// sala
 		int rigaGiustaSala = dbControl.selectRigaGiustaSala(cod);
 		modelloSale.removeRow(rigaGiustaSala - 1);
 
@@ -62,6 +54,18 @@ public class EliminaAppuntamentiActionListener implements ActionListener {
 			modelloPromemoria.removeRow(indexPromemoria);
 			model.getPromemoriaOggiArray().remove(indexPromemoria);
 		}
+		
+		
+		modello.removeRow(elementoSelezionato);
+		modelloStorico.removeRow(elementoSelezionato);
+
+		dbControl.deleteAppuntamenti(cod);
+
+		int index = ricercaLineare(cod, model.getAppuntamentiArray());
+		model.getAppuntamentiArray().remove(index);
+		model.getStoricoArray().remove(index); 
+
+
 
 	}
 
