@@ -132,7 +132,7 @@ public class AggiornaProdottiVenditaActionListener implements ActionListener {
 	 * 
 	 * @return Fornitore fornitore letto
 	 */
-	public Fornitori costruisciFornitore() {
+	private Fornitori costruisciFornitore() {
 
 		String PIVA = (String) prodottivenditaPanel.getFornitoriBox().getSelectedItem();
 		Fornitori forn = dbControl.selectFornitoreFromPiva(PIVA);
@@ -145,7 +145,7 @@ public class AggiornaProdottiVenditaActionListener implements ActionListener {
 	 * 
 	 * @return void
 	 */
-	public void pulisciTextField() {
+	private void pulisciTextField() {
 
 		view.getProdottiVenditaPanel().getNomeText().setText(null);
 		view.getProdottiVenditaPanel().getTipoText().setText(null);

@@ -138,7 +138,7 @@ public class AggiungiFarmaciActionListener implements ActionListener {
 	 * @return void
 	 */
 
-	public void pulisciTextField() {
+	private void pulisciTextField() {
 
 		view.getFarmaciPanel().getIDLottoText().setText(null);
 		view.getFarmaciPanel().getDataScadenza().setDate(null);
@@ -154,7 +154,7 @@ public class AggiungiFarmaciActionListener implements ActionListener {
 	 * 
 	 * @return Veterinari veterinario letto
 	 */
-	public Fornitori costruisciFornitore() {
+	private Fornitori costruisciFornitore() {
 		String PIVA = view.getFarmaciPanel().getFornitoriBox().getSelectedItem().toString();
 		Fornitori forn = dbControl.selectFornitoreFromPiva(PIVA);
 		return forn;

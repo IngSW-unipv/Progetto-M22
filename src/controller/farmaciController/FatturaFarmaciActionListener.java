@@ -86,7 +86,7 @@ public class FatturaFarmaciActionListener implements ActionListener {
 	 * @param e evento schiaccia bottone fattura
 	 * @return void
 	 */
-	public void memorizzaFarmaco() {
+	private void memorizzaFarmaco() {
 
 		if (rigaSelezionata >= 0) {
 

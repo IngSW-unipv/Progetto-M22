@@ -168,7 +168,7 @@ public class AggiungiPazientiActionListener implements ActionListener {
 	 * @return void
 	 */
 
-	public void pulisciTextField() {
+	private void pulisciTextField() {
 
 		view.getPazientiPanel().getNomeText().setText(null);
 		view.getPazientiPanel().getSpecieText().setText(null);
@@ -192,7 +192,7 @@ public class AggiungiPazientiActionListener implements ActionListener {
 	 * 
 	 * @return Veterinario vet letto
 	 */
-	public Veterinari costruisciVeterinario() {
+	private Veterinari costruisciVeterinario() {
 		String CF = (String) view.getPazientiPanel().getVeterinariBox().getSelectedItem();
 		Veterinari vet = dbControl.selectVeterinarioFromCF(CF);
 		return vet;
@@ -204,7 +204,7 @@ public class AggiungiPazientiActionListener implements ActionListener {
 	 * 
 	 * @return Cliente cliente proprietario
 	 */
-	public Clienti costruisciCliente() {
+	private Clienti costruisciCliente() {
 		String CF = (String) view.getPazientiPanel().getClientiBox().getSelectedItem();
 		Clienti cl = dbControl.selectClienteFromCF(CF);
 		return cl;

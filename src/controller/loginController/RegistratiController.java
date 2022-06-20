@@ -44,7 +44,7 @@ public class RegistratiController {
 	 * 
 	 * @return void
 	 */
-	public void addActionListener() {
+	private void addActionListener() {
 		view.getLoginView().getBtnRegistrati().addActionListener(new ActionListener() {
 
 			public void actionPerformed(ActionEvent e) {
@@ -59,7 +59,7 @@ public class RegistratiController {
 	 * 
 	 * @return void
 	 */
-	public void addActionListenerRegistrati() {
+	private void addActionListenerRegistrati() {
 		RegistratiActionListener registrati = new RegistratiActionListener(view, dbControl);
 		view.getRegistratiView().getBtnGo().addActionListener(registrati);
 	}
@@ -69,7 +69,7 @@ public class RegistratiController {
 	 * 
 	 * @return void
 	 */
-	public void fillComboBoxVet() {
+	private void fillComboBoxVet() {
 
 		ArrayList<String> listaCFvet = new ArrayList<String>();
 

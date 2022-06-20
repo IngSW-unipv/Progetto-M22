@@ -186,7 +186,7 @@ public class AggiornaPazientiActionListener implements ActionListener {
 	 * 
 	 * @return Veterinario vet letto
 	 */
-	public Veterinari costruisciVeterinario() {
+	private Veterinari costruisciVeterinario() {
 		String CF = (String) pazientiPanel.getVeterinariBox().getSelectedItem();
 		Veterinari vet = dbControl.selectVeterinarioFromCF(CF);
 		return vet;
@@ -198,7 +198,7 @@ public class AggiornaPazientiActionListener implements ActionListener {
 	 * 
 	 * @return Cliente cliente proprietario
 	 */
-	public Clienti costruisciCliente() {
+	private Clienti costruisciCliente() {
 		String CF = (String) pazientiPanel.getClientiBox().getSelectedItem();
 		Clienti cl = dbControl.selectClienteFromCF(CF);
 		return cl;
@@ -210,7 +210,7 @@ public class AggiornaPazientiActionListener implements ActionListener {
 	 * 
 	 * @return void
 	 */
-	public void pulisciTextField() {
+	private void pulisciTextField() {
 
 		pazientiPanel.getNomeText().setText(null);
 		view.getPazientiPanel().getDataMorte().setDate(null);

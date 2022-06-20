@@ -177,7 +177,7 @@ public class AggiornaFarmaciActionListener implements ActionListener {
 	 * @return void
 	 */
 
-	public void pulisciTextField() {
+	private void pulisciTextField() {
 		farmaciPanel.getIDLottoText().setText(null);
 		farmaciPanel.getDataScadenza().setDate(null);
 		farmaciPanel.getModeText().setText(null);
@@ -186,7 +186,7 @@ public class AggiornaFarmaciActionListener implements ActionListener {
 		farmaciPanel.getSpinner().setValue(0);
 	}
 
-	public int ricercaLineare(String IDLotto) {
+	private int ricercaLineare(String IDLotto) {
 		
 	
 		int index = -1;

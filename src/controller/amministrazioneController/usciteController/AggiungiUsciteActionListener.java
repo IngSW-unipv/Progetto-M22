@@ -105,7 +105,7 @@ public class AggiungiUsciteActionListener implements ActionListener {
 	* @return void 
 	*/
 	
-	public void pulisciTextField() {
+	private void pulisciTextField() {
 
 		view.getUscitePanel().getCausaText().setText(null);
 		view.getUscitePanel().getTipoText().setText(null);

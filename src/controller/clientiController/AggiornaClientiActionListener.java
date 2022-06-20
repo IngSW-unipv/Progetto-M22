@@ -105,7 +105,7 @@ public class AggiornaClientiActionListener implements ActionListener {
 	* @return void 
 	*/
 
-	public void pulisciTextField() {
+	private void pulisciTextField() {
 		clientiPanel.getNomeText().setText(null);
 		clientiPanel.getCognomeText().setText(null);
 		clientiPanel.getCFText().setText(null);

@@ -37,7 +37,7 @@ public class AggiornaVeterinariActionListener implements ActionListener {
 	@Override
 	public void actionPerformed(ActionEvent e) {
 		// TODO Auto-generated method stub
-		
+
 		veterinariPanel = view.getVeterinariPanel();
 
 		veterinariPanel.getCFText().setEditable(true);
@@ -90,7 +90,7 @@ public class AggiornaVeterinariActionListener implements ActionListener {
 			model.getVeterinariArray().add(vet);
 
 		}
-		
+
 		else {
 			PopupError err = new PopupError();
 			err.infoBox("Impossibile aggiornare veterinario", "Errore");
@@ -119,7 +119,7 @@ public class AggiornaVeterinariActionListener implements ActionListener {
 	 * 
 	 * @return void
 	 */
-	public void pulisciTextField() {
+	private void pulisciTextField() {
 		veterinariPanel.getNomeText().setText(null);
 		veterinariPanel.getCognomeText().setText(null);
 		veterinariPanel.getCFText().setText(null);

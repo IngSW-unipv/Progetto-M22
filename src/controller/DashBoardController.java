@@ -38,7 +38,7 @@ public class DashBoardController {
 	 * 
 	 * @return void
 	 */
-	public void fillTableFarmaciScadenza() {
+	private void fillTableFarmaciScadenza() {
 
 		DefaultTableModel modello = (DefaultTableModel) view.getDashboard().getTabellaFarmaciView().getTable()
 				.getModel();
@@ -63,7 +63,7 @@ public class DashBoardController {
 	 * 
 	 * @return void
 	 */
-	public void fillTableAppuntamentiOggi() {
+	private void fillTableAppuntamentiOggi() {
 
 		// personalizzo tabella
 		DefaultTableModel model1 = (DefaultTableModel) view.getDashboard().getPromemoria().getTable().getModel();

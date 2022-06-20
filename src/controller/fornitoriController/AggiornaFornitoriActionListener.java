@@ -102,7 +102,7 @@ public class AggiornaFornitoriActionListener implements ActionListener {
 	 * 
 	 * @return void
 	 */
-	public void pulisciTextField() {
+	private void pulisciTextField() {
 		fornitoriPanel.getPIVAText().setText(null);
 		fornitoriPanel.getNomeAziendaText().setText(null);
 		fornitoriPanel.getnTelefonoText().setText(null);

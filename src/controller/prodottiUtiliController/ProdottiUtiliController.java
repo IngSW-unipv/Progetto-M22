@@ -46,7 +46,7 @@ public class ProdottiUtiliController {
 	 * @return void
 	 */
 
-	public void fillTable() {
+	private void fillTable() {
 		Object rowData[][] = new Object[model.getProdottiUtiliArray().size()][4];
 
 		DefaultTableModel modello = (DefaultTableModel) view.getProdottiUtiliPanel().getTabellaProdottiUtili().getTable()
@@ -79,7 +79,7 @@ public class ProdottiUtiliController {
 	 * @return void
 	 */
 	@SuppressWarnings("unchecked")
-	public void fillComboBox() {
+	private void fillComboBox() {
 
 		ArrayList<String> lista_PIVA = new ArrayList<String>();
 
@@ -99,7 +99,7 @@ public class ProdottiUtiliController {
 	 * 
 	 * @return void
 	 */
-	public void addActionListenersMenu() {
+	private void addActionListenersMenu() {
 		
 
 		view.getDashboard().getMenu().getMntmProdottiutili().addActionListener(new ActionListener() {
@@ -118,7 +118,7 @@ public class ProdottiUtiliController {
 	 * 
 	 * @return void
 	 */
-	public void addActionListenerButtons() {
+	private void addActionListenerButtons() {
 		
 		AggiungiProdottiUtiliActionListener addProdottiUtili = new AggiungiProdottiUtiliActionListener(model, view, dbControl);
 		view.getProdottiUtiliPanel().getBtnAggiungi().addActionListener(addProdottiUtili);
@@ -139,7 +139,7 @@ public class ProdottiUtiliController {
 	 * 
 	 * @return void
 	 */
-	public void addActionListenerHome() {
+	private void addActionListenerHome() {
 		
 		view.getProdottiUtiliPanel().getBtnHome().addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {

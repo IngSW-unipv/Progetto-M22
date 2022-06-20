@@ -47,7 +47,7 @@ public class FarmaciController {
 	 * @return void
 	 */
 
-	public void fillTable() {
+	private void fillTable() {
 		Object rowData[][] = new Object[model.getLottoFarmaciArray().size()][6];
 
 		DefaultTableModel modello = (DefaultTableModel) view.getFarmaciPanel().getTabellaFarmaci().getTable()
@@ -79,7 +79,7 @@ public class FarmaciController {
 	 * @return void
 	 */
 	@SuppressWarnings("unchecked")
-	public void fillComboBox() {
+	private void fillComboBox() {
 
 		ArrayList<String> listaPIVA = new ArrayList<String>();
 
@@ -98,7 +98,7 @@ public class FarmaciController {
 	 * 
 	 * @return void
 	 */
-	public void addActionListenersMenu() {
+	private void addActionListenersMenu() {
 
 		view.getDashboard().getMenu().getMntmFarmaci().addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
@@ -117,7 +117,7 @@ public class FarmaciController {
 	 * 
 	 * @return void
 	 */
-	public void addActionListenerButtons() {
+	private void addActionListenerButtons() {
 
 		AggiungiFarmaciActionListener addFarmaci = new AggiungiFarmaciActionListener(model, view, dbControl);
 		view.getFarmaciPanel().getBtnAggiungi().addActionListener(addFarmaci);
@@ -144,7 +144,7 @@ public class FarmaciController {
 	 * 
 	 * @return void
 	 */
-	public void addActionListenerHome() {
+	private void addActionListenerHome() {
 
 		view.getFarmaciPanel().getBtnHome().addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {

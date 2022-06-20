@@ -68,7 +68,7 @@ public class EliminaFarmaciActionListener implements ActionListener {
 		this.dbControl = dbControl;
 	}
 
-	public int ricercaLineare(String IDLotto) {
+	private int ricercaLineare(String IDLotto) {
 
 		int index = -1;
 		for (int i = 0; i < model.getFarmaciScadenzaArray().size(); i++) {

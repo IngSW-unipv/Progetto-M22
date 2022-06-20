@@ -58,7 +58,7 @@ public class RegistratiActionListener implements ActionListener {
 	 * 
 	 * @return void
 	 */
-	public void pulisciTextField() {
+	private void pulisciTextField() {
 		view.getRegistratiView().getUsernameText().setText(null);
 		view.getRegistratiView().getPasswordField().setText(null);
 		view.getRegistratiView().getPasswordField_1().setText(null);

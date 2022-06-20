@@ -93,7 +93,7 @@ public class AggiungiFornitoriActionListener implements ActionListener {
 	 * 
 	 * @return void
 	 */
-	public void pulisciTextField() {
+	private void pulisciTextField() {
 
 		view.getFornitoriPanel().getPIVAText().setText(null);
 		view.getFornitoriPanel().getNomeAziendaText().setText(null);

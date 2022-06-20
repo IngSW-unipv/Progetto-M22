@@ -89,7 +89,7 @@ public class EliminaAppuntamentiActionListener implements ActionListener {
 	 * @param array dove effettuare la ricerca
 	 * @return int numero di riga trovata
 	 */
-	public int ricercaLineare(int COD, ArrayList<Appuntamenti> array) {
+	private int ricercaLineare(int COD, ArrayList<Appuntamenti> array) {
 
 		int index = -1;
 		for (int i = 0; i < array.size(); i++) {

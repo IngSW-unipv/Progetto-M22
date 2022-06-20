@@ -74,7 +74,7 @@ public class Controller {
 		dbControl = DbControllerSingleton.getInstance();
 
 		loginController = new LoginController(view, model);
-
+ 
 		populateArrays();
 
 		clientiController = new ClientiController(view, model);

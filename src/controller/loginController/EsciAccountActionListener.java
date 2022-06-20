@@ -1,11 +1,10 @@
 package controller.loginController;
 
-import java.awt.Dimension;
-import java.awt.Toolkit;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
 import database.connectionSQL.DbControllerSingleton;
+import database.connectionSQL.DbSingleton;
 import model.SmartVetModel;
 import view.MainView;
 /**
@@ -17,20 +16,20 @@ import view.MainView;
  */
 public class EsciAccountActionListener implements ActionListener {
 
+	private DbSingleton db;
 	private MainView view;
 	private SmartVetModel model;
 	private DbControllerSingleton dbControl;
 	
 	/**
-	 * rende non visibile pannello dashboard e 
-	 * rende visibile pannello login
+	 * chiude il sistema
 	 * @return void
 	 */
 	@Override
 	public void actionPerformed(ActionEvent e) {
 		// TODO Auto-generated method stub
 
-		Toolkit kit = Toolkit.getDefaultToolkit();
+		/*Toolkit kit = Toolkit.getDefaultToolkit();
 		Dimension screenSize = kit.getScreenSize(); // restituisce la dimensione dello schermo come oggetto Dimension
 		int screenHeight = screenSize.height;
 		int screenWidth = screenSize.width;
@@ -44,6 +43,13 @@ public class EsciAccountActionListener implements ActionListener {
 
 		view.getDashboard().setVisible(false);
 		view.getLoginView().setVisible(true);
+		//db.getInstance().closeConnection();
+		view.getDashboard().setVisible(false);
+		Test test = new Test();
+		test.main(null);*/
+		db.getInstance().closeConnection();
+		System.exit(0);
+		
 
 	}
 

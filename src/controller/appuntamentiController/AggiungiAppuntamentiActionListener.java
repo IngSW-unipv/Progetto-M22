@@ -221,7 +221,7 @@ public class AggiungiAppuntamentiActionListener implements ActionListener {
 	 * @return void
 	 */
 
-	public void pulisciTextField() {
+	private void pulisciTextField() {
 
 		java.sql.Time timeValue = null;
 		String ora = "00:00:00";
@@ -254,7 +254,7 @@ public class AggiungiAppuntamentiActionListener implements ActionListener {
 	 * 
 	 * @return Paziente paziente letto
 	 */
-	public Paziente costruisciPaziente() {
+	private Paziente costruisciPaziente() {
 
 		int ID = (int) view.getAppuntamentiPanel().getIDpazText().getSelectedItem();
 		Paziente paz = dbControl.selectPazienteFromID(ID);
@@ -267,7 +267,7 @@ public class AggiungiAppuntamentiActionListener implements ActionListener {
 	 * 
 	 * @return Veterinari veterinario letto
 	 */
-	public Veterinari costruisciVeterinario() {
+	private Veterinari costruisciVeterinario() {
 
 		String CF = null;
 

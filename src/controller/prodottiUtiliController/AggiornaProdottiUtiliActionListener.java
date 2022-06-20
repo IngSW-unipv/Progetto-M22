@@ -101,7 +101,7 @@ public class AggiornaProdottiUtiliActionListener implements ActionListener {
 	 * 
 	 * @return Fornitore fornitore letto
 	 */
-	public Fornitori costruisciFornitore() {
+	private Fornitori costruisciFornitore() {
 		String PIVA = (String) prodottiutiliPanel.getFornitoriBox().getSelectedItem();
 		Fornitori forn = dbControl.selectFornitoreFromPiva(PIVA);
 		return forn;
@@ -113,7 +113,7 @@ public class AggiornaProdottiUtiliActionListener implements ActionListener {
 	 * 
 	 * @return void
 	 */
-	public void pulisciTextField() {
+	private void pulisciTextField() {
 
 		prodottiutiliPanel.getNomeText().setText(null);
 		prodottiutiliPanel.getFornitoriBox().setSelectedIndex(0);

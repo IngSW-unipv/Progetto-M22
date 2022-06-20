@@ -54,7 +54,7 @@ public class StoricoController {
 	 * 
 	 * @return void
 	 */
-	public void fillTable() {
+	private void fillTable() {
 
 		Object rowData[][] = new Object[model.getStoricoArray().size()][8];
 		DefaultTableModel modello = (DefaultTableModel) view.getStoricoPanel().getTable().getModel();
@@ -89,7 +89,7 @@ public class StoricoController {
 	 * @return void
 	 */
 
-	public void fillTableDueToVeterinario() {
+	private void fillTableDueToVeterinario() {
 
 		Object rowData[][] = new Object[model.getStoricoArray().size()][8];
 		DefaultTableModel modello = (DefaultTableModel) view.getStoricoPanel().getTable().getModel();
@@ -123,7 +123,7 @@ public class StoricoController {
 	 * @return void
 	 */
 
-	public void addActionListenersMenu() {
+	private void addActionListenersMenu() {
 		view.getDashboard().getMenu().getMenuItemStorico().addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				view.getDashboard().setVisible(false);
@@ -140,7 +140,7 @@ public class StoricoController {
 	 * @return void
 	 */
 
-	public void addActionListenerHome() {
+	private void addActionListenerHome() {
 		view.getStoricoPanel().getBtnHome().addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				view.getStoricoPanel().setVisible(false);

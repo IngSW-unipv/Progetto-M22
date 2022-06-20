@@ -109,7 +109,7 @@ public class AggiungiVeterinarioActionListener implements ActionListener {
 	 * 
 	 * @return void
 	 */
-	public void pulisciTextField() {
+	private void pulisciTextField() {
 
 		veterinariPanel.getNomeText().setText(null);
 		veterinariPanel.getCognomeText().setText(null);

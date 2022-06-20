@@ -126,7 +126,7 @@ public class PopUpGoBtnActionListener implements ActionListener {
 	 *
 	 */
 
-	public void aggiornaQuantitaFarmaco() {
+	private void aggiornaQuantitaFarmaco() {
 
 		int rigaSelezionata = fatturaFarmaciActionListener.getRigaSelezionata();
 

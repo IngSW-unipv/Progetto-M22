@@ -49,7 +49,7 @@ public class ProdottiVenditaController {
 	 * @return void
 	 */
 
-	public void fillTable() {
+	private void fillTable() {
 		Object rowData[][] = new Object[model.getProdottiVenditaArray().size()][5];
 
 		DefaultTableModel modello = (DefaultTableModel) view.getProdottiVenditaPanel().getTabellaProdottiVenditaPanel().getTable()
@@ -83,7 +83,7 @@ public class ProdottiVenditaController {
 	 * 
 	 * @return void
 	 */
-	public void fillComboBox() {
+	private void fillComboBox() {
 
 		ArrayList<String> lista_PIVA = new ArrayList<String>();
 
@@ -102,7 +102,7 @@ public class ProdottiVenditaController {
 	 * 
 	 * @return void
 	 */
-	public void addActionListenersMenu() {
+	private void addActionListenersMenu() {
 		
 
 		view.getDashboard().getMenu().getMntmProdottiVendita().addActionListener(new ActionListener() {
@@ -123,7 +123,7 @@ public class ProdottiVenditaController {
 	 * 
 	 * @return void
 	 */
-	public void addActionListenerButtons() {
+	private void addActionListenerButtons() {
 		
 		AggiungiProdottiVenditaActionListener addProdottiVendita = new AggiungiProdottiVenditaActionListener(model, view, dbControl);
 		view.getProdottiVenditaPanel().getBtnAggiungi().addActionListener(addProdottiVendita);
@@ -151,7 +151,7 @@ public class ProdottiVenditaController {
 	 * 
 	 * @return void
 	 */
-	public void addActionListenerHome() {
+	private void addActionListenerHome() {
 		
 		view.getProdottiVenditaPanel().getBtnHome().addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {

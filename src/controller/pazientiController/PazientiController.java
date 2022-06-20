@@ -50,7 +50,7 @@ public class PazientiController {
 	 * @return void
 	 */
 
-	public void fillTable() {
+	private void fillTable() {
 		Object rowData[][] = new Object[model.getPazientiArray().size()][14];
 
 		DefaultTableModel modello = (DefaultTableModel) view.getPazientiPanel().getTabellaPazienti().getTable()
@@ -101,7 +101,7 @@ public class PazientiController {
 	 * @return void
 	 */
 	@SuppressWarnings("unchecked")
-	public void fillComboBox() {
+	private void fillComboBox() {
 
 		ArrayList<String> lista_CF = new ArrayList<String>();
 
@@ -127,7 +127,7 @@ public class PazientiController {
 	 * @return void
 	 */
 	@SuppressWarnings("unchecked")
-	public void fillComboBox1() {
+	private void fillComboBox1() {
 
 		ArrayList<String> lista_CF = new ArrayList<String>();
 
@@ -146,7 +146,7 @@ public class PazientiController {
 	 * 
 	 * @return void
 	 */
-	public void addActionListenersMenu() {
+	private void addActionListenersMenu() {
 
 		view.getDashboard().getMenu().getMenuItemPazienti().addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
@@ -165,7 +165,7 @@ public class PazientiController {
 	 * 
 	 * @return void
 	 */
-	public void addActionListenerButtons() {
+	private void addActionListenerButtons() {
 
 		AggiungiPazientiActionListener addPazienti = new AggiungiPazientiActionListener(model, view, dbControl);
 		view.getPazientiPanel().getBtnAggiungi().addActionListener(addPazienti);
@@ -186,7 +186,7 @@ public class PazientiController {
 	 * 
 	 * @return void
 	 */
-	public void addActionListenerHome() {
+	private void addActionListenerHome() {
 
 		view.getPazientiPanel().getBtnHome().addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {

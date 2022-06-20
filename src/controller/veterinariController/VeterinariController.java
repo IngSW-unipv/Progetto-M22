@@ -44,7 +44,7 @@ public class VeterinariController {
 	 * @return void
 	 */
 
-	public void fillTable() {
+	private void fillTable() {
 		Object rowData[][] = new Object[model.getVeterinariArray().size()][12];
 		DefaultTableModel modello = (DefaultTableModel) view.getVeterinariPanel().getTab().getTable().getModel();
 		for (int i = 0; i < model.getVeterinariArray().size(); i++) {
@@ -73,7 +73,7 @@ public class VeterinariController {
 	 * 
 	 * @return void
 	 */
-	public void addActionListenersMenu() {
+	private void addActionListenersMenu() {
 		view.getDashboard().getMenu().getMntmDipendenti().addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				view.getDashboard().setVisible(false);
@@ -90,7 +90,7 @@ public class VeterinariController {
 	 * 
 	 * @return void
 	 */
-	public void addActionListenerButtons() {
+	private void addActionListenerButtons() {
 		AggiungiVeterinarioActionListener addVeterinario = new AggiungiVeterinarioActionListener(model, view,
 				dbControl);
 
@@ -112,7 +112,7 @@ public class VeterinariController {
 	 * 
 	 * @return void
 	 */
-	public void addActionListenerHome() {
+	private void addActionListenerHome() {
 		view.getVeterinariPanel().getBtnHome().addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				view.getVeterinariPanel().setVisible(false);

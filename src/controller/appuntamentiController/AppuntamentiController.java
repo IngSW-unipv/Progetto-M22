@@ -61,7 +61,7 @@ public class AppuntamentiController {
 	 * @return void
 	 */
 
-	public void fillTable() {
+	private void fillTable() {
 
 		Object rowData[][] = new Object[model.getAppuntamentiArray().size()][8];
 		DefaultTableModel modello = (DefaultTableModel) view.getAppuntamentiPanel().getTab().getTable().getModel();
@@ -92,7 +92,7 @@ public class AppuntamentiController {
 	 * 
 	 * @return void
 	 */
-	void fillTableDueToVeterinario() {
+	private void fillTableDueToVeterinario() {
 
 		Object rowData[][] = new Object[model.getAppuntamentiArray().size()][8];
 		DefaultTableModel modello = (DefaultTableModel) view.getAppuntamentiPanel().getTab().getTable().getModel();
@@ -123,7 +123,7 @@ public class AppuntamentiController {
 	 * 
 	 * @return void
 	 */
-	public void addActionListenersMenu() {
+	private void addActionListenersMenu() {
 		view.getDashboard().getMenu().getMenuItemAppuntamenti().addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 
@@ -141,7 +141,7 @@ public class AppuntamentiController {
 	 * 
 	 * @return void
 	 */
-	public void addActionListenerButtons() {
+	private void addActionListenerButtons() {
 		AggiungiAppuntamentiActionListener addAppuntamenti = new AggiungiAppuntamentiActionListener(model, view,
 				dbControl);
 
@@ -169,7 +169,7 @@ public class AppuntamentiController {
 	 * @return void
 	 */
 	@SuppressWarnings("unchecked")
-	public void fillComboBoxPaz() {
+	private void fillComboBoxPaz() {
 
 		for (int i = 0; i < model.getPazientiArray().size(); i++) {
 
@@ -187,7 +187,7 @@ public class AppuntamentiController {
 	 * 
 	 * @return void
 	 */
-	public void fillComboBoxVets() {
+	private void fillComboBoxVets() {
 		ArrayList<String> listaCFvet = new ArrayList<String>();
 
 		for (int i = 0; i < model.getVeterinariArray().size(); i++) {
@@ -206,7 +206,7 @@ public class AppuntamentiController {
 	 * 
 	 * @return void
 	 */
-	public void addActionListenerHome() {
+	private void addActionListenerHome() {
 		view.getAppuntamentiPanel().getBtnHome().addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				view.getAppuntamentiPanel().setVisible(false);

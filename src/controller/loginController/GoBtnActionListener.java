@@ -119,7 +119,7 @@ public class GoBtnActionListener implements ActionListener {
 	 * quando non matcha
 	 * @return void
 	 */
-	public void pulisciTextField() {
+	private void pulisciTextField() {
 		view.getLoginView().getUsernameText().setText(null);
 		view.getLoginView().getPasswordField().setText(null);
 	}

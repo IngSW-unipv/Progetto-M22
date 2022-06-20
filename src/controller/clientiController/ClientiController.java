@@ -45,7 +45,7 @@ public class ClientiController {
 	 * 
 	 * @return void
 	 */
-	public void fillTable() {
+	private void fillTable() {
 		int righe = model.getClientiArray().size();
 		String rowData[][] = new String[righe][7];
 
@@ -70,7 +70,7 @@ public class ClientiController {
 	 * 
 	 * @return void
 	 */
-	public void addActionListenersMenu() {
+	private void addActionListenersMenu() {
 		view.getDashboard().getMenu().getMntmClienti().addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				view.getDashboard().setVisible(false);
@@ -87,7 +87,7 @@ public class ClientiController {
 	 * 
 	 * @return void
 	 */
-	public void addActionListenerButtons() {
+	private void addActionListenerButtons() {
 		AggiungiClienteActionListener addCliente = new AggiungiClienteActionListener(model, view, dbControl);
 
 		view.getClientiPanel().getBtnAggiungi().addActionListener(addCliente);
@@ -108,7 +108,7 @@ public class ClientiController {
 	 * 
 	 * @return void
 	 */
-	public void addActionListenerHome() {
+	private void addActionListenerHome() {
 		view.getClientiPanel().getBtnHome().addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				view.getClientiPanel().setVisible(false);

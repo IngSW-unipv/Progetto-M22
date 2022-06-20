@@ -51,7 +51,7 @@ public class LoginController {
 	 * per uscire da account loggato
 	 * @return void
 	 */
-	public void addEsciActionListener() {
+	private void addEsciActionListener() {
 
 		EsciAccountActionListener esci = new EsciAccountActionListener(view, model);
 		view.getDashboard().getMenu().getMntmEsciAccount().addActionListener(esci);

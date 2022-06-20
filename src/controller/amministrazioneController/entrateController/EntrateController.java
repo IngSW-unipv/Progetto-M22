@@ -47,7 +47,7 @@ public class EntrateController {
 	* @return void
 	*/
 	
-	public void fillTable() {
+	private void fillTable() {
 
 		Object rowData[][] = new Object[model.getEntrateArray().size()][4];
 
@@ -68,7 +68,7 @@ public class EntrateController {
 	* Aggiunge action listener al menu per aprire pannello entrate da dashboard
 	* @return void
 	*/
-	public void addActionListenersMenu() {
+	private void addActionListenersMenu() {
 
 		view.getDashboard().getMenu().getMntmEntrate().addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
@@ -85,7 +85,7 @@ public class EntrateController {
 	* Aggiunge action listener al bottone per eliminare entrata selezionata
 	* @return void
 	*/
-	public void addActionListenerButtons() {
+	private void addActionListenerButtons() {
 
 		EliminaEntrateActionListener deleteEntrate = new EliminaEntrateActionListener(model, view, dbControl);
 		view.getEntratePanel().getBtnElimina().addActionListener(deleteEntrate);
@@ -96,7 +96,7 @@ public class EntrateController {
 	* @return void
 	*/
 
-	public void addActionListenerHome() {
+	private void addActionListenerHome() {
 
 		view.getEntratePanel().getBtnHome().addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {

@@ -46,7 +46,7 @@ public class OccupazioneSaleController {
 	 * 
 	 * @return void
 	 */
-	public void fillTable() {
+	private void fillTable() {
 
 		Object rowData[][] = new Object[model.getSaleOccupateArray().size()][5];
 		DefaultTableModel modello = (DefaultTableModel) view.getSaleOccupatePanel().getTable().getModel();
@@ -69,7 +69,7 @@ public class OccupazioneSaleController {
 	 * @return void
 	 */
 
-	public void addActionListenerHome() {
+	private void addActionListenerHome() {
 		view.getSaleOccupatePanel().getBtnHome().addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				view.getSaleOccupatePanel().setVisible(false);
@@ -85,7 +85,7 @@ public class OccupazioneSaleController {
 	 * @return void
 	 */
 
-	public void addActionListenersMenu() {
+	private void addActionListenersMenu() {
 		view.getDashboard().getMenu().getMntmSaleOccupate().addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 

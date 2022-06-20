@@ -46,7 +46,7 @@ public class UsciteController {
 	 * 
 	 * @return void
 	 */
-	public void fillTable() {
+	private void fillTable() {
 		Object rowData[][] = new Object[model.getUsciteArray().size()][3];
 
 		DefaultTableModel modello = (DefaultTableModel) view.getUscitePanel().getTab().getTable().getModel();
@@ -66,7 +66,7 @@ public class UsciteController {
 	 * @return void
 	 */
 
-	public void addActionListenersMenu() {
+	private void addActionListenersMenu() {
 
 		view.getDashboard().getMenu().getMntmUscite().addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
@@ -86,7 +86,7 @@ public class UsciteController {
 	 * @return void
 	 */
 
-	public void addActionListenerButtons() {
+	private void addActionListenerButtons() {
 
 		AggiungiUsciteActionListener addUscite = new AggiungiUsciteActionListener(model, view, dbControl);
 		view.getUscitePanel().getBtnAggiungi().addActionListener(addUscite);
@@ -102,7 +102,7 @@ public class UsciteController {
 	 * @return void
 	 */
 
-	public void addActionListenerHome() {
+	private void addActionListenerHome() {
 
 		view.getUscitePanel().getBtnHome().addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {

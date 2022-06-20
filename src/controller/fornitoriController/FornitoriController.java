@@ -37,7 +37,7 @@ public class FornitoriController {
 	 * 
 	 * @return void
 	 */
-	public void fillTable() {
+	private void fillTable() {
 		String rowData[][] = new String[model.getFornitoriArray().size()][6];
 		DefaultTableModel modello = (DefaultTableModel) view.getFornitoriPanel().getTab().getTable().getModel();
 		for (int i = 0; i < model.getFornitoriArray().size(); i++) {
@@ -57,7 +57,7 @@ public class FornitoriController {
 	 * 
 	 * @return void
 	 */
-	public void addActionListenersMenu() {
+	private void addActionListenersMenu() {
 
 		view.getDashboard().getMenu().getMntmFornitori().addActionListener(new ActionListener() {
 
@@ -75,7 +75,7 @@ public class FornitoriController {
 	 * 
 	 * @return void
 	 */
-	public void addActionListenerButtons() {
+	private void addActionListenerButtons() {
 		AggiungiFornitoriActionListener addFornitore = new AggiungiFornitoriActionListener(model, view, dbControl);
 
 		view.getFornitoriPanel().getBtnAggiungi().addActionListener(addFornitore);
@@ -96,7 +96,7 @@ public class FornitoriController {
 	 * 
 	 * @return void
 	 */
-	public void addActionListenerHome() {
+	private void addActionListenerHome() {
 		view.getFornitoriPanel().getBtnHome().addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				view.getFornitoriPanel().setVisible(false);
