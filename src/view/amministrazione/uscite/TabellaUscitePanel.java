@@ -19,7 +19,7 @@ public class TabellaUscitePanel {
 		table = new JTable();
 		scrollPane.setViewportView(table);
 
-		TableModelMio modello1 = new TableModelMio(new Object[][] {}, new String[] { "Causa", "Tipo", "Prezzoa" });
+		TableModelMio modello1 = new TableModelMio(new Object[][] {}, new String[] { "Causa", "Tipo", "Prezzo" });
 
 		table.setModel(modello1);
 		table.getColumnModel().getColumn(0).setPreferredWidth(95);

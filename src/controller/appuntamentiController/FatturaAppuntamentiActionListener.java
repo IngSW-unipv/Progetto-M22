@@ -1,16 +1,19 @@
 package controller.appuntamentiController;
 
+import java.awt.Component;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 
 import javax.swing.table.DefaultTableModel;
+import javax.swing.table.TableCellRenderer;
 
 import database.connectionSQL.DbControllerSingleton;
 import model.SmartVetModel;
 import model.amministrazione.Entrate;
 import view.MainView;
+import view.login.PopUpOk;
 
 /**
  * Fattura Appuntamento selezionato
@@ -69,8 +72,11 @@ public class FatturaAppuntamentiActionListener implements ActionListener {
 			rowData[1] = tipo;
 			rowData[2] = prezzo; 
 			rowData[3] = sqlDate;
-
+			
 			modello.addRow(rowData);
+	
+			PopUpOk pop = new PopUpOk();
+			pop.infoBox("Fatturazione avvenuta con successo", "OK");
 
 		}
 	}
