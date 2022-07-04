@@ -30,7 +30,7 @@ public class ConnectionSQL {
 
 		DbURL = "jdbc:mysql://localhost:3306/clinica";
 		username = "root";
-		password = "Alemag1929";
+		password = "";
 		
 		if (isOpen(conn))
 			closeConnection(conn);
